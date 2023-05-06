@@ -13,6 +13,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Use the systemd-boot EFI boot loader.
+  boot.supportedFilesystems = [ "ntfs" ];
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -22,14 +23,13 @@
       useOSProber = true;
       efiSupport = true;
       extraEntries = ''
-      	menuentry "Reboot" {
-	  reboot
-    	}
-    	menuentry "Poweroff" {
-	  halt
-    	}
+        menuentry "Reboot" {
+          reboot
+        }
+        menuentry "Poweroff" {
+          halt
+        }
       '';
-
 
       # cosmetics
       fontSize = 36;
@@ -67,7 +67,8 @@
   services.xserver.enable = true;
 
 
-  # Enable the Plasma 5 Desktop Environment.  services.xserver.displayManager.sddm.enable = true;
+  # Enable the Plasma 5 Desktop Environment.  
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   
 
@@ -103,12 +104,7 @@
   # $ nix search wget
   
   environment.systemPackages = with pkgs; [
-    alacritty  
-    bitwarden 
     btop 
-    emacs
-    firefox
-    fzf
     pkgs.libinput-gestures
     git 
     networkmanagerapplet
@@ -119,6 +115,7 @@
     which 
     zsh 
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -137,26 +134,28 @@
     core = {
       editor = "nvim";
     };
+  };
 
-    user = {
-      name = "Gumelar Purnama Nugraha";
-      email = "gumelar.pn@gmail.com";
-      username = "gumelarme";
+  programs.neovim = {
+    enable = true;
+    configure = {
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        start = [ sensible vim-nix ];
+      };
     };
   };
-  
-  programs.neovim.vimAlias = true;
+
   programs.zsh = {
     enable = true;
     shellAliases = {
-	la = "ls -la";
-	nixup = "sudo nixos-rebuild switch";
+      la = "ls -la";
+      nixup = "sudo nixos-rebuild switch";
     };
 
     ohMyZsh = {
-	enable = true;
-	theme = "bira";
-	plugins = [ "colored-man-pages" "fzf" "git" "vi-mode" "z"];
+      enable = true;
+      theme = "bira";
+      plugins = [ "colored-man-pages" "fzf" "git" "vi-mode" "z"];
     };
   };
 

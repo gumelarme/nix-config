@@ -32,28 +32,112 @@
       #   });
       # })
     ];
+
     # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
     };
   };
 
-  # TODO: Set your username
   home = {
-    username = "your-username";
-    homeDirectory = "/home/your-username";
+    username = "kasuari";
+    homeDirectory = "/home/kasuari";
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [
+    # Fonts
+    # TODO: Move to separate files
+    ibm-plex
+    dejavu_fonts
+    noto-fonts
+    noto-fonts-extra
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+
+    # Tools & CLI
+    alacritty
+    bat
+    fd
+    fzf
+    ripgrep
+    tldr
+    tree
+
+    # GUI
+    bitwarden 
+    emacs
+    firefox
+    gimp
+    inkscape
+    qbittorrent
+    spotify
+    jetbrains.pycharm-community
+    # steam
+  ];
+
+  # ---- Programs configs
+  # TODO: Set firefox userchrome
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window = {
+        opacity = 0.9;
+        dynamic_title = true;
+        padding.x = 5;
+        padding.y = 7;
+      };
+      font = {
+        normal = {
+          family = "DejaVuSansMono";
+          style = "Regular";
+        };
+        size = 7;
+      };
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "gumelarme";
+    userEmail = "gumelar.pn@gmail.com";
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    viAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      neovim-sensible
+      vim-nix
+      vim-surround
+      commentary
+      # TODO: add more
+    ];
+  };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      extrakto
+      tmux-colors-solarized
+      # NOTE: want dracula, but very slow
+    ];
+  };
+
+
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
