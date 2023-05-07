@@ -12,6 +12,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+
+    inputs.nix-doom-emacs.hmModule
   ];
 
   nixpkgs = {
@@ -55,31 +57,53 @@
     noto-fonts-extra
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
+    source-code-pro
+    symbola
+    emacs-all-the-icons-fonts
+    (nerdfonts.override { fonts = ["IBMPlexMono" "DejaVuSansMono"]; } )
 
     # Tools & CLI
     alacritty
     bat
+    clang
     fd
     fzf
+    imagemagick
+    pandoc
+    python3Full
+    ranger
+    rclone
     ripgrep
-    tldr
+    rsync
+    syncthing
+    tealdeer
+    texlive.combined.scheme-full
     tree
+    yt-dlp
+
+    # Peripheral
+    xsane
+    xboxdrv
+    libwacom
+    wacomtablet # KDE Config Module
 
     # GUI
-    bitwarden 
-    emacs
+    bitwarden
+    discord
     firefox
     gimp
     inkscape
-    qbittorrent
-    spotify
     jetbrains.pycharm-community
-    # steam
+    qbittorrent
+    steam
+    spotify
+    tdesktop
+    vlc
+    zathura
   ];
 
   # ---- Programs configs
   # TODO: Set firefox userchrome
-
   programs.alacritty = {
     enable = true;
     settings = {
@@ -89,6 +113,7 @@
         padding.x = 5;
         padding.y = 7;
       };
+
       font = {
         normal = {
           family = "DejaVuSansMono";
@@ -97,6 +122,13 @@
         size = 7;
       };
     };
+  };
+
+  # Doom emacs
+  # TODO: Fix fonts and icons
+  programs.doom-emacs = {
+    enable = true;
+    doomPrivateDir = ../home/.doom.d;
   };
 
   programs.git = {
@@ -134,6 +166,12 @@
     ];
   };
 
+  services.syncthing = {
+    enable = true;
+    extraOptions = ["--gui-address=:12300"];
+    tray.enable = true;
+  };
+
 
 
   # Enable home-manager and git
@@ -144,4 +182,5 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "22.11";
+
 }

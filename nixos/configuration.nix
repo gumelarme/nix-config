@@ -104,6 +104,7 @@
   # $ nix search wget
   
   environment.systemPackages = with pkgs; [
+    coreutils
     btop 
     pkgs.libinput-gestures
     git 
@@ -157,6 +158,7 @@
       theme = "bira";
       plugins = [ "colored-man-pages" "fzf" "git" "vi-mode" "z"];
     };
+
   };
 
   # List services that you want to enable:
