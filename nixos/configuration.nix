@@ -114,6 +114,8 @@
     tmux 
     wget
     which 
+    zip
+    p7zip
     zsh 
   ];
 
