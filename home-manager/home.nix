@@ -88,18 +88,34 @@
     wacomtablet # KDE Config Module
 
     # GUI
+    calibre
     bitwarden
+    blender
     discord
     firefox
     gimp
+    godot
+    gparted
     inkscape
     jetbrains.pycharm-community
+    lorien
     qbittorrent
     steam
     spotify
     tdesktop
     vlc
+    xournalpp
     zathura
+
+    # KDE related
+    libsForQt5.ark
+    libsForQt5.dolphin-plugins
+
+
+    # Libreoffice
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en_US
   ];
 
   # ---- Programs configs
