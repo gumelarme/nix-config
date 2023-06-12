@@ -183,6 +183,9 @@
     enable = true;
     userName = "gumelarme";
     userEmail = "gumelar.pn@gmail.com";
+    delta = {
+      enable = true;
+    };
   };
 
   programs.fzf = {
