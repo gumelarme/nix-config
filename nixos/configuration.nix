@@ -200,13 +200,13 @@
       la = "ls -la";
       nixup = "sudo nixos-rebuild switch";
     };
-
-    ohMyZsh = {
-      enable = true;
-      theme = "bira";
-      plugins = [ "colored-man-pages" "fzf" "git" "vi-mode" "z"];
-    };
-
+    setOptions = [
+      "HIST_IGNORE_DUPS"
+      "SHARE_HISTORY"
+      "HIST_FCNTL_LOCK"
+      "RM_STAR_WAIT"
+      "VI"
+    ];
   };
 
   # List services that you want to enable:

@@ -234,6 +234,16 @@
     extraConfig = {};
   };
 
+  programs.zsh = {
+    enable = true;
+    enableSyntaxHighlighting = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "bira";
+      plugins = ["colored-man-pages" "git" "vi-mode" "z"];
+    };
+  };
+
   services.dunst = {
     enable = true;
     configFile = ./home/.config/dunst/dunstrc;
@@ -249,7 +259,10 @@
     # tray.enable = true;
   };
 
-
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-chinese-addons ];
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
