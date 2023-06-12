@@ -187,7 +187,7 @@
 
   programs.fzf = {
     enable = true;
-    # enableZshIntegration = true;
+    enableZshIntegration = false; # use mcfly instead
   };
 
   programs.neovim = {
@@ -236,12 +236,24 @@
 
   programs.zsh = {
     enable = true;
-    enableSyntaxHighlighting = true;
-    oh-my-zsh = {
+    # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
+    prezto = {
       enable = true;
-      theme = "bira";
-      plugins = ["colored-man-pages" "git" "vi-mode" "z"];
+      editor.keymap = "vi";
+      prompt = {
+        theme = "steeef";
+        pwdLength = "long";
+      };
     };
+
+    initExtra = "
+      bindkey -M vicmd '^v' edit-command-line
+    ";
+  };
+
+
+  programs.zoxide = {
+    enable = true;
   };
 
   services.dunst = {
