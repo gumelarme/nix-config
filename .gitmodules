@@ -1,0 +1,6 @@
+[submodule "modules/nix-doom-emacs"]
+	path = modules/nix-doom-emacs
+	url = git@github.com:gumelarme/nix-doom-emacs.git
+[submodule "home-manager/home/.config/dunst"]
+	path = home-manager/home/.config/dunst
+	url = https://github.com/dracula/dunst

@@ -23,6 +23,9 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      (self: super: {
+        fcitx-engines = pkgs.fcitx5;
+      })
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -48,6 +51,11 @@
     homeDirectory = "/home/kasuari";
   };
 
+  home.file."${config.xdg.configHome}" = {
+    source = ./home/.config;
+    recursive = true;
+  };
+
   home.packages = with pkgs; [
     # Fonts
     # TODO: Move to separate files
@@ -59,13 +67,16 @@
     noto-fonts-cjk-serif
     source-code-pro
     symbola
-    emacs-all-the-icons-fonts
+    # emacs-all-the-icons-fonts
+    wqy_zenhei
+    wqy_microhei
     (nerdfonts.override { fonts = ["IBMPlexMono" "DejaVuSansMono"]; } )
 
     # Tools & CLI
     alacritty
     bat
     clang
+    docker
     fd
     fzf
     imagemagick
@@ -76,15 +87,18 @@
     ripgrep
     rsync
     syncthing
+    termdown
     tealdeer
     texlive.combined.scheme-full
     tree
+    xclip
     yt-dlp
 
     # Peripheral
     xsane
     xboxdrv
     libwacom
+    # xf86_input_wacom
     wacomtablet # KDE Config Module
 
     # GUI
@@ -92,15 +106,16 @@
     bitwarden
     blender
     discord
-    firefox
     gimp
     godot
     gparted
     inkscape
     jetbrains.pycharm-community
     lorien
+    postman
     qbittorrent
     steam
+    steam-run
     spotify
     tdesktop
     vlc
@@ -116,10 +131,24 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
+
+    # music player
+    blanket # white noise player
+    tauon
+    nicotine-plus
+
+    # file explorer
+    mc
+    xplr
   ];
 
   # ---- Programs configs
   # TODO: Set firefox userchrome
+  programs.firefox = {
+    enable = true;
+  };
+
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -144,7 +173,10 @@
   # TODO: Fix fonts and icons
   programs.doom-emacs = {
     enable = true;
-    doomPrivateDir = ../home/.doom.d;
+    doomPrivateDir = ./home/.doom.d;
+    extraPackages = with pkgs; [
+      tree-sitter
+    ];
   };
 
   programs.git = {
@@ -155,7 +187,7 @@
 
   programs.fzf = {
     enable = true;
-    enableZshIntegration = true;
+    # enableZshIntegration = true;
   };
 
   programs.neovim = {
@@ -182,10 +214,39 @@
     ];
   };
 
+  programs.nnn = {
+    enable = true;
+    bookmarks = {};
+    extraPackages = with pkgs; [ ffmpegthumbnailer mediainfo sxiv ];
+    plugins = {};
+  };
+
+  programs.mcfly = {
+    enable = true;
+    keyScheme = "vim";
+  };
+
+  programs.rofi = {
+    enable = true;
+    plugins = [];
+    font = "Hack 14";
+    theme = null; # path
+    extraConfig = {};
+  };
+
+  services.dunst = {
+    enable = true;
+    configFile = ./home/.config/dunst/dunstrc;
+  };
+
+  services.picom = {
+    enable = true;
+  };
+
   services.syncthing = {
     enable = true;
     extraOptions = ["--gui-address=:12300"];
-    tray.enable = true;
+    # tray.enable = true;
   };
 
 
@@ -197,6 +258,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "22.11";
-
+  home.stateVersion = "23.05";
 }

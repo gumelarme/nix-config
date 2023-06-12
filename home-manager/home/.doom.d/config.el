@@ -60,6 +60,7 @@
 (after! org
   ;; This export configuration is to enable chinese in latex
   ;; works for normal text too
+  (map! :map org-mode-map  "C-c C-r" #'verb-command-map)
   (setq org-latex-pdf-process
         '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"

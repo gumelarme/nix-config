@@ -18,7 +18,6 @@
     efi.canTouchEfiVariables = true;
     grub = {
       enable = true;
-      version = 2;
       device = "nodev";
       useOSProber = true;
       efiSupport = true;
@@ -39,10 +38,21 @@
     };
   };
 
+  virtualisation.docker.enable = true;
+
   # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.hostName = "crockpot";
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.networks = {
+  #   "unwise-owl" = {
+  #     psk = "b2e001369813cfd93b257b2a9410197b40e25f4a72362eaec614f84940074d64";
+  #   };
+
+  #   BURST = {
+  #     psk = "5167d9d3d37aafc0e3463c2dc38eb298e18f98b34c887671216d9e958f5a090c";
+  #   };
+  # };
 
   # Set your time zone.
   time.timeZone = "Asia/Jakarta";
@@ -57,19 +67,34 @@
     font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkbOptions in tty.
   };
+
   i18n.inputMethod.enabled = "fcitx5";
   i18n.inputMethod.fcitx5.addons = with pkgs; [ fcitx5-chinese-addons ];
-
-
 
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.defaultSession = "none+qtile";
+  services.xserver.windowManager.qtile = {
+    enable = true;
+    backend = "x11";
+    extraPackages = python3Packages: with python3Packages; [
+      qtile-extras
+    ];
+  };
 
   # Enable the Plasma 5 Desktop Environment.  
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5 = {
+    enable = true;
+  };
+
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    elisa
+    oxygen
+    konsole
+  ];
   
 
   # Configure keymap in X11
@@ -85,6 +110,14 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+
+  # Scanner
+  hardware.sane.enable = true;
+  # services.ipp-usb.enable=true;
+
+  # wacom
+  services.xserver.wacom.enable = true;
+  # hardware.opentabletdriver.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kasuari = {
@@ -110,13 +143,26 @@
     git 
     networkmanagerapplet
     neovim 
+    nix
     nix-prefetch-scripts
+    home-manager
     tmux 
     wget
     which 
-    zip
-    p7zip
     zsh 
+
+    # archive helper
+    atool     # easy zip unzip
+    unzip
+    zip
+    libarchive
+    p7zip
+
+    #
+    nixos-option
+
+    # QTile
+    qtile
   ];
 
 
@@ -185,7 +231,8 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  # system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
 
