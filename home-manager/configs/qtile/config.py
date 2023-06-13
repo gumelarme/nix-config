@@ -45,6 +45,12 @@ def curdir(*paths):
     return os.path.join(qtile_dir, *paths)
 
 
+@hook.subscribe.startup_once
+def autostart():
+    script = curdir("scripts","autostart.sh")
+    subprocess.Popen([script])
+
+
 def lazy_script(filename: str, *args):
     script = curdir("scripts", filename)
     return lazy.spawn(" ".join([script, *args]))

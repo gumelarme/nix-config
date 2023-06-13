@@ -93,6 +93,8 @@ main_bar = bar.Bar(
         # wlan,
         widget.Spacer(),
         # notification,
+        widget.Systray(),
+        separator,
         pomodoro,
         separator,
         widget.Bluetooth(),
@@ -100,8 +102,6 @@ main_bar = bar.Bar(
         volume,
         separator,
         battery,
-        # widgetx.WiFiIcon()
-        widget.Systray(),
     ],
     size=26,
     opacity=0.85,
