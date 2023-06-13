@@ -50,11 +50,6 @@ def lazy_script(filename: str, *args):
     return lazy.spawn(" ".join([script, *args]))
 
 
-@hook.subscribe.startup_once
-def autostart():
-    subprocess.Popen([curdir("autostart.sh")])
-
-
 _cur_layout = None
 def toggle_layout(qtile, target_layout: str):
     global _cur_layout
