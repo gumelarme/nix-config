@@ -43,16 +43,6 @@
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.hostName = "crockpot";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.wireless.networks = {
-  #   "unwise-owl" = {
-  #     psk = "b2e001369813cfd93b257b2a9410197b40e25f4a72362eaec614f84940074d64";
-  #   };
-
-  #   BURST = {
-  #     psk = "5167d9d3d37aafc0e3463c2dc38eb298e18f98b34c887671216d9e958f5a090c";
-  #   };
-  # };
 
   # Set your time zone.
   time.timeZone = "Asia/Jakarta";
@@ -67,10 +57,6 @@
     font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkbOptions in tty.
   };
-
-  i18n.inputMethod.enabled = "fcitx5";
-  i18n.inputMethod.fcitx5.addons = with pkgs; [ fcitx5-chinese-addons ];
-
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -158,10 +144,8 @@
     libarchive
     p7zip
 
-    #
     nixos-option
 
-    # QTile
     qtile
   ];
 
@@ -198,8 +182,8 @@
     enable = true;
     shellAliases = {
       la = "ls -la";
-      nixup = "sudo nixos-rebuild switch";
     };
+
     setOptions = [
       "HIST_IGNORE_DUPS"
       "SHARE_HISTORY"
@@ -208,6 +192,9 @@
       "VI"
     ];
   };
+
+  # set default editor to neovim
+  environment.variables.EDITOR = "nvim";
 
   # List services that you want to enable:
 
