@@ -10,12 +10,12 @@ clock = widget.Clock(
 )
 
 battery = widget.Battery(
-    fmt="BAT: {}",
+    fmt="电: {}",
     format="{char} [{percent:2.0%}]",
     background="#005500",
     low_background="#ff0000",
     low_foreground="#ffffff",
-    discharge_char="V",
+    discharge_char="v",
 )
 
 group_box = widget.GroupBox(
@@ -31,7 +31,7 @@ group_box = widget.GroupBox(
 )
 
 volume = widget.Volume(
-    fmt="VOL: {}",
+    fmt="音: {}",
     background="#0e5473",
     foreground="#ffffff",
 )
@@ -87,9 +87,10 @@ main_bar = bar.Bar(
             max_chars=50,
             format="{state} {name}",
         ),
+        widget.TextBox(fmt="::", padding=None),
         clock,
         widget.TextBox(fmt="::", padding=None),
-        wlan,
+        # wlan,
         widget.Spacer(),
         # notification,
         pomodoro,

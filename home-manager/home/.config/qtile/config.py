@@ -25,7 +25,6 @@
 # SOFTWARE.
 
 BACKLIGHT_STEP = 5
-VOLUME_STEP = 5
 
 from logging import log
 import os
@@ -41,14 +40,20 @@ from libqtile.log_utils import logger
 from bar import main_bar, alt_bar
 
 
-def HOME(path):
-    return f"/home/kasuari/{path}"
+def curdir(*paths):
+    qtile_dir = os.path.expanduser("~/.config/qtile/")
+    return os.path.join(qtile_dir, *paths)
+
+
+def lazy_script(filename: str, *args):
+    script = curdir("scripts", filename)
+    return lazy.spawn(" ".join([script, *args]))
 
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser("~/.config/qtile/autostart.sh")
-    subprocess.Popen([home])
+    subprocess.Popen([curdir("autostart.sh")])
+
 
 _cur_layout = None
 def toggle_layout(qtile, target_layout: str):
@@ -63,8 +68,6 @@ def toggle_layout(qtile, target_layout: str):
 
     qtile.current_group.cmd_setlayout(layout)
     logger.debug(f"Toggling Layout: {layout}")
-
-
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
@@ -146,9 +149,9 @@ keys = [
     # FunctionKeys
     Key([], "XF86MonBrightnessUp", lazy.spawn(f"xbacklight -inc {BACKLIGHT_STEP}")),
     Key([], "XF86MonBrightnessDown", lazy.spawn(f"xbacklight -dec {BACKLIGHT_STEP}")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn(f"amixer set Master {VOLUME_STEP}%+")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn(f"amixer set Master {VOLUME_STEP}%-")),
-    Key([], "XF86AudioMute", lazy.spawn(f"amixer set Master toggle")),
+    Key([], "XF86AudioRaiseVolume", lazy_script("change_volume.sh", "5%+", "unmute")),
+    Key([], "XF86AudioLowerVolume", lazy_script("change_volume.sh", "5%-", "unmute")),
+    Key([], "XF86AudioMute", lazy_script("change_volume.sh", "toggle")),
     Key([], "XF86AudioMicMute", lazy.spawn(f"amixer set Capture toggle")),
 
     # ScratchPad
