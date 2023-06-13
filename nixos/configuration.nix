@@ -123,6 +123,7 @@
   # $ nix search wget
   
   environment.systemPackages = with pkgs; [
+    acpilight
     coreutils
     btop 
     pkgs.libinput-gestures
@@ -135,7 +136,7 @@
     tmux 
     wget
     which 
-    zsh 
+    zsh
 
     # archive helper
     atool     # easy zip unzip
@@ -200,6 +201,12 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Allow user in `video` group to change brightness without sudo
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight" KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
+    ACTION=="add", SUBSYSTEM=="backlight" KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+  '';
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
