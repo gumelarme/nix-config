@@ -142,8 +142,9 @@ keys = [
     Key([mod, "shift"], "Print", lazy.spawn("flameshot full")),
 
     # FunctionKeys
-    Key([], "XF86MonBrightnessUp", lazy.spawn(f"xbacklight -inc {BACKLIGHT_STEP}")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn(f"xbacklight -dec {BACKLIGHT_STEP}")),
+    Key([], "XF86MonBrightnessUp", lazy_script("change_brightness.sh", "+5")),
+    Key([], "XF86MonBrightnessDown", lazy_script("change_brightness.sh", "-5")),
+
     Key([], "XF86AudioRaiseVolume", lazy_script("change_volume.sh", "5%+", "unmute")),
     Key([], "XF86AudioLowerVolume", lazy_script("change_volume.sh", "5%-", "unmute")),
     Key([], "XF86AudioMute", lazy_script("change_volume.sh", "toggle")),
