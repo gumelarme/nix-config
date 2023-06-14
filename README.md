@@ -2,11 +2,11 @@
 A laptop nix config
 
 ## TODO:
-- [ ]  Rofi
+- [x]  Rofi
     - [x]  Theme
     - [x]  Power Menu
-- [ ] Lock screen
-- [ ] Auto sleep, hibernate etc.
+- [x] Lock screen
+- [x] Auto sleep, hibernate etc.
 - [ ] Notification
     - [x] Theme 
     - [x] Volume
