@@ -16,7 +16,7 @@ A laptop nix config
 - [ ] Qtile
     - [ ] Tidy up configs
     - [ ] Bar 
-        - [ ] Theme
+        - [ ]Theme
         - [ ] Mute Mic
 
 
