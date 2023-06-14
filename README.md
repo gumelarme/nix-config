@@ -4,7 +4,7 @@ A laptop nix config
 ## TODO:
 - [ ]  Rofi
     - [x]  Theme
-    - [ ]  Power Menu
+    - [x]  Power Menu
 - [ ] Lock screen
 - [ ] Auto sleep, hibernate etc.
 - [ ] Notification

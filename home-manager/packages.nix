@@ -42,6 +42,7 @@
     bitwarden
     blender
     discord
+    flameshot
     gimp
     godot
     gparted
@@ -51,6 +52,7 @@
     nicotine-plus
     postman
     qbittorrent
+    rofi-power-menu
     steam
     steam-run
     spotify
