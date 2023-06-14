@@ -1,8 +1,13 @@
 import os
 import subprocess
+import glob
+from pathlib import Path
+
+
 
 from libqtile import  hook
 from libqtile.config import Screen
+from libqtile.log_utils import logger
 
 from bar import main_bar, alt_bar
 from keybinding import keys, mouse
@@ -16,15 +21,37 @@ def autostart():
     subprocess.Popen([script])
 
 
-wallpaper = dict(
-    wallpaper=os.path.expanduser('~/Pictures/origami.png'),
-    wallpaper_mode="stretch",
-)
+def get_wallpaper():
+    wallpaper_dir = os.path.expanduser("~/.config/wallpaper")
+    logger.debug(f"Scanning wallpapers in {wallpaper_dir}")
 
+    files = []
+    for ext in ["jpg", "jpeg", "png"]:
+        wildcard = os.path.join(wallpaper_dir, f"*.{ext}")
+        files.extend(glob.glob(wildcard))
+
+    logger.debug(f"Got {len(files)}: {files}")
+    if not files:
+        return {}
+
+    files.sort()
+    wallpaper = files[0]
+    for f in files:
+        if Path(f).stem == "wallpaper":
+            wallpaper = f
+            break
+
+    logger.debug(f"Wallpaper selected: {wallpaper_dir}")
+    return {"wallpaper": wallpaper, "wallpaper_mode": "stretch"}
+
+
+
+wallpaper_config = get_wallpaper()
 screens = [
-    Screen(top=main_bar, **wallpaper),
-    Screen(top=alt_bar, **wallpaper),
+    Screen(top=main_bar, **wallpaper_config),
+    Screen(top=alt_bar, **wallpaper_config),
 ]
+
 
 widget_defaults = dict(
     font="Noto Sans Display",
