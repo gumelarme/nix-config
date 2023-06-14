@@ -14,7 +14,7 @@ A laptop nix config
     - [ ] Mute Mic
     - [ ] Battery, low - full
 - [ ] Qtile
-    - [ ] Tidy up configs
+    - [x] Tidy up configs
     - [ ] Bar 
         - [ ]Theme
         - [ ] Mute Mic
