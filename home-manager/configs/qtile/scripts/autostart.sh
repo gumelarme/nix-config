@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 qbittorrent &
-nicotine &
+nicotine-plus &
