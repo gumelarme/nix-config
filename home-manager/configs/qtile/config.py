@@ -143,7 +143,8 @@ keys = [
         desc="Spawn firefox web browser",
     ),
     Key([mod], "t", lazy.spawn("dolphin"), desc="Spawn file explorer"),
-    Key([mod], "d", lazy.spawn("rofi -show run")),
+    Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod, "shift"], "d", lazy.spawn("rofi -show run")),
     Key([mod], "Print", lazy.spawn("flameshot gui")),
     Key([mod, "shift"], "Print", lazy.spawn("flameshot full")),
 

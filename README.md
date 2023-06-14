@@ -3,7 +3,7 @@ A laptop nix config
 
 ## TODO:
 - [ ]  Rofi
-    - [ ]  Theme
+    - [x]  Theme
     - [ ]  Power Menu
 - [ ] Lock screen
 - [ ] Auto sleep, hibernate etc.

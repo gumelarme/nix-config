@@ -6,6 +6,7 @@
     enable = true;
   };
 
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -86,10 +87,12 @@
 
   programs.rofi = {
     enable = true;
-    plugins = [];
-    font = "Hack 14";
-    theme = null; # path
-    extraConfig = {};
+    plugins = with pkgs; [ rofi-calc rofi-emoji ];
+    theme = ./configs/rofi/theme/dracula-2.rasi; # path
+    extraConfig = {
+      modes = "drun,calc,emoji,run";
+      display-calc = "=";
+    };
   };
 
   programs.zsh = {
