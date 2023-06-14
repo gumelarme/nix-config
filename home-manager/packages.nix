@@ -35,6 +35,7 @@
     tree
     xclip
     xplr
+    betterlockscreen
 
 
     # GUI

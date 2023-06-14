@@ -208,6 +208,23 @@
     ACTION=="add", SUBSYSTEM=="backlight" KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
   '';
 
+  # wait time to hibernate for 'suspend-then-hibernate' config
+  services.sleep.extraConfig = "HibernateDelaySec=30min";
+
+  services.logind = {
+    lidSwitch = "suspend-then-hibernate";
+    lidSwitchDocked = "suspend-then-hibernate"; # lid closed but another screen is connected
+    lidSwitchExternalPower = "lock";
+
+    # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
+    # combined with services.screen-locker in home-manager,
+    # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
+    extraConfig = "
+      IdleAction=suspend-then-hibernate
+      IdleActionSec=20min
+    ";
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
