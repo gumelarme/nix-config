@@ -11,13 +11,13 @@ A laptop nix config
     - [x] Theme 
     - [x] Volume
     - [x] Brightness
-    - [ ] Mute Mic
+    - [x] Mute Mic
     - [ ] Battery, low - full
 - [ ] Qtile
     - [x] Tidy up configs
     - [ ] Bar 
-        - [ ]Theme
-        - [ ] Mute Mic
+        - [ ] Theme
+        - [x] Mute Mic
 
 
 

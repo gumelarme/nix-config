@@ -63,7 +63,7 @@ keys = [
     K("<XF86AudioRaiseVolume>", lazy_script("change_volume.sh", "5%+", "unmute")),
     K("<XF86AudioLowerVolume>", lazy_script("change_volume.sh", "5%-", "unmute")),
     K("<XF86AudioMute>", lazy_script("change_volume.sh", "toggle")),
-    K("<XF86AudioMicMute>", lazy.spawn(f"amixer set Capture toggle")),
+    K("<XF86AudioMicMute>", lazy_script("mic_toggle.sh")),
 
     # Launch App
     K("M-<Return>", lazy.spawn("alacritty -e tmux new -As default"), desc="Launch terminal"),
