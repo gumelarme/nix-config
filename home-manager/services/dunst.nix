@@ -162,6 +162,7 @@
         background = "#ff5555";
         foreground = "#f8f8f2";
         frame_color = "#ff5555";
+        highlight = "#ffffff";
         timeout = 0;
       };
     };
