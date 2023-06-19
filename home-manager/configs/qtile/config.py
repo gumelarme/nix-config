@@ -54,7 +54,7 @@ screens = [
 
 
 widget_defaults = dict(
-    font="Noto Sans Display",
+    font="DejaVuSansM Nerd Font, Noto Sans Mono CJK",
     fontsize=14,
     padding=5,
 )

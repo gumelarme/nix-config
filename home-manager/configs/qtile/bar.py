@@ -1,39 +1,59 @@
 from libqtile import bar, widget
-# from qtile_extras import widget as widgetx
+from qtile_extras.widget.decorations import BorderDecoration
+
+class Color:
+    Background = "#282a36"
+    CurrentLine = "#44475a"
+    Selection = "#44475a"
+    Foreground = "#f8f8f2"
+    Comment = "#6272a4"
+    Cyan = "#8be9fd"
+    Green = "#50fa7b"
+    Orange = "#ffb86c"
+    Pink = "#ff79c6"
+    Purple = "#bd93f9"
+    Red = "#ff5555"
+    Yellow = "#f1fa8c"
+
 
 
 clock = widget.Clock(
-    format="%a, %Y-%m-%d %I:%M %p",
-    font="DejaVu Sans Mono",
+    format="%a, %Y-%m-%d %H:%M",
+    font="Noto Sans Mono",
     fontsize=14,
-    padding=12,
 )
 
 battery = widget.Battery(
-    fmt="电: {}",
-    format="{char} [{percent:2.0%}]",
-    background="#005500",
-    low_background="#ff0000",
-    low_foreground="#ffffff",
-    discharge_char="v",
+    fmt="电 {}",
+    format="{char} {percent:2.0%}",
+    background=Color.Green,
+    foreground=Color.Background,
+    low_background=Color.Red,
+    low_foreground=Color.Foreground,
+    low_percentage=0.2,
+    charge_char="󱐋",
+    discharge_char="",
 )
 
 group_box = widget.GroupBox(
     highlight_method="block",
-    highlight_color=["#FF0000", "#FF0000"],
+    fmt="{}",
+    inactive=Color.Selection,
+    active=Color.Foreground,
     background="#000000",
     rounded=False,
     padding=4,
-    this_current_screen_border='#2245b5',
-    this_screen_border='#26314a',
-    other_current_screen_border='#d64e20',
-    other_screen_border='#733410',
+    this_current_screen_border=Color.Pink,
+    this_screen_border='#7d3d62',
+    other_current_screen_border="#db882e",
+    other_screen_border="#a17445",
+    font="DejaVu Sans Mono Bold",
 )
 
 volume = widget.Volume(
-    fmt="音: {}",
-    background="#0e5473",
-    foreground="#ffffff",
+    fmt="音 {}",
+    background=Color.Cyan,
+    foreground=Color.Background,
 )
 
 wlan = widget.Wlan(
@@ -50,9 +70,7 @@ window_name = widget.WindowName(
 )
 
 window_count = widget.WindowCount(
-    font="DejaVu Sans Mono",
-    fontsize=14,
-    text_format=":{num}:",
+    text_format="/{num}/",
 )
 
 pomodoro = widget.Pomodoro(
@@ -65,16 +83,16 @@ pomodoro = widget.Pomodoro(
     fontsize=14,
 )
 
-separator = widget.Sep(foreground="#000000")
+separator = widget.Sep(foreground="#000000", background="#000000.0", padding=10)
 notification = widget.Notify(fmt="!!: {}")
 
 curscreen_opt = dict(
-    # active_text="\u25A0",
-    # inactive_text="\u25A0",
-    active_text="[+]",
-    inactive_text="[-]",
-    font="DejaVu Sans Mono Bold",
+    active_text="",
+    inactive_text="󰝤",
+    active_color=Color.Green,
+    inactive_color=Color.Comment,
     fontsize=14,
+    padding=8,
 )
 
 main_bar = bar.Bar(
@@ -87,24 +105,17 @@ main_bar = bar.Bar(
             max_chars=50,
             format="{state} {name}",
         ),
-        widget.TextBox(fmt="::", padding=None),
         clock,
-        widget.TextBox(fmt="::", padding=None),
-        # wlan,
         widget.Spacer(),
-        # notification,
         widget.Systray(),
-        separator,
-        pomodoro,
-        separator,
-        widget.Bluetooth(),
         separator,
         volume,
         separator,
         battery,
     ],
-    size=26,
+    background="#1a1b24",
     opacity=0.85,
+    size=26,
 )
 
 
@@ -117,8 +128,9 @@ alt_bar = bar.Bar(
         widget.Spacer(),
         clock,
     ],
-    size=26, 
-    opacity=0.85,
+    background="#1a1b24.8",
+    size=26,
+    opacity=1,
 )
 
 
