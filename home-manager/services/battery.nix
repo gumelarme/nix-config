@@ -31,7 +31,8 @@
           cat = "${pkgs.coreutils}/bin/cat";
           cfg = {
             device = "BAT0";
-            notify-capacity = 20;
+            notify-low-capacity = 20;
+            notify-full-capacity = 95;
             hibernate-capacity = 5;
             sysclass = "/sys/class/power_supply/${cfg.device}";
           };
@@ -41,7 +42,16 @@
             battery_capacity=$(${cat} ${cfg.sysclass}/capacity)
             battery_status=$(${cat} ${cfg.sysclass}/status)
 
-            if [[ $battery_capacity -le ${builtins.toString cfg.notify-capacity} && $battery_status == "Discharging" ]]; then
+            # Note the 'not equal "Discharging"', because it could be plugged and the status still says 'Not Charging' but not discharging
+            if [[ $battery_capacity -ge ${builtins.toString cfg.notify-full-capacity} && $battery_status != "Discharging"]]; then
+              ${notifier} -a "notifyBattery" \
+                          -u normal \
+                          -i battery \
+                          "Battery almost full: ''${battery_capacity}%" \
+                          "Maybe you can unplug now"
+            fi
+
+            if [[ $battery_capacity -le ${builtins.toString cfg.notify-low-capacity} && $battery_status == "Discharging" ]]; then
                 ${notifier} -a "notifyBattery" \
                             -u critical \
                             -i battery \

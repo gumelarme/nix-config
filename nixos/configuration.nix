@@ -199,6 +199,8 @@
 
   # List services that you want to enable:
 
+  # run XDGAutostart even if there is no DE
+  services.xserver.desktopManager.runXdgAutostartIfNone = true;
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -209,7 +211,7 @@
   '';
 
   # wait time to hibernate for 'suspend-then-hibernate' config
-  services.sleep.extraConfig = "HibernateDelaySec=30min";
+  systemd.sleep.extraConfig = "HibernateDelaySec=30min";
 
   services.logind = {
     lidSwitch = "suspend-then-hibernate";

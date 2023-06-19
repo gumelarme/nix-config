@@ -12,7 +12,7 @@ A laptop nix config
     - [x] Volume
     - [x] Brightness
     - [x] Mute Mic
-    - [ ] Battery, low - full
+    - [x] Battery, low - full
 - [ ] Qtile
     - [x] Tidy up configs
     - [ ] Bar 
