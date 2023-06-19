@@ -32,7 +32,8 @@
     enable = true;
     doomPrivateDir = ./configs/.doom.d;
     extraPackages = with pkgs; [
-      tree-sitter
+      # tree-sitter
+      emacsPackages.tree-sitter
     ];
   };
 
