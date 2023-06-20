@@ -44,13 +44,14 @@
     blender
     discord
     flameshot
-    gimp
+    # gimp  # annoyingly replaces xdg-mime for image/*
     godot
     gparted
     inkscape
     jetbrains.pycharm-community
     lorien
     nicotine-plus
+    nomacs
     postman
     qbittorrent
     rofi-power-menu
@@ -62,6 +63,7 @@
     vlc
     xournalpp
     zathura
+    qutebrowser
 
     # KDE related
     libsForQt5.ark
