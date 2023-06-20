@@ -1,4 +1,4 @@
-{pkgs, ... }:
+{pkgs, config, ... }:
 
 {
   imports = [
@@ -27,6 +27,17 @@
     xautolock = {
       enable = true;
       detectSleep = true; # reset timer after sleep
+    };
+  };
+
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        savePath = "${config.xdg.userDirs.extraConfig.XDG_SCREENSHOT_DIR}";
+        saveAsFileExtension="png";
+        copyPathAfterSave = true;
+      };
     };
   };
 }
