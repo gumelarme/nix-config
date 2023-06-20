@@ -212,6 +212,7 @@
 
   # set default editor to neovim
   environment.variables.EDITOR = "nvim";
+  environment.variables.VISUAL = "nvim";
 
   # List services that you want to enable:
 
