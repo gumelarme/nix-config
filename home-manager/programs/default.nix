@@ -86,6 +86,7 @@
           f = "finder";
           v = "imgview";
           z = "autojump";
+          m = "nmount";
       };
       src = (pkgs.fetchFromGitHub {
           owner = "jarun";
@@ -131,6 +132,10 @@
 
   # z jump dir
   programs.zoxide = {
+    enable = true;
+  };
+
+  programs.qutebrowser = {
     enable = true;
   };
 

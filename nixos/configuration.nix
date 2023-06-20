@@ -137,6 +137,7 @@
     wget
     which 
     zsh
+    pmount
 
     # archive helper
     atool     # easy zip unzip
@@ -193,6 +194,21 @@
       "VI"
     ];
   };
+
+ security.wrappers = {
+   pmount = {
+     setuid = true;
+     owner = "root";
+     group = "root";
+     source = "${pkgs.pmount}/bin/pmount";
+   };
+   pumount = {
+     setuid = true;
+     owner = "root";
+     group = "root";
+     source = "${pkgs.pmount}/bin/pumount";
+   };
+ };
 
   # set default editor to neovim
   environment.variables.EDITOR = "nvim";
