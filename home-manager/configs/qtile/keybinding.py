@@ -5,6 +5,17 @@ from libqtile.log_utils import logger
 from layout import workspaces
 from utils import lazy_script
 
+# Application that get called by this file:
+# - firefox
+# - alacritty
+# - nnn
+# - flameshot
+# - rofi
+# - rofi-power-menu.sh
+# - qutebrowser
+# - spotify
+
+
 _cur_layout = None
 def toggle_layout(qtile, target_layout: str):
     global _cur_layout
@@ -71,7 +82,7 @@ keys = [
     K("M-C-q", lazy_script("rofi-power-menu.sh"), desc="Open power menu"),
     K("M-z", lazy.spawn("firefox"), desc="Spawn firefox web browser"),
     K("M-S-z", lazy.spawn("firefox --private-window"), desc="Spawn firefox web browser"),
-    K("M-t", lazy.spawn("dolphin"), desc="Spawn file explorer"),
+    K("M-t", lazy.spawn("alacritty -e nnn"), desc="Spawn file explorer"),
     K("M-d", lazy.spawn("rofi -show drun")),
     K("M-S-d", lazy.spawn("rofi -show run")),
     K("M-<Print>", lazy.spawn("flameshot gui")),
