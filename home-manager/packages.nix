@@ -16,6 +16,7 @@
     (nerdfonts.override { fonts = ["IBMPlexMono" "DejaVuSansMono"]; } )
 
     # Tools & CLI
+    autorandr
     bat
     clang
     docker
