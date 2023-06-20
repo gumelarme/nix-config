@@ -2,7 +2,7 @@ from libqtile.config import Click,Drag, EzKey as K, Key
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
 
-from layout import workspaces
+from layout import workspaces, named_workspace
 from utils import lazy_script
 
 # Application that get called by this file:
@@ -93,7 +93,6 @@ keys = [
     K("M-<backslash>", lazy.group['scratch'].dropdown_toggle('term')),
     K("M-S-<backslash>", lazy.group['scratch'].dropdown_toggle('python-repl')),
     K("M-<bracketright>", lazy.group['scratch'].dropdown_toggle('browser')),
-    K("M-<bracketleft>", lazy.group['scratch'].dropdown_toggle('spotify')),
     K("M-<slash>", lazy.group['scratch'].hide_all()),
 
 ]
@@ -123,6 +122,14 @@ for i in workspaces:
         ]
     )
 
+for w in named_workspace:
+    focus, move = w.get_ezkey()
+    keys.extend(
+        [
+            K(focus, lazy.group[w.name].toscreen(), desc=f"Switch to group {w.name}"),
+            K(move, lazy.window.togroup(w.name), desc=f"Move focused window to group {w.name}"),
+        ]
+    )
 
 mouse = [
     # Drag floating layout

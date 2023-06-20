@@ -1,6 +1,16 @@
 from libqtile import layout
 from libqtile.config import  DropDown, Group, ScratchPad, Match
 
+class NamedWorkspace:
+    def __init__(self, name, key, **kwargs):
+        self.name = name
+        self.key = key
+        self.options = kwargs
+
+    def get_ezkey(self):
+        return (f"M-{self.key}", f"M-S-{self.key}")
+
+
 scratch_args= dict(
     height=0.68,
     width=0.5,
@@ -9,17 +19,24 @@ scratch_args= dict(
 )
 
 workspaces = [Group(i) for i in "1234567890"]
+named_workspace = [
+    NamedWorkspace("b", "b", spawn="qbittorrent"),
+    NamedWorkspace("m", "m", spawn="spotify"),
+]
+
 groups = [
     *workspaces,
+    *[Group(i.name, **i.options) for i in named_workspace],
     ScratchPad('scratch', [
             DropDown("term", "alacritty -e tmux new -As scratch", **scratch_args),
             DropDown("browser", "qutebrowser", **scratch_args),
             DropDown("python-repl", "alacritty -e python3"),
-            DropDown("spotify", "spotify", **scratch_args),
         ],
         single=False,
     ),
 ]
+
+
 
 
 gaps = dict(
