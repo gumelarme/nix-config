@@ -114,7 +114,7 @@ main_bar = bar.Bar(
         battery,
     ],
     background="#1a1b24",
-    opacity=0.85,
+    opacity=0.9, # placing opacity on background cause system tray to turn blue
     size=26,
 )
 
@@ -128,7 +128,7 @@ alt_bar = bar.Bar(
         widget.Spacer(),
         clock,
     ],
-    background="#1a1b24.8",
+    background="#1a1b24.9",
     size=26,
     opacity=1,
 )
