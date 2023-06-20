@@ -111,7 +111,7 @@
     home = "/home/kasuari";
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "disk" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "disk" "docker"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
     ];
