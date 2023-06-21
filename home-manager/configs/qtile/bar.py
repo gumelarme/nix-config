@@ -56,14 +56,6 @@ volume = widget.Volume(
     foreground=Color.Background,
 )
 
-wlan = widget.Wlan(
-    interface="wlp3s0",
-    format="{essid} {percent:2.0%}",
-    disconnected_message="-",
-    font="DejaVu Sans Mono",
-    fontsize=14,
-)
-
 window_name = widget.WindowName(
     max_chars=50,
     format="{state} {name}",
@@ -83,9 +75,8 @@ pomodoro = widget.Pomodoro(
     fontsize=14,
 )
 
-separator = widget.Sep(foreground="#000000", background="#000000.0", padding=10)
-notification = widget.Notify(fmt="!!: {}")
-
+# separator = widget.Sep(foreground="#000000.0", background="#000000.0", padding=10)
+separator = widget.Spacer(length=10)
 curscreen_opt = dict(
     active_text="",
     inactive_text="󰝤",
