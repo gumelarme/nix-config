@@ -7,6 +7,7 @@ from pathlib import Path
 
 from libqtile import  hook
 from libqtile.config import Screen
+from libqtile.lazy import lazy
 from libqtile.log_utils import logger
 
 from bar import main_bar, alt_bar
@@ -14,14 +15,7 @@ from keybinding import keys, mouse
 from layout import floating_layout, groups, layouts
 from utils import curdir
 
-
-@hook.subscribe.startup_once
-def autostart():
-    script = curdir("scripts","autostart.sh")
-    subprocess.Popen([script])
-
-
-def get_wallpaper():
+def get_wallpaper(name="wallpaper"):
     wallpaper_dir = os.path.expanduser("~/.config/wallpaper")
     logger.debug(f"Scanning wallpapers in {wallpaper_dir}")
 
@@ -37,16 +31,28 @@ def get_wallpaper():
     files.sort()
     wallpaper = files[0]
     for f in files:
-        if Path(f).stem == "wallpaper":
+        if Path(f).stem == name:
             wallpaper = f
             break
 
     logger.debug(f"Wallpaper selected: {wallpaper_dir}")
-    return {"wallpaper": wallpaper, "wallpaper_mode": "stretch"}
+    return wallpaper
 
 
+@hook.subscribe.startup_once
+def autostart():
+    script = curdir("scripts","autostart.sh")
+    subprocess.Popen([script])
 
-wallpaper_config = get_wallpaper()
+
+@hook.subscribe.startup
+def cache_lockscreen():
+    # TODO: find a better hooks to cache betterlockscreen
+    wallpaper = get_wallpaper("lockscreen")
+    subprocess.Popen(f"betterlockscreen -u {wallpaper}", shell=True)
+
+
+wallpaper_config = {"wallpaper": get_wallpaper(), "wallpaper_mode": "stretch"}
 screens = [
     Screen(top=main_bar, **wallpaper_config),
     Screen(top=alt_bar, **wallpaper_config),
