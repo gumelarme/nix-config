@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 
 {
   # ---- Programs configs
@@ -77,17 +77,27 @@
   programs.nnn = {
     enable = true;
     package = pkgs.nnn.override({ withNerdIcons = true; });
-    bookmarks = {};
-    extraPackages = with pkgs; [ ffmpegthumbnailer mediainfo sxiv ];
-    # TODO Add live previews and more plugins
+    extraPackages = with pkgs; [ glow libnotify mediainfo viu ];
+    bookmarks =
+      let
+        userDirs = config.xdg.userDirs;
+      in
+        {
+          d = "${userDirs.download}";
+          v = "${userDirs.extraConfig.XDG_DEV_DIR}";
+          r = "${userDirs.extraConfig.XDG_DEV_DIR}/repo";
+          s = "${userDirs.extraConfig.XDG_SCREENSHOT_DIR}";
+        };
+
     plugins = {
       mappings = {
-          c = "fzcd";
-          f = "finder";
-          v = "imgview";
-          z = "autojump";
+          f = "fzcd";
+          v = ".ntfy";
           m = "nmount";
+          p = "preview-tui";
+          r = "gitroot";
       };
+
       src = (pkgs.fetchFromGitHub {
           owner = "jarun";
           repo = "nnn";
@@ -126,7 +136,9 @@
 
     initExtra = "
       bindkey -M vicmd '^v' edit-command-line
-    ";
+    "
+    + (builtins.readFile ./configs/zsh-scripts/nnn-config)
+    + (builtins.readFile ./configs/zsh-scripts/nnn-quitcd);
   };
 
 

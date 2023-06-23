@@ -38,6 +38,9 @@
     xplr
     betterlockscreen
 
+    less
+    glow
+
 
     # GUI
     calibre
@@ -81,4 +84,14 @@
     libwacom
     wacomtablet # KDE Config Module
   ];
+  # Add scripts to bin from file
+  # ++ (let
+  #       fileToScripts = file: pkgs.writeShellScriptBin (builtins.baseNameOf file) (builtins.readFile file);
+  #       getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
+  #   in map fileToScripts (getFilesFromDir ./bin [
+  #       # "nn"
+  #   ])
+  # )
+  # ;
+
 }
