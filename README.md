@@ -2,22 +2,33 @@
 A laptop nix config
 
 ## TODO:
-- [x]  Rofi
-    - [x]  Theme
-    - [x]  Power Menu
-- [x] Lock screen
+- [ ]  Rofi
+    - [x] Theme
+    - [x] Power Menu
+    - [ ] Multimonitor configuration (also with autorandr)
+- [ ] Lock screen
+  - [ ] replace xautolock with xidlehook
 - [x] Auto sleep, hibernate etc.
-- [ ] Notification
+- [x] Notification
     - [x] Theme 
     - [x] Volume
     - [x] Brightness
     - [x] Mute Mic
     - [x] Battery, low - full
-- [ ] Qtile
+- [x] Qtile
     - [x] Tidy up configs
-    - [ ] Bar 
-        - [ ] Theme
+    - [x] Bar 
+        - [x] Theme
         - [x] Mute Mic
+- [ ] nnn
+    - [x] configure nnn
+    - [ ] create derivation and  configuration to nix
+- [ ] development env
+  - [ ] tree-sitter (fix abi version to high)
+  - [ ] lsp (pyright, gopls)
+  - [ ] git (aliases, tools)
+- [ ] mopidy
+- [ ] firefox's userchrome
 
 ## Bugs
 ### fcitx5
