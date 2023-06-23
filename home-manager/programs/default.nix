@@ -44,6 +44,13 @@
     delta = {
       enable = true;
     };
+    aliases = {
+      d = "diff";
+      ds = "diff --staged";
+      l = "log";
+      lo = "log --graph --oneline";
+      ls = "log --graph --name-status";
+    };
   };
 
   programs.fzf = {
@@ -124,6 +131,10 @@
 
   programs.zsh = {
     enable = true;
+    shellAliases = {
+      g = "git";
+      s = "git status";
+    };
     # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
     prezto = {
       enable = true;
