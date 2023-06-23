@@ -27,6 +27,14 @@
     };
   };
 
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Dracula";
+    };
+    extraPackages = with pkgs.bat-extras; [ batman prettybat ];
+  };
+
   # Doom emacs
   programs.doom-emacs = {
     enable = true;

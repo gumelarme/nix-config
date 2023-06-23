@@ -17,7 +17,6 @@
 
     # Tools & CLI
     autorandr
-    bat
     clang
     docker
     fd
