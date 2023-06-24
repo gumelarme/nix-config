@@ -31,6 +31,8 @@ A laptop nix config
 - [ ] firefox's userchrome
 - [x] replace alacritty with wezterm
 - [ ] configure tmux
+    - [x] configure plugins
+    - [ ] move plugins to ./pkgs
 
 ## Bugs
 ### fcitx5

@@ -104,21 +104,24 @@
     keyMode = "vi";
     mouse = true;
     terminal = "screen-256color";
-    plugins = with pkgs.tmuxPlugins; [
-      tmux-colors-solarized
-      fuzzback
-      {
-        plugin = extrakto;
-        extraConfig = ''set -g @extrakto_popup_size "80%,50%" '';
-      }
-    ];
-
-    extraConfig = "
-      bind-key -r -T prefix C-k resize-pane -U
-      bind-key -r -T prefix C-h resize-pane -L
-      bind-key -r -T prefix C-l resize-pane -R
-      bind-key -T prefix v split-window -h
-      bind-key -T prefix h split-window
-    ";
+    extraConfig = builtins.readFile ./configs/tmux.conf;
+    plugins =
+      let
+        myplugins = (import ./tmux-custom-plugins.nix) { inherit pkgs; };
+      in with pkgs.tmuxPlugins;
+        [
+          catppuccin
+          fuzzback
+          extrakto
+          tmux-fzf
+          myplugins.fzf-session-switch
+          {
+            plugin = myplugins.capture-last-output;
+            extraConfig = ''
+              set -g @command-capture-key o
+              set -g @command-capture-prompt-pattern '${config.home.username} at'
+            '';
+          }
+        ];
   };
 }
