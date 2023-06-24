@@ -28,7 +28,6 @@
     rclone
     ripgrep
     rsync
-    syncthing
     termdown
     tealdeer
     texlive.combined.scheme-full
@@ -38,14 +37,13 @@
     betterlockscreen
     less
     glow
-
+    zoxide
 
     # GUI
     calibre
     bitwarden
     blender
     discord
-    flameshot
     # gimp  # annoyingly replaces xdg-mime for image/*
     godot
     gparted

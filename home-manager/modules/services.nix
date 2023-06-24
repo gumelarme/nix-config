@@ -1,11 +1,6 @@
 {pkgs, config, ... }:
 
 {
-  imports = [
-    ./battery.nix
-    ./dunst.nix
-  ];
-
   services.network-manager-applet.enable = true;
 
   services.picom = {

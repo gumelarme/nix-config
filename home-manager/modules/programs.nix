@@ -1,15 +1,18 @@
 {pkgs, config, ...}:
 
 {
-  imports =  [
-    ./mopidy.nix
-  ];
+  # TODO: Configure user chrome
+  programs.firefox.enable = true;
 
-  # ---- Programs configs
-  programs.firefox = {
+  programs.rofi = {
     enable = true;
+    plugins = with pkgs; [ rofi-calc rofi-emoji ];
+    theme = ./configs/rofi/theme/dracula-2.rasi; # path
+    extraConfig = {
+      modes = "drun,calc,emoji,run";
+      display-calc = "=";
+    };
   };
-
 
   programs.alacritty = {
     enable = true;
@@ -31,22 +34,26 @@
     };
   };
 
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Dracula";
-    };
-    extraPackages = with pkgs.bat-extras; [ batman prettybat ];
-  };
-
-  # Doom emacs
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./configs/.doom.d;
     extraPackages = with pkgs; [
-      # tree-sitter
       emacsPackages.tree-sitter
     ];
+  };
+
+  programs.bat = {
+    enable = true;
+    extraPackages = with pkgs.bat-extras; [ batman prettybat ];
+    config = {
+      theme = "Dracula";
+    };
+  };
+
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = false; # use mcfly instead
   };
 
   programs.git = {
@@ -70,11 +77,6 @@
       lo = "log --graph --oneline";
       ls = "log --graph --name-status";
     };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = false; # use mcfly instead
   };
 
   programs.neovim = {
@@ -138,16 +140,6 @@
     keyScheme = "vim";
   };
 
-  programs.rofi = {
-    enable = true;
-    plugins = with pkgs; [ rofi-calc rofi-emoji ];
-    theme = ./configs/rofi/theme/dracula-2.rasi; # path
-    extraConfig = {
-      modes = "drun,calc,emoji,run";
-      display-calc = "=";
-    };
-  };
-
   programs.zsh = {
     enable = true;
     shellAliases = {
@@ -171,15 +163,5 @@
     "
     + (builtins.readFile ./configs/zsh-scripts/nnn-config)
     + (builtins.readFile ./configs/zsh-scripts/nnn-quitcd);
-  };
-
-
-  # z jump dir
-  programs.zoxide = {
-    enable = true;
-  };
-
-  programs.qutebrowser = {
-    enable = true;
   };
 }

@@ -1,12 +1,7 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
     inputs.nix-doom-emacs.hmModule
-    ./programs
-    ./services
-
-    ./packages.nix
-    ./xdg.nix
-    ./default-apps.nix
+    ./modules
   ];
 
   nixpkgs = {
