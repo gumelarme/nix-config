@@ -101,12 +101,24 @@
 
   programs.tmux = {
     enable = true;
+    keyMode = "vi";
+    mouse = true;
     terminal = "screen-256color";
     plugins = with pkgs.tmuxPlugins; [
-      sensible
-      extrakto
       tmux-colors-solarized
-      # NOTE: want dracula, but very slow
+      fuzzback
+      {
+        plugin = extrakto;
+        extraConfig = ''set -g @extrakto_popup_size "80%,50%" '';
+      }
     ];
+
+    extraConfig = "
+      bind-key -r -T prefix C-k resize-pane -U
+      bind-key -r -T prefix C-h resize-pane -L
+      bind-key -r -T prefix C-l resize-pane -R
+      bind-key -T prefix v split-window -h
+      bind-key -T prefix h split-window
+    ";
   };
 }
