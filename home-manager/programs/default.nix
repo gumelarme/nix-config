@@ -1,6 +1,10 @@
 {pkgs, config, ...}:
 
 {
+  imports =  [
+    ./mopidy.nix
+  ];
+
   # ---- Programs configs
   programs.firefox = {
     enable = true;
@@ -149,7 +153,9 @@
     shellAliases = {
       g = "git";
       s = "git status";
+      mucik = "ncmpcpp";
     };
+
     # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
     prezto = {
       enable = true;
@@ -176,5 +182,4 @@
   programs.qutebrowser = {
     enable = true;
   };
-
 }

@@ -36,7 +36,6 @@
     xclip
     xplr
     betterlockscreen
-
     less
     glow
 
