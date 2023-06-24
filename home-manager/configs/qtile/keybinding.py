@@ -7,7 +7,7 @@ from utils import lazy_script
 
 # Application that get called by this file:
 # - firefox
-# - alacritty
+# - wezterm
 # - nnn
 # - flameshot
 # - rofi
@@ -77,12 +77,12 @@ keys = [
     K("<XF86AudioMicMute>", lazy_script("mic_toggle.sh")),
 
     # Launch App
-    K("M-<Return>", lazy.spawn("alacritty -e tmux new -As default"), desc="Launch terminal"),
-    K("M-S-<Return>", lazy.spawn("alacritty"), desc="Launch tmuxless terminal"),
+    K("M-<Return>", lazy.spawn("wezterm -e tmux new -As default"), desc="Launch terminal"),
+    K("M-S-<Return>", lazy.spawn("wezterm"), desc="Launch tmuxless terminal"),
     K("M-C-q", lazy_script("rofi-power-menu.sh"), desc="Open power menu"),
     K("M-z", lazy.spawn("firefox"), desc="Spawn firefox web browser"),
     K("M-S-z", lazy.spawn("firefox --private-window"), desc="Spawn firefox web browser"),
-    K("M-t", lazy.spawn("alacritty -e nnn"), desc="Spawn file explorer"),
+    K("M-t", lazy.spawn("wezterm -e nnn"), desc="Spawn file explorer"),
     K("M-d", lazy.spawn("rofi -show drun")),
     K("M-S-d", lazy.spawn("rofi -show run")),
     K("M-<Print>", lazy.spawn("flameshot gui")),

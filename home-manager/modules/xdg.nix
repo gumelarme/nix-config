@@ -26,7 +26,7 @@
       name = "Neovim (with terminal)";
       comment = "Neovim opened with terminal";
       genericName = "Text editor";
-      exec = "alacritty -e nvim %f";
+      exec = "wezterm -e nvim %f";
       terminal = true;
       categories = ["Development" "TextEditor"];
       mimeType = ["text/*"];

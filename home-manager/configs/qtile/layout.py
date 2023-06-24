@@ -24,13 +24,20 @@ named_workspace = [
     NamedWorkspace("m", "m", spawn="spotify"),
 ]
 
+# `wezterm -e` launch program as a gui, and somehow cannot be assigned to a dropdown
+# so we need to override the `default_prog` configuration at launch
+def wezterm_with(programs: str):
+    # split by space, and pass it as list of string
+    args = [f"'{x}'" for x in programs.split(" ")]
+    return "wezterm --config default_prog=\"{ %s }\"" % ", ".join(args)
+
 groups = [
     *workspaces,
     *[Group(i.name, **i.options) for i in named_workspace],
     ScratchPad('scratch', [
-            DropDown("term", "alacritty -e tmux new -As scratch", **scratch_args),
+            DropDown("term", wezterm_with("tmux new -As scratch"), **scratch_args),
             DropDown("browser", "qutebrowser", **scratch_args),
-            DropDown("python-repl", "alacritty -e python3"),
+            DropDown("python-repl", wezterm_with("python3")),
         ],
         single=False,
     ),

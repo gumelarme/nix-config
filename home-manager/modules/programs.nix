@@ -14,24 +14,29 @@
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window = {
-        opacity = 0.9;
-        dynamic_title = true;
-        padding.x = 5;
-        padding.y = 7;
-      };
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     window = {
+  #       opacity = 0.9;
+  #       dynamic_title = true;
+  #       padding.x = 5;
+  #       padding.y = 7;
+  #     };
 
-      font = {
-        normal = {
-          family = "DejaVuSansMono";
-          style = "Regular";
-        };
-        size = 7;
-      };
-    };
+  #     font = {
+  #       normal = {
+  #         family = "DejaVuSansMono";
+  #         style = "Regular";
+  #       };
+  #       size = 7;
+  #     };
+  #   };
+  # };
+
+  programs.wezterm = {
+    enable = true;
+    extraConfig = builtins.readFile ./configs/wezterm.lua;
   };
 
   programs.doom-emacs = {

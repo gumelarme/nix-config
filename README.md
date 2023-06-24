@@ -27,8 +27,10 @@ A laptop nix config
   - [ ] tree-sitter (fix abi version to high)
   - [ ] lsp (pyright, gopls)
   - [ ] git (aliases, tools)
-- [ ] mopidy
+- [x] mopidy
 - [ ] firefox's userchrome
+- [x] replace alacritty with wezterm
+- [ ] configure tmux
 
 ## Bugs
 ### fcitx5
