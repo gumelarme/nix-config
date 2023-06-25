@@ -86,6 +86,18 @@ curscreen_opt = dict(
     padding=8,
 )
 
+mpd = widget.Mpd2(
+    status_format = '{play_status}  {artist} - {title} %{repeat}{random}{single}{consume}{updating_db}',
+    idle_format = '{play_status}  {idle_message} %{repeat}{random}{single}{consume}{updating_db}',
+    idle_message = "/MPD/",
+    space = "",
+    play_states = {
+        "play": "",
+        "pause": "",
+        "stop": "",
+    }
+)
+
 main_bar = bar.Bar(
     widgets=[
         widget.CurrentLayoutIcon(),
@@ -98,6 +110,17 @@ main_bar = bar.Bar(
         ),
         clock,
         widget.Spacer(),
+        widget.WidgetBox(
+            background=Color.Background,
+            fontsize=16,
+            text_open=" 󰧚 ",
+            text_closed=" 󰧘 ",
+            close_button_location="right",
+            widgets=[
+                mpd,
+            ]
+        ),
+        separator,
         widget.Systray(),
         separator,
         volume,
