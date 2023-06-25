@@ -14,26 +14,6 @@
     };
   };
 
-  # programs.alacritty = {
-  #   enable = true;
-  #   settings = {
-  #     window = {
-  #       opacity = 0.9;
-  #       dynamic_title = true;
-  #       padding.x = 5;
-  #       padding.y = 7;
-  #     };
-
-  #     font = {
-  #       normal = {
-  #         family = "DejaVuSansMono";
-  #         style = "Regular";
-  #       };
-  #       size = 7;
-  #     };
-  #   };
-  # };
-
   programs.wezterm = {
     enable = true;
     extraConfig = builtins.readFile ./configs/wezterm.lua;
@@ -51,11 +31,22 @@
     enable = true;
     vimAlias = true;
     viAlias = true;
+    extraConfig = builtins.readFile ./configs/nvim/init.vim;
+    extraLuaConfig = builtins.readFile ./configs/nvim/config.lua;
     plugins = with pkgs.vimPlugins; [
       neovim-sensible
-      vim-nix
+      dracula-nvim
       vim-surround
       commentary
+      emmet-vim
+      (nvim-treesitter.withPlugins (p: [
+        p.nix
+        p.go
+        p.org
+        p.python
+        p.clojure
+        p.markdown
+      ]))
     ];
   };
 }

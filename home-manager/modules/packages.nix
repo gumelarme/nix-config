@@ -37,7 +37,6 @@
     betterlockscreen
     less
     glow
-    zoxide
 
     # GUI
     calibre

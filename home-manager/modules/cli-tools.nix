@@ -1,5 +1,7 @@
 { pkgs, config, ... }:
 {
+  programs.zoxide.enable = true;
+
   programs.zsh = {
     enable = true;
     shellAliases = {
@@ -103,7 +105,6 @@
     enable = true;
     keyMode = "vi";
     mouse = true;
-    terminal = "screen-256color";
     extraConfig = builtins.readFile ./configs/tmux.conf;
     plugins =
       let
@@ -113,8 +114,11 @@
           catppuccin
           fuzzback
           extrakto
-          tmux-fzf
-          myplugins.fzf-session-switch
+
+          {
+            plugin = myplugins.fzf-session-switch;
+            extraConfig = "set -g @fzf-goto-session 'S'";
+          }
           {
             plugin = myplugins.capture-last-output;
             extraConfig = ''
