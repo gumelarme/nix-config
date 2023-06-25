@@ -6,8 +6,8 @@ A laptop nix config
     - [x] Theme
     - [x] Power Menu
     - [ ] Multimonitor configuration (also with autorandr)
-- [ ] Lock screen
-  - [ ] replace xautolock with xidlehook
+- [x] Lock screen
+  - [x] replace xautolock with xidlehook
 - [x] Auto sleep, hibernate etc.
 - [x] Notification
     - [x] Theme 

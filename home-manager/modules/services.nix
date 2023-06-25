@@ -13,16 +13,23 @@
     # tray.enable = true;
   };
 
-  services.screen-locker = {
+  services.xidlehook = {
     enable = true;
-    # This lock the screen with cached image
-    # it needs to be prepared before hand otherwise it will show black background
-    lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen -l";
-    inactiveInterval = 10;
-    xautolock = {
-      enable = true;
-      detectSleep = true; # reset timer after sleep
-    };
+    detect-sleep = true; # reset timer after sleep
+    not-when-fullscreen = true;
+    timers = [
+      # the delay time stacks one after another.
+      # decrease backlight doesnt work for some reason
+      # {
+      #   delay = 30;
+      #   command = "${pkgs.acpilight}/bin/xbacklight -display eDP-1 -dec 5 > /home/kasuari/acpilog";
+      #   canceller = "${pkgs.acpilight}/bin/xbacklight -display eDP-1 -inc 5 > /home/kasuari/acpilog";
+      # }
+      {
+        delay = 600;
+        command = "${pkgs.betterlockscreen}/bin/betterlockscreen -l";
+      }
+    ];
   };
 
   services.flameshot = {
