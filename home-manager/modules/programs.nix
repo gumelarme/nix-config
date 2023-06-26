@@ -19,12 +19,26 @@
     extraConfig = builtins.readFile ./configs/wezterm.lua;
   };
 
+  # emacs specific packages
+  home.packages = with pkgs; [
+    sqlite
+    gopls
+    poetry
+    nodePackages.pyright
+
+    (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
+  ];
+
   programs.doom-emacs = {
     enable = true;
+    package = pkgs.emacs29.override({
+      withPgtk = true;
+      withTreeSitter = true;
+      withSQLite3 = true;
+      withXinput2 = true;
+    });
+
     doomPrivateDir = ./configs/.doom.d;
-    extraPackages = with pkgs.emacsPackages; [
-      lsp-pyright
-    ];
   };
 
   programs.neovim = {
