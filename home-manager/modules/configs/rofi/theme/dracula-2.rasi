@@ -35,10 +35,10 @@ configuration {
 
 #window {
     background-color: @background-color;
-    border:           3;
-    border-radius:    6;
+    border:           2;
+    border-radius:    3;
     border-color:     @bordercolor;
-    padding:          15;
+    padding:          20;
 }
 
 
@@ -128,10 +128,13 @@ configuration {
     text-color: @foreground;
 }
 #entry {
+    font: "DejaVu Sans Mono 16";
     spacing:    0;
     text-color: @drac-cya;
 }
+
 #prompt {
+    padding:    5px 0px;
     spacing:    0;
     text-color: @drac-grn;
 }
@@ -140,7 +143,7 @@ configuration {
 }
 #textbox-prompt-colon {
     expand:     false;
-    str:        ">";
+    str:        ">>>";
     margin:     0px 0.3em 0em 0em ;
     text-color: @drac-pur;
 }
