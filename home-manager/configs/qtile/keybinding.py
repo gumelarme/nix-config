@@ -93,6 +93,7 @@ keys = [
     K("M-<backslash>", lazy.group['scratch'].dropdown_toggle('term')),
     K("M-S-<backslash>", lazy.group['scratch'].dropdown_toggle('python-repl')),
     K("M-<bracketright>", lazy.group['scratch'].dropdown_toggle('browser')),
+    K("M-<bracketleft>", lazy.widget["widgetbox"].toggle()),
     K("M-<slash>", lazy.group['scratch'].hide_all()),
 
 ]
