@@ -22,8 +22,8 @@
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./configs/.doom.d;
-    extraPackages = with pkgs; [
-      emacsPackages.tree-sitter
+    extraPackages = with pkgs.emacsPackages; [
+      lsp-pyright
     ];
   };
 
@@ -37,7 +37,7 @@
       neovim-sensible
       dracula-nvim
       vim-surround
-      commentary
+      vim-commentary
       emmet-vim
       (nvim-treesitter.withPlugins (p: [
         p.nix
@@ -47,6 +47,9 @@
         p.clojure
         p.markdown
       ]))
+
+      plenary-nvim
+      telescope-nvim
     ];
   };
 }
