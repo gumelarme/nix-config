@@ -15,8 +15,8 @@ return {
   use_ime = true,
 
   color_scheme = 'Dracula',
-  window_background_opacity = 0.95,
-  font = wezterm.font_with_fallback { 'DejaVuSansM Nerd Font', 'Noto Sans Mono CJK' },
+  window_background_opacity = 0.9,
+  font = wezterm.font_with_fallback { 'DejaVuSansM Nerd Font Mono', 'Noto Sans Mono CJK' },
   font_size = 12,
   adjust_window_size_when_changing_font_size =  false,
   default_cursor_style = 'SteadyBlock',
