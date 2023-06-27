@@ -8,6 +8,7 @@
       g = "git";
       s = "git status";
       mucik = "ncmpcpp";
+      gitroot = "cd $(git rev-parse --show-toplevel)";
     };
 
     # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
@@ -57,12 +58,13 @@
     bookmarks =
       let
         userDirs = config.xdg.userDirs;
+        extra = userDirs.extraConfig;
       in
         {
           d = "${userDirs.download}";
-          v = "${userDirs.extraConfig.XDG_DEV_DIR}";
-          r = "${userDirs.extraConfig.XDG_DEV_DIR}/repo";
-          s = "${userDirs.extraConfig.XDG_SCREENSHOT_DIR}";
+          v = "${extra.XDG_DEV_DIR}";
+          r = "${extra.XDG_DEV_DIR}/repo";
+          s = "${extra.XDG_SCREENSHOT_DIR}";
         };
 
     plugins = {

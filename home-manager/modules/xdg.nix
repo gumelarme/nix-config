@@ -1,21 +1,19 @@
 { lib, config, ... }:
 {
-  xdg.userDirs  = {
+  xdg.userDirs  = let home = config.home.homeDirectory; in {
     enable = true;
     createDirectories = true;
-    desktop = "${config.home.homeDirectory}/desktop";
-
-    documents = "${config.home.homeDirectory}/docs";
-
-    download = "${config.home.homeDirectory}/downloads";
-    music = "${config.home.homeDirectory}/musics";
-    pictures = "${config.home.homeDirectory}/pics";
-    publicShare = "${config.home.homeDirectory}/public";
-    templates = "${config.home.homeDirectory}/templates";
-    videos = "${config.home.homeDirectory}/videos";
+    desktop = "${home}/desktop";
+    documents = "${home}/docs";
+    download = "${home}/downloads";
+    music = "${home}/musics";
+    pictures = "${home}/pics";
+    publicShare = "${home}/public";
+    templates = "${home}/templates";
+    videos = "${home}/videos";
     extraConfig = {
-      XDG_DEV_DIR = "${config.home.homeDirectory}/dev";
-      XDG_DEVTOOLS_DIR = "${config.home.homeDirectory}/dev/tools";
+      XDG_DEV_DIR = "${home}/dev";
+      XDG_DEVTOOLS_DIR = "${home}/dev/tools";
       XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/screenshot";
     };
   };

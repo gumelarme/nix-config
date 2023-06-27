@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -78,8 +78,14 @@
     xboxdrv
     libwacom
     wacomtablet # KDE Config Module
-  ];
-  # Add scripts to bin from file
+
+    (pkgs.writeShellScriptBin "set_as_wallpaper" ''
+        filename=$(basename -- "$1")
+        extension="''${filename##*.}"
+        cp $1 ${config.xdg.configHome}/wallpaper/"wallpaper.''${extension}"
+       '')
+
+  ];  # Add scripts to bin from file
   # ++ (let
   #       fileToScripts = file: pkgs.writeShellScriptBin (builtins.baseNameOf file) (builtins.readFile file);
   #       getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
