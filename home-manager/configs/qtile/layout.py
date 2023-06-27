@@ -20,8 +20,8 @@ scratch_args= dict(
 
 workspaces = [Group(i) for i in "1234567890"]
 named_workspace = [
-    NamedWorkspace("b", "b", spawn="qbittorrent"),
-    NamedWorkspace("m", "m", spawn="spotify"),
+    NamedWorkspace("b", "b", matches=[Match(wm_class="qbittorrent")], spawn="qbittorrent"),
+    NamedWorkspace("m", "m", matches=[Match(wm_class="spotify"), Match(wm_class="tauonmb")]),
 ]
 
 # `wezterm -e` launch program as a gui, and somehow cannot be assigned to a dropdown
