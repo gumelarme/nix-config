@@ -1,0 +1,42 @@
+stylus=$(xsetwacom --list devices | grep STYLUS | awk 'BEGIN { FS = "[\t]+"} {print $1}');
+stylus="${stylus%% }";
+
+
+echo "Current Device: $stylus";
+if [ "$1" == "mouse" ]; then
+	if [ "$2" == "pan" ]; then
+		xsetwacom set "$stylus" Button 2 "pan";
+		xsetwacom set "$stylus" PanScrollThreshold 250;
+		echo "Wacom set to panning mode" ;
+	else
+		xsetwacom set "$stylus" Button 2 "button 2";
+		echo "Wacom set to middle mouse mode" ;
+	fi
+elif [ "$1" == "screen" ]; then
+	xsetwacom set "$stylus" MapToOutput $2;
+	echo "Wacom output mapped to $2" ;
+elif [ "$1" == "rotate" ]; then
+	xsetwacom set "$stylus" Rotate $2;
+	echo "Wacom output rotated $2" ;
+else
+    echo -e "\n"
+	echo "# All devices:"
+	xsetwacom --list devices | awk '{print " " $0}' 
+
+	echo -e "\nButton status:"
+	echo " Button 1: $(xsetwacom get "$stylus" Button 1)"
+
+	button_2=$(xsetwacom get "$stylus" Button 2);
+	button_2=$([ -z "${button_2}" ] && echo "pan" || echo "${button_2}");
+
+	echo " Button 2: $button_2";
+	echo "";
+	xrandr --listactivemonitors
+
+    echo -e "\n"
+    echo "A Quick settings for wacom"
+    echo "Commands:" 
+    echo "- screen <DEVICE_NAME>" 
+    echo "- mouse <BUTTON_ID>|pan" 
+    echo "- rotate cw|ccw|half" 
+fi

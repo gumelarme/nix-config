@@ -68,14 +68,14 @@
         extension="''${filename##*.}"
         cp $1 ${config.xdg.configHome}/wallpaper/"wallpaper.''${extension}"
        '')
-  ];
+
   # Add scripts to bin from file
-  # ++ (let
-  #       fileToScripts = file: pkgs.writeShellScriptBin (builtins.baseNameOf file) (builtins.readFile file);
-  #       getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
-  #   in map fileToScripts (getFilesFromDir ./bin [
-  #       # "nn"
-  #   ])
-  # )
-  # ;
+  ]
+  ++ (let
+        fileToScripts = file: pkgs.writeShellScriptBin (builtins.baseNameOf file) (builtins.readFile file);
+        getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
+    in map fileToScripts (getFilesFromDir ./scripts [
+      "mywacom"
+    ])
+  );
 }
