@@ -3,6 +3,7 @@
   programs.firefox = {
     enable = true;
     profiles.crockpot-browser = {
+
       isDefault = true;
       settings = {
         # allow user chrome
@@ -25,6 +26,34 @@
             "compact_urlbar_megabar"
             "privatemode_indicator_as_menu_button"
           ];
+      search = {
+        force = true;
+        default = "Google";
+        engines = {
+          "Nix Packages" = {
+            urls = [{
+              template = "https://search.nixos.org/packages";
+              params = [
+                { name = "type"; value = "packages"; }
+                { name = "query"; value = "{searchTerms}"; }
+              ];
+            }];
+            icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@np" ];
+          };
+          "Nix Options" = {
+            urls = [{
+              template = "https://search.nixos.org/options";
+              params = [
+                { name = "type"; value = "packages"; }
+                { name = "query"; value = "{searchTerms}"; }
+              ];
+            }];
+            icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@no" ];
+          };
+        };
+      };
     };
   };
 }
