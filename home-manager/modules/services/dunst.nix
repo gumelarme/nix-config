@@ -1,6 +1,11 @@
 {pkgs, ... }:
 
 {
+
+  home.packages  = with pkgs; [
+    libcanberra-gtk3 # used with dunst to play notification sound
+  ];
+
   services.dunst = {
     enable = true;
     # configFile = ./home/.config/dunst/dunstrc;

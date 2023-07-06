@@ -1,15 +1,20 @@
 { pkgs, ... }:
 {
   imports = [
-    ./cli-tools.nix
-    ./default-apps.nix
-    ./packages.nix
-    ./programs.nix
-    ./services.nix
-    ./xdg.nix
+    ./services
+    ./xdg
 
-    ./lowbatt-notification.nix
-    ./dunst.nix
-    ./mopidy.nix
+    ./nvim
+    ./tmux
+    ./wezterm
+    ./rofi
+    ./shell
+    ./doom-emacs
+
+    ./fonts.nix
+    ./packages.nix
   ];
+
+  # TODO: Configure user chrome
+  programs.firefox.enable = true;
 }

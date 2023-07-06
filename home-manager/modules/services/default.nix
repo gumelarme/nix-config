@@ -1,6 +1,12 @@
 {pkgs, config, ... }:
 
 {
+  imports = [
+    ./dunst.nix
+    ./lowbatt-notification.nix
+    ./mopidy.nix
+  ];
+
   services.network-manager-applet.enable = true;
 
   services.picom = {
@@ -12,6 +18,10 @@
     extraOptions = ["--gui-address=:12300"];
     # tray.enable = true;
   };
+
+  home.packages = [
+    pkgs.betterlockscreen
+  ];
 
   services.xidlehook = {
     enable = true;
