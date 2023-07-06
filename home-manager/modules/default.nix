@@ -25,8 +25,10 @@
     jetbrains.pycharm-community
 
     # System utils
+    feh
     rsync
     rclone
+    arandr
     autorandr
     rofi-power-menu
     # gparted

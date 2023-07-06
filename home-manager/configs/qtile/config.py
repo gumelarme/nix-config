@@ -4,7 +4,6 @@ import glob
 from pathlib import Path
 
 
-
 from libqtile import  hook
 from libqtile.config import Screen
 from libqtile.lazy import lazy
@@ -51,11 +50,12 @@ def cache_lockscreen():
     wallpaper = get_wallpaper("lockscreen")
     subprocess.Popen(f"betterlockscreen -u {wallpaper}", shell=True)
 
+    feh = os.path.expanduser("~/.fehbg")
+    subprocess.Popen(feh, shell=True)
 
-wallpaper_config = {"wallpaper": get_wallpaper(), "wallpaper_mode": "stretch"}
 screens = [
-    Screen(top=main_bar, **wallpaper_config),
-    Screen(top=alt_bar, **wallpaper_config),
+    Screen(top=main_bar),
+    Screen(top=alt_bar),
 ]
 
 
