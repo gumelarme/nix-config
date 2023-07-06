@@ -68,7 +68,7 @@
     # Peripheral
     xsane
     xboxdrv
-    libwacom
-    wacomtablet # KDE Config Module
+    # libwacom
+    # wacomtablet # KDE Config Module
   ];
 }
