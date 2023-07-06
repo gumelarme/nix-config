@@ -6,15 +6,13 @@
 
     ./nvim
     ./tmux
-    ./wezterm
     ./rofi
     ./shell
+    ./firefox
+    ./wezterm
     ./doom-emacs
 
     ./fonts.nix
     ./packages.nix
   ];
-
-  # TODO: Configure user chrome
-  programs.firefox.enable = true;
 }
