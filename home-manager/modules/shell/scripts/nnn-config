@@ -1,4 +1,4 @@
-export NNN_OPTS="aEnux"
+export NNN_OPTS="aEux"
 # Context Colors
 export NNN_COLORS="1234"
 

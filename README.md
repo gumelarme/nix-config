@@ -24,11 +24,11 @@ A laptop nix config
     - [x] configure nnn
     - [ ] create derivation and  configuration to nix
 - [ ] development env
-  - [ ] tree-sitter (fix abi version to high)
-  - [ ] lsp (pyright, gopls)
-  - [ ] git (aliases, tools)
+  - [x] tree-sitter (fix abi version to high)
+  - [-] lsp (pyright, gopls)
+  - [x] git (aliases, tools)
 - [x] mopidy
-- [ ] firefox's userchrome
+- [x] firefox's userchrome
 - [x] replace alacritty with wezterm
 - [ ] configure tmux
     - [x] configure plugins
