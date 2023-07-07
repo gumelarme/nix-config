@@ -18,6 +18,7 @@
               "hide_tabs_toolbar"
               "compact_urlbar_megabar"
               "privatemode_indicator_as_menu_button"
+              "urlbar_container_color_border"
             ];
       search = {
         force = true;
