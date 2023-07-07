@@ -1,9 +1,7 @@
 { pkgs, config, ... }:
+
 {
-  imports = [
-    ./git.nix
-    ./nnn.nix
-  ];
+  imports = [ ./git.nix ./nnn.nix ];
 
   programs.zsh = {
     enable = true;
@@ -24,11 +22,9 @@
       };
     };
 
-    initExtra = "
-      bindkey -M vicmd '^v' edit-command-line
-    "
-    + (builtins.readFile ./scripts/nnn-config)
-    + (builtins.readFile ./scripts/nnn-quitcd);
+    initExtra = "\n      bindkey -M vicmd '^v' edit-command-line\n    "
+      + (builtins.readFile ./scripts/nnn-config)
+      + (builtins.readFile ./scripts/nnn-quitcd);
   };
 
   programs.zoxide.enable = true;
@@ -46,36 +42,33 @@
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [ batman prettybat ];
-    config = {
-      theme = "Dracula";
-    };
+    config = { theme = "Dracula"; };
   };
 
-  home.packages = with pkgs; [
-    imagemagick
-    clang
-    fd
-    pandoc
-    ripgrep
-    termdown
-    tealdeer
-    tree
-    less
-    glow
+  home.packages = with pkgs;
+    [
+      imagemagick
+      clang
+      fd
+      pandoc
+      ripgrep
+      termdown
+      tealdeer
+      tree
+      less
+      glow
 
-    (pkgs.writeShellScriptBin "set_as_wallpaper" ''
+      (pkgs.writeShellScriptBin "set_as_wallpaper" ''
         filename=$(basename -- "$1")
         extension="''${filename##*.}"
         cp $1 ${config.xdg.configHome}/wallpaper/"wallpaper.''${extension}"
-       '')
+      '')
 
-  # Add scripts to bin from file
-  ]
-  ++ (let
-        fileToScripts = file: pkgs.writeShellScriptBin (builtins.baseNameOf file) (builtins.readFile file);
-        getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
-    in map fileToScripts (getFilesFromDir ./scripts [
-      "mywacom"
-    ])
-  );
+      # Add scripts to bin from file
+    ] ++ (let
+      fileToScripts = file:
+        pkgs.writeShellScriptBin (builtins.baseNameOf file)
+        (builtins.readFile file);
+      getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
+    in map fileToScripts (getFilesFromDir ./scripts [ "mywacom" ]));
 }

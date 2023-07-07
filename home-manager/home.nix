@@ -1,8 +1,7 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [
-    inputs.nix-doom-emacs.hmModule
-    ./modules
-  ];
+{ inputs, outputs, lib, config, pkgs, ... }:
+
+{
+  imports = [ inputs.nix-doom-emacs.hmModule ./modules ];
 
   nixpkgs = {
     overlays = [
@@ -10,17 +9,16 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      (self: super: {
-        fcitx-engines = pkgs.fcitx5;
-      })
+      (self: super: { fcitx-engines = pkgs.fcitx5; })
       (final: prev: {
         tree-sitter-grammars = prev.tree-sitter-grammars // {
-          tree-sitter-python = prev.tree-sitter-grammars.tree-sitter-python.overrideAttrs (_: {
-            nativeBuildInputs = [ final.nodejs final.tree-sitter ];
-            configurePhase = ''
-              tree-sitter generate --abi 13 src/grammar.json
-            '';
-          });
+          tree-sitter-python =
+            prev.tree-sitter-grammars.tree-sitter-python.overrideAttrs (_: {
+              nativeBuildInputs = [ final.nodejs final.tree-sitter ];
+              configurePhase = ''
+                tree-sitter generate --abi 13 src/grammar.json
+              '';
+            });
         };
       })
 
@@ -62,11 +60,8 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
+    fcitx5.addons = with pkgs; [ fcitx5-rime ];
   };
-
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

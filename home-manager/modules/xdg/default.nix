@@ -1,6 +1,8 @@
 { lib, config, ... }:
+
 {
-  xdg.userDirs  = let home = config.home.homeDirectory; in {
+  xdg.userDirs = let home = config.home.homeDirectory;
+  in {
     enable = true;
     createDirectories = true;
     desktop = "${home}/desktop";
@@ -26,8 +28,8 @@
       genericName = "Text editor";
       exec = "wezterm -e nvim %f";
       terminal = true;
-      categories = ["Development" "TextEditor"];
-      mimeType = ["text/*"];
+      categories = [ "Development" "TextEditor" ];
+      mimeType = [ "text/*" ];
     };
   };
 }

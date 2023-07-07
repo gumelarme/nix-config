@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   home.packages = with pkgs; [
     ibm-plex
@@ -11,6 +12,6 @@
     symbola
     wqy_zenhei
     wqy_microhei
-    (nerdfonts.override { fonts = ["IBMPlexMono" "DejaVuSansMono"]; } )
+    (nerdfonts.override { fonts = [ "IBMPlexMono" "DejaVuSansMono" ]; })
   ];
 }

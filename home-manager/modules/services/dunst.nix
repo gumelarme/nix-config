@@ -1,10 +1,10 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 
 {
-
-  home.packages  = with pkgs; [
-    libcanberra-gtk3 # used with dunst to play notification sound
-  ];
+  home.packages = with pkgs;
+    [
+      libcanberra-gtk3 # used with dunst to play notification sound
+    ];
 
   services.dunst = {
     enable = true;
@@ -99,7 +99,9 @@
         #   %n  progress value if set without any extra characters
         #   %%  Literal %
         # Markup is allowed
-        format = "%s %p\n%b";
+        format = ''
+          %s %p
+          %b'';
 
         # Alignment of message text.
         # Possible values are "left", "center" and "right".
@@ -145,22 +147,22 @@
         # These values can be strung together for each mouse event, and
         # will be executed in sequence.
         mouse_left_click = "close_current";
-        mouse_middle_click = ["do_action close_current"];
+        mouse_middle_click = [ "do_action close_current" ];
         mouse_right_click = "close_all";
       };
 
       urgency_low = {
-          background = "#282a36";
-          # foreground = "#6272a4";
-          foreground = "#8f9dc9";
-          timeout = 10;
-          #new_icon = /path/to/icon
+        background = "#282a36";
+        # foreground = "#6272a4";
+        foreground = "#8f9dc9";
+        timeout = 10;
+        #new_icon = /path/to/icon
       };
 
       urgency_normal = {
-          background = "#282a36";
-          foreground = "#bd93f9";
-          timeout = 10;
+        background = "#282a36";
+        foreground = "#bd93f9";
+        timeout = 10;
       };
 
       urgency_critical = {

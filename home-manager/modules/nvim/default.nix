@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   programs.neovim = {
     enable = true;
@@ -19,6 +20,7 @@
         p.python
         p.clojure
         p.markdown
+        # prevent inlining
       ]))
 
       plenary-nvim

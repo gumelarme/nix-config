@@ -1,5 +1,4 @@
-
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   # emacs specific packages
@@ -15,7 +14,7 @@
 
   programs.doom-emacs = {
     enable = true;
-    package = pkgs.emacs29.override({
+    package = pkgs.emacs29.override ({
       withPgtk = true;
       withTreeSitter = true;
       withSQLite3 = true;

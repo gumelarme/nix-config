@@ -1,27 +1,19 @@
-{pkgs, config, ... }:
+{ pkgs, config, ... }:
 
 {
-  imports = [
-    ./dunst.nix
-    ./lowbatt-notification.nix
-    ./mopidy.nix
-  ];
+  imports = [ ./dunst.nix ./lowbatt-notification.nix ./mopidy.nix ];
 
   services.network-manager-applet.enable = true;
 
-  services.picom = {
-    enable = true;
-  };
+  services.picom = { enable = true; };
 
   services.syncthing = {
     enable = true;
-    extraOptions = ["--gui-address=:12300"];
+    extraOptions = [ "--gui-address=:12300" ];
     # tray.enable = true;
   };
 
-  home.packages = [
-    pkgs.betterlockscreen
-  ];
+  home.packages = [ pkgs.betterlockscreen ];
 
   services.xidlehook = {
     enable = true;
@@ -47,7 +39,7 @@
     settings = {
       General = {
         savePath = "${config.xdg.userDirs.extraConfig.XDG_SCREENSHOT_DIR}";
-        saveAsFileExtension="png";
+        saveAsFileExtension = "png";
         copyPathAfterSave = true;
       };
     };

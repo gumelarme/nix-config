@@ -1,4 +1,5 @@
-{pkgs, ... }:
+{ pkgs, ... }:
+
 {
   programs.git = {
     enable = true;
@@ -7,9 +8,7 @@
     delta = {
       enable = true;
       options = {
-        decorations = {
-          syntax-theme = "Dracula";
-        };
+        decorations = { syntax-theme = "Dracula"; };
         features = "decorations";
         line-numbers = true;
       };
