@@ -29,9 +29,10 @@
 
   programs.zoxide.enable = true;
 
-  programs.mcfly = {
+  programs.atuin = {
     enable = true;
-    keyScheme = "vim";
+    enableZshIntegration = true;
+    settings = { style = "compact"; };
   };
 
   programs.fzf = {
