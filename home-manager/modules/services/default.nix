@@ -1,7 +1,12 @@
 { pkgs, config, ... }:
 
 {
-  imports = [ ./dunst.nix ./lowbatt-notification.nix ./mopidy.nix ];
+  imports = [
+    ./dunst.nix
+    ./lowbatt-notification.nix
+    ./mopidy.nix
+    # Prevent
+  ];
 
   services.network-manager-applet.enable = true;
 

@@ -79,29 +79,37 @@
 
   services.mopidy = {
     enable = true;
-    extensionPackages = with pkgs; [ mopidy-local mopidy-mpd mopidy-iris ];
+    extensionPackages = with pkgs; [ mopidy-local mopidy-mpd ];
     extraConfigFiles = [ ];
     settings = {
       logging.verbosity = 0; # -1 to 4, higher = more info
       mpd.enabled = true;
-      local = {
-        enabled = true;
-        album_art_files = "*.jpg";
-        media_dir = "${config.xdg.userDirs.music}";
-        included_file_extensions = ''
-          .flac
-          .mp3
-          .m4a
-          .wav
-        '';
-        directories = ''
-          Albums                  local:directory?type=album
-          Artists                 local:directory?type=artist
-          Genres                  local:directory?type=genre
-          Tracks                  local:directory?type=track
-          Last Week's Updates     local:directory?max-age=604800
-        '';
-      };
+      local = with builtins;
+        let
+          multilineStringWithIndent = list:
+            concatStringsSep "\n " ([ "" ] ++ list);
+          formatKeyValue = k: v: k + "						" + v;
+          attrToStringKeyValue = attr:
+            attrValues (mapAttrs formatKeyValue attr);
+        in {
+          enabled = true;
+          album_art_files = "*.jpg";
+          media_dir = "${config.xdg.userDirs.music}";
+          included_file_extensions = multilineStringWithIndent [
+            ".flac"
+            ".mp3"
+            ".m4a"
+            ".wav"
+            # reserved
+          ];
+          directories = multilineStringWithIndent (attrToStringKeyValue {
+            Albums = "local:directory?type=album";
+            Artists = "local:directory?type=artist";
+            Genres = "local:directory?type=genre";
+            Tracks = "local:directory?type=track";
+            LastWeek = "local:directory?max-age=604800";
+          });
+        };
     };
   };
 }
