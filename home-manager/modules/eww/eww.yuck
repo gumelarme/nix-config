@@ -1,0 +1,70 @@
+(defpoll song :interval "1s" "scripts/music-control.sh --song")
+(defpoll artist :interval "1s" "scripts/music-control.sh --artist")
+(defpoll album-cover :interval "1s" "scripts/music-control.sh --cover")
+(defpoll play-status :interval "1s" "scripts/music-control.sh --status")
+
+(defwidget song-label [artist song]
+           (box
+                :class "song-label"
+                :orientation "vertical"
+                :halign "start"
+                :valign "fill"
+                :vexpand true
+                :space-evenly false
+                :spacing 5
+
+
+                (label :class "label-song"
+                       :halign "start"
+                       :text song
+                       :width 150
+                       :limit-width 50
+                       :xalign 0
+                       :wrap true)
+
+                (label :class "label-artist"
+                       :halign "start"
+                       :text artist
+                       :wrap false)))
+
+(defwidget control-menu []
+  (box :class "control-menu"
+       :orientation "horizontal"
+       :hexpand false
+       :halign "center"
+       :spacing 30
+       (button :onclick "scripts/music-control.sh --prev"
+               (label :text "󰒮"))
+       (button :onclick "scripts/music-control.sh --toggle"
+               (label :text { play-status == "playing" ? "󰏤" : "󰐊" }))
+       (button :onclick "scripts/music-control.sh --next"
+               (label :text "󰒭"))
+       ))
+
+(defwindow media-control
+           :monitor 0
+           :geometry (geometry :x "-15px"
+                               :y "-50px"
+                               :width "400px"
+                               :height "120px"
+                               :anchor "bottom right")
+           :stacking "fg"
+           :windowtype "normal"
+           :wm-ignore true
+
+    (box :class "wrapper"
+         :orientation "vertical"
+         :valign "center"
+         :spacing 5
+         :space-evenly false
+
+            (box :orientation "horizontal"
+                 :halign "fill"
+                 :spacing 10
+                 :space-evenly false
+
+                (image :path album-cover :width 120 :height 120 :image-width 120 :image-height 120 :valign "start" :halign "start")
+                (box :orientation "vertical" :space-evenly false :vexpand true :hexpand true
+                     (song-label :artist artist :song song :vexpand true)
+                     (control-menu :hexpand true :vexpand false))
+                )))

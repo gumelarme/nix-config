@@ -14,6 +14,7 @@ from utils import lazy_script
 # - rofi-power-menu.sh
 # - qutebrowser
 # - spotify
+# - eww
 
 
 _cur_layout = None
@@ -96,6 +97,8 @@ keys = [
     K("M-<bracketleft>", lazy.widget["widgetbox"].toggle()),
     K("M-<slash>", lazy.group['scratch'].hide_all()),
 
+    # Eww
+    K("M-S-<bracketleft>", lazy.spawn("eww open --toggle media-control")),
 ]
 
 for i in workspaces:

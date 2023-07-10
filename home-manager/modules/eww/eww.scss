@@ -1,0 +1,62 @@
+* {
+    font-family: "DejaVuSansM Nerd Font", "Noto Sans CJK", "monospace";
+}
+
+$dra-bg: #282a36;
+$dra-foreground: #F8F8F2;
+$dra-selection: #44475A;
+$dra-comment: #6272A4;
+$dra-red: #FF5555;
+$dra-orange: #FFB86C;
+$dra-yellow: #F1FA8C;
+$dra-green: #50FA7B;
+$dra-purple: #BD93F9;
+$dra-cyan: #8BE9FD;
+$dra-pink: #FF79C6;
+
+window {
+    opacity: 0.95;
+    background: $dra-selection;
+    border: 3px solid $dra-purple;
+    border-radius: 10px;
+}
+
+
+label {
+    color: white;
+}
+
+.wrapper {
+    padding: 15px;
+}
+
+.label-artist {
+    font-size: 1em;
+}
+
+.label-song {
+    font-size: 1.2em;
+}
+
+.control-menu {
+    padding: 5px 0;
+    border: none;
+}
+
+.control-menu button{
+    background: none;
+    border: none;
+    border-radius: 30%;
+    label {
+        font-size: 1.5em;
+        color: white;
+    }
+
+    &:hover{
+        background: white;
+
+        label {
+            color: black;
+        }
+    }
+}

@@ -7,6 +7,7 @@
     ./services
     ./xdg
 
+    ./eww
     ./nvim
     ./tmux
     ./rofi
