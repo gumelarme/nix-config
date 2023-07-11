@@ -22,8 +22,9 @@
       };
     };
 
-    initExtra = "\n      bindkey -M vicmd '^v' edit-command-line\n    "
-      + (builtins.readFile ./scripts/nnn-config)
+    initExtra = ''
+      bindkey -M vicmd '^v' edit-command-line
+    '' + (builtins.readFile ./scripts/nnn-config)
       + (builtins.readFile ./scripts/nnn-quitcd);
   };
 
@@ -32,7 +33,18 @@
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
-    settings = { style = "compact"; };
+    flags = [ "--disable-up-arrow" ];
+    settings = {
+      style = "compact";
+      "inline_height" = 30;
+    };
+  };
+
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+    git = true;
+    extraOptions = [ "--group-directories-first" ];
   };
 
   programs.fzf = {
@@ -58,13 +70,6 @@
       tree
       less
       glow
-
-      (pkgs.writeShellScriptBin "set_as_wallpaper" ''
-        filename=$(basename -- "$1")
-        extension="''${filename##*.}"
-        cp $1 ${config.xdg.configHome}/wallpaper/"wallpaper.''${extension}"
-      '')
-
       # Add scripts to bin from file
     ] ++ (let
       fileToScripts = file:
