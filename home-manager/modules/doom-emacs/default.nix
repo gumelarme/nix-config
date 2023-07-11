@@ -8,7 +8,7 @@
     nixfmt
     sqlite # Org roam
     nodePackages.pyright
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
     (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
   ];
 
