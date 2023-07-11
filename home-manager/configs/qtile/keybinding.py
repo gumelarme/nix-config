@@ -102,7 +102,7 @@ keys = [
     K("M-<slash>", lazy.group['scratch'].hide_all()),
 
     # Widget
-    K("M-p", lazy.spawn("eww open --toggle media-control")),
+    K("M-p", lazy_script("toggle_eww.sh")),
     K("M-S-p", lazy.widget["widgetbox"].toggle()),
 ]
 
