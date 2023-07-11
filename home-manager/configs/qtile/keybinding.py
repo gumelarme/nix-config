@@ -15,6 +15,7 @@ from utils import lazy_script
 # - qutebrowser
 # - spotify
 # - eww
+# - thunar
 
 
 _cur_layout = None
@@ -34,7 +35,7 @@ def toggle_layout(qtile, target_layout: str):
 mod = "mod4"
 
 keys = [
-    K("M-C-r", lazy.reload_config(), desc="Reload config"),
+    K("M-S-C-r", lazy.reload_config(), desc="Reload config"),
 
     # Window navigation
     K("M-h", lazy.layout.left(), desc="Move focus to the left"),
@@ -46,9 +47,9 @@ keys = [
     # Window manipulation
     K("M-S-h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     K("M-S-l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    K("M-S-j", lazy.layout.shuffle_down(), desc="Move window to the down"),
-    K("M-S-k", lazy.layout.shuffle_up(), desc="Move window to the up"),
-    K("M-S-q", lazy.window.kill(), desc="Kill focused window"),
+    K("M-S-j", lazy.layout.shuffle_down(), desc="Move window to down"),
+    K("M-S-k", lazy.layout.shuffle_up(), desc="Move window to up"),
+    K("M-S-d", lazy.window.kill(), desc="Kill focused window"),
 
     ## Resize
     K("M-C-h", lazy.layout.grow_left(), desc="Grow window to the left"),
@@ -59,15 +60,15 @@ keys = [
     K("M-C-n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Layout manipulation
-    K("M-<space>", lazy.window.toggle_floating(), desc="Toggle floating"),
     K("M-f", lazy.function(toggle_layout, "max"), desc="Toggle max layout"),
     K("M-S-f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
+    K("M-S-C-f", lazy.window.toggle_floating(), desc="Toggle floating"),
     K("M-n", lazy.next_layout(), desc="Toggle between layouts"),
     # K("M-m", lazy.group.setlayout("max"), desc="Toggle max"),
     # K("M-S-<Return>", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack")
 
     ## Screen
-    K("M-<comma>", lazy.next_screen()),
+    K("M-a", lazy.next_screen()),
 
     # Function Keys
     K("<XF86MonBrightnessUp>", lazy_script("change_brightness.sh", "+5")),
@@ -78,27 +79,31 @@ keys = [
     K("<XF86AudioMicMute>", lazy_script("mic_toggle.sh")),
 
     # Launch App
-    K("M-<Return>", lazy.spawn("wezterm -e tmux new -As default"), desc="Launch terminal"),
-    K("M-S-<Return>", lazy.spawn("wezterm"), desc="Launch tmuxless terminal"),
-    K("M-C-q", lazy_script("rofi-power-menu.sh"), desc="Open power menu"),
     K("M-z", lazy.spawn("firefox"), desc="Spawn firefox web browser"),
     K("M-S-z", lazy.spawn("firefox --private-window"), desc="Spawn firefox web browser"),
-    K("M-t", lazy.spawn("wezterm -e nnn"), desc="Spawn file explorer"),
-    K("M-d", lazy.spawn("rofi -show drun")),
-    K("M-S-d", lazy.spawn("rofi -show run")),
+
+    K("M-<Return>", lazy.spawn("wezterm -e tmux new -As default"), desc="Launch terminal"),
+    K("M-S-<Return>", lazy.spawn("wezterm"), desc="Launch tmuxless terminal"),
+    K("M-t", lazy.spawn("wezterm -e nn"), desc="Spawn nnn with image viewer plugin"),
+    K("M-S-t", lazy.spawn("thunar"), desc="Spawn thunar"),
+
     K("M-<Print>", lazy.spawn("flameshot gui")),
     K("M-S-<Print>", lazy.spawn("flameshot full")),
+
+    K("M-C-q", lazy_script("rofi-power-menu.sh"), desc="Open power menu"),
+    K("M-<space>", lazy.spawn("rofi -show drun")),
+    K("M-S-<space>", lazy.spawn("rofi -show run")),
     # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     ## Scratchpad
     K("M-<backslash>", lazy.group['scratch'].dropdown_toggle('term')),
     K("M-S-<backslash>", lazy.group['scratch'].dropdown_toggle('python-repl')),
-    K("M-<bracketright>", lazy.group['scratch'].dropdown_toggle('browser')),
-    K("M-<bracketleft>", lazy.widget["widgetbox"].toggle()),
+    K("M-o", lazy.group['scratch'].dropdown_toggle('browser')),
     K("M-<slash>", lazy.group['scratch'].hide_all()),
 
-    # Eww
-    K("M-S-<bracketleft>", lazy.spawn("eww open --toggle media-control")),
+    # Widget
+    K("M-p", lazy.spawn("eww open --toggle media-control")),
+    K("M-S-p", lazy.widget["widgetbox"].toggle()),
 ]
 
 for i in workspaces:

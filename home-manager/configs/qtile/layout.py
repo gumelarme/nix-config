@@ -18,7 +18,7 @@ scratch_args= dict(
     opacity=1.0,
 )
 
-workspaces = [Group(i) for i in "1234567890"]
+workspaces = [Group(i) for i in "1234qwer90"]
 named_workspace = [
     NamedWorkspace("b", "b", matches=[Match(wm_class="qbittorrent")], spawn="qbittorrent"),
     NamedWorkspace("m", "m", matches=[Match(wm_class="spotify"), Match(wm_class="tauonmb")]),
