@@ -14,7 +14,7 @@
 
   services.syncthing = {
     enable = true;
-    extraOptions = [ "--gui-address=:12300" ];
+    extraOptions = [ "--gui-address=:12300" "--no-default-folder" ];
     # tray.enable = true;
   };
 

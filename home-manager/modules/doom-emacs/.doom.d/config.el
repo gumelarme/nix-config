@@ -45,16 +45,16 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-(setq org-roam-directory (file-truename "~/org/roam"))
-(setq org-roam-db-location (file-truename "~/org/roam/roam.db"))
+(setq org-directory "~/sync/org/")
+(setq org-roam-directory (file-truename "~/sync/org/roam"))
+(setq org-roam-db-location (file-truename "~/sync/org/roam/roam.db"))
 (setq org-roam-capture-templates
       '(("d" "default" plain "%?" :target
          (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "${title}\n")
          :unnarrowed t)))
 
 ;; Org journal
-(setq org-journal-dir "~/org/journal")
+(setq org-journal-dir "~/sync/org/journal")
 (setq org-journal-file-type `monthly) ;; values: daily, weekly, monthly, yearly
 
 (after! org
@@ -108,8 +108,8 @@
         :server-id 'zls))))
 
 
-(after! dap-mode
-  (setq dap-python-debugger 'debugpy))
+;; (after! dap-mode
+;;   (setq dap-python-debugger 'debugpy))
 
 (after! lsp-clangd
         (setq lsp-clients-clangd-args '("--clang-tidy"
