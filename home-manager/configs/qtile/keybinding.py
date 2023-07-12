@@ -16,6 +16,7 @@ from utils import lazy_script
 # - spotify
 # - eww
 # - thunar
+# - greenclip
 
 
 _cur_layout = None
@@ -93,6 +94,7 @@ keys = [
     K("M-C-q", lazy_script("rofi-power-menu.sh"), desc="Open power menu"),
     K("M-<space>", lazy.spawn("rofi -show drun")),
     K("M-S-<space>", lazy.spawn("rofi -show run")),
+    K("M-v", lazy.spawn('rofi -modi "clip:greenclip print" -show clip -run-command "{cmd}"'), desc="launch clipboard manager"),
     # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     ## Scratchpad

@@ -5,6 +5,7 @@
     ./dunst.nix
     ./lowbatt-notification.nix
     ./mopidy.nix
+    ./greenclip.nix
     # Prevent
   ];
 
