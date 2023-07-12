@@ -10,6 +10,8 @@
       s = "git status";
       mucik = "ncmpcpp";
       gitroot = "cd $(git rev-parse --show-toplevel)";
+      pbcopy = "xclip -selection clipboard";
+      pbpaste = "xclip -selection clipboard -o";
     };
 
     # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
