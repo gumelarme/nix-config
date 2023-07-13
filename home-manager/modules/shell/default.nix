@@ -12,6 +12,7 @@
       gitroot = "cd $(git rev-parse --show-toplevel)";
       pbcopy = "xclip -selection clipboard";
       pbpaste = "xclip -selection clipboard -o";
+      ns = "SWITCH_PROMPT=paradox nix-shell --command zsh -p";
     };
 
     # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
@@ -24,10 +25,17 @@
       };
     };
 
-    initExtra = ''
-      bindkey -M vicmd '^v' edit-command-line
-    '' + (builtins.readFile ./scripts/nnn-config)
-      + (builtins.readFile ./scripts/nnn-quitcd);
+    initExtra = let read = builtins.readFile;
+    in builtins.concatStringsSep "\n" [
+      "bindkey -M vicmd '^v' edit-command-line"
+      (read ./scripts/nnn-config)
+      (read ./scripts/nnn-quitcd)
+      ''
+        if [[ -n "$SWITCH_PROMPT" ]]; then
+           eval "prompt $SWITCH_PROMPT"
+        fi
+      ''
+    ];
   };
 
   programs.zoxide.enable = true;
