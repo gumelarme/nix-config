@@ -11,15 +11,24 @@
       outputs.overlays.unstable-packages
       (self: super: { fcitx-engines = pkgs.fcitx5; })
       (final: prev: {
-        tree-sitter-grammars = prev.tree-sitter-grammars // {
-          tree-sitter-python =
-            prev.tree-sitter-grammars.tree-sitter-python.overrideAttrs (_: {
-              nativeBuildInputs = [ final.nodejs final.tree-sitter ];
-              configurePhase = ''
-                tree-sitter generate --abi 13 src/grammar.json
-              '';
-            });
-        };
+        tree-sitter-grammars = let
+          treeSitterCommand = ver: file:
+            "tree-sitter generate --abi ${toString ver} ${file}";
+          forceAbiVersion = version: lang: grammarFiles: {
+            "tree-sitter-${lang}" =
+              prev.tree-sitter-grammars."tree-sitter-${lang}".overrideAttrs
+              (_: {
+                nativeBuildInputs = [ final.nodejs final.tree-sitter ];
+                configurePhase = builtins.concatStringsSep "&&"
+                  (map (treeSitterCommand version) grammarFiles);
+              });
+          };
+        in prev.tree-sitter-grammars
+        // (forceAbiVersion 13 "python" [ "src/grammar.json" ])
+        // (forceAbiVersion 13 "typescript" [
+          "tsx/src/grammar.json"
+          "typescript/src/grammar.json"
+        ]);
       })
 
       # You can also add overlays exported from other flakes:

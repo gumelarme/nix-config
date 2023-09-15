@@ -20,11 +20,13 @@
 
   home.packages = with pkgs; [
     # Dev
+    clash-verge
     nurl
     xclip
     docker
     postman
     python3Full
+    nodePackages.pnpm
     jetbrains.pycharm-community
 
     # System utils
@@ -70,6 +72,9 @@
 
     # Peripheral
     xsane
+    sane-frontends
+    gnome.simple-scan
+    libsForQt5.skanlite
     xboxdrv
     # libwacom
     # wacomtablet # KDE Config Module

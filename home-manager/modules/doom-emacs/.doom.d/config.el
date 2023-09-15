@@ -90,10 +90,12 @@
 
 (setq-hook! 'web-mode-hook +format-with-lsp t)
 (setq-hook! 'web-mode-hook +format-with 'prettier)
-;; (after! html
-;;   (setq +format-with-lsp 'nil)
-;;   (setq +format-with 'prettier)
-;;   )
+
+(use-package! web-mode
+  :config (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode)))
+
+(after! web-mode
+  (setq web-mode-enable-front-matter-block t))
 
 (use-package! zig-mode
   :hook ((zig-mode . lsp-deferred))

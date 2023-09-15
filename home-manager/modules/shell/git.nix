@@ -21,4 +21,12 @@
       ls = "log --graph --name-status";
     };
   };
+
+  programs.gitui = {
+    enable = true;
+    keyConfig = builtins.readFile ./gitui/vim_style_key_config.ron;
+  };
+
+  xdg.configFile."gitui/key_symbols.ron".source = ./gitui/key_symbols.ron;
 }
+

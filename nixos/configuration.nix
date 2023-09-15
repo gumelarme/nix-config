@@ -45,7 +45,7 @@
   networking.hostName = "crockpot";
 
   # Set your time zone.
-  time.timeZone = "Asia/Jakarta";
+  time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -94,6 +94,10 @@
       qtile-extras
     ];
   };
+
+  # Bluetooth
+  hardware.bluetooth.enable = true; 
+  services.blueman.enable = true;
 
 
   # Configure keymap in X11

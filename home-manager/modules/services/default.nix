@@ -12,6 +12,7 @@
   services.network-manager-applet.enable = true;
 
   services.picom = { enable = true; };
+  services.blueman-applet.enable = true;
 
   services.syncthing = {
     enable = true;
