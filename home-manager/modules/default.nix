@@ -69,6 +69,7 @@
     tdesktop
     bitwarden
     qutebrowser
+    qq
 
     # Peripheral
     xsane
