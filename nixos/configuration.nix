@@ -11,6 +11,7 @@
     ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = [ "ntfs" ];

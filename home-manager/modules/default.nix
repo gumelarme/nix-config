@@ -28,6 +28,8 @@
     python3Full
     nodePackages.pnpm
     jetbrains.pycharm-community
+    jetbrains.datagrip
+    jetbrains.webstorm
 
     # System utils
     feh
@@ -36,6 +38,7 @@
     arandr
     autorandr
     rofi-power-menu
+    bottles # wine manager
     # gparted
 
     # Documents
