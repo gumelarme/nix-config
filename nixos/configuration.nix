@@ -132,6 +132,7 @@
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "disk" "docker"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
+      xorg.xf86videoamdgpu
     ];
 
     shell = pkgs.zsh;
