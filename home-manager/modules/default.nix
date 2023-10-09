@@ -42,6 +42,7 @@
     # gparted
 
     # Documents
+    simplenote
     calibre
     zathura
     xournalpp
