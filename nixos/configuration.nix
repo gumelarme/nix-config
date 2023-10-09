@@ -133,6 +133,7 @@
     packages = with pkgs; [
       firefox
       xorg.xf86videoamdgpu
+      xorg.xf86videointel
     ];
 
     shell = pkgs.zsh;
