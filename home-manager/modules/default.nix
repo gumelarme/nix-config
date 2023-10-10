@@ -48,6 +48,7 @@
     xournalpp
     lorien
     libreoffice-qt
+    kuro
 
     # Media
     vlc
