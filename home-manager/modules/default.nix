@@ -72,9 +72,12 @@
     steam-run
     discord
     tdesktop
-    bitwarden
     qutebrowser
     qq
+
+    bitwarden
+    rbw
+    pinentry
 
     # Peripheral
     xsane
