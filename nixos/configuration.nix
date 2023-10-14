@@ -179,6 +179,11 @@
     qtile
   ];
 
+  fonts.fonts = with pkgs; [
+    wqy_zenhei
+    wqy_microhei
+  ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
