@@ -98,6 +98,13 @@ mpd = widget.Mpd2(
     }
 )
 
+backlight  = widget.Backlight(
+    backlight_name="amdgpu_bl0",
+    fmt="亮: {}",
+    background=Color.Purple,
+    foreground=Color.Background,
+)
+
 main_bar = bar.Bar(
     widgets=[
         widget.CurrentLayoutIcon(),
@@ -117,6 +124,8 @@ main_bar = bar.Bar(
             text_closed=" 󰧘 ",
             close_button_location="right",
             widgets=[
+                backlight,
+                separator,
                 mpd,
             ]
         ),
