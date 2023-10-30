@@ -19,6 +19,10 @@
   ];
 
   home.packages = with pkgs; [
+    qv2ray
+    chromium
+    yesplaymusic
+
     # Dev
     clash-verge
     nurl
