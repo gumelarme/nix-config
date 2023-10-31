@@ -106,6 +106,7 @@ keys = [
     # Widget
     K("M-p", lazy_script("toggle_eww.sh")),
     K("M-S-p", lazy.widget["widgetbox"].toggle()),
+    K("M-<comma>", lazy_script("gen_qrcode_from_clipboard.sh")),
 ]
 
 for i in workspaces:

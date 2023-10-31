@@ -42,6 +42,7 @@
     arandr
     autorandr
     rofi-power-menu
+    qrencode
     bottles # wine manager
     # gparted
 
