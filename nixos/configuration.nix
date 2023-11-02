@@ -5,13 +5,13 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.substituters =
+    [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = [ "ntfs" ];
@@ -42,7 +42,8 @@
   virtualisation.docker.enable = true;
 
   # Pick only one of the below networking options.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
   networking.hostName = "crockpot";
 
   # Set your time zone.
@@ -56,10 +57,10 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
 
-#     supportedLocales = [
-#       "en_US.UTF-8/UTF-8"
-#       "zh_CN.UTF-8/UTF-8"
-#     ];
+    #     supportedLocales = [
+    #       "en_US.UTF-8/UTF-8"
+    #       "zh_CN.UTF-8/UTF-8"
+    #     ];
 
     # extraLocaleSettings = {
     #   LC_CTYPE = "zh_CN.UTF-8";
@@ -78,9 +79,7 @@
   services.xserver.displayManager.lightdm = {
     enable = true;
     background = ./origami.png;
-    greeters.slick = {
-      enable = true;
-    };
+    greeters.slick = { enable = true; };
   };
 
   services.xserver.desktopManager.xfce = {
@@ -91,11 +90,8 @@
   services.xserver.windowManager.qtile = {
     enable = true;
     backend = "x11";
-    extraPackages = python3Packages: with python3Packages; [
-      qtile-extras
-    ];
+    extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
   };
-
 
   # Power Management
   powerManagement = {
@@ -105,9 +101,8 @@
   services.tlp.enable = true;
 
   # Bluetooth
-  hardware.bluetooth.enable = true; 
+  hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-
 
   # Configure keymap in X11
   services.xserver.layout = "us";
@@ -137,38 +132,41 @@
     home = "/home/kasuari";
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "disk" "docker"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox
-      xorg.xf86videoamdgpu
-      xorg.xf86videointel
-    ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "disk"
+      "docker"
+    ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ firefox xorg.xf86videoamdgpu xorg.xf86videointel ];
 
     shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  
+
   environment.systemPackages = with pkgs; [
     acpilight
     coreutils
-    btop 
+    btop
     pkgs.libinput-gestures
-    git 
+    git
     networkmanagerapplet
-    neovim 
+    neovim
     nix
     nix-prefetch-scripts
     home-manager
-    tmux 
+    tmux
     wget
-    which 
+    which
     zsh
     pmount
 
     # archive helper
-    atool     # easy zip unzip
+    atool # easy zip unzip
     unzip
     zip
     libarchive
@@ -179,11 +177,7 @@
     qtile
   ];
 
-  fonts.fonts = with pkgs; [
-    wqy_zenhei
-    wqy_microhei
-  ];
-
+  fonts.fonts = with pkgs; [ wqy_zenhei wqy_microhei ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -195,13 +189,9 @@
 
   programs.git.enable = true;
   programs.git.config = {
-    init = {
-      defaultBranch = "main";
-    };
+    init = { defaultBranch = "main"; };
 
-    core = {
-      editor = "nvim";
-    };
+    core = { editor = "nvim"; };
   };
 
   programs.neovim = {
@@ -215,9 +205,7 @@
 
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      la = "ls -la";
-    };
+    shellAliases = { la = "ls -la"; };
 
     setOptions = [
       "HIST_IGNORE_DUPS"
@@ -228,20 +216,26 @@
     ];
   };
 
- security.wrappers = {
-   pmount = {
-     setuid = true;
-     owner = "root";
-     group = "root";
-     source = "${pkgs.pmount}/bin/pmount";
-   };
-   pumount = {
-     setuid = true;
-     owner = "root";
-     group = "root";
-     source = "${pkgs.pmount}/bin/pumount";
-   };
- };
+  # ------- Thunar related
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+  };
+
+  security.wrappers = {
+    pmount = {
+      setuid = true;
+      owner = "root";
+      group = "root";
+      source = "${pkgs.pmount}/bin/pmount";
+    };
+    pumount = {
+      setuid = true;
+      owner = "root";
+      group = "root";
+      source = "${pkgs.pmount}/bin/pumount";
+    };
+  };
 
   # set default editor to neovim
   environment.variables.EDITOR = "nvim";
@@ -265,16 +259,15 @@
 
   services.logind = {
     lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked = "suspend-then-hibernate"; # lid closed but another screen is connected
+    lidSwitchDocked =
+      "suspend-then-hibernate"; # lid closed but another screen is connected
     lidSwitchExternalPower = "lock";
 
     # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
     # combined with services.screen-locker in home-manager,
     # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
-    extraConfig = "
-      IdleAction=suspend-then-hibernate
-      IdleActionSec=20min
-    ";
+    extraConfig =
+      "\n      IdleAction=suspend-then-hibernate\n      IdleActionSec=20min\n    ";
   };
 
   # Open ports in the firewall.

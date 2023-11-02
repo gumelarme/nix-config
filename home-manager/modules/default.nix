@@ -44,6 +44,7 @@
     rofi-power-menu
     qrencode
     bottles # wine manager
+    libsForQt5.ark # gui archive
     # gparted
 
     # Documents
