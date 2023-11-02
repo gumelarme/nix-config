@@ -103,6 +103,7 @@ backlight  = widget.Backlight(
     fmt="亮: {}",
     background=Color.Purple,
     foreground=Color.Background,
+    step=2,
 )
 
 main_bar = bar.Bar(
