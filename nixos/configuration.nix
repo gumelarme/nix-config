@@ -108,6 +108,13 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:swapescape";
 
+  # Flatpak
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
