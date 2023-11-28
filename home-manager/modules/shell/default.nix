@@ -13,6 +13,8 @@
       pbcopy = "xclip -selection clipboard";
       pbpaste = "xclip -selection clipboard -o";
       ns = "SWITCH_PROMPT=paradox nix-shell --command zsh -p";
+      va = "source ./venv/bin/activate";
+      vd = "deactivate";
     };
 
     # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
@@ -68,10 +70,16 @@
     config = { theme = "Dracula"; };
   };
 
+  home.sessionVariables = {
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.zlib}/lib";
+  };
+
   home.packages = with pkgs;
     [
       imagemagick
-      clang
+      zlib
+      gcc-unwrapped
+      # clang
       fd
       pandoc
       ripgrep

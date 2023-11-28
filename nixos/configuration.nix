@@ -39,7 +39,17 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      registry-mirrors = [
+        "https://docker.mirrors.sjtug.sjtu.edu.cn"
+        "https://docker.mirrors.ustc.edu.cn"
+        "https://registry.docker-cn.com"
+      ];
+    };
+  };
+
 
   # Pick only one of the below networking options.
   # Easiest to use and most distros use this by default.
@@ -124,6 +134,8 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+  services.xserver.libinput.mouse.accelSpeed = "1.0";
+  services.xserver.libinput.touchpad.accelSpeed = "1.0";
 
   # Scanner
   hardware.sane.enable = true;

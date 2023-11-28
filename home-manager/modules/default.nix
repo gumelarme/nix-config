@@ -30,10 +30,16 @@
     docker
     postman
     python3Full
+    postgresql_12_jit
+    nodejs_20
     nodePackages.pnpm
-    jetbrains.pycharm-community
+    # jetbrains.pycharm-community
+    jetbrains.pycharm-professional
     jetbrains.datagrip
     jetbrains.webstorm
+    # qemu
+    # qemu_kvm
+    # virt-manager
 
     # System utils
     feh
@@ -43,7 +49,6 @@
     autorandr
     rofi-power-menu
     qrencode
-    bottles # wine manager
     libsForQt5.ark # gui archive
     # gparted
 
@@ -51,6 +56,7 @@
     simplenote
     calibre
     zathura
+    sioyek # pdf reader, research focused
     xournalpp
     lorien
     libreoffice-qt
