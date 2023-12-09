@@ -12,6 +12,7 @@
     symbola
     wqy_zenhei
     wqy_microhei
+    corefonts
     (nerdfonts.override { fonts = [ "IBMPlexMono" "DejaVuSansMono" ]; })
   ];
 }
