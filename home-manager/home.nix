@@ -62,10 +62,16 @@
     };
   };
 
+
   home.file."${config.xdg.configHome}" = {
     source = ./configs;
     recursive = true;
   };
+
+  home.sessionPath = [
+    "${config.xdg.configHome}/emacs/bin"
+  ];
+
 
   i18n.inputMethod = {
     enabled = "fcitx5";

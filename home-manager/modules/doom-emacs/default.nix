@@ -22,20 +22,24 @@
     #   };
     # })
     nodePackages.volar
-    # nodePackages.prettier
     texlive.combined.scheme-full
     (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
   ];
-
-  programs.doom-emacs = {
+  programs.emacs = {
     enable = true;
     package = pkgs.emacs29.override ({
-      withPgtk = true;
+      # withPgtk = true;
       withTreeSitter = true;
       withSQLite3 = true;
       withXinput2 = true;
     });
 
-    doomPrivateDir = ./.doom.d;
+    extraPackages = e: [
+      e.nerd-icons
+      e.nerd-icons-completion
+      e.nerd-icons-dired
+      e.nerd-icons-ibuffer
+      e.nerd-icons-ivy-rich
+    ];
   };
 }
