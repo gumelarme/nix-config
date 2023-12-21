@@ -111,8 +111,22 @@
   services.tlp.enable = true;
 
   # Bluetooth
-  hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Name = "kasuari-default";
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+      };
+
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
+  };
 
   # Configure keymap in X11
   services.xserver.layout = "us";
