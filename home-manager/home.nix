@@ -25,6 +25,7 @@
           };
         in prev.tree-sitter-grammars
         // (forceAbiVersion 13 "python" [ "src/grammar.json" ])
+        // (forceAbiVersion 13 "elm" [ "src/grammar.json" ])
         // (forceAbiVersion 13 "typescript" [
           "tsx/src/grammar.json"
           "typescript/src/grammar.json"

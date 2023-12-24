@@ -3,7 +3,7 @@
     html-tidy
 
     elmPackages.elm
-    elmPackages.elm-live
+    elmPackages.elm-format
     elmPackages.elm-language-server
 
     typescript
