@@ -25,7 +25,6 @@
     yesplaymusic
 
     # Dev
-    clash-verge
     nurl
     xclip
 
@@ -38,17 +37,14 @@
     rofi-power-menu
     qrencode
     libsForQt5.ark # gui archive
-    # gparted
 
     # Documents
-    simplenote
     calibre
     zathura
     sioyek # pdf reader, research focused
     xournalpp
     lorien
     libreoffice-qt
-    kuro
 
     # Media
     vlc
@@ -62,10 +58,8 @@
     nicotine-plus
     # gimp  # annoyingly replaces xdg-mime for image/*
 
-    ## Kdenlive
     # mediainfo
     # glaxnimate
-    # libsForQt5.kdenlive
 
     # Misc
     steam

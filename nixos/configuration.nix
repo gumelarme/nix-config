@@ -100,7 +100,7 @@
   services.xserver.windowManager.qtile = {
     enable = true;
     backend = "x11";
-    extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
+    # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
   };
 
   # Power Management
@@ -138,6 +138,8 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+  # v2ray proxy
+  services.v2raya.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -210,7 +212,7 @@
     qtile
   ];
 
-  fonts.fonts = with pkgs; [ wqy_zenhei wqy_microhei ];
+  fonts.packages = with pkgs; [ wqy_zenhei wqy_microhei ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

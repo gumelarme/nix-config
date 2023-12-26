@@ -10,27 +10,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       (self: super: { fcitx-engines = pkgs.fcitx5; })
-      (final: prev: {
-        tree-sitter-grammars = let
-          treeSitterCommand = ver: file:
-            "tree-sitter generate --abi ${toString ver} ${file}";
-          forceAbiVersion = version: lang: grammarFiles: {
-            "tree-sitter-${lang}" =
-              prev.tree-sitter-grammars."tree-sitter-${lang}".overrideAttrs
-              (_: {
-                nativeBuildInputs = [ final.nodejs final.tree-sitter ];
-                configurePhase = builtins.concatStringsSep "&&"
-                  (map (treeSitterCommand version) grammarFiles);
-              });
-          };
-        in prev.tree-sitter-grammars
-        // (forceAbiVersion 13 "python" [ "src/grammar.json" ])
-        // (forceAbiVersion 13 "elm" [ "src/grammar.json" ])
-        // (forceAbiVersion 13 "typescript" [
-          "tsx/src/grammar.json"
-          "typescript/src/grammar.json"
-        ]);
-      })
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -63,16 +42,12 @@
     };
   };
 
-
   home.file."${config.xdg.configHome}" = {
     source = ./configs;
     recursive = true;
   };
 
-  home.sessionPath = [
-    "${config.xdg.configHome}/emacs/bin"
-  ];
-
+  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
   i18n.inputMethod = {
     enabled = "fcitx5";

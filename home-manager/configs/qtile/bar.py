@@ -1,5 +1,4 @@
 from libqtile import bar, widget
-from qtile_extras.widget.decorations import BorderDecoration
 
 class Color:
     Background = "#282a36"
