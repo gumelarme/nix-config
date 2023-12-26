@@ -15,7 +15,6 @@
     ./firefox
     ./wezterm
     ./dev-tools
-    ./doom-emacs
 
   ];
 

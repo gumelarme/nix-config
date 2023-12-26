@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./python.nix ./web.nix ];
+  imports = [ ./lang.nix ./web.nix ];
 
   home.packages = with pkgs; [
     gnumake
@@ -16,5 +16,18 @@
     jetbrains.pycharm-professional
     jetbrains.datagrip
     jetbrains.webstorm
+
+    # emacs specific packages
+    sqlite # Org roam
+    findutils # find, grep, etc
   ];
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs29.override ({
+      withTreeSitter = true;
+      withSQLite3 = true;
+      withXinput2 = true;
+    });
+  };
 }
