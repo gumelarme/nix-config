@@ -25,6 +25,7 @@
     nurl
     xclip
     rsync
+    fdupes
     rclone
     arandr
     autorandr
@@ -40,6 +41,8 @@
     xournalpp
     lorien
     libreoffice-qt
+    pdftk
+    pdfchain
 
     # Media
     vlc
