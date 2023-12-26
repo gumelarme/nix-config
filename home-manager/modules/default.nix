@@ -20,16 +20,11 @@
   ];
 
   home.packages = with pkgs; [
-    qv2ray
-    chromium
-    yesplaymusic
-
-    # Dev
-    nurl
-    xclip
 
     # System utils
     feh
+    nurl
+    xclip
     rsync
     rclone
     arandr
@@ -37,6 +32,7 @@
     rofi-power-menu
     qrencode
     libsForQt5.ark # gui archive
+    qv2ray
 
     # Documents
     calibre
@@ -51,26 +47,31 @@
     tauon
     spotify
     nomacs
+    nicotine-plus
+    yesplaymusic
+    # mediainfo
+    # gimp  # annoyingly replaces xdg-mime for image/*
     # blender
     # godot
     # inkscape
-    qbittorrent
-    nicotine-plus
-    # gimp  # annoyingly replaces xdg-mime for image/*
-
-    # mediainfo
     # glaxnimate
 
-    # Misc
+    # Games
     steam
     steam-run
+
+    # Communication
+    qq
     discord
     tdesktop
-    qutebrowser
-    qq
 
-    bitwarden
+    qutebrowser
+    chromium
+    qbittorrent
+
+    # Secrets
     rbw
+    bitwarden
     pinentry
 
     # Peripheral
