@@ -223,6 +223,7 @@
   # };
 
   programs.git.enable = true;
+  programs.bandwhich.enable = true;
   programs.git.config = {
     init = { defaultBranch = "main"; };
 
