@@ -13,6 +13,7 @@
       vim-surround
       vim-commentary
       emmet-vim
+      typst-vim
       (nvim-treesitter.withPlugins (p: [
         p.nix
         p.go

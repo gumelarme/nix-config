@@ -35,6 +35,7 @@
     qv2ray
 
     # Documents
+    zotero
     calibre
     zathura
     sioyek # pdf reader, research focused
