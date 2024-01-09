@@ -3,8 +3,15 @@
 {
   imports = [ ./git.nix ./nnn.nix ];
 
+  home.sessionVariables = { PROXYADDR = "http://localhost:20171"; };
+
   programs.zsh = {
+    # Use to profile zsh load time
+    # use command `zprof` to see the results
+    # initExtraFirst = "zmodload zsh/zprof";
+
     enable = true;
+    enableCompletion = true;
     shellAliases = {
       g = "git";
       s = "git status";
@@ -12,32 +19,52 @@
       gitroot = "cd $(git rev-parse --show-toplevel)";
       pbcopy = "xclip -selection clipboard";
       pbpaste = "xclip -selection clipboard -o";
-      ns = "SWITCH_PROMPT=paradox nix-shell --command zsh -p";
+      ns = "nix-shell --command zsh -p";
       va = "source ./venv/bin/activate";
       vd = "deactivate";
+      prox-show = "echo http  = $http_proxy \\\\nhttps = $https_proxy";
+      prox-set =
+        "export http_proxy=$PROXYADDR && export https_proxy=$PROXYADDR && prox-show";
+      prox-rm = "unset http_proxy && unset https_proxy && prox-show";
     };
 
-    # enableSyntaxHighlighting = true; # breaks edit-command-line bindings
-    prezto = {
-      enable = true;
-      editor.keymap = "vi";
-      prompt = {
-        theme = "steeef";
-        pwdLength = "long";
-      };
-    };
+    plugins = [{
+      name = "prezto-completion";
+      file = "init.zsh";
+      src = (pkgs.fetchFromGitHub {
+        owner = "sorin-ionescu";
+        repo = "prezto";
+        rev = "c0cdc12708803c4503cb1b3d7d42e5c1b8ba6e86";
+        hash = "sha256-4ADfaRgOo2AoJBiDOIl/GlG9C02BPLVwo8YjumWqC2o=";
+      }) + "/modules/completion";
+    }];
 
     initExtra = let read = builtins.readFile;
     in builtins.concatStringsSep "\n" [
+      # Bind Shift-Tab to go to prev completion item
+      # what? https://unix.stackexchange.com/questions/84867/zsh-completion-enabling-shift-tab
+      "bindkey '^[[Z' reverse-menu-complete"
+
+      # enable line editor with Ctrl-v
+      "autoload -z edit-command-line"
+      "zle -N edit-command-line"
       "bindkey -M vicmd '^v' edit-command-line"
+
+      # nnn configs
       (read ./scripts/nnn-config)
       (read ./scripts/nnn-quitcd)
-      ''
-        if [[ -n "$SWITCH_PROMPT" ]]; then
-           eval "prompt $SWITCH_PROMPT"
-        fi
-      ''
     ];
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      directory = {
+        truncation_length = 8;
+        truncation_symbol = "::";
+      };
+    };
   };
 
   programs.zoxide.enable = true;
