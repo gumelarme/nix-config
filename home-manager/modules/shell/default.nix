@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   imports = [ ./git.nix ./nnn.nix ];
@@ -60,9 +60,38 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      add_newline = false;
+      format = lib.concatStrings [
+        "$username"
+        "$hostname"
+        "$localip"
+        "$shlvl"
+        "$directory"
+        "$git_branch"
+        "$git_commit"
+        "$git_state"
+        "$git_metrics"
+        "$git_status"
+        "$python"
+        "$fill"
+        "$battery"
+        "$cmd_duration"
+        "$status"
+        "$line_break"
+        "$character"
+        "$line_break"
+      ];
+
+      fill.symbol = " ";
+      status.disabled = false;
+      package.disabled = true;
+
       directory = {
-        truncation_length = 8;
+        truncation_length = 6;
         truncation_symbol = "::";
+        format = "[$path]($style)[( $read_only)]($read_only_style) ";
+        read_only = "[R]";
+        read_only_style = "bold red";
       };
     };
   };
