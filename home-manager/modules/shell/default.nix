@@ -93,6 +93,13 @@
         read_only = "[R]";
         read_only_style = "bold red";
       };
+
+      battery = {
+        display = [{
+          threshold = 30;
+          style = "red bold";
+        }];
+      };
     };
   };
 
