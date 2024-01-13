@@ -22,6 +22,14 @@
     findutils # find, grep, etc
   ];
 
+  services.emacs = {
+    enable = true;
+    client = {
+      enable = true;
+      arguments = [ "--reuse-frame" "--no-wait" ];
+    };
+  };
+
   programs.emacs = {
     enable = true;
     package = pkgs.emacs29.override ({

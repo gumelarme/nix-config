@@ -146,6 +146,7 @@
       fd
       pandoc
       ripgrep
+      ripgrep-all # for pdfs, zip, docx etc.
       termdown
       tealdeer
       tree
