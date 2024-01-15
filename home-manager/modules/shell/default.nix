@@ -19,6 +19,7 @@
       gitroot = "cd $(git rev-parse --show-toplevel)";
       pbcopy = "xclip -selection clipboard";
       pbpaste = "xclip -selection clipboard -o";
+      pp = "pet exec --color --command";
       ns = "nix-shell --command zsh -p";
       va = "source ./venv/bin/activate";
       vd = "deactivate";
@@ -53,6 +54,9 @@
       # nnn configs
       (read ./scripts/nnn-config)
       (read ./scripts/nnn-quitcd)
+
+      # `pet search` and put it on the line
+      (read ./scripts/pet-select)
     ];
   };
 
@@ -125,6 +129,17 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = false; # use mcfly instead
+  };
+
+  programs.pet = {
+    # TODO: configure gists
+    enable = true;
+    settings = {
+      General = {
+        editor = "vim";
+        selectcmd = "fzf --ansi";
+      };
+    };
   };
 
   programs.bat = {
