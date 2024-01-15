@@ -1,6 +1,8 @@
 { lib, config, ... }:
 
 {
+  imports = [ ./mime.nix ];
+
   xdg.userDirs = let home = config.home.homeDirectory;
   in {
     enable = true;
@@ -24,15 +26,4 @@
   };
 
   xdg.mime.enable = true;
-  xdg.desktopEntries = {
-    nvim_terminal = {
-      name = "Neovim (with terminal)";
-      comment = "Neovim opened with terminal";
-      genericName = "Text editor";
-      exec = "wezterm -e nvim %f";
-      terminal = true;
-      categories = [ "Development" "TextEditor" ];
-      mimeType = [ "text/*" ];
-    };
-  };
 }
