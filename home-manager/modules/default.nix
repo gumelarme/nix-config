@@ -68,8 +68,8 @@
     discord
     tdesktop
 
+    brave
     qutebrowser
-    chromium
     qbittorrent
 
     # Secrets

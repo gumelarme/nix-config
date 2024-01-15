@@ -14,7 +14,7 @@ return {
   enable_tab_bar = false,
   use_ime = true,
 
-  color_scheme = 'Dracula',
+  color_scheme = 'Dracula (Gogh)',
   window_background_opacity = 0.9,
   font = wezterm.font_with_fallback { 'DejaVuSansM Nerd Font Mono', 'Noto Sans Mono CJK' },
   font_size = 12,
