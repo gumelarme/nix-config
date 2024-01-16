@@ -73,6 +73,7 @@
         "$git_state"
         "$git_metrics"
         "$git_status"
+        "$nix_shell"
         "$python"
         "$fill"
         "$battery"
