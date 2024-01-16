@@ -38,7 +38,7 @@
           # Note the 'not equal "Discharging"', because it could be plugged and the status still says 'Not Charging' but not discharging
           if [[ $battery_capacity -ge ${
             builtins.toString cfg.notify-full-capacity
-          } && $battery_status != "Discharging"]]; then
+          } && $battery_status != "Discharging" ]]; then
             ${notifier} -a "notifyBattery" \
                         -u normal \
                         -i battery \
