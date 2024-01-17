@@ -17,7 +17,7 @@ return {
   color_scheme = 'Dracula (Gogh)',
   window_background_opacity = 0.9,
   font = wezterm.font_with_fallback { 'DejaVuSansM Nerd Font Mono', 'Noto Sans Mono CJK' },
-  font_size = 12,
+  font_size = 10,
   adjust_window_size_when_changing_font_size =  false,
   default_cursor_style = 'SteadyBlock',
   hide_mouse_cursor_when_typing = true,
