@@ -33,8 +33,8 @@
 
       # cosmetics
       fontSize = 36;
-      backgroundColor = "#5c6a57";
-      splashImage = ./origami.png;
+      backgroundColor = "#141414";
+      splashImage = config.environment.etc.wallpaper.source;
       splashMode = "normal";
     };
   };
@@ -49,7 +49,6 @@
       ];
     };
   };
-
 
   # Pick only one of the below networking options.
   # Easiest to use and most distros use this by default.
@@ -82,25 +81,69 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  services.xserver.displayManager.defaultSession = "none+qtile";
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    background = ./origami.png;
-    greeters.slick = { enable = true; };
+  environment.etc.wallpaper = {
+    source = pkgs.fetchurl {
+      url =
+        "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
+      hash = "sha256-A0x4VbfRuPY6b6d/L/N9k9xIsoIjEeFgzyFkfvcYanc";
+    };
   };
 
-  services.xserver.desktopManager.xfce = {
-    enable = true;
-    enableScreensaver = false;
-  };
+  services = {
+    openssh.enable = true;
+    tlp.enable = true;
+    v2raya.enable = true;
 
-  services.xserver.windowManager.qtile = {
-    enable = true;
-    backend = "x11";
-    # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
+    xserver = {
+      enable = true;
+
+      # Configure keymap in X11
+      layout = "us";
+      xkbOptions = "caps:swapescape";
+
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+      libinput.mouse.accelSpeed = "1.0";
+      libinput.touchpad.accelSpeed = "1.0";
+
+      displayManager = {
+        defaultSession = "none+qtile";
+        lightdm = {
+          enable = true;
+          background = config.environment.etc.wallpaper.source;
+          greeters.slick = { enable = true; };
+        };
+      };
+
+      # run XDGAutostart even if there is no DE
+      desktopManager.runXdgAutostartIfNone = true;
+
+      desktopManager.xfce = {
+        enable = true;
+        enableScreensaver = false;
+      };
+
+      windowManager.qtile = {
+        enable = true;
+        backend = "x11";
+        # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
+      };
+
+    };
+
+    logind = {
+      lidSwitch = "suspend-then-hibernate";
+      lidSwitchDocked =
+        "suspend-then-hibernate"; # lid closed but another screen is connected
+      lidSwitchExternalPower = "lock";
+
+      # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
+      # combined with services.screen-locker in home-manager,
+      # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
+      extraConfig =
+        "\n      IdleAction=suspend-then-hibernate\n      IdleActionSec=20min\n    ";
+
+    };
   };
 
   # Power Management
@@ -108,7 +151,6 @@
     enable = true;
     powertop.enable = true;
   };
-  services.tlp.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
@@ -122,15 +164,9 @@
         Experimental = "true";
       };
 
-      Policy = {
-        AutoEnable = "true";
-      };
+      Policy = { AutoEnable = "true"; };
     };
   };
-
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:swapescape";
 
   # Flatpak
   services.flatpak.enable = true;
@@ -138,8 +174,6 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  # v2ray proxy
-  services.v2raya.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -147,11 +181,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.mouse.accelSpeed = "1.0";
-  services.xserver.libinput.touchpad.accelSpeed = "1.0";
 
   # Scanner
   hardware.sane.enable = true;
@@ -277,13 +306,6 @@
   environment.variables.EDITOR = "nvim";
   environment.variables.VISUAL = "nvim";
 
-  # List services that you want to enable:
-
-  # run XDGAutostart even if there is no DE
-  services.xserver.desktopManager.runXdgAutostartIfNone = true;
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
   # Allow user in `video` group to change brightness without sudo
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight" KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
@@ -292,19 +314,6 @@
 
   # wait time to hibernate for 'suspend-then-hibernate' config
   systemd.sleep.extraConfig = "HibernateDelaySec=30min";
-
-  services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked =
-      "suspend-then-hibernate"; # lid closed but another screen is connected
-    lidSwitchExternalPower = "lock";
-
-    # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
-    # combined with services.screen-locker in home-manager,
-    # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
-    extraConfig =
-      "\n      IdleAction=suspend-then-hibernate\n      IdleActionSec=20min\n    ";
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

@@ -20,6 +20,8 @@
 
   home.packages = with pkgs; [
 
+    pick-colour-picker
+
     # System utils
     feh
     nurl
