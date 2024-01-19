@@ -42,6 +42,19 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+
+    iconTheme = {
+      name = "Dracula";
+      package = pkgs.dracula-icon-theme;
+    };
+  };
+
   home.file."${config.xdg.configHome}" = {
     source = ./configs;
     recursive = true;

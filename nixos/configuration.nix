@@ -111,7 +111,10 @@
         lightdm = {
           enable = true;
           background = config.environment.etc.wallpaper.source;
-          greeters.slick = { enable = true; };
+          greeters.slick = {
+            enable = true;
+            theme.name = "Adwaita-dark";
+          };
         };
       };
 
