@@ -22,7 +22,7 @@
       stashes = "stash list";
       branches = "branch -a";
       remotes = "remote -v";
-      uncommit = "git reset --soft HEAD^";
+      uncommit = "reset --soft HEAD^";
       graph =
         "log --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d'";
     };
