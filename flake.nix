@@ -82,6 +82,16 @@
             ./home-manager/home.nix
           ];
         };
+
+        "gu@osx" = home-manager.lib.homeManagerConfiguration {
+          pkgs =
+            nixpkgs.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main home-manager configuration file <
+            ./home-manager/darwin.nix
+          ];
+        };
       };
     };
 }
