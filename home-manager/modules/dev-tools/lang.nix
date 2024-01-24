@@ -4,6 +4,8 @@
   home.packages = with pkgs; [
     gopls
     nixfmt
+    nil
+    rnix-lsp
 
     # Python
     python3Full
