@@ -76,5 +76,19 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
 
-  modules = { wezterm.enable = true; };
+  modules = {
+    wezterm.enable = true;
+    nnn = {
+      enable = true;
+      bookmarks = let
+        userDirs = config.xdg.userDirs;
+        extra = userDirs.extraConfig;
+      in {
+        d = "${userDirs.download}";
+        v = "${extra.XDG_DEV_DIR}";
+        r = "${extra.XDG_DEV_DIR}/repo";
+        s = "${extra.XDG_SCREENSHOT_DIR}";
+      };
+    };
+  };
 }
