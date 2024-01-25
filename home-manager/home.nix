@@ -1,7 +1,7 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 
 {
-  imports = [ inputs.nix-doom-emacs.hmModule ./modules ];
+  imports = [ ./modules ];
 
   nixpkgs = {
     overlays = [
