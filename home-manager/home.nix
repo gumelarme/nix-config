@@ -77,6 +77,13 @@
   home.stateVersion = "23.05";
 
   modules = {
+    fonts = {
+      dev = true;
+      latex = true;
+      ms-core = true;
+      extra = true;
+    };
+
     wezterm.enable = true;
     nnn = {
       enable = true;
