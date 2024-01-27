@@ -77,6 +77,8 @@
   home.stateVersion = "23.05";
 
   modules = {
+    wezterm.enable = true;
+
     fonts = {
       dev = true;
       latex = true;
@@ -84,7 +86,6 @@
       extra = true;
     };
 
-    wezterm.enable = true;
     nnn = {
       enable = true;
       bookmarks = let
@@ -97,5 +98,11 @@
         s = "${extra.XDG_SCREENSHOT_DIR}";
       };
     };
+
+    shell = {
+      enable = true;
+      proxyAddress = "http://localhost:20170";
+    };
   };
+
 }
