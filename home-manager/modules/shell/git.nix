@@ -28,13 +28,10 @@ in {
         };
       };
 
-      delta = {
+      difftastic = {
         enable = true;
-        options = {
-          decorations = { syntax-theme = "Dracula"; };
-          features = "decorations";
-          line-numbers = true;
-        };
+        background = "dark";
+        display = "side-by-side";
       };
 
       aliases = {
