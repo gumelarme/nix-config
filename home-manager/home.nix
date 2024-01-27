@@ -78,6 +78,7 @@
 
   modules = {
     wezterm.enable = true;
+    clipboard.enable = true;
 
     fonts = {
       dev = true;

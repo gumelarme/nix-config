@@ -25,8 +25,6 @@ in {
         s = "git status";
         mucik = "ncmpcpp";
         gitroot = "cd $(git rev-parse --show-toplevel)";
-        pbcopy = "xclip -selection clipboard";
-        pbpaste = "xclip -selection clipboard -o";
         pp = "pet exec --color --command";
         ns = "nix-shell --command zsh -p";
         va = "source ./venv/bin/activate";
