@@ -108,6 +108,11 @@
       proxyAddress = "http://localhost:20170";
     };
 
+    typeset = {
+      latex.enable = true;
+      typst.enable = true;
+    };
+
     dev-tools = {
       python.enable = true;
       nix.enable = true;
@@ -144,6 +149,7 @@
       qbittorrent
       pick-colour-picker
       nicotine-plus
+      # fontforge;
 
       # Documents
       pandoc

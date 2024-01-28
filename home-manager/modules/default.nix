@@ -4,6 +4,7 @@
   imports = [
     ./clipboard.nix
     ./fonts.nix
+    ./typeset.nix
 
     ./eww
     ./nvim

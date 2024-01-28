@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.modules.dev-tools;
 in {
-  imports = [ ./lang.nix ./emacs.nix ];
+  imports = [ ./emacs.nix ];
 
   options.modules.dev-tools = {
     nix = { enable = mkEnableOption "Enable nix development tools"; };
