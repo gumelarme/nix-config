@@ -115,6 +115,7 @@
     };
 
     dev-tools = {
+      emacs.enable = true;
       python.enable = true;
       nix.enable = true;
       elm.enable = true;

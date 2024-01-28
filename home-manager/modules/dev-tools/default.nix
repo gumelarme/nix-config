@@ -13,6 +13,7 @@ in {
     nix = {enable = mkEnableOption "Enable nix development tools";};
     elm = {enable = mkEnableOption "Enable elm development tools";};
     web = {enable = mkEnableOption "Enable web development tools";};
+    emacs = {enable = mkEnableOption "Enable emacs development tools";};
     python = {
       enable = mkEnableOption "Enable python development tools";
       package = mkOption {
