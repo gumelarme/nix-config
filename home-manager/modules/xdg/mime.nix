@@ -1,12 +1,10 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   xdg.mimeApps = let
     # TODO:
     # - Add more programming related text files
     # - Add document types
-    directory = [ "inode/directory" ];
-    pdf = [ "application/pdf" ];
+    directory = ["inode/directory"];
+    pdf = ["application/pdf"];
     image = [
       # Source:
       # - https://github.com/nomacs/nomacs/blob/941f0d/ImageLounge/xgd-data/org.nomacs.ImageLounge.desktop
@@ -198,19 +196,22 @@
   in {
     enable = true;
     associations = {
-      removed = { } // (setDefault image [
-        "gimp.desktop"
-        "org.kde.ark.desktop"
-        "feh.desktop"
-        "org.xfce.ristretto.desktop"
-      ]);
+      removed =
+        {}
+        // (setDefault image [
+          "gimp.desktop"
+          "org.kde.ark.desktop"
+          "feh.desktop"
+          "org.xfce.ristretto.desktop"
+        ]);
     };
-    defaultApplications = (setDefault audio [ "vlc.desktop" ])
-      // (setDefault video [ "vlc.desktop" ])
-      // (setDefault image [ "org.nomacs.ImageLounge.desktop" "feh.desktop" ])
-      // (setDefault pdf [ "org.pwmt.zathura.desktop" "sioyek.desktop" ])
-      // (setDefault code [ "nvim.desktop" ])
-      // (setDefault web [ "firefox.desktop" ])
-      // (setDefault directory [ "thunar.desktop" ]);
+    defaultApplications =
+      (setDefault audio ["vlc.desktop"])
+      // (setDefault video ["vlc.desktop"])
+      // (setDefault image ["org.nomacs.ImageLounge.desktop" "feh.desktop"])
+      // (setDefault pdf ["org.pwmt.zathura.desktop" "sioyek.desktop"])
+      // (setDefault code ["nvim.desktop"])
+      // (setDefault web ["firefox.desktop"])
+      // (setDefault directory ["thunar.desktop"]);
   };
 }

@@ -1,6 +1,8 @@
-{ pkgs, config, ... }:
-
 {
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./dunst.nix
     ./lowbatt-notification.nix
@@ -11,16 +13,16 @@
 
   services.network-manager-applet.enable = true;
 
-  services.picom = { enable = true; };
+  services.picom = {enable = true;};
   services.blueman-applet.enable = true;
 
   services.syncthing = {
     enable = true;
-    extraOptions = [ "--gui-address=:12300" "--no-default-folder" ];
+    extraOptions = ["--gui-address=:12300" "--no-default-folder"];
     # tray.enable = true;
   };
 
-  home.packages = [ pkgs.betterlockscreen ];
+  home.packages = [pkgs.betterlockscreen];
 
   services.xidlehook = {
     enable = true;

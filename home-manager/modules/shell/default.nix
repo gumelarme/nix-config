@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-
-{
-  imports = [ ./git.nix ./nnn.nix ./shell.nix ];
+{pkgs, ...}: {
+  imports = [./git.nix ./nnn.nix ./shell.nix];
 
   # z autojump
   programs.zoxide.enable = true;
@@ -10,7 +8,7 @@
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
-    flags = [ "--disable-up-arrow" ];
+    flags = ["--disable-up-arrow"];
     settings = {
       style = "compact";
       "inline_height" = 30;
@@ -22,7 +20,7 @@
     enable = true;
     enableAliases = true;
     git = true;
-    extraOptions = [ "--group-directories-first" ];
+    extraOptions = ["--group-directories-first"];
   };
 
   # fuzzy file finder
@@ -46,8 +44,7 @@
   # cat but better
   programs.bat = {
     enable = true;
-    extraPackages = with pkgs.bat-extras; [ batman prettybat ];
-    config = { theme = "Dracula"; };
+    extraPackages = with pkgs.bat-extras; [batman prettybat];
+    config = {theme = "Dracula";};
   };
-
 }

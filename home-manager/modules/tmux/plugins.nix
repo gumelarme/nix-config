@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   capture-last-output = pkgs.tmuxPlugins.mkTmuxPlugin rec {
     pname = "tmux-capture-last-command-output";
     version = "bd2cca21bc32c2d6652d7b6fdc36cd61409ddd73";
@@ -25,5 +23,4 @@
       hash = "sha256-Hn4huMRe2RrBkwh7XsQCKotABkp89OtHgrCCOXnbOAs=";
     };
   };
-
 }

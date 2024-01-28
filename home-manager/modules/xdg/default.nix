@@ -1,9 +1,12 @@
-{ lib, config, ... }:
-
 {
-  imports = [ ./mime.nix ];
+  lib,
+  config,
+  ...
+}: {
+  imports = [./mime.nix];
 
-  xdg.userDirs = let home = config.home.homeDirectory;
+  xdg.userDirs = let
+    home = config.home.homeDirectory;
   in {
     enable = true;
     createDirectories = true;

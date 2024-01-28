@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./clipboard.nix
     ./fonts.nix
@@ -14,7 +12,6 @@
     ./firefox
     ./wezterm
     ./dev-tools
-
   ];
 
   home.packages = with pkgs; [

@@ -1,20 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports = [ # Include the results of the hardware scan.
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.substituters =
-    [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
 
   # Use the systemd-boot EFI boot loader.
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -83,8 +84,7 @@
 
   environment.etc.wallpaper = {
     source = pkgs.fetchurl {
-      url =
-        "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
+      url = "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
       hash = "sha256-A0x4VbfRuPY6b6d/L/N9k9xIsoIjEeFgzyFkfvcYanc";
     };
   };
@@ -131,21 +131,17 @@
         backend = "x11";
         # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
       };
-
     };
 
     logind = {
       lidSwitch = "suspend-then-hibernate";
-      lidSwitchDocked =
-        "suspend-then-hibernate"; # lid closed but another screen is connected
+      lidSwitchDocked = "suspend-then-hibernate"; # lid closed but another screen is connected
       lidSwitchExternalPower = "lock";
 
       # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
       # combined with services.screen-locker in home-manager,
       # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
-      extraConfig =
-        "\n      IdleAction=suspend-then-hibernate\n      IdleActionSec=20min\n    ";
-
+      extraConfig = "\n      IdleAction=suspend-then-hibernate\n      IdleActionSec=20min\n    ";
     };
   };
 
@@ -167,7 +163,7 @@
         Experimental = "true";
       };
 
-      Policy = { AutoEnable = "true"; };
+      Policy = {AutoEnable = "true";};
     };
   };
 
@@ -175,7 +171,7 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   # Enable CUPS to print documents.
@@ -207,7 +203,7 @@
       "disk"
       "docker"
     ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ firefox xorg.xf86videoamdgpu xorg.xf86videointel ];
+    packages = with pkgs; [firefox xorg.xf86videoamdgpu xorg.xf86videointel];
 
     shell = pkgs.zsh;
   };
@@ -244,7 +240,7 @@
     qtile
   ];
 
-  fonts.packages = with pkgs; [ wqy_zenhei wqy_microhei ];
+  fonts.packages = with pkgs; [wqy_zenhei wqy_microhei];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -257,23 +253,23 @@
   programs.git.enable = true;
   programs.bandwhich.enable = true;
   programs.git.config = {
-    init = { defaultBranch = "main"; };
+    init = {defaultBranch = "main";};
 
-    core = { editor = "nvim"; };
+    core = {editor = "nvim";};
   };
 
   programs.neovim = {
     enable = true;
     configure = {
       packages.myVimPackage = with pkgs.vimPlugins; {
-        start = [ sensible vim-nix ];
+        start = [sensible vim-nix];
       };
     };
   };
 
   programs.zsh = {
     enable = true;
-    shellAliases = { la = "ls -la"; };
+    shellAliases = {la = "ls -la";};
 
     setOptions = [
       "HIST_IGNORE_DUPS"
@@ -287,7 +283,7 @@
   # ------- Thunar related
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
   };
 
   security.wrappers = {
@@ -326,7 +322,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 3000 8000 8080 12345 ];
+    allowedTCPPorts = [3000 8000 8080 12345];
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -342,6 +338,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   # system.stateVersion = "22.11"; # Did you read the comment?
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
-

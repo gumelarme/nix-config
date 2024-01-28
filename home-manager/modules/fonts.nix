@@ -1,6 +1,11 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let cfg = config.modules.fonts;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.fonts;
 in {
   options.modules.fonts = {
     dev = mkEnableOption "Enable dev fonts";
@@ -13,7 +18,7 @@ in {
           ibm-plex
           dejavu_fonts
           source-code-pro
-          (nerdfonts.override { fonts = [ "IBMPlexMono" "DejaVuSansMono" ]; })
+          (nerdfonts.override {fonts = ["IBMPlexMono" "DejaVuSansMono"];})
         ])
 
         (mkIf cfg.extra [

@@ -1,32 +1,37 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.modules.dev-tools;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.dev-tools;
 in {
-  imports = [ ./emacs.nix ];
+  imports = [./emacs.nix];
 
   options.modules.dev-tools = {
-    nix = { enable = mkEnableOption "Enable nix development tools"; };
-    elm = { enable = mkEnableOption "Enable elm development tools"; };
-    web = { enable = mkEnableOption "Enable web development tools"; };
+    nix = {enable = mkEnableOption "Enable nix development tools";};
+    elm = {enable = mkEnableOption "Enable elm development tools";};
+    web = {enable = mkEnableOption "Enable web development tools";};
     python = {
       enable = mkEnableOption "Enable python development tools";
       package = mkOption {
         type = types.package;
         default = pkgs.python3Full;
-        description =
-          "Python package to install, default will follow nix stable version";
+        description = "Python package to install, default will follow nix stable version";
       };
     };
   };
 
-  config = let defaultPackages = with pkgs; [ httpie gnumake ];
+  config = let
+    defaultPackages = with pkgs; [httpie gnumake];
   in {
-    programs.zsh.shellAliases = mkIf cfg.nix.enable { "nixfmt" = "alejandra"; };
+    programs.zsh.shellAliases = mkIf cfg.nix.enable {"nixfmt" = "alejandra";};
     home.packages = mkMerge [
       defaultPackages
-      (mkIf cfg.nix.enable (with pkgs; [ alejandra nil ]))
+      (mkIf cfg.nix.enable (with pkgs; [alejandra nil]))
       (mkIf cfg.python.enable
-        (with pkgs; [ cfg.python.package poetry black isort pipenv ]))
+        (with pkgs; [cfg.python.package poetry black isort pipenv]))
 
       (mkIf cfg.elm.enable (with pkgs; [
         elmPackages.elm
@@ -45,7 +50,6 @@ in {
         nodePackages.typescript-language-server
         nodePackages."@astrojs/language-server"
         nodePackages.volar
-
       ]))
     ];
   };

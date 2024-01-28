@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     sqlite # Org roam
     findutils # find, grep, etc
@@ -8,16 +8,16 @@
     enable = true;
     client = {
       enable = true;
-      arguments = [ "--reuse-frame" "--no-wait" ];
+      arguments = ["--reuse-frame" "--no-wait"];
     };
   };
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs29.override ({
+    package = pkgs.emacs29.override {
       withTreeSitter = true;
       withSQLite3 = true;
       withXinput2 = true;
-    });
+    };
   };
 }

@@ -1,12 +1,16 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let cfg = config.modules.git;
-
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.git;
 in {
   options.modules.git = {
     global-gitignore = mkOption {
       type = types.listOf types.str;
-      default = [ ];
+      default = [];
       description = ''
         List of globally ignored file,
         useful if you dont want to pollute the .gitignore on project itself.
@@ -23,7 +27,7 @@ in {
         core = {
           excludesFile = let
             ignored-str = concatStringsSep "\n" cfg.global-gitignore;
-            gitignore = (pkgs.writeText "global_gitignore" ignored-str);
+            gitignore = pkgs.writeText "global_gitignore" ignored-str;
           in "${gitignore}";
         };
       };
@@ -44,8 +48,7 @@ in {
         branches = "branch -a";
         remotes = "remote -v";
         uncommit = "reset --soft HEAD^";
-        graph =
-          "log --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d'";
+        graph = "log --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d'";
       };
     };
 

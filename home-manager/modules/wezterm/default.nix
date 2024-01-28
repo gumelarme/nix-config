@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.modules.wezterm;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.wezterm;
 in {
   options.modules.wezterm = {
     enable = mkEnableOption "Wezterm Modules";

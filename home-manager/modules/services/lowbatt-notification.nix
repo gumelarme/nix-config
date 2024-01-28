@@ -1,20 +1,17 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   systemd.user.timers.lowbatt = {
-    Unit = { Description = "Check battery level"; };
+    Unit = {Description = "Check battery level";};
     Timer = {
       OnBootSec = "2m";
       OnUnitInactiveSec = "1m";
       Unit = "lowbatt.service";
     };
 
-    Install = { WantedBy = [ "timers.target" ]; };
-
+    Install = {WantedBy = ["timers.target"];};
   };
 
   systemd.user.services.lowbatt = {
-    Unit = { Description = "Battery level notifier"; };
+    Unit = {Description = "Battery level notifier";};
     Service = {
       PassEnvironment = "DISPLAY";
       # allow 'sleep' command to run, otherwise it will not wait
@@ -79,7 +76,6 @@
           fi
 
         '';
-
       in "${script}";
     };
   };

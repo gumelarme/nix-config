@@ -1,10 +1,7 @@
-{ pkgs, ... }:
-
-{
-  home.packages = with pkgs;
-    [
-      libcanberra-gtk3 # used with dunst to play notification sound
-    ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    libcanberra-gtk3 # used with dunst to play notification sound
+  ];
 
   services.dunst = {
     enable = true;
@@ -147,7 +144,7 @@
         # These values can be strung together for each mouse event, and
         # will be executed in sequence.
         mouse_left_click = "close_current";
-        mouse_middle_click = [ "do_action close_current" ];
+        mouse_middle_click = ["do_action close_current"];
         mouse_right_click = "close_all";
       };
 

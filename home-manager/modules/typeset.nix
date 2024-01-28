@@ -1,8 +1,12 @@
-{pkgs, lib, config, ... }:
-with lib;
-let cfg = config.modules.typeset;
-    in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.typeset;
+in {
   options.modules.typeset = {
     latex = {
       enable = mkEnableOption "Enable latex module";
@@ -35,9 +39,9 @@ let cfg = config.modules.typeset;
       ])
 
       (mkIf cfg.typst.enable [
-          typst
-          typstfmt
-          typst-lsp
+        typst
+        typstfmt
+        typst-lsp
       ])
     ]);
   };

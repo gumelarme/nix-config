@@ -1,7 +1,10 @@
-{ outputs, config, pkgs, ... }:
-
 {
-  imports = [ ./modules ./modules/xdg ./modules/services ];
+  outputs,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./modules ./modules/xdg ./modules/services];
 
   nixpkgs = {
     overlays = [
@@ -9,7 +12,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      (self: super: { fcitx-engines = pkgs.fcitx5; })
+      (self: super: {fcitx-engines = pkgs.fcitx5;})
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -26,7 +29,7 @@
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
   };
 
@@ -60,11 +63,11 @@
     recursive = true;
   };
 
-  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+  home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-rime ];
+    fcitx5.addons = with pkgs; [fcitx5-rime];
   };
 
   # Enable home-manager and git
@@ -195,14 +198,16 @@
       # wacomtablet # KDE Config Module
       xorg.xf86videoamdgpu
       xorg.xf86videointel
-    ] ++ (let
+    ]
+    ++ (let
       # Add scripts to bin from file
       fileToScripts = file:
         pkgs.writeShellScriptBin (builtins.baseNameOf file)
         (builtins.readFile file);
       getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
-    in map fileToScripts
-    (getFilesFromDir ./modules/shell/scripts [ "mywacom" ]));
+    in
+      map fileToScripts
+      (getFilesFromDir ./modules/shell/scripts ["mywacom"]));
 
   # home.sessionVariables = {
   #   LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ stdenv.cc.cc zlib ];

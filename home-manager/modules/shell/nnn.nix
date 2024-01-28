@@ -1,7 +1,11 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let cfg = config.modules.nnn;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.nnn;
 in {
   options.modules.nnn = {
     enable = mkEnableOption "Enable nnn modules";
@@ -17,8 +21,8 @@ in {
     programs.nnn = {
       inherit (cfg) bookmarks;
       enable = true;
-      package = pkgs.nnn.override ({ withNerdIcons = true; });
-      extraPackages = with pkgs; [ glow libnotify mediainfo viu ];
+      package = pkgs.nnn.override {withNerdIcons = true;};
+      extraPackages = with pkgs; [glow libnotify mediainfo viu];
       plugins = {
         mappings = {
           f = "fzcd";
@@ -28,12 +32,14 @@ in {
           r = "gitroot";
         };
 
-        src = (pkgs.fetchFromGitHub {
-          owner = "jarun";
-          repo = "nnn";
-          rev = "v4.8";
-          sha256 = "sha256-QbKW2wjhUNej3zoX18LdeUHqjNLYhEKyvPH2MXzp/iQ=";
-        }) + "/plugins";
+        src =
+          (pkgs.fetchFromGitHub {
+            owner = "jarun";
+            repo = "nnn";
+            rev = "v4.8";
+            sha256 = "sha256-QbKW2wjhUNej3zoX18LdeUHqjNLYhEKyvPH2MXzp/iQ=";
+          })
+          + "/plugins";
       };
     };
   };
