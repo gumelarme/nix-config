@@ -1,10 +1,12 @@
-{ lib, pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./git.nix ./nnn.nix ./shell.nix ];
 
+  # z autojump
   programs.zoxide.enable = true;
 
+  # C-r but better
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
@@ -15,6 +17,7 @@
     };
   };
 
+  # ls but better
   programs.eza = {
     enable = true;
     enableAliases = true;
@@ -22,11 +25,13 @@
     extraOptions = [ "--group-directories-first" ];
   };
 
+  # fuzzy file finder
   programs.fzf = {
     enable = true;
-    enableZshIntegration = false; # use mcfly instead
+    enableZshIntegration = false; # use atuin instead
   };
 
+  # command line snippet manager
   programs.pet = {
     # TODO: configure gists
     enable = true;
@@ -38,36 +43,11 @@
     };
   };
 
+  # cat but better
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [ batman prettybat ];
     config = { theme = "Dracula"; };
   };
 
-  # home.sessionVariables = {
-  #   LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ stdenv.cc.cc zlib ];
-  # };
-
-  home.packages = with pkgs;
-    [
-      imagemagick
-      zlib
-      gcc-unwrapped
-      # clang
-      fd
-      pandoc
-      ripgrep
-      ripgrep-all # for pdfs, zip, docx etc.
-      termdown
-      tealdeer
-      tree
-      less
-      glow
-      # Add scripts to bin from file
-    ] ++ (let
-      fileToScripts = file:
-        pkgs.writeShellScriptBin (builtins.baseNameOf file)
-        (builtins.readFile file);
-      getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
-    in map fileToScripts (getFilesFromDir ./scripts [ "mywacom" ]));
 }

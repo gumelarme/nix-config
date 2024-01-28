@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{ outputs, config, pkgs, ... }:
 
 {
   imports = [ ./modules ];
@@ -106,4 +106,83 @@
     };
   };
 
+  home.packages = with pkgs;
+    [
+      # System utils
+      arandr
+      autorandr
+      qrencode
+      # clang
+      gcc-unwrapped
+      zlib
+      libsForQt5.ark # gui archive
+      rofi-power-menu
+
+      # Browser
+      brave
+      qutebrowser
+
+      # Etc
+      qbittorrent
+      pick-colour-picker
+      nicotine-plus
+
+      # Documents
+      pandoc
+      zotero
+      calibre
+      zathura
+      sioyek # pdf reader, research focused
+      xournalpp
+      lorien
+      libreoffice-qt
+      pdftk
+      pdfchain
+
+      # Media
+      feh
+      imagemagick
+      vlc
+      tauon
+      spotify
+      nomacs
+      yesplaymusic
+      # mediainfo
+      # gimp  # annoyingly replaces xdg-mime for image/*
+      # blender
+      # godot
+      # inkscape
+      # glaxnimate
+
+      # Games
+      steam
+      steam-run
+
+      # Communication
+      qq
+      discord
+      tdesktop
+
+      # Peripheral
+      xsane
+      sane-frontends
+      gnome.simple-scan
+      libsForQt5.skanlite
+      xboxdrv
+      # libwacom
+      # wacomtablet # KDE Config Module
+      xorg.xf86videoamdgpu
+      xorg.xf86videointel
+    ] ++ (let
+      # Add scripts to bin from file
+      fileToScripts = file:
+        pkgs.writeShellScriptBin (builtins.baseNameOf file)
+        (builtins.readFile file);
+      getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
+    in map fileToScripts
+    (getFilesFromDir ./modules/shell/scripts [ "mywacom" ]));
+
+  # home.sessionVariables = {
+  #   LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ stdenv.cc.cc zlib ];
+  # };
 }
