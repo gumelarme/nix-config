@@ -5,9 +5,6 @@
     ./clipboard.nix
     ./fonts.nix
 
-    ./services
-    ./xdg
-
     ./eww
     ./nvim
     ./tmux
@@ -21,6 +18,14 @@
 
   home.packages = with pkgs; [
     # System utils
+    fd
+    ripgrep
+    ripgrep-all # for pdfs, zip, docx etc.
+    termdown
+    tealdeer
+    tree
+    less
+    glow
     nurl
     rsync
     fdupes

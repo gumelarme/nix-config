@@ -1,7 +1,7 @@
 { outputs, config, pkgs, ... }:
 
 {
-  imports = [ ./modules ];
+  imports = [ ./modules ./modules/xdg ./modules/services ];
 
   nixpkgs = {
     overlays = [
