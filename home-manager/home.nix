@@ -85,8 +85,6 @@
 
     fonts = {
       dev = true;
-      latex = true;
-      ms-core = true;
       extra = true;
     };
 

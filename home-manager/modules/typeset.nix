@@ -20,6 +20,15 @@ let cfg = config.modules.typeset;
 
   config = {
     home.packages = mkMerge (with pkgs; [
+      (mkIf (cfg.latex.enable || cfg.typst.enable) [
+        symbola
+        corefonts
+        wqy_zenhei
+        wqy_microhei
+        # TODO: Find SimSun bold
+        # TODO: Add more CJK fonts, Fandol, Fang etc
+      ])
+
       (mkIf cfg.latex.enable [
         texlive.combined.scheme-full
         (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
