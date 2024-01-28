@@ -85,6 +85,7 @@
     neovim.enable = true;
     wezterm.enable = true;
     clipboard.enable = true;
+    firefox.enable = true;
 
     fonts = {
       dev = true;
