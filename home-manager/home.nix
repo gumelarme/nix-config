@@ -78,6 +78,7 @@
 
   modules = {
     rofi.enable = true;
+    tmux.enable = true;
     wezterm.enable = true;
     clipboard.enable = true;
 
