@@ -77,6 +77,7 @@
   home.stateVersion = "23.05";
 
   modules = {
+    rofi.enable = true;
     wezterm.enable = true;
     clipboard.enable = true;
 
