@@ -107,10 +107,25 @@
       enable = true;
       proxyAddress = "http://localhost:20170";
     };
+
+    dev-tools = {
+      python.enable = true;
+      nix.enable = true;
+      elm.enable = true;
+      web.enable = true;
+    };
   };
 
   home.packages = with pkgs;
     [
+      # =Dev
+      jetbrains.pycharm-professional
+      jetbrains.datagrip
+      jetbrains.webstorm
+      docker
+      # needed for building driver and access to postgres clis and lib
+      postgresql_12_jit
+
       # System utils
       arandr
       autorandr
