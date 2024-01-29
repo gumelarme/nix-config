@@ -48,6 +48,11 @@
     git = {
       userName = "gumendol";
       userEmail = "gumelar@gpted.com";
+      global-gitignore = [
+        "_sandbox"
+        ".secrets"
+        ".vcr_library"
+      ];
     };
 
     shell = {
