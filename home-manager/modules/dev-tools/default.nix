@@ -22,7 +22,7 @@ in {
         description = "Python package to install, default will follow nix stable version";
       };
 
-      pyenv = { 
+      pyenv = {
         enable = mkEnableOption "Enable pyenv";
         rootDirectory = mkOption {
           type = types.path;
@@ -43,9 +43,8 @@ in {
     programs.zsh.initExtra = lib.mkIf cfg.python.pyenv.enable ''
       export PYENV_VIRTUALENV_DISABLE_PROMPT=1
       export PYENV_ROOT="${cfg.python.pyenv.rootDirectory}"
-      alias pyenv-init='eval "$(${lib.getExe pkgs.pyenv } init - zsh)"'
+      alias pyenv-init='eval "$(${lib.getExe pkgs.pyenv} init - zsh)"'
     '';
-
 
     home.packages = mkMerge [
       defaultPackages
@@ -54,7 +53,7 @@ in {
         (with pkgs; [cfg.python.package poetry black isort pipenv]))
 
       (mkIf (cfg.python.enable && cfg.python.pyenv.enable)
-        (with pkgs; [ pyenv ]))
+        (with pkgs; [pyenv]))
 
       (mkIf cfg.elm.enable (with pkgs; [
         elmPackages.elm

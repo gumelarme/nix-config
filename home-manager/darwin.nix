@@ -1,7 +1,12 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-
 {
-  imports = [./modules ];
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./modules];
 
   nixpkgs = {
     overlays = [
@@ -15,7 +20,7 @@
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
   };
 
@@ -24,7 +29,7 @@
     homeDirectory = "/Users/gu";
   };
 
-  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+  home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
