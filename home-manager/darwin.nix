@@ -41,6 +41,10 @@
       configOnly = true;
     };
 
+    fonts = {
+      dev = true;
+    };
+
     git = {
       userName = "gumendol";
       userEmail = "gumelar@gpted.com";
@@ -48,7 +52,7 @@
 
     shell = {
       enable = true;
-      proxyAddress = "http://localhost:20170";
+      proxyAddress = "http://localhost:7890";
     };
 
     nnn = {
