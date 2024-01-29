@@ -24,6 +24,7 @@ in {
       # initExtraFirst = "zmodload zsh/zprof";
 
       enable = cfg.enable;
+      defaultKeymap = "viins";
       enableCompletion = true;
       shellAliases = {
         g = "git";
@@ -58,6 +59,9 @@ in {
         read = builtins.readFile;
       in
         builtins.concatStringsSep "\n" [
+          # Fix viins mode cannot delete using backspace
+          "bindkey '^?' backward-delete-char"
+
           # Bind Shift-Tab to go to prev completion item
           # what? https://unix.stackexchange.com/questions/84867/zsh-completion-enabling-shift-tab
           "bindkey '^[[Z' reverse-menu-complete"
@@ -80,7 +84,7 @@ in {
       enable = cfg.enable;
       enableZshIntegration = true;
       settings = {
-        add_newline = false;
+        add_newline = true;
         format = lib.concatStrings [
           "$username"
           "$hostname"

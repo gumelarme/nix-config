@@ -65,4 +65,13 @@
       nix.enable = true;
     };
   };
+
+  home.packages = with pkgs; [
+    rectangle
+  ];
+
+  programs.pyenv = {
+    enable = true;
+    rootDirectory = "${config.home.homeDirectory}/.pyenv";
+  };
 }
