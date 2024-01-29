@@ -16,13 +16,22 @@ in {
         useful if you dont want to pollute the .gitignore on project itself.
       '';
     };
+    userName = mkOption {
+      type = types.str;
+      description = "Git user name";
+    };
+
+    userEmail = mkOption {
+      type = types.str;
+      description = "Git user email";
+    };
   };
 
   config = {
     programs.git = {
       enable = true;
-      userName = "gumelarme";
-      userEmail = "gumelar.pn@gmail.com";
+      userName = cfg.userName;
+      userEmail = cfg.userEmail;
       extraConfig = {
         core = {
           excludesFile = let

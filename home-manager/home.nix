@@ -87,6 +87,11 @@
     clipboard.enable = true;
     firefox.enable = true;
 
+    git = {
+      userName = "gumelarme";
+      userEmail = "gumelar.pn@gmail.com";
+    };
+
     fonts = {
       dev = true;
       extra = true;
