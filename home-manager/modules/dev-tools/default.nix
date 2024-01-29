@@ -21,6 +21,14 @@ in {
         default = pkgs.python3Full;
         description = "Python package to install, default will follow nix stable version";
       };
+
+      pyenv = { 
+        enable = mkEnableOption "Enable pyenv";
+        rootDirectory = mkOption {
+          type = types.path;
+          description = "Path to set PYENV_ROOT";
+        };
+      };
     };
   };
 
@@ -28,11 +36,25 @@ in {
     defaultPackages = with pkgs; [httpie gnumake];
   in {
     programs.zsh.shellAliases = mkIf cfg.nix.enable {"nixfmt" = "alejandra";};
+
+    # pyenv init script load every time new shell is created, it make shell load very slow
+    # here its just as an alias, use it whenever it needed
+    # TODO: pyenv prompt will be disabled by default in future, remove that line when that happen
+    programs.zsh.initExtra = lib.mkIf cfg.python.pyenv.enable ''
+      export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+      export PYENV_ROOT="${cfg.python.pyenv.rootDirectory}"
+      alias pyenv-init='eval "$(${lib.getExe pkgs.pyenv } init - zsh)"'
+    '';
+
+
     home.packages = mkMerge [
       defaultPackages
       (mkIf cfg.nix.enable (with pkgs; [alejandra nil]))
       (mkIf cfg.python.enable
         (with pkgs; [cfg.python.package poetry black isort pipenv]))
+
+      (mkIf (cfg.python.enable && cfg.python.pyenv.enable)
+        (with pkgs; [ pyenv ]))
 
       (mkIf cfg.elm.enable (with pkgs; [
         elmPackages.elm

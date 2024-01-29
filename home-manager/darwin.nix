@@ -66,7 +66,14 @@
 
     dev-tools = {
       emacs.enable = false;
-      python.enable = false;
+      python = {
+        enable = true;
+        package = pkgs.python38;
+        pyenv = {
+          enable = true;
+          rootDirectory = "${config.home.homeDirectory}/.pyenv";
+        };
+      };
       nix.enable = true;
     };
   };
@@ -74,9 +81,4 @@
   home.packages = with pkgs; [
     rectangle
   ];
-
-  programs.pyenv = {
-    enable = true;
-    rootDirectory = "${config.home.homeDirectory}/.pyenv";
-  };
 }
