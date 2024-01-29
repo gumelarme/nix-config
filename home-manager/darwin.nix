@@ -1,7 +1,7 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 
 {
-  imports = [ ./modules/wezterm ];
+  imports = [./modules ];
 
   nixpkgs = {
     overlays = [
@@ -31,4 +31,34 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
+  modules = {
+    tmux.enable = false;
+    neovim.enable = true;
+    firefox.enable = false;
+
+    wezterm = {
+      enable = true;
+      configOnly = true;
+    };
+
+    git = {
+      userName = "gumendol";
+      userEmail = "gumelar@gpted.com";
+    };
+
+    shell = {
+      enable = true;
+      proxyAddress = "http://localhost:20170";
+    };
+
+    nnn = {
+      enable = true;
+    };
+
+    dev-tools = {
+      emacs.enable = false;
+      python.enable = false;
+      nix.enable = true;
+    };
+  };
 }

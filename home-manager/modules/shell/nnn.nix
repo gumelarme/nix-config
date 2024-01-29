@@ -11,6 +11,7 @@ in {
     enable = mkEnableOption "Enable nnn modules";
     bookmarks = mkOption {
       type = with types; attrsOf str;
+      default = {};
       description = ''
         Directory bookmarks.
       '';

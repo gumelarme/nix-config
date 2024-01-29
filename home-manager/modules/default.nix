@@ -31,10 +31,6 @@
 
     # Secrets
     rbw
-    bitwarden
     pinentry
-
-    # Proxy
-    qv2ray
   ];
 }

@@ -154,6 +154,8 @@
       qutebrowser
 
       # Etc
+      qv2ray
+      bitwarden
       qbittorrent
       pick-colour-picker
       nicotine-plus
