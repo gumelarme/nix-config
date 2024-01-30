@@ -14,6 +14,7 @@ in {
       default = "http://localhost:7890";
       description = "Proxy address for prox-{show,set,rm} utilities";
     };
+    debug = mkEnableOption "Enable zmodload to profile zsh loading time";
   };
 
   config = {
@@ -21,8 +22,8 @@ in {
     programs.zsh = {
       # Use to profile zsh load time
       # use command `zprof` to see the results
-      # initExtraFirst = "zmodload zsh/zprof";
-
+      # initExtraFirst = if cfg.debug then "zmodload zsh/zprof" else "";
+      initExtraFirst = mkIf cfg.debug "zmodload zsh/zprof";
       enable = cfg.enable;
       defaultKeymap = "viins";
       enableCompletion = true;
