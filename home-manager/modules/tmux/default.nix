@@ -13,7 +13,18 @@ in {
       enable = true;
       keyMode = "vi";
       mouse = true;
-      extraConfig = builtins.readFile ./tmux.conf;
+      extraConfig = let
+        configFile = builtins.readFile ./tmux.conf;
+        terminal =
+          if pkgs.stdenv.isDarwin
+          then "screen"
+          else "tmux";
+      in
+        concatStringsSep "\n"
+        [
+          ''set -g default-terminal "${terminal}-256color"''
+          configFile
+        ];
       plugins = let
         myplugins = (import ./plugins.nix) {inherit pkgs;};
       in

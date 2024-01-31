@@ -37,7 +37,7 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
   modules = {
-    tmux.enable = false;
+    tmux.enable = true;
     neovim.enable = true;
     firefox.enable = false;
 
@@ -84,6 +84,7 @@
   };
 
   home.packages = with pkgs; [
+    ncurses
     rectangle
   ];
 }

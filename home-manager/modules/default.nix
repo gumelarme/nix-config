@@ -16,7 +16,7 @@
 
   home.packages = with pkgs; [
     # System Utils
-    git 
+    git
     fd
     tree
     less
