@@ -15,22 +15,42 @@
   ];
 
   home.packages = with pkgs; [
-    # System utils
+    # System Utils
+    git 
     fd
-    ripgrep
-    ripgrep-all # for pdfs, zip, docx etc.
-    termdown
-    tealdeer
     tree
     less
-    glow
+    ripgrep
+    ripgrep-all # for pdfs, zip, docx etc.
+    coreutils
+    wget
+    curl
+
+    ## Nix
     nurl
+    nixos-option
+    nix-prefetch-scripts
+
+    ## Archive Helper
+    atool
+    zip
+    unzip
+    p7zip
+    libarchive
+
+    # File Management
     rsync
-    fdupes
     rclone
+    fdupes
 
     # Secrets
     rbw
     pinentry
+
+    # Misc
+    glow
+    btop
+    termdown
+    tealdeer
   ];
 }

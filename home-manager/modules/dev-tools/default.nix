@@ -33,7 +33,7 @@ in {
   };
 
   config = let
-    defaultPackages = with pkgs; [httpie gnumake];
+    defaultPackages = with pkgs; [httpie gnumake hurl];
   in {
     programs.zsh.shellAliases = mkIf cfg.nix.enable {"nixfmt" = "alejandra";};
 
