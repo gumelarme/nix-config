@@ -39,16 +39,13 @@
   modules = {
     tmux.enable = true;
     neovim.enable = true;
-    firefox.enable = false;
+    fonts.dev = true;
 
     wezterm = {
       enable = true;
       configOnly = true;
     };
 
-    fonts = {
-      dev = true;
-    };
 
     git = {
       userName = "gumendol";
@@ -70,7 +67,7 @@
     };
 
     dev-tools = {
-      emacs.enable = false;
+      nix.enable = true;
       python = {
         enable = true;
         package = pkgs.python38;
@@ -79,7 +76,6 @@
           rootDirectory = "${config.home.homeDirectory}/.pyenv";
         };
       };
-      nix.enable = true;
     };
   };
 
