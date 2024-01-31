@@ -30,6 +30,7 @@ in {
       shellAliases = {
         g = "git";
         s = "git status";
+        ds = "git diff --staged";
         mucik = "ncmpcpp";
         gitroot = "cd $(git rev-parse --show-toplevel)";
         pp = "pet exec --color --command";
