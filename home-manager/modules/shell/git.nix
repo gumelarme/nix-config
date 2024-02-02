@@ -51,13 +51,13 @@ in {
         d = "diff";
         ds = "diff --staged";
         l = "log";
-        lo = "log --graph --oneline";
         ls = "log --graph --name-status";
+        dog = "log --decorate --oneline --graph";
+        dogs = "log --decorate --oneline --graph --stat";
         stashes = "stash list";
         branches = "branch -a";
         remotes = "remote -v";
         uncommit = "reset --soft HEAD^";
-        graph = "log --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d'";
       };
     };
 
