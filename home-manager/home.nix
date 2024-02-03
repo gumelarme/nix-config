@@ -80,6 +80,7 @@
   home.stateVersion = "23.05";
 
   modules = {
+    hostname = "crockpot";
     rofi.enable = true;
     tmux.enable = true;
     neovim.enable = true;

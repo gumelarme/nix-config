@@ -1,5 +1,13 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.hostname;
+in {
   imports = [
+    ./packages.nix
     ./clipboard.nix
     ./fonts.nix
     ./typeset.nix
@@ -14,43 +22,13 @@
     ./dev-tools
   ];
 
-  home.packages = with pkgs; [
-    # System Utils
-    git
-    fd
-    tree
-    less
-    ripgrep
-    ripgrep-all # for pdfs, zip, docx etc.
-    coreutils
-    wget
-    curl
+  options.modules.hostname = mkOption {
+    type = types.str;
+    description = "Hostname to be used in various config";
+  };
 
-    ## Nix
-    nurl
-    nixos-option
-    nix-prefetch-scripts
+  config = {
+    home.sessionVariables.HOSTNAME = cfg;
+  };
 
-    ## Archive Helper
-    atool
-    zip
-    unzip
-    p7zip
-    libarchive
-
-    # File Management
-    rsync
-    rclone
-    fdupes
-
-    # Secrets
-    rbw
-    pinentry
-
-    # Misc
-    glow
-    btop
-    termdown
-    tealdeer
-  ];
 }

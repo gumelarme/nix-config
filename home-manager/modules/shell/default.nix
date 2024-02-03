@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./git.nix ./nnn.nix ./shell.nix];
+  imports = [./git.nix ./nnn.nix ./shell.nix ./pet.nix];
 
   # z autojump
   programs.zoxide.enable = true;
@@ -27,18 +27,6 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = false; # use atuin instead
-  };
-
-  # command line snippet manager
-  programs.pet = {
-    # TODO: configure gists
-    enable = true;
-    settings = {
-      General = {
-        editor = "vim";
-        selectcmd = "fzf --ansi";
-      };
-    };
   };
 
   # cat but better
