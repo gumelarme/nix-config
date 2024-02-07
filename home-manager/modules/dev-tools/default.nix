@@ -46,6 +46,13 @@ in {
       alias pyenv-init='eval "$(${lib.getExe pkgs.pyenv} init - zsh)"'
     '';
 
+    home.file."${config.home.homeDirectory}/.npmrc" = mkIf cfg.web.enable {
+      text = ''
+        registry = https://registry.npmjs.org
+        registry = http://registry.npmmirror.com
+      '';
+    };
+
     home.packages = mkMerge [
       defaultPackages
       (mkIf cfg.nix.enable (with pkgs; [alejandra nil]))

@@ -30,5 +30,4 @@ in {
   config = {
     home.sessionVariables.HOSTNAME = cfg;
   };
-
 }
