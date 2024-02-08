@@ -25,6 +25,7 @@ in {
         (nvim-treesitter.withPlugins (p: [
           p.nix
           p.go
+          p.lua
           p.org
           p.python
           p.clojure
@@ -34,6 +35,7 @@ in {
 
         plenary-nvim
         telescope-nvim
+        which-key-nvim
       ];
     };
   };

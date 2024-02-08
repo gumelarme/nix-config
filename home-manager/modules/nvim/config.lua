@@ -16,8 +16,21 @@ require'dracula'.setup {
 
 vim.cmd[[colorscheme dracula]]
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+local wk = require('which-key')
+wk.register({
+  p = {
+    name = "Project",
+    f = { "<cmd>Telescope find_files<cr>", "Find file"},
+  },
+
+  b = {
+    name = "Buffer",
+    b = { "<cmd>Telescope buffers<cr>", "Find buffer"},
+  },
+
+  s = {
+    name = "Search",
+    p = { "<cmd>Telescope live_grep<cr>", "Search text in project"},
+  },
+
+}, { prefix = "<Space>" })
