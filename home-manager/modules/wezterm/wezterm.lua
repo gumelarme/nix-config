@@ -9,6 +9,13 @@ local key_bindings = {
     { key = '0', mods = 'CTRL', action = act.ResetFontSize },
 }
 
+local visual_bell = {
+  fade_in_function = 'EaseIn',
+  fade_in_duration_ms = 30,
+  fade_out_function = 'EaseOut',
+  fade_out_duration_ms = 30,
+}
+
 return {
   automatically_reload_config = true,
   enable_tab_bar = false,
@@ -24,4 +31,11 @@ return {
 
   disable_default_key_bindings = true,
   keys = key_bindings,
+
+  -- Bell
+  audible_bell = "Disabled",
+  visual_bell = visual_bell,
+  colors = {
+    visual_bell = "#574275",
+  }
 }
