@@ -179,7 +179,14 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Scanner
   hardware.sane.enable = true;
@@ -238,6 +245,9 @@
     nixos-option
 
     qtile
+
+    # pipewire tui
+    qpwgraph
   ];
 
   fonts.packages = with pkgs; [wqy_zenhei wqy_microhei];
