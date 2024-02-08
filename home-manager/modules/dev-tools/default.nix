@@ -50,7 +50,7 @@ in {
       defaultPackages
       (mkIf cfg.nix.enable (with pkgs; [alejandra nil]))
       (mkIf cfg.python.enable
-        (with pkgs; [cfg.python.package poetry black isort pipenv]))
+        (with pkgs; [cfg.python.package poetry black isort pipenv nodePackages.pyright]))
 
       (mkIf (cfg.python.enable && cfg.python.pyenv.enable)
         (with pkgs; [pyenv]))
@@ -68,7 +68,6 @@ in {
         nodePackages.pnpm
         nodePackages.js-beautify
         nodePackages.stylelint
-        nodePackages.pyright
         nodePackages.typescript-language-server
         nodePackages."@astrojs/language-server"
         nodePackages.volar
