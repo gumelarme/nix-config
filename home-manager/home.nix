@@ -144,6 +144,7 @@
       arandr
       autorandr
       qrencode
+      easyeffects # pipewire gui
       # clang
       gcc-unwrapped
       zlib
