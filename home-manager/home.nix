@@ -141,6 +141,7 @@
       postgresql_12_jit
 
       # System utils
+      dmenu
       arandr
       autorandr
       qrencode

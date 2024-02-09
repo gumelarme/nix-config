@@ -1,5 +1,6 @@
 from libqtile import layout
-from libqtile.config import  DropDown, Group, ScratchPad, Match
+from libqtile.config import DropDown, Group, ScratchPad, Match
+
 
 class NamedWorkspace:
     def __init__(self, name, key, **kwargs):
@@ -11,7 +12,7 @@ class NamedWorkspace:
         return (f"M-{self.key}", f"M-S-{self.key}")
 
 
-scratch_args= dict(
+scratch_args = dict(
     height=0.68,
     width=0.5,
     x=0.499,
@@ -20,21 +21,29 @@ scratch_args= dict(
 
 workspaces = [Group(i) for i in "1234qwer90"]
 named_workspace = [
-    NamedWorkspace("b", "b", matches=[Match(wm_class="qbittorrent")], spawn="qbittorrent"),
-    NamedWorkspace("m", "m", matches=[Match(wm_class="spotify"), Match(wm_class="tauonmb")]),
+    NamedWorkspace(
+        "b", "b", matches=[Match(wm_class="qbittorrent")], spawn="qbittorrent"
+    ),
+    NamedWorkspace(
+        "m", "m", matches=[Match(wm_class="spotify"), Match(wm_class="tauonmb")]
+    ),
 ]
+
 
 # `wezterm -e` launch program as a gui, and somehow cannot be assigned to a dropdown
 # so we need to override the `default_prog` configuration at launch
 def wezterm_with(programs: str):
     # split by space, and pass it as list of string
     args = [f"'{x}'" for x in programs.split(" ")]
-    return "wezterm --config default_prog=\"{ %s }\"" % ", ".join(args)
+    return 'wezterm --config default_prog="{ %s }"' % ", ".join(args)
+
 
 groups = [
     *workspaces,
     *[Group(i.name, **i.options) for i in named_workspace],
-    ScratchPad('scratch', [
+    ScratchPad(
+        "scratch",
+        [
             DropDown("term", wezterm_with("tmux new -As scratch"), **scratch_args),
             DropDown("browser", "qutebrowser", **scratch_args),
             DropDown("python-repl", wezterm_with("python3")),
@@ -44,21 +53,19 @@ groups = [
 ]
 
 
-
-
 gaps = dict(
     margin=3,
-    margin_on_single=0, # columns
-    single_margin=0, # monad tall
+    margin_on_single=0,  # columns
+    single_margin=0,  # monad tall
     border_width=4,
     border_focus="#9748db",
-    single_border_width=0, # monad tall
+    single_border_width=0,  # monad tall
 )
 
 
 layouts = [
     layout.MonadTall(**gaps),
-    layout.Columns(**gaps),
+    # layout.Columns(**gaps),
     layout.Max(),
     # layout.Tile(),
     # Try more layouts by unleashing below layouts.
@@ -67,6 +74,7 @@ layouts = [
     # layout.Matrix(),
     # layout.MonadWide(),
     # layout.RatioTile(),
+    # layout.Slice(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),

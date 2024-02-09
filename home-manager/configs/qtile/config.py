@@ -4,7 +4,7 @@ import glob
 from pathlib import Path
 
 
-from libqtile import  hook
+from libqtile import hook
 from libqtile.config import Screen
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
@@ -13,6 +13,7 @@ from bar import main_bar, alt_bar
 from keybinding import keys, mouse
 from layout import floating_layout, groups, layouts
 from utils import curdir
+
 
 def get_wallpaper(name="wallpaper"):
     wallpaper_dir = os.path.expanduser("~/.config/wallpaper")
@@ -40,7 +41,7 @@ def get_wallpaper(name="wallpaper"):
 
 @hook.subscribe.startup_once
 def autostart():
-    script = curdir("scripts","autostart.sh")
+    script = curdir("scripts", "autostart.sh")
     subprocess.Popen([script])
 
 
@@ -53,6 +54,7 @@ def cache_lockscreen():
     feh = os.path.expanduser("~/.fehbg")
     subprocess.Popen(feh, shell=True)
 
+
 screens = [
     Screen(top=main_bar),
     Screen(top=alt_bar),
@@ -60,7 +62,7 @@ screens = [
 
 
 widget_defaults = dict(
-    font="DejaVuSansM Nerd Font, Noto Sans Mono CJK",
+    font="Noto Sans Mono, Noto Sans CJK SC, DejaVuSansM Nerd Font Mono",
     fontsize=14,
     padding=5,
 )

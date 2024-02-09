@@ -1,19 +1,5 @@
+from theme import Color
 from libqtile import bar, widget
-
-class Color:
-    Background = "#282a36"
-    CurrentLine = "#44475a"
-    Selection = "#44475a"
-    Foreground = "#f8f8f2"
-    Comment = "#6272a4"
-    Cyan = "#8be9fd"
-    Green = "#50fa7b"
-    Orange = "#ffb86c"
-    Pink = "#ff79c6"
-    Purple = "#bd93f9"
-    Red = "#ff5555"
-    Yellow = "#f1fa8c"
-
 
 
 clock = widget.Clock(
@@ -43,7 +29,7 @@ group_box = widget.GroupBox(
     rounded=False,
     padding=4,
     this_current_screen_border=Color.Pink,
-    this_screen_border='#7d3d62',
+    this_screen_border="#7d3d62",
     other_current_screen_border="#db882e",
     other_screen_border="#a17445",
     font="DejaVu Sans Mono Bold",
@@ -86,18 +72,18 @@ curscreen_opt = dict(
 )
 
 mpd = widget.Mpd2(
-    status_format = '{play_status}  {artist} - {title} %{repeat}{random}{single}{consume}{updating_db}',
-    idle_format = '{play_status}  {idle_message} %{repeat}{random}{single}{consume}{updating_db}',
-    idle_message = "/MPD/",
-    space = "",
-    play_states = {
+    status_format="{play_status}  {artist} - {title} %{repeat}{random}{single}{consume}{updating_db}",
+    idle_format="{play_status}  {idle_message} %{repeat}{random}{single}{consume}{updating_db}",
+    idle_message="/MPD/",
+    space="",
+    play_states={
         "play": "",
         "pause": "",
         "stop": "",
-    }
+    },
 )
 
-backlight  = widget.Backlight(
+backlight = widget.Backlight(
     backlight_name="amdgpu_bl0",
     fmt="亮: {}",
     background=Color.Purple,
@@ -127,7 +113,7 @@ main_bar = bar.Bar(
                 backlight,
                 separator,
                 mpd,
-            ]
+            ],
         ),
         separator,
         widget.Systray(),
@@ -137,7 +123,7 @@ main_bar = bar.Bar(
         battery,
     ],
     background="#1a1b24",
-    opacity=0.9, # placing opacity on background cause system tray to turn blue
+    opacity=0.9,  # placing opacity on background cause system tray to turn blue
     size=26,
 )
 
@@ -155,6 +141,3 @@ alt_bar = bar.Bar(
     size=26,
     opacity=1,
 )
-
-
-
