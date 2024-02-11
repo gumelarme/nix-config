@@ -1,4 +1,4 @@
-from libqtile import extension
+from libqtile import extension, qtile
 from libqtile.config import Click, Drag, EzKey as K, Key
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
@@ -109,7 +109,6 @@ keys = [
     K("M-o", lazy.group["scratch"].dropdown_toggle("browser")),
     K("M-<slash>", lazy.group["scratch"].hide_all()),
     # Widget
-    # K("M-p", lazy_script("toggle_eww.sh")),
     K("M-S-p", lazy.widget["widgetbox"].toggle()),
     K("M-<comma>", lazy_script("gen_qrcode_from_clipboard.sh")),
     K(

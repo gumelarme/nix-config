@@ -9,7 +9,8 @@ from libqtile.config import Screen
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
 
-from bar import main_bar, alt_bar
+import tabbed_layout
+from bar import main_bar, alt_bar, tab_bar
 from keybinding import keys, mouse
 from layout import floating_layout, groups, layouts
 from utils import curdir
@@ -56,8 +57,8 @@ def cache_lockscreen():
 
 
 screens = [
-    Screen(top=main_bar),
-    Screen(top=alt_bar),
+    Screen(top=main_bar, bottom=tab_bar),
+    Screen(top=alt_bar, bottom=tab_bar),
 ]
 
 

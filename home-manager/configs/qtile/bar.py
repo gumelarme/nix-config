@@ -1,5 +1,6 @@
 from theme import Color
 from libqtile import bar, widget
+from libqtile.log_utils import logger
 
 
 clock = widget.Clock(
@@ -139,5 +140,25 @@ alt_bar = bar.Bar(
     ],
     background="#1a1b24.9",
     size=26,
+    opacity=1,
+)
+
+tab_bar = bar.Bar(
+    widgets=[
+        widget.TaskList(
+            background=Color.Background,
+            foreground=Color.Foreground,
+            rounded=False,
+            border=Color.Green,
+            highlight_method="border",
+            padding_y=1,
+            padding_x=4,
+            title_width_method="uniform",
+            fontsize=12,
+            borderwidth=1,
+        ),
+    ],
+    background="#1a1b24.9",
+    size=20,
     opacity=1,
 )
