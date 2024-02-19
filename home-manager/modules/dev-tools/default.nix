@@ -7,78 +7,17 @@
 with lib; let
   cfg = config.modules.dev-tools;
 in {
-  imports = [./emacs.nix];
+  imports = [
+    ./elm.nix
+    ./emacs.nix
+    ./nix.nix
+    ./python.nix
+    # ./web.nix
+  ];
 
-  options.modules.dev-tools = {
-    nix = {enable = mkEnableOption "Enable nix development tools";};
-    elm = {enable = mkEnableOption "Enable elm development tools";};
-    web = {enable = mkEnableOption "Enable web development tools";};
-    emacs = {enable = mkEnableOption "Enable emacs development tools";};
-    python = {
-      enable = mkEnableOption "Enable python development tools";
-      package = mkOption {
-        type = types.package;
-        default = pkgs.python3Full;
-        description = "Python package to install, default will follow nix stable version";
-      };
-
-      pyenv = {
-        enable = mkEnableOption "Enable pyenv";
-        rootDirectory = mkOption {
-          type = types.path;
-          description = "Path to set PYENV_ROOT";
-        };
-      };
-    };
-  };
-
-  config = let
-    defaultPackages = with pkgs; [httpie gnumake hurl];
-  in {
-    programs.zsh.shellAliases = mkIf cfg.nix.enable {"nixfmt" = "alejandra";};
-
-    # pyenv init script load every time new shell is created, it make shell load very slow
-    # here its just as an alias, use it whenever it needed
-    # TODO: pyenv prompt will be disabled by default in future, remove that line when that happen
-    programs.zsh.initExtra = lib.mkIf cfg.python.pyenv.enable ''
-      export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-      export PYENV_ROOT="${cfg.python.pyenv.rootDirectory}"
-      alias pyenv-init='eval "$(${lib.getExe pkgs.pyenv} init - zsh)"'
-    '';
-
-    home.file."${config.home.homeDirectory}/.npmrc" = mkIf cfg.web.enable {
-      text = ''
-        registry = https://registry.npmjs.org
-        registry = http://registry.npmmirror.com
-      '';
-    };
-
-    home.packages = mkMerge [
-      defaultPackages
-      (mkIf cfg.nix.enable (with pkgs; [alejandra nil]))
-      (mkIf cfg.python.enable
-        (with pkgs; [cfg.python.package poetry black isort pipenv nodePackages.pyright]))
-
-      (mkIf (cfg.python.enable && cfg.python.pyenv.enable)
-        (with pkgs; [pyenv]))
-
-      (mkIf cfg.elm.enable (with pkgs; [
-        elmPackages.elm
-        elmPackages.elm-format
-        elmPackages.elm-language-server
-      ]))
-
-      (mkIf cfg.web.enable (with pkgs; [
-        html-tidy
-        typescript
-        nodejs_20
-        nodePackages.pnpm
-        nodePackages.js-beautify
-        nodePackages.stylelint
-        nodePackages.typescript-language-server
-        nodePackages."@astrojs/language-server"
-        nodePackages.volar
-      ]))
-    ];
-  };
+  home.packages = with pkgs; [
+    gnumake
+    httpie
+    hurl
+  ];
 }

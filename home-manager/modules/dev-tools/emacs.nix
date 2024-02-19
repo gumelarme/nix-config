@@ -7,6 +7,10 @@
 with lib; let
   cfg = config.modules.dev-tools.emacs;
 in {
+  options.modules.dev-tools.emacs = {
+    enable = mkEnableOption "Enable emacs development tools";
+  };
+
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       sqlite # Org roam
