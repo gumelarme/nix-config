@@ -12,7 +12,7 @@ in {
     ./emacs.nix
     ./nix.nix
     ./python.nix
-    # ./web.nix
+    ./web.nix
   ];
 
   home.packages = with pkgs; [
