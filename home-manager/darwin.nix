@@ -66,6 +66,11 @@
 
     dev-tools = {
       nix.enable = true;
+      web = {
+        enable = true;
+        configOnly = true;
+      };
+
       python = {
         enable = true;
         package = pkgs.python38;

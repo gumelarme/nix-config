@@ -9,6 +9,7 @@ with lib; let
 in {
   options.modules.dev-tools.web = {
     enable = mkEnableOption "Enable web development tools";
+    configOnly = mkEnableOption "Copy npmrc config only";
   };
 
   config = mkIf cfg.enable {
@@ -19,7 +20,7 @@ in {
       '';
     };
 
-    home.packages = with pkgs; [
+    home.packages = mkIf (!cfg.configOnly) (with pkgs; [
       html-tidy
       typescript
       nodejs_20
@@ -29,6 +30,6 @@ in {
       nodePackages.typescript-language-server
       nodePackages."@astrojs/language-server"
       nodePackages.volar
-    ];
+    ]);
   };
 }
