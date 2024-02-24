@@ -22,13 +22,19 @@
 (defalias
     mtn (tap-hold 200 tab (layer-toggle motion))
     num (tap-hold 200 grv (layer-toggle number))
+
+    #| Arrows when tapped, Ctrl-arrow on hold |#
+    xlt (tap-hold 200 left  C-left)
+    xrt (tap-hold 200 right C-right)
+    xup (tap-hold 200 up    C-up)
+    xdn (tap-hold 200 down  C-down)
 )
 
 (deflayer motion
   _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    left down up   rght _    _         _
+  _    _    _    _    _    _    @xlt @xdn @xup @xrt _    _         _
   _    _    _    _    _    _    pgup pgdn _    _    _    _
   _    _    _    _              _         _    _    _    _    _    _
                                                          _    _    _
