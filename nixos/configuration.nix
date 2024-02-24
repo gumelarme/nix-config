@@ -94,12 +94,28 @@
     tlp.enable = true;
     v2raya.enable = true;
 
+    kmonad = {
+      enable = true;
+      keyboards.thinkpad = {
+        device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+        config = builtins.readFile ./thinkpad-t14g2.kbd;
+        defcfg = {
+          enable = true;
+          fallthrough = true;
+          allowCommands = false;
+          compose = {
+            key = "ralt";
+            delay = 5;
+          };
+        };
+      };
+    };
+
     xserver = {
       enable = true;
 
       # Configure keymap in X11
       layout = "us";
-      xkbOptions = "caps:swapescape";
 
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
@@ -209,12 +225,13 @@
       "audio"
       "disk"
       "docker"
+      "input"
+      "uinput"
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [firefox xorg.xf86videoamdgpu xorg.xf86videointel];
 
     shell = pkgs.zsh;
   };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 

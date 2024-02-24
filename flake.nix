@@ -22,12 +22,15 @@
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
+
+    kmonad.url = "github:kmonad/kmonad?ref=0.4.2&dir=nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    kmonad,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -68,6 +71,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
+          kmonad.nixosModules.default
           ./nixos/configuration.nix
         ];
       };
