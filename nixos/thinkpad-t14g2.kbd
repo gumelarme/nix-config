@@ -14,21 +14,26 @@
   @num 1    2    3    4    5    6    7    8    9     0    -    =  bspc
   @mtn q    w    e    r    t    y    u    i    o     p    [    ]  \
   esc  a    s    d    f    g    h    j    k    l     ;    '       ret
-  lsft z    x    c    v    b    n    m    ,    .     /   rsft
+  lsft z    x    c    v    b    n    m    ,    .     /   @scp 
   wkup lctl lmet lalt          spc        ralt prnt rctl pgup up   pgdn
                                                          left down rght
 )
 
+
 (defalias
-    mtn (tap-hold 200 tab (layer-toggle motion))
-    num (tap-hold 200 grv (layer-toggle number))
+    mtn (tap-next tab (layer-toggle motion))
+    num (tap-next grv (layer-toggle number))
 
     #| Arrows when tapped, Ctrl-arrow on hold |#
     xlt (tap-hold 200 left  C-left)
     xrt (tap-hold 200 right C-right)
     xup (tap-hold 200 up    C-up)
     xdn (tap-hold 200 down  C-down)
+
+    #| Caps lock on double tap shift |#
+    scp (multi-tap 200 rsft caps)
 )
+
 
 (deflayer motion
   _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
