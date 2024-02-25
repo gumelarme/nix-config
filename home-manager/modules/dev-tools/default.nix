@@ -13,9 +13,16 @@ in {
     ./nix.nix
     ./python.nix
     ./web.nix
+    ./go.nix
   ];
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   home.packages = with pkgs; [
+    cachix
     gnumake
     httpie
     hurl

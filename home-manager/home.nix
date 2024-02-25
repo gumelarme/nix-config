@@ -127,6 +127,7 @@
       nix.enable = true;
       elm.enable = true;
       web.enable = true;
+      go.enable = true;
     };
   };
 
