@@ -97,6 +97,19 @@
 
     kmonad = {
       enable = true;
+      keyboards.common-tkl = {
+        device = "/dev/input/by-id/usb-026d_0002-event-kbd";
+        config = builtins.readFile ./common-tkl.kbd;
+        defcfg = {
+          enable = true;
+          fallthrough = true;
+          allowCommands = false;
+          compose = {
+            key = "ralt";
+            delay = 5;
+          };
+        };
+      };
       keyboards.thinkpad = {
         device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
         config = builtins.readFile ./thinkpad-t14g2.kbd;
