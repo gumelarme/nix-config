@@ -161,6 +161,12 @@
         backend = "x11";
         # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
       };
+
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = hPkgs: [hPkgs.xmobar];
+      };
     };
 
     logind = {
@@ -276,6 +282,7 @@
     nixos-option
 
     qtile
+    xmobar
 
     # pipewire tui
     qpwgraph
