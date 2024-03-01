@@ -13,6 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      lv
       sqlite # Org roam
       findutils # find, grep, etc
     ];

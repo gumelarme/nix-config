@@ -88,6 +88,7 @@
     clipboard.enable = true;
     firefox.enable = true;
 
+
     git = {
       userName = "gumelarme";
       userEmail = "gumelar.pn@gmail.com";
@@ -113,7 +114,7 @@
 
     shell = {
       enable = true;
-      proxyAddress = "http://localhost:20170";
+      proxyAddress = "http://localhost:20171";
     };
 
     typeset = {
@@ -137,6 +138,7 @@
       jetbrains.pycharm-professional
       jetbrains.datagrip
       jetbrains.webstorm
+      jetbrains.goland
       docker
       # needed for building driver and access to postgres clis and lib
       postgresql_12_jit
@@ -158,6 +160,7 @@
       qutebrowser
 
       # Etc
+      v2ray
       qv2ray
       bitwarden
       qbittorrent

@@ -13,7 +13,9 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      gcc
       go
+      godef
       gopls
       gomodifytags
       gotests

@@ -23,6 +23,7 @@
           device = "BAT0";
           notify-low-capacity = 20;
           notify-full-capacity = 95;
+          stop-notify-full-capacity = 98;
           hibernate-capacity = 5;
           sysclass = "/sys/class/power_supply/${cfg.device}";
         };
@@ -33,9 +34,12 @@
           battery_status=$(${cat} ${cfg.sysclass}/status)
 
           # Note the 'not equal "Discharging"', because it could be plugged and the status still says 'Not Charging' but not discharging
+          # It will notify to stop charging between 95-98, after that it will go silent
           if [[ $battery_capacity -ge ${
             builtins.toString cfg.notify-full-capacity
-          } && $battery_status != "Discharging" ]]; then
+          } 
+          && $battery_capacity -lt ${builtins.toString cfg.stop-notify-full-capacity}
+          && $battery_status != "Discharging" ]]; then
             ${notifier} -a "notifyBattery" \
                         -u normal \
                         -i battery \
