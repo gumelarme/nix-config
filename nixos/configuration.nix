@@ -92,8 +92,12 @@
 
   services = {
     openssh.enable = true;
-    tlp.enable = true;
     v2raya.enable = true;
+
+    tlp.enable = true;
+    tlp.settings = {
+      USB_AUTOSUSPEND = 0;
+    };
 
     kmonad = {
       enable = true;
@@ -271,6 +275,7 @@
     which
     zsh
     pmount
+    killall
 
     # archive helper
     atool # easy zip unzip
@@ -283,7 +288,6 @@
 
     qtile
     xmobar
-
     # pipewire tui
     qpwgraph
   ];
