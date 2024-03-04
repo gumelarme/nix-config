@@ -6,6 +6,10 @@
 }:
 with lib; let
   cfg = config.modules.firefox;
+  youtube-icon = pkgs.fetchurl {
+    url = "https://www.youtube.com/s/desktop/77953cee/img/favicon.ico";
+    hash = "sha256-i7HQ+kOhdDbVndVG9vdMdtxEc13vdSLCLYAxFm24kR0";
+  };
 in {
   options.modules.firefox.enable = mkEnableOption "Enable firefox configuration";
   config = mkIf cfg.enable {
@@ -67,6 +71,37 @@ in {
                 }
               ];
               definedAliases = ["@no"];
+              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            };
+            "YouTube" = {
+              urls = [
+                {
+                  template = "https://www.youtube.com/results";
+                  params = [
+                    {
+                      name = "search_query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = ["@yt"];
+              icon = youtube-icon;
+            };
+
+            "Home Manager" = {
+              urls = [
+                {
+                  template = "https://mipmip.github.io/home-manager-option-search";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = ["@hm"];
               icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
           };
