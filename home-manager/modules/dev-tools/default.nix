@@ -14,6 +14,7 @@ in {
     ./python.nix
     ./web.nix
     ./go.nix
+    ./clojure.nix
   ];
 
   programs.direnv = {
@@ -26,5 +27,7 @@ in {
     gnumake
     httpie
     hurl
+    shellcheck
+    shfmt
   ];
 }

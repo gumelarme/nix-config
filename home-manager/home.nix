@@ -129,12 +129,14 @@
       elm.enable = true;
       web.enable = true;
       go.enable = true;
+      clojure.enable = true;
     };
   };
 
   home.packages = with pkgs;
     [
       # =Dev
+      exercism
       jetbrains.pycharm-professional
       jetbrains.datagrip
       jetbrains.webstorm
