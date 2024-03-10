@@ -202,7 +202,7 @@
       steam-run
 
       # Communication
-      qq
+      unstable.qq
       discord
       tdesktop
 

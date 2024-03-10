@@ -290,6 +290,9 @@
     xmobar
     # pipewire tui
     qpwgraph
+
+    # bluetooth tui
+    bluetuith
   ];
 
   fonts.packages = with pkgs; [wqy_zenhei wqy_microhei];
