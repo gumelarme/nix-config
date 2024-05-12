@@ -88,7 +88,6 @@
     clipboard.enable = true;
     firefox.enable = true;
 
-
     git = {
       userName = "gumelarme";
       userEmail = "gumelar.pn@gmail.com";
@@ -135,12 +134,18 @@
 
   home.packages = with pkgs;
     [
+      caffeine-ng
+
       # =Dev
+      distrobox
+      xorg.xhost # allow distrobox to run gui program
+
       exercism
       jetbrains.pycharm-professional
       jetbrains.datagrip
       jetbrains.webstorm
       jetbrains.goland
+      jetbrains.rider
       docker
       # needed for building driver and access to postgres clis and lib
       postgresql_12_jit
