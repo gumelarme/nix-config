@@ -151,6 +151,7 @@
       postgresql_12_jit
 
       # System utils
+      trayer
       dmenu
       arandr
       autorandr
@@ -232,7 +233,7 @@
       in
         map
         fileToScripts
-        (getFilesFromDir ./scripts ["crock" "crock-change-volume" "crock-change-brightness" "crock-gen-qrcode" "crock-mic-toggle" "crock-rofi-power-menu"])
+        (getFilesFromDir ./scripts ["summon" "crock" "crock-change-volume" "crock-change-brightness" "crock-gen-qrcode" "crock-mic-toggle" "crock-rofi-power-menu"])
     );
 
   # home.sessionVariables = {
