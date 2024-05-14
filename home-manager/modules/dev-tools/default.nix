@@ -15,6 +15,7 @@ in {
     ./web.nix
     ./go.nix
     ./clojure.nix
+    ./intellimacs.nix
   ];
 
   programs.direnv = {

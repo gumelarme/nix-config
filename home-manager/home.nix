@@ -141,11 +141,11 @@
       xorg.xhost # allow distrobox to run gui program
 
       exercism
-      jetbrains.pycharm-professional
-      jetbrains.datagrip
-      jetbrains.webstorm
-      jetbrains.goland
-      jetbrains.rider
+      unstable.jetbrains.pycharm-professional
+      unstable.jetbrains.datagrip
+      unstable.jetbrains.webstorm
+      unstable.jetbrains.goland
+      unstable.jetbrains.rider
       docker
       # needed for building driver and access to postgres clis and lib
       postgresql_12_jit
