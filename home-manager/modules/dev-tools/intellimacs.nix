@@ -40,11 +40,15 @@ in {
 
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-surround'
-      Plug 'easymotion/vim-easymotion'
       Plug 'terryma/vim-multiple-cursors'
 
       " User defined
       set clipboard=unnamedplus,ideaput
+
+      "== QuickScope
+      " Highlight on key press
+      let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+      set quickscope 
     '';
   };
 }
