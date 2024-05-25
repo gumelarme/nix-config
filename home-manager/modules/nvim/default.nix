@@ -30,6 +30,7 @@ in {
           p.python
           p.clojure
           p.markdown
+          p.nim
           # prevent inlining
         ]))
 
