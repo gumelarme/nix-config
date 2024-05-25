@@ -134,6 +134,7 @@
 
   home.packages = with pkgs;
     [
+      unityhub
       caffeine-ng
 
       # =Dev
