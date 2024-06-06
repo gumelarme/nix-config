@@ -18,7 +18,7 @@
   # ls but better
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableZshIntegration = true;
     git = true;
     extraOptions = ["--group-directories-first"];
   };
