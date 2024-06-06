@@ -132,19 +132,20 @@
       };
     };
 
+    libinput.enable = true;
+    libinput.mouse.accelSpeed = "1.0";
+    libinput.touchpad.accelSpeed = "1.0";
+    displayManager.defaultSession = "none+qtile";
+
     xserver = {
       enable = true;
 
       # Configure keymap in X11
-      layout = "us";
+      xkb.layout = "us";
 
       # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
-      libinput.mouse.accelSpeed = "1.0";
-      libinput.touchpad.accelSpeed = "1.0";
 
       displayManager = {
-        defaultSession = "none+qtile";
         lightdm = {
           enable = true;
           background = config.environment.etc.wallpaper.source;
