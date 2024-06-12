@@ -134,6 +134,9 @@
 
   home.packages = with pkgs;
     [
+      # pomodoro
+      tomato-c
+
       unityhub
       caffeine-ng
 
