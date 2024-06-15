@@ -345,6 +345,8 @@
     plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
   };
 
+  services.gnome.gnome-keyring.enable = true;
+
   security.wrappers = {
     pmount = {
       setuid = true;
