@@ -226,6 +226,7 @@
       # wacomtablet # KDE Config Module
       xorg.xf86videoamdgpu
       xorg.xf86videointel
+      usbutils
     ]
     ++ (
       let
