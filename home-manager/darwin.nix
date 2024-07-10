@@ -75,7 +75,7 @@
         enable = true;
         package = pkgs.python38;
         pyenv = {
-          enable = true;
+          enable = false;
           rootDirectory = "${config.home.homeDirectory}/.pyenv";
         };
       };
@@ -83,6 +83,7 @@
   };
 
   home.packages = with pkgs; [
+    pipx
     ncurses
     rectangle
   ];
