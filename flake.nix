@@ -24,6 +24,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
 
     kmonad.url = "github:kmonad/kmonad?ref=0.4.2&dir=nix";
+    nixneovim.url = "github:nixneovim/nixneovim";
   };
 
   outputs = {
@@ -31,6 +32,7 @@
     nixpkgs,
     home-manager,
     kmonad,
+    nixneovim,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -86,6 +88,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
+          nixneovim.nixosModules.default
           ./home-manager/home.nix
         ];
       };

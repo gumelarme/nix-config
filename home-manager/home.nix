@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   config,
   pkgs,
@@ -12,6 +13,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      inputs.nixneovim.overlays.default
       (self: super: {fcitx-engines = pkgs.fcitx5;})
 
       # You can also add overlays exported from other flakes:
@@ -134,6 +136,7 @@
 
   home.packages = with pkgs;
     [
+      nb
       # pomodoro
       tomato-c
 

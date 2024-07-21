@@ -34,3 +34,15 @@ wk.register({
   },
 
 }, { prefix = "<Space>" })
+
+require'lspconfig'.marksman.setup {}
+-- require'render-markdown'.setup {
+--   heading = {
+--     sign = false,
+--   },
+--   bullets = {
+--     enabled = false,
+--   },
+-- }
+
+
