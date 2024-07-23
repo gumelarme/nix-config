@@ -20,4 +20,11 @@
       config.allowUnfree = true;
     };
   };
+
+  nur-packages = _final: prev: {
+    nur = import inputs.nur {
+      nurpkgs = prev;
+      pkgs = prev;
+    };
+  };
 }

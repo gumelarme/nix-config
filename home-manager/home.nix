@@ -13,6 +13,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      outputs.overlays.nur-packages
       inputs.nixneovim.overlays.default
       (self: super: {fcitx-engines = pkgs.fcitx5;})
 
@@ -230,6 +231,8 @@
       xorg.xf86videoamdgpu
       xorg.xf86videointel
       usbutils
+
+      nur.repos.linyinfeng.wemeet
     ]
     ++ (
       let
