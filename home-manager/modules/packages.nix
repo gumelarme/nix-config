@@ -30,7 +30,6 @@
 
     # Secrets
     rbw
-    pinentry
 
     # Misc
     glow

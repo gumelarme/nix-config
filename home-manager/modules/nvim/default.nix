@@ -31,6 +31,7 @@ in {
           p.clojure
           p.markdown
           p.nim
+          p.gleam
           # prevent inlining
         ]))
 

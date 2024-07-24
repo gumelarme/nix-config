@@ -12,6 +12,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      outputs.overlays.nixos-2311-packages
     ];
 
     # Configure your nixpkgs instance
@@ -73,7 +74,7 @@
 
       python = {
         enable = true;
-        package = pkgs.python38;
+        package = pkgs.nixos-2311.python38;
         pyenv = {
           enable = false;
           rootDirectory = "${config.home.homeDirectory}/.pyenv";
@@ -83,6 +84,9 @@
   };
 
   home.packages = with pkgs; [
+    exercism
+    nb
+    pinentry_mac
     pipx
     ncurses
     rectangle

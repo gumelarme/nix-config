@@ -19,5 +19,14 @@
       system = final.system;
       config.allowUnfree = true;
     };
+
   };
+
+  nixos-2311-packages = final: _prev: {
+    nixos-2311 = import inputs.nixpkgs-2311 {
+      system = final.system;
+      config.allowUnfree = true;
+    };
+  };
+
 }

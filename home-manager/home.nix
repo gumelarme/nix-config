@@ -171,11 +171,14 @@
       # Etc
       v2ray
       qv2ray
-      bitwarden
       qbittorrent
       pick-colour-picker
       nicotine-plus
       # fontforge;
+
+      # secrets
+      pinentry-all
+      bitwarden
 
       # Documents
       pandoc
