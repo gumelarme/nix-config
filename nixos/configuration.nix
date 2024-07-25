@@ -12,7 +12,6 @@
     # ./cachix.nix
   ];
 
-
   # steam, fix glxChooseVisual failed
   hardware.opengl.driSupport32Bit = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
