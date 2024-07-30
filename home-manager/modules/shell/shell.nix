@@ -28,6 +28,7 @@ in {
       defaultKeymap = "viins";
       enableCompletion = true;
       shellAliases = {
+        vim = "nvim";
         g = "git";
         s = "git status";
         ds = "git diff --staged";

@@ -14,48 +14,104 @@ in {
       marksman
     ];
 
-    programs.nixneovim = {
+    programs.nixvim = {
       enable = true;
       vimAlias = true;
       viAlias = true;
-      # colorschemes.catppuccin.enable = true;
-      extraConfigVim = builtins.readFile ./init.vim;
-      extraConfigLua = builtins.readFile ./config.lua;
+      colorschemes.dracula.enable = true;
+      plugins = {
+        lualine.enable = true;
+        commentary.enable = true;
+        todo-comments.enable = true;
+        nix.enable = true;
+        typst-vim.enable = true;
+        which-key.enable = true;
+      };
 
-      extraPlugins =
-        let extra = pkgs.vimExtraPlugins; 
-        in 
-        with pkgs.vimPlugins;
-      [
-        neovim-sensible
-        dracula-nvim
-        vim-surround
-        vim-commentary
-        emmet-vim
-        typst-vim
-        nvim-lspconfig
-        plenary-nvim
-        telescope-nvim
-        which-key-nvim
-        
-        vim-markdown
-        # pkgs.unstable.vimPlugins.markdown-nvim
-        # extra.markdown-meandering-programmer 
-      ];
+      plugins.lsp = {
+        enable = true;
+        servers.marksman.enable = true;
+      };
 
+      globals.mapleader = " ";
+      # TODO: Telescope find and insert filepath
+      plugins.telescope = {
+        enable = true;
+        keymaps = {
+          "<leader>pf" = {
+            action = "find_files";
+            options = {
+              desc = "Find project files";
+            };
+          };
+
+          "<leader>sp" = {
+            action = "live_grep";
+            options = {
+              desc = "Search project";
+            };
+          };
+
+          "<leader>bb" = {
+            action = "buffers";
+            options = {
+              desc = "Find buffers";
+            };
+          };
+
+          "gcc" = {
+            action = "<cmd>Commentary<CR>";
+            options = {
+              desc = "Comment";
+            };
+          };
+        };
+      };
+
+      plugins.ts-context-commentstring.enable = true;
       plugins.treesitter = {
         enable = true;
-        grammars = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
           nix
           go
-          lua
           org
+          gleam
           python
           clojure
           markdown
           markdown_inline
-          nim
+
+          gitcommit
+          gitignore
+          git_rebase
+          git_config
         ];
+      };
+
+      opts = {
+        number = true;
+        relativenumber = true;
+        clipboard = "unnamedplus";
+        tabstop = 2;
+        softtabstop = 2;
+        showtabline = 2;
+        expandtab = true;
+        smartindent = true;
+        shiftwidth = 2;
+        breakindent = true;
+        cursorline = true;
+        scrolloff = 8;
+        foldmethod = "manual";
+        foldenable = false;
+        linebreak = true;
+        spell = false;
+        swapfile = false;
+        timeoutlen = 300;
+        termguicolors = true;
+        showmode = false;
+        splitbelow = true;
+        splitkeep = "screen";
+        splitright = true;
       };
     };
   };

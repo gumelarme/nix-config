@@ -14,7 +14,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       outputs.overlays.nur-packages
-      inputs.nixneovim.overlays.default
       (self: super: {fcitx-engines = pkgs.fcitx5;})
 
       # You can also add overlays exported from other flakes:

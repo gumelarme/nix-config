@@ -4,39 +4,32 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # nixpkgs.url = "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixos-23.05";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
+    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Nix User Repository
     nur.url = "github:nix-community/NUR";
 
-    # nixpkgs-unstable.url = "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable";
-
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
-
     kmonad.url = "github:kmonad/kmonad?ref=0.4.2&dir=nix";
-    nixneovim.url = "github:nixneovim/nixneovim";
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-darwin,
     home-manager,
     kmonad,
-    nixneovim,
+    nixvim,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -92,17 +85,18 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          nixneovim.nixosModules.default
+          nixvim.homeManagerModules.nixvim
           ./home-manager/home.nix
         ];
       };
 
       "gu@osx" = home-manager.lib.homeManagerConfiguration {
         pkgs =
-          nixpkgs.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
+          nixpkgs-darwin.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
+          nixvim.homeManagerModules.nixvim
           ./home-manager/darwin.nix
         ];
       };

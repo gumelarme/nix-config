@@ -21,6 +21,13 @@
     };
   };
 
+  nixos-2311-packages = final: _prev: {
+    nixos-2311 = import inputs.nixpkgs-2311 {
+      system = final.system;
+      config.allowUnfree = true;
+    };
+  };
+
   nur-packages = _final: prev: {
     nur = import inputs.nur {
       nurpkgs = prev;
