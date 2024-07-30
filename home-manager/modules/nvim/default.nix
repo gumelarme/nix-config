@@ -18,7 +18,16 @@ in {
       enable = true;
       vimAlias = true;
       viAlias = true;
-      colorschemes.dracula.enable = true;
+      colorschemes.catppuccin = {
+        enable = true;
+        settings = {
+          flavour = "macchiato";
+          transparent_background = true;
+          integrations.treesitter = true;
+        };
+      };
+
+
       plugins = {
         lualine.enable = true;
         commentary.enable = true;
@@ -26,6 +35,8 @@ in {
         nix.enable = true;
         typst-vim.enable = true;
         which-key.enable = true;
+        leap.enable = true;
+        gitgutter.enable = true;
       };
 
       plugins.lsp = {
@@ -77,6 +88,7 @@ in {
           org
           gleam
           python
+          vimdoc
           clojure
           markdown
           markdown_inline
@@ -90,14 +102,14 @@ in {
 
       opts = {
         number = true;
-        relativenumber = true;
+        relativenumber = false;
         clipboard = "unnamedplus";
-        tabstop = 2;
-        softtabstop = 2;
-        showtabline = 2;
+        tabstop = 4;
+        softtabstop = 4;
+        showtabline = 0;
         expandtab = true;
         smartindent = true;
-        shiftwidth = 2;
+        shiftwidth = 4;
         breakindent = true;
         cursorline = true;
         scrolloff = 8;
@@ -105,13 +117,13 @@ in {
         foldenable = false;
         linebreak = true;
         spell = false;
-        swapfile = false;
         timeoutlen = 300;
         termguicolors = true;
         showmode = false;
         splitbelow = true;
         splitkeep = "screen";
         splitright = true;
+        wrap = false;
       };
     };
   };
