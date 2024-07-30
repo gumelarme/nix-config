@@ -84,6 +84,9 @@
   };
 
   home.packages = with pkgs; [
+    exercism
+    nb
+    pipx
     ncurses
     rectangle
   ];
