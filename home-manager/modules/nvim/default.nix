@@ -27,7 +27,6 @@ in {
         };
       };
 
-
       plugins = {
         lualine.enable = true;
         commentary.enable = true;

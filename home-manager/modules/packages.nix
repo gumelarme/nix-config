@@ -30,7 +30,11 @@
 
     # Secrets
     rbw
-    (if pkgs.stdenv.isDarwin then pinentry_mac else pinentry)
+    (
+      if pkgs.stdenv.isDarwin
+      then pinentry_mac
+      else pinentry
+    )
 
     # Misc
     glow

@@ -37,7 +37,7 @@
           # It will notify to stop charging between 95-98, after that it will go silent
           if [[ $battery_capacity -ge ${
             builtins.toString cfg.notify-full-capacity
-          } 
+          }
           && $battery_capacity -lt ${builtins.toString cfg.stop-notify-full-capacity}
           && $battery_status != "Discharging" ]]; then
             ${notifier} -a "notifyBattery" \

@@ -48,7 +48,7 @@ in {
       "== QuickScope
       " Highlight on key press
       let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-      set quickscope 
+      set quickscope
     '';
   };
 }
