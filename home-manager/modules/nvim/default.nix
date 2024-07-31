@@ -21,7 +21,7 @@ in {
       colorschemes.catppuccin = {
         enable = true;
         settings = {
-          flavour = "macchiato";
+          flavour = "mocha";
           transparent_background = true;
           integrations.treesitter = true;
         };
@@ -35,7 +35,7 @@ in {
         typst-vim.enable = true;
         which-key.enable = true;
         leap.enable = true;
-        gitgutter.enable = true;
+        gitsigns.enable = true;
       };
 
       plugins.lsp = {
@@ -79,11 +79,14 @@ in {
       };
 
       plugins.ts-context-commentstring.enable = true;
-      plugins.treesitter = {
+      plugins.treesitter = rec {
         enable = true;
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
-          nix
+        indent = true;
+        grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+          c
           go
+          nix
+          lua
           org
           gleam
           python
