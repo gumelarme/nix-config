@@ -18,13 +18,9 @@ in {
       enable = true;
       vimAlias = true;
       viAlias = true;
-      colorschemes.catppuccin = {
+      colorschemes.dracula = {
         enable = true;
-        settings = {
-          flavour = "mocha";
-          transparent_background = true;
-          integrations.treesitter = true;
-        };
+        colorterm = false;
       };
 
       plugins = {
@@ -34,9 +30,19 @@ in {
         nix.enable = true;
         typst-vim.enable = true;
         which-key.enable = true;
-        leap.enable = true;
         gitsigns.enable = true;
       };
+
+      extraConfigVim = ''
+        let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+        highlight QuickScopePrimary gui=underline cterm=underline
+        highlight QuickScopeSecondary gui=underline cterm=underline
+      '';
+
+      extraPlugins = with pkgs.vimPlugins; [
+        quick-scope
+      ];
 
       plugins.lsp = {
         enable = true;
