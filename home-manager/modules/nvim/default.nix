@@ -31,6 +31,7 @@ in {
         typst-vim.enable = true;
         which-key.enable = true;
         gitsigns.enable = true;
+        nvim-ufo.enable = true; # folding
       };
 
       extraConfigVim = ''
