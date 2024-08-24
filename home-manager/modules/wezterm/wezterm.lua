@@ -16,6 +16,8 @@ local visual_bell = {
   fade_out_duration_ms = 30,
 }
 
+local monaspace_ligs = { 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' }
+
 return {
   automatically_reload_config = true,
   enable_tab_bar = false,
@@ -23,8 +25,42 @@ return {
 
   color_scheme = 'Dracula (Gogh)',
   window_background_opacity = 0.9,
-  font = wezterm.font_with_fallback { 'DejaVuSansM Nerd Font Mono', 'Noto Sans Mono CJK' },
+
   font_size = 10,
+  font = wezterm.font_with_fallback { 
+    {
+      family = 'MonaspiceAr Nerd Font Mono',
+      weight = 'Regular',
+      harfbuzz_features = monaspace_ligs,
+    },
+    'Noto Sans Mono CJK' 
+  },
+  font_rules = {
+
+    -- On italic
+    {
+      intensity = 'Normal',
+      italic = true,
+      font = wezterm.font({
+        family = 'MonaspiceRn Nerd Font Mono',
+        weight = 'ExtraLight',
+        harfbuzz_features = monaspace_ligs,
+      }),
+    },
+
+    -- On Bold
+    {
+      intensity = 'Bold',
+      italic = false,
+      font = wezterm.font({
+        family = 'MonaspiceKr Nerd Font Mono',
+        weight = 'Bold',
+        harfbuzz_features = monaspace_ligs,
+      }),
+    }
+  },
+
+
   adjust_window_size_when_changing_font_size =  false,
   default_cursor_style = 'SteadyBlock',
   hide_mouse_cursor_when_typing = true,

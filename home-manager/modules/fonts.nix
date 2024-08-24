@@ -15,10 +15,11 @@ in {
     home.packages = with pkgs;
       mkMerge [
         (mkIf cfg.dev [
+          monaspace
           ibm-plex
           dejavu_fonts
           source-code-pro
-          (nerdfonts.override {fonts = ["IBMPlexMono" "DejaVuSansMono"];})
+          (nerdfonts.override {fonts = ["IBMPlexMono" "DejaVuSansMono" "Monaspace"];})
         ])
 
         (mkIf cfg.extra [
@@ -26,6 +27,7 @@ in {
           noto-fonts-extra
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
+          atkinson-hyperlegible
         ])
       ];
   };
