@@ -33,11 +33,21 @@ return {
       weight = 'Regular',
       harfbuzz_features = monaspace_ligs,
     },
-    'Noto Sans Mono CJK' 
+    'Noto Sans Mono CJK',
   },
   font_rules = {
+    -- On Bold
+    {
+      intensity = 'Bold',
+      italic = false,
+      font = wezterm.font({
+        family = 'MonaspiceKr Nerd Font Mono',
+        weight = 'Bold',
+        harfbuzz_features = monaspace_ligs,
+      }),
+    },
 
-    -- On italic
+    -- On Italic
     {
       intensity = 'Normal',
       italic = true,
@@ -48,16 +58,16 @@ return {
       }),
     },
 
-    -- On Bold
+    -- On Italic Bold
     {
       intensity = 'Bold',
-      italic = false,
+      italic = true,
       font = wezterm.font({
-        family = 'MonaspiceKr Nerd Font Mono',
+        family = 'MonaspiceRn Nerd Font Mono',
         weight = 'Bold',
         harfbuzz_features = monaspace_ligs,
       }),
-    }
+    },
   },
 
 
