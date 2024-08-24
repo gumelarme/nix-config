@@ -95,10 +95,16 @@ in {
           nix
           lua
           org
+          css
+          tsx
+          html
           gleam
           python
           vimdoc
           clojure
+          javascript
+          typescript
+
           markdown
           markdown_inline
 
