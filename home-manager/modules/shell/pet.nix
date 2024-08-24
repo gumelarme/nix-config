@@ -12,9 +12,9 @@
     snippets = [
       {
         command = let
-          username = config.home.username;
+          uname = config.home.username;
           host = config.home.sessionVariables.HOSTNAME;
-        in "home-manager switch -b backup --flake .#${username}@${host}";
+        in "home-manager switch -b backup --flake .#${uname}@${host}";
         description = "Rebuild home-manager configuration";
         tag = ["nix"];
       }

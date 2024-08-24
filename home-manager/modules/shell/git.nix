@@ -29,9 +29,8 @@ in {
 
   config = {
     programs.git = {
+      inherit (cfg) userName userEmail;
       enable = true;
-      userName = cfg.userName;
-      userEmail = cfg.userEmail;
       extraConfig = {
         core = {
           excludesFile = let

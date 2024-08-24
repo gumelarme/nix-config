@@ -12,6 +12,7 @@
     curl
 
     ## Nix
+    statix # linter
     nurl
     nixos-option
     nix-prefetch-scripts

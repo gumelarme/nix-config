@@ -20,11 +20,11 @@ in {
   config = {
     home.sessionVariables = {PROXYADDR = cfg.proxyAddress;};
     programs.zsh = {
+      inherit (cfg) enable;
       # Use to profile zsh load time
       # use command `zprof` to see the results
       # initExtraFirst = if cfg.debug then "zmodload zsh/zprof" else "";
       initExtraFirst = mkIf cfg.debug "zmodload zsh/zprof";
-      enable = cfg.enable;
       defaultKeymap = "viins";
       enableCompletion = true;
       shellAliases = {
@@ -84,7 +84,7 @@ in {
     };
 
     programs.starship = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       enableZshIntegration = true;
       settings = {
         add_newline = true;

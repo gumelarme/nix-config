@@ -1,5 +1,5 @@
 {
-  inputs,
+  # inputs,
   outputs,
   config,
   pkgs,
@@ -108,10 +108,10 @@
     nnn = {
       enable = true;
       bookmarks = let
-        userDirs = config.xdg.userDirs;
-        extra = userDirs.extraConfig;
+        dirs = config.xdg.userDirs;
+        extra = dirs.extraConfig;
       in {
-        d = "${userDirs.download}";
+        d = "${dirs.download}";
         v = "${extra.XDG_DEV_DIR}";
         r = "${extra.XDG_DEV_DIR}/repo";
         s = "${extra.XDG_SCREENSHOT_DIR}";
