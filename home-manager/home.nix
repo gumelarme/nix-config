@@ -88,6 +88,7 @@
     neovim = {
       enable = true;
       lsp = true;
+      completion = true;
     };
 
     wezterm.enable = true;

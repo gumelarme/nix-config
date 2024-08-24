@@ -16,6 +16,10 @@ in {
         nix.enable = true;
         typst-vim.enable = true;
         lsp-format.enable = true;
+
+        cmp-nvim-lsp.enable = cfg.completion;
+        cmp-buffer.enable = cfg.completion;
+        cmp-path.enable = cfg.completion;
       };
 
       plugins.lsp = lib.mkIf cfg.lsp {
@@ -65,6 +69,43 @@ in {
           git_rebase
           git_config
         ];
+      };
+
+      plugins.cmp = lib.mkIf cfg.completion {
+        enable = true;
+        settings = {
+          autoEnableSources = true;
+          performance = {
+            debounce = 60;
+            fetchingTimeout = 200;
+            maxViewEntries = 30;
+          };
+
+          sources = [
+            { name = "nvim_lsp"; }
+            { 
+              name = "path";
+              keywordLength = 3;
+            }
+            {
+              name = "buffer"; # text within current buffer
+              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+              keywordLength = 3;
+            }
+          ];
+
+          mapping = {
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<C-j>" = "cmp.mapping.select_next_item()";
+            "<C-k>" = "cmp.mapping.select_prev_item()";
+            "<C-e>" = "cmp.mapping.abort()";
+            "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-CR>" = "cmp.mapping.confirm({ select = true })";
+            "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+          };
+        };
       };
     };
   };

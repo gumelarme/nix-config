@@ -11,6 +11,7 @@ in {
 
     # TODO: configure granularly
     lsp = mkEnableOption "Enable all lsp server";
+    completion = mkEnableOption "Enable all completions";
   };
 
   imports = [
