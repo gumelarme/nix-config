@@ -85,7 +85,11 @@
     hostname = "crockpot";
     rofi.enable = true;
     tmux.enable = true;
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      lsp = true;
+    };
+
     wezterm.enable = true;
     clipboard.enable = true;
     firefox.enable = true;

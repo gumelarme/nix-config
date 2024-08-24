@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -7,13 +6,19 @@
 with lib; let
   cfg = config.modules.neovim;
 in {
-  options.modules.neovim.enable = mkEnableOption "Enable nvim configurations";
+  options.modules.neovim = {
+    enable = mkEnableOption "Enable nvim configurations";
+
+    # TODO: configure granularly
+    lsp = mkEnableOption "Enable all lsp server";
+  };
+
+  imports = [
+    ./lang.nix
+    ./plugins
+  ];
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      marksman
-    ];
-
     programs.nixvim = {
       enable = true;
       vimAlias = true;
@@ -27,98 +32,14 @@ in {
         lualine.enable = true;
         commentary.enable = true;
         todo-comments.enable = true;
-        nix.enable = true;
-        typst-vim.enable = true;
         which-key.enable = true;
         gitsigns.enable = true;
         nvim-ufo.enable = true; # folding
       };
 
-      extraConfigVim = ''
-        let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-        highlight QuickScopePrimary gui=underline cterm=underline
-        highlight QuickScopeSecondary gui=underline cterm=underline
-      '';
-
-      extraPlugins = with pkgs.vimPlugins; [
-        quick-scope
-      ];
-
-      plugins.lsp = {
-        enable = true;
-        servers.marksman.enable = true;
-      };
-
-      globals.mapleader = " ";
-      # TODO: Telescope find and insert filepath
-      plugins.telescope = {
-        enable = true;
-        keymaps = {
-          "<leader>pf" = {
-            action = "find_files";
-            options = {
-              desc = "Find project files";
-            };
-          };
-
-          "<leader>sp" = {
-            action = "live_grep";
-            options = {
-              desc = "Search project";
-            };
-          };
-
-          "<leader>bb" = {
-            action = "buffers";
-            options = {
-              desc = "Find buffers";
-            };
-          };
-
-          "gcc" = {
-            action = "<cmd>Commentary<CR>";
-            options = {
-              desc = "Comment";
-            };
-          };
-        };
-      };
-
-      plugins.ts-context-commentstring.enable = true;
-      plugins.treesitter = rec {
-        enable = true;
-        indent = true;
-        grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
-          c
-          go
-          nix
-          lua
-          org
-          css
-          tsx
-          html
-          gleam
-          python
-          vimdoc
-          clojure
-          javascript
-          typescript
-
-          markdown
-          markdown_inline
-
-          gitcommit
-          gitignore
-          git_rebase
-          git_config
-        ];
-      };
-
-      opts = 
-      let tab_size = 2;
-      in
-      {
+      opts = let
+        tab_size = 2;
+      in {
         number = true;
         relativenumber = false;
         clipboard = "unnamedplus";
