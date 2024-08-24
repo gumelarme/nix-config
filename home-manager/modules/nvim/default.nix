@@ -109,16 +109,19 @@ in {
         ];
       };
 
-      opts = {
+      opts = 
+      let tab_size = 2;
+      in
+      {
         number = true;
         relativenumber = false;
         clipboard = "unnamedplus";
-        tabstop = 4;
-        softtabstop = 4;
+        tabstop = tab_size;
+        softtabstop = tab_size;
         showtabline = 0;
         expandtab = true;
         smartindent = true;
-        shiftwidth = 4;
+        shiftwidth = tab_size;
         breakindent = true;
         cursorline = true;
         scrolloff = 8;
