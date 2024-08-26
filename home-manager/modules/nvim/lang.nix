@@ -15,7 +15,7 @@ in {
       plugins = {
         nix.enable = true;
         typst-vim.enable = true;
-        lsp-format.enable = true;
+        lsp-format.enable = cfg.lsp;
 
         cmp-nvim-lsp.enable = cfg.completion;
         cmp-buffer.enable = cfg.completion;
