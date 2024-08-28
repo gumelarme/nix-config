@@ -13,6 +13,7 @@ in {
 
     programs.nixvim = {
       plugins = {
+        zk.enable = true;
         nix.enable = true;
         typst-vim.enable = true;
         lsp-format.enable = cfg.lsp;
@@ -38,6 +39,14 @@ in {
 
           typst-lsp.enable = true;
           # tinymist.enable = true;
+        };
+
+        keymaps.lspBuf = {
+          "gd" = "definition";
+          "gD" = "references";
+          "gt" = "type_definition";
+          "gi" = "implementation";
+          "K" = "hover";
         };
       };
 
@@ -82,8 +91,8 @@ in {
           };
 
           sources = [
-            { name = "nvim_lsp"; }
-            { 
+            {name = "nvim_lsp";}
+            {
               name = "path";
               keywordLength = 3;
             }
