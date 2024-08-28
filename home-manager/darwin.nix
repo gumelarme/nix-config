@@ -38,8 +38,13 @@
   modules = {
     hostname = "osx";
     tmux.enable = true;
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      lsp = true;
+      completion = true;
+    };
     fonts.dev = true;
+    typeset.typst.enable = true;
 
     wezterm = {
       enable = true;
@@ -63,6 +68,17 @@
 
     nnn = {
       enable = true;
+    };
+
+    zettel = let
+      zkDir = "${config.home.homeDirectory}/sync/zk";
+    in {
+      enable = true;
+      nvimPluginEnable = true;
+      defaultDir = "${zkDir}/inbox";
+      notebookShellAliases = {
+        zkw = "${zkDir}/work";
+      };
     };
 
     dev-tools = {
@@ -89,5 +105,7 @@
     pipx
     ncurses
     rectangle
+
+    ollama
   ];
 }

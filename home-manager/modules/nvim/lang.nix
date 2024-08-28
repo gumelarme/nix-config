@@ -13,7 +13,6 @@ in {
 
     programs.nixvim = {
       plugins = {
-        zk.enable = true;
         nix.enable = true;
         typst-vim.enable = true;
         lsp-format.enable = cfg.lsp;

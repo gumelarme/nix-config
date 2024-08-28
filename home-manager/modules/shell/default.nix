@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./git.nix ./nnn.nix ./shell.nix ./pet.nix];
+  imports = [./git.nix ./nnn.nix ./shell.nix ./pet.nix ./zettel.nix];
 
   # z autojump
   programs.zoxide.enable = true;
