@@ -30,7 +30,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.nixvim.plugins.zk.enable = cfg.nvimPluginEnable;
-    programs.zk = {
+    programs.zk = let
+      not-archived = "--tag 'NOT archived'";
+    in {
       enable = true;
       settings = {
         notebook.dir = cfg.defaultDir;
@@ -51,9 +53,7 @@ in {
           fzf-preview = "bat -p --color always {-1}";
         };
 
-        filter = {
-          not-archived = "--tag 'NOT archived'";
-        };
+        filter = {inherit not-archived;};
 
         alias = let
           format = ''
@@ -63,7 +63,7 @@ in {
             {{#if tags}} {{#each tags}}:{{style 'magenta' this}}{{/each}}:{{/if}}\
           '';
         in {
-          n = ''zk edit not-archived --interactive "$@"'';
+          n = ''zk edit ${not-archived} --interactive "$@"'';
           na = ''zk edit --interactive "$@"'';
           l = ''zk list not-archived -s modified --format "${format}" "$@"'';
           la = ''zk list -s modified --format "${format}" "$@"'';
