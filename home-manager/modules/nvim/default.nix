@@ -40,9 +40,13 @@ in {
         nvim-ufo.enable = true; # folding
       };
 
-
       plugins.which-key = {
         enable = true;
+        registrations = {
+            "<leader>p" = "Project";
+            "<leader>b" = "Buffers";
+            "<leader>s" = "Search";
+        };
       };
 
       opts = let
