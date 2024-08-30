@@ -128,6 +128,12 @@
       typst.enable = true;
     };
 
+    zettel = {
+      enable = true;
+      nvimPluginEnable = true;
+      defaultDir = "${config.xdg.userDirs.extraConfig.XDG_SYNC_DIR}/zk/inbox";
+    };
+
     dev-tools = {
       emacs.enable = true;
       python.enable = true;
