@@ -67,6 +67,7 @@ in {
           na = ''zk edit --interactive "$@"'';
           l = ''zk list not-archived -s modified --format "${format}" "$@"'';
           la = ''zk list -s modified --format "${format}" "$@"'';
+          path = ''zk list --interactive --quiet --format "{{abs-path}}"'';
         };
       };
     };
