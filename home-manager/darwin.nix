@@ -100,6 +100,7 @@
   };
 
   home.packages = with pkgs; [
+    taskwarrior
     exercism
     nb
     pipx

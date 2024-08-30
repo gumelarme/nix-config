@@ -32,14 +32,6 @@ in {
               desc = "Find buffers";
             };
           };
-
-          # NOTE: Depends on: commentary
-          "gcc" = {
-            action = "<cmd>Commentary<CR>";
-            options = {
-              desc = "Comment";
-            };
-          };
         };
       };
     };

@@ -24,6 +24,8 @@ in {
       enable = true;
       vimAlias = true;
       viAlias = true;
+      keymaps = import ./keymaps.nix;
+
       colorschemes.dracula = {
         enable = true;
         colorterm = false;
@@ -33,9 +35,14 @@ in {
         lualine.enable = true;
         commentary.enable = true;
         todo-comments.enable = true;
-        which-key.enable = true;
+        # which-key.enable = true;
         gitsigns.enable = true;
         nvim-ufo.enable = true; # folding
+      };
+
+
+      plugins.which-key = {
+        enable = true;
       };
 
       opts = let

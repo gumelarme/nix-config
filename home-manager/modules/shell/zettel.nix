@@ -29,7 +29,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.nixvim.plugins.zk.enable = cfg.nvimPluginEnable;
+    programs.nixvim.plugins.zk = {
+      enable = cfg.nvimPluginEnable;
+      picker = "fzf";
+    };
+
     programs.zk = let
       not-archived = "--tag 'NOT archived'";
     in {
