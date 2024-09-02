@@ -43,9 +43,9 @@ in {
       plugins.which-key = {
         enable = true;
         registrations = {
-            "<leader>p" = "Project";
-            "<leader>b" = "Buffers";
-            "<leader>s" = "Search";
+          "<leader>p" = "Project";
+          "<leader>b" = "Buffers";
+          "<leader>s" = "Search";
         };
       };
 

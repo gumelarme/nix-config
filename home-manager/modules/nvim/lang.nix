@@ -36,7 +36,14 @@ in {
           # pyright.enable = true;
           # pylyzer.enable = true;
 
-          typst-lsp.enable = true;
+          typst-lsp = {
+            enable = true;
+            rootDir = ''
+              function (fname)
+                return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
+              end
+            '';
+          };
           # tinymist.enable = true;
         };
 
