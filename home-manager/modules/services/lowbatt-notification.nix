@@ -53,6 +53,7 @@
               ${notifier} -a "notifyBattery" \
                           -u critical \
                           -i battery \
+                          -h int:timeout:30 \
                           -h int:value:"$battery_capacity" \
                           "Battery Low: ''${battery_capacity}%" \
                           "Please charge your battery"
