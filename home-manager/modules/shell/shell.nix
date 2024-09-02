@@ -28,6 +28,7 @@ in {
       defaultKeymap = "viins";
       enableCompletion = true;
       shellAliases = {
+        # TODO: Separate it into related modules instead of putting everything here
         vim = "nvim";
         g = "git";
         s = "git status";
@@ -41,6 +42,8 @@ in {
         prox-show = "echo http  = $http_proxy \\\\nhttps = $https_proxy";
         prox-set = "export http_proxy=$PROXYADDR && export https_proxy=$PROXYADDR && prox-show";
         prox-rm = "unset http_proxy && unset https_proxy && prox-show";
+        snap = "xclip -selection clipboard -target image/png -o";
+        open = "xdg-open";
       };
 
       plugins = [

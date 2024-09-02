@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    todo-txt-cli
+    ttdl
+
     # System Utils
     git
     fd
