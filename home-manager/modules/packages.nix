@@ -13,6 +13,7 @@
     coreutils
     wget
     curl
+    fpp # Facebook Path Picker
 
     ## Nix
     statix # linter
