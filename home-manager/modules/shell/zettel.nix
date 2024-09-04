@@ -72,6 +72,21 @@ in {
           l = ''zk list not-archived -s modified --format "${format}" "$@"'';
           la = ''zk list -s modified --format "${format}" "$@"'';
           path = ''zk list --interactive --quiet --format "{{abs-path}}"'';
+          # TODO push, pull, rebase
+          status = ''
+            FILENAMES=$(git diff HEAD --name-only | paste -s -d '|' -) && \
+            [ -z "$FILENAMES" ] && echo "Clean!\nNo notes changed" \
+            || zk list --quiet --format "{{path}} {{title}}" \
+            | grep "$FILENAMES" \
+            | sed "1s/^/Notes changed: \n/"\
+          '';
+          save = ''
+            git add . && \
+            zk list --quiet --format "{{path}} {{title}}" \
+            | egrep "$(git diff --staged --name-only | paste -s -d '|' -)" \
+            | sed '1s/^/Update notes\n\nAffected files: \n/' \
+            | git commit -e -F -
+          '';
         };
       };
     };
