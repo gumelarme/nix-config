@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  inputs,
   config,
   pkgs,
   ...
@@ -15,7 +16,26 @@
   # steam, fix glxChooseVisual failed
   hardware.opengl.driSupport32Bit = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
+  nix.settings.substituters = [
+    "https://mirror.sjtu.edu.cn/nix-channels/store"
+    "https://hyprland.cachix.org"
+  ];
+
+  nix.settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+
+  programs.sway.enable = true;
+  programs.hyprland = {
+    enable = true;
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = ["ntfs"];
@@ -134,27 +154,12 @@
     libinput.enable = true;
     libinput.mouse.accelSpeed = "1.0";
     libinput.touchpad.accelSpeed = "1.0";
-    displayManager.defaultSession = "none+qtile";
 
     xserver = {
       enable = true;
 
       # Configure keymap in X11
       xkb.layout = "us";
-
-      # Enable touchpad support (enabled default in most desktopManager).
-
-      displayManager = {
-        lightdm = {
-          enable = true;
-          background = config.environment.etc.wallpaper.source;
-          greeters.slick = {
-            enable = true;
-            theme.name = "Adwaita-dark";
-          };
-        };
-      };
-
       # run XDGAutostart even if there is no DE
       desktopManager.runXdgAutostartIfNone = true;
 

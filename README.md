@@ -46,4 +46,4 @@ LC_CTYPE=zh_CN.UTF-8 alacritty
 setting `LC_CTYPE` on nixos configuration doesnt work, 
 changing `i18n.defaultLocale` or adding it to `i18n.supportedLocales` also doesnt work.
 
-
+## TODO: Add package to separate X11 programs and wayland

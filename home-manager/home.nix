@@ -147,6 +147,9 @@
 
   home.packages = with pkgs;
     [
+      # hyprland 
+      wofi
+
       nb
       # pomodoro
       tomato-c

@@ -2,11 +2,11 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 
 local key_bindings = {
-    { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo 'Clipboard' },
-    { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
-    { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
-    { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
-    { key = '0', mods = 'CTRL', action = act.ResetFontSize },
+  { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo 'Clipboard' },
+  { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = '=', mods = 'CTRL',       action = act.IncreaseFontSize },
+  { key = '-', mods = 'CTRL',       action = act.DecreaseFontSize },
+  { key = '0', mods = 'CTRL',       action = act.ResetFontSize },
 }
 
 local visual_bell = {
@@ -19,6 +19,8 @@ local visual_bell = {
 local monaspace_ligs = { 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' }
 
 return {
+  default_prog = { "zsh" },
+  enable_wayland = false,
   automatically_reload_config = true,
   enable_tab_bar = false,
   use_ime = true,
@@ -27,7 +29,7 @@ return {
   window_background_opacity = 0.9,
 
   font_size = 10,
-  font = wezterm.font_with_fallback { 
+  font = wezterm.font_with_fallback {
     {
       family = 'MonaspiceAr Nerd Font Mono',
       weight = 'Regular',
@@ -71,7 +73,7 @@ return {
   },
 
 
-  adjust_window_size_when_changing_font_size =  false,
+  adjust_window_size_when_changing_font_size = false,
   default_cursor_style = 'SteadyBlock',
   hide_mouse_cursor_when_typing = true,
 
