@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -29,6 +30,7 @@ in {
     (mkIf (cfg.enable && !cfg.configOnly) {
       programs.wezterm = {
         enable = true;
+        package = pkgs.stable.wezterm;
         extraConfig = builtins.readFile ./wezterm.lua;
       };
     })

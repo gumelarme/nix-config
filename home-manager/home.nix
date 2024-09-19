@@ -12,7 +12,7 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
       outputs.overlays.nur-packages
       (self: super: {fcitx-engines = pkgs.fcitx5;})
 
@@ -160,11 +160,11 @@
       xorg.xhost # allow distrobox to run gui program
 
       exercism
-      unstable.jetbrains.pycharm-professional
-      unstable.jetbrains.datagrip
-      unstable.jetbrains.webstorm
-      unstable.jetbrains.goland
-      unstable.jetbrains.rider
+      jetbrains.pycharm-professional
+      jetbrains.datagrip
+      jetbrains.webstorm
+      jetbrains.goland
+      jetbrains.rider
       docker
       # needed for building driver and access to postgres clis and lib
       postgresql_12_jit
@@ -227,7 +227,7 @@
       steam-run
 
       # Communication
-      unstable.qq
+      qq
       discord
       tdesktop
 

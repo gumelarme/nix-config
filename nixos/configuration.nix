@@ -14,11 +14,8 @@
   ];
 
   # steam, fix glxChooseVisual failed
-  hardware.opengl = {
-    driSupport32Bit = true;
-    # package = inputs.nixpkgs-unstable.mesa.drivers;
-    # package32 = inputs.nixpkgs-unstable.pkgsi686Linux.mesa.drivers;
-  };
+  hardware.graphics.enable32Bit = true;
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [
     "https://mirror.sjtu.edu.cn/nix-channels/store"
@@ -30,6 +27,7 @@
   programs.sway.enable = true;
   programs.hyprland = {
     enable = true;
+    xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
