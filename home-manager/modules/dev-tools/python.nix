@@ -48,7 +48,7 @@ in {
         black
         isort
         pipenv
-        nodePackages.pyright
+        # nodePackages.pyright
       ]
     ]);
 

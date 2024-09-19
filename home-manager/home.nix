@@ -1,11 +1,11 @@
 {
-  # inputs,
+  inputs,
   outputs,
   config,
   pkgs,
   ...
 }: {
-  imports = [./modules ./modules/xdg ./modules/services];
+  imports = [./modules ./modules/xdg ./modules/services ./wayland.nix ./modules/hyprland];
 
   nixpkgs = {
     overlays = [
@@ -38,13 +38,13 @@
   home = {
     username = "kasuari";
     homeDirectory = "/home/kasuari";
-    pointerCursor = {
-      package = pkgs.catppuccin-cursors.lattePeach;
-      name = "Catppuccin-Latte-Peach-Cursors";
-      size = 32;
-      x11.enable = true;
-      gtk.enable = true;
-    };
+    # pointerCursor = {
+    #   package = pkgs.catppuccin-cursors.lattePeach;
+    #   name = "Catppuccin-Latte-Peach-Cursors";
+    #   size = 32;
+    #   x11.enable = true;
+    #   gtk.enable = true;
+    # };
   };
 
   gtk = {
@@ -147,9 +147,7 @@
 
   home.packages = with pkgs;
     [
-      # hyprland 
-      wofi
-
+      pulseaudio
       nb
       # pomodoro
       tomato-c

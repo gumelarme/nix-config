@@ -29,7 +29,7 @@ in {
       nodePackages.stylelint
       nodePackages.typescript-language-server
       nodePackages."@astrojs/language-server"
-      nodePackages.volar
+      # nodePackages.volar
     ]);
   };
 }

@@ -19,17 +19,18 @@ local visual_bell = {
 local monaspace_ligs = { 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' }
 
 return {
-  default_prog = { "zsh" },
-  enable_wayland = false,
+  -- default_prog                = { "zsh" },
+  enable_wayland              = false,
+  front_end                   = "WebGpu",
   automatically_reload_config = true,
-  enable_tab_bar = false,
-  use_ime = true,
+  enable_tab_bar              = false,
+  use_ime                     = true,
 
-  color_scheme = 'Dracula (Gogh)',
-  window_background_opacity = 0.9,
+  color_scheme                = 'Dracula (Gogh)',
+  window_background_opacity   = 0.9,
 
-  font_size = 10,
-  font = wezterm.font_with_fallback {
+  font_size                   = 10,
+  font                        = wezterm.font_with_fallback {
     {
       family = 'MonaspiceAr Nerd Font Mono',
       weight = 'Regular',
@@ -37,7 +38,7 @@ return {
     },
     'Noto Sans Mono CJK',
   },
-  font_rules = {
+  font_rules                  = {
     -- On Bold
     {
       intensity = 'Bold',

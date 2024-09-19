@@ -8,12 +8,19 @@ msgTag="myvolume"
 timeout=1000
 
 # Change the volume using alsa(might differ if you use pulseaudio)
-amixer set Master "$@" > /dev/null
+if [[ "$@" == "toggle" ]]; then
+  pactl set-sink-mute @DEFAULT_SINK@ toggle > /dev/null;
+else
+  pactl set-sink-mute @DEFAULT_SINK@ 0 > /dev/null;
+  pactl set-sink-volume @DEFAULT_SINK@ "$@" > /dev/null;
+fi
 
 # Query amixer for the current volume and whether or not the speaker is muted
-volume="$(amixer get Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g')"
-mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
-if [[ $volume == 0 || "$mute" == "off" ]]; then
+# volume="$(amixer get Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g')"
+volume="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -P '\d+%' --only-matching | head -1 | tr -d %)"
+# mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+mute="$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')"
+if [[ $volume == 0 || "$mute" == "yes" ]]; then
     # Show the sound muted notification
     dunstify -a "changeVolume" -t "$timeout" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:$msgTag "Volume muted" 
 else

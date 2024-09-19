@@ -7,11 +7,8 @@ msgTag="myBrightness"
 # 1 second short notification
 timeout=1000
 
-# Change the brightness using alsa(might differ if you use pulseaudio)
-xbacklight "$@" > /dev/null
-
-# Query amixer for the current brightness and whether or not the speaker is muted
-brightness=$(xbacklight -get)
+brightnessctl "$@" > /dev/null
+brightness=$(brightnessctl -m | grep -P '\d+%' --only-matching | tr -d %)
 # Show the brightness notification
 dunstify -a "changeBrightness" -t "$timeout" -u low -i display-brightness -h string:x-dunst-stack-tag:$msgTag \
 -h int:value:"$brightness" "Brightness: ${brightness}/100"

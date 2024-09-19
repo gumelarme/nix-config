@@ -14,11 +14,15 @@
   ];
 
   # steam, fix glxChooseVisual failed
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl = {
+    driSupport32Bit = true;
+    # package = inputs.nixpkgs-unstable.mesa.drivers;
+    # package32 = inputs.nixpkgs-unstable.pkgsi686Linux.mesa.drivers;
+  };
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [
     "https://mirror.sjtu.edu.cn/nix-channels/store"
-    "https://hyprland.cachix.org"
+    # "https://hyprland.cachix.org"
   ];
 
   nix.settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -27,15 +31,14 @@
   programs.hyprland = {
     enable = true;
     # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    #   # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    #   # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
-
-
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = ["ntfs"];
@@ -156,7 +159,7 @@
     libinput.touchpad.accelSpeed = "1.0";
 
     xserver = {
-      enable = true;
+      enable = false;
 
       # Configure keymap in X11
       xkb.layout = "us";
@@ -168,11 +171,11 @@
         enableScreensaver = false;
       };
 
-      windowManager.qtile = {
-        enable = true;
-        backend = "x11";
-        # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
-      };
+      # windowManager.qtile = {
+      #   enable = true;
+      #   backend = "x11";
+      #   # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
+      # };
 
       windowManager.xmonad = {
         enable = true;
@@ -219,20 +222,24 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
   };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
+  # sound.enable = true;
   # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    # alsa.enable = false;
+    # alsa.support32Bit = false;
     pulse.enable = true;
   };
 
@@ -294,7 +301,7 @@
 
     nixos-option
 
-    qtile
+    # qtile
     xmobar
     # pipewire tui
     qpwgraph

@@ -13,8 +13,9 @@
     nur.url = "github:nix-community/NUR";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     kmonad.url = "github:kmonad/kmonad?ref=0.4.2&dir=nix";
     nixvim = {
@@ -28,6 +29,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     nixpkgs-darwin,
     home-manager,
     kmonad,
@@ -68,7 +70,7 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      crockpot = nixpkgs.lib.nixosSystem {
+      crockpot = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
@@ -83,7 +85,7 @@
     homeConfigurations = {
       "kasuari@crockpot" = home-manager.lib.homeManagerConfiguration {
         pkgs =
-          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          nixpkgs-unstable.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
