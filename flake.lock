@@ -20,11 +20,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725753098,
-        "narHash": "sha256-/NO/h/qD/eJXAQr/fHA4mdDgYsNT9thHQ+oT6KPi2ac=",
+        "lastModified": 1726665257,
+        "narHash": "sha256-rEzEZtd3iyVo5RJ1OGujOlnywNf3gsrOnjAn1NLciD4=",
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "e4a13203112a036fc7f437d391c7810f3dd5ab52",
+        "rev": "752d0fbd141fabb5a1e7f865199b80e6e76f8d8e",
         "type": "github"
       },
       "original": {
@@ -237,11 +237,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1726580240,
-        "narHash": "sha256-VBXNeRJMaiqbIietRihPYnWA7bFJO2wqqlPg0f9Xfjc=",
+        "lastModified": 1726681673,
+        "narHash": "sha256-n7EMRe/uMZ4QdM/DWsewc7LLRaR0GGzQIV3uu9BFZbU=",
         "ref": "refs/heads/main",
-        "rev": "3c9716acfd00c6ea1b7bcd1dc63f97b51cc09998",
-        "revCount": 5227,
+        "rev": "e6cf643f5ab1c1545fb858ab1fd9d7538ef9e0f3",
+        "revCount": 5235,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -434,19 +434,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1724967238,
-        "narHash": "sha256-fydaoGWHKzpDbhWMuKixf+slmiYFqSLOnmVYfFntQxs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "893e9c69f3324ae99e87f1e8e49014c3c0ab12cf",
-=======
         "lastModified": 1726447378,
         "narHash": "sha256-2yV8nmYE1p9lfmLHhOCbYwQC/W8WYfGQABoGzJOb1JQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "086b448a5d54fd117f4dc2dee55c9f0ff461bdc1",
->>>>>>> 9895d51 (move to unstable, hyprland config via HM)
         "type": "github"
       },
       "original": {
@@ -458,19 +450,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1724819573,
-        "narHash": "sha256-GnR7/ibgIH1vhoy8cYdmXE6iyZqKqFxQSVkFgosBh6w=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "71e91c409d1e654808b2621f28a327acfdad8dc2",
-=======
         "lastModified": 1726463316,
         "narHash": "sha256-gI9kkaH0ZjakJOKrdjaI/VbaMEo9qBbSUl93DnU7f4c=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "99dc8785f6a0adac95f5e2ab05cc2e1bf666d172",
->>>>>>> 9895d51 (move to unstable, hyprland config via HM)
         "type": "github"
       },
       "original": {
@@ -555,6 +539,7 @@
     "nur": {
       "locked": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "lastModified": 1725005047,
         "narHash": "sha256-aOWD3f0lrSKxEhLUiXEWx0HivldrQFNLtgITkE1Xkwo=",
         "owner": "nix-community",
@@ -567,6 +552,13 @@
         "repo": "NUR",
         "rev": "b9b4dbdd78b73c5b97f4c973abab3e2563a5a8be",
 >>>>>>> 9895d51 (move to unstable, hyprland config via HM)
+=======
+        "lastModified": 1726723732,
+        "narHash": "sha256-YTBuZ11Aib422KGf3eqiSPerT+WB3Kz6oKeD8jEs5KI=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "228e63f70876686a37af3e9eda705bc0bacfc3b8",
+>>>>>>> 1978e52 (fix(hyprland+crock): keybinding and mic toggle)
         "type": "github"
       },
       "original": {

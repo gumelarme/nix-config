@@ -68,20 +68,20 @@ in {
       resize = key: delta: makeBinding "SHIFT+${key}" "resizeactive, ${delta}";
     in
     [
-      (resize "H" "-10, 0")
-      (resize "L" "10, 0")
-      (resize "J" "0, 10")
-      (resize "K" "0, -10")
+      (resize "H" "-10 0")
+      (resize "L" "10 0")
+      (resize "J" "0 10")
+      (resize "K" "0 -10")
       ", XF86AudioRaiseVolume, exec, crock volume +5%"
       ", XF86AudioLowerVolume, exec, crock volume -5%"
       ", XF86AudioMute, exec, crock volume toggle"
       ", XF86AudioMicMute, exec, crock mic-toggle"
-      ", XF86BrightnessUp, exec, crock brightness set 5%+"
-      ", XF86BrightnessDown, exec, crock brightness set 5%-"
+      ", XF86MonBrightnessUp, exec, crock brightness set 5%+"
+      ", XF86MonBrightnessDown, exec, crock brightness set 5%-"
   ];
 
   bindm = [
-    (b "mouse:272" "moveWindow")
-    (b "mouse:273" "resizeWindow")
+    (b "mouse:272" "movewindow")
+    (b "mouse:273" "resizewindow")
   ];
 }
