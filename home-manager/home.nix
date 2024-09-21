@@ -1,5 +1,4 @@
 {
-  inputs,
   outputs,
   config,
   pkgs,
@@ -234,7 +233,7 @@
       # Peripheral
       xsane
       sane-frontends
-      gnome.simple-scan
+      simple-scan
       libsForQt5.skanlite
       xboxdrv
       # libwacom

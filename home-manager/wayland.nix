@@ -7,6 +7,7 @@
     eww
 
     swaylock
+    wl-clipboard
 
     # Screenshot tools
     grim

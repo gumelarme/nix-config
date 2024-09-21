@@ -20,7 +20,7 @@
   ];
 
   # Programs
-  terminal = "wezterm -e tmux new -As default";
+  terminal = "foot -e tmux new -As default";
   fileManager = "thunar";
   menu = "wofi --show drun";
   browser = "firefox";
@@ -53,31 +53,28 @@ in {
 
       # Group
       (b "G" "togglegroup")
-      (b "G" "lockactivegroup, toggle")
+      (b "SHIFT+CONTROL+G" "lockactivegroup, toggle")
       (b "Tab" "changegroupactive, f")
-      (b "Tab" "changegroupactive, b ")
-
+      (b "SHIFT+Tab" "changegroupactive, b")
     ]
     ++ (map ws workspaces)
     ++ (map move workspaces)
     ++ specialWorkspace "backslash" "scratch"
     ++ specialWorkspace "S" "magic";
 
-  bindel = 
-    let 
-      resize = key: delta: makeBinding "SHIFT+${key}" "resizeactive, ${delta}";
-    in
-    [
-      (resize "H" "-10 0")
-      (resize "L" "10 0")
-      (resize "J" "0 10")
-      (resize "K" "0 -10")
-      ", XF86AudioRaiseVolume, exec, crock volume +5%"
-      ", XF86AudioLowerVolume, exec, crock volume -5%"
-      ", XF86AudioMute, exec, crock volume toggle"
-      ", XF86AudioMicMute, exec, crock mic-toggle"
-      ", XF86MonBrightnessUp, exec, crock brightness set 5%+"
-      ", XF86MonBrightnessDown, exec, crock brightness set 5%-"
+  bindel = let
+    resize = key: delta: makeBinding "SHIFT+${key}" "resizeactive, ${delta}";
+  in [
+    (resize "H" "-10 0")
+    (resize "L" "10 0")
+    (resize "J" "0 10")
+    (resize "K" "0 -10")
+    ", XF86AudioRaiseVolume, exec, crock volume +5%"
+    ", XF86AudioLowerVolume, exec, crock volume -5%"
+    ", XF86AudioMute, exec, crock volume toggle"
+    ", XF86AudioMicMute, exec, crock mic-toggle"
+    ", XF86MonBrightnessUp, exec, crock brightness set 5%+"
+    ", XF86MonBrightnessDown, exec, crock brightness set 5%-"
   ];
 
   bindm = [
