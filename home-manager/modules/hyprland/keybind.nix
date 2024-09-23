@@ -33,6 +33,7 @@ in {
       (bp "T" fileManager)
       (bp "SHIFT+R" browser-private)
       (bp "SHIFT+Return" terminal)
+      (bp "Backspace" "ags -t bar")
 
       (b "SHIFT+C" "killactive")
       (b "H" "movefocus, l")

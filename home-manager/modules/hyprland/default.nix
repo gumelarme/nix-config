@@ -23,7 +23,13 @@
 
             master = {
               new_status = "master";
+              new_on_top = true;
+              no_gaps_when_only = 2; # no gaps with border
             };
+
+            exec-once = [
+              "ags"
+            ];
           }
         ]);
   };
