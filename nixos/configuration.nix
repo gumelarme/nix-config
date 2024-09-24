@@ -35,6 +35,7 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
+    theme = "catppuccin-mocha";
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -156,8 +157,7 @@
     libinput.touchpad.accelSpeed = "1.0";
 
     xserver = {
-      enable = false;
-
+      enable = true;
       # Configure keymap in X11
       xkb.layout = "us";
       # run XDGAutostart even if there is no DE
@@ -174,11 +174,11 @@
       #   # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
       # };
 
-      windowManager.xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-        extraPackages = hPkgs: [hPkgs.xmobar];
-      };
+      # windowManager.xmonad = {
+      #   enable = false;
+      #   enableContribAndExtras = true;
+      #   extraPackages = hPkgs: [hPkgs.xmobar];
+      # };
     };
 
     logind = {
@@ -297,6 +297,12 @@
     p7zip
 
     nixos-option
+
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      background = config.environment.etc.wallpaper.source;
+      loginBackground = true;
+    })
 
     # qtile
     xmobar
