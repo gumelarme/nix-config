@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  imports = [./modules ./modules/xdg ./modules/services ./wayland.nix ./modules/hyprland];
+  imports = [./modules ./modules/xdg ./modules/services ./wayland.nix ./modules/hyprland ./modules/todo ];
 
   nixpkgs = {
     overlays = [
