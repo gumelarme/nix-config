@@ -70,8 +70,8 @@ in {
     (resize "L" "10 0")
     (resize "J" "0 10")
     (resize "K" "0 -10")
-    ", XF86AudioRaiseVolume, exec, crock volume +5%"
-    ", XF86AudioLowerVolume, exec, crock volume -5%"
+    ", XF86AudioRaiseVolume, exec, crock volume 5%+"
+    ", XF86AudioLowerVolume, exec, crock volume 5%-"
     ", XF86AudioMute, exec, crock volume toggle"
     ", XF86AudioMicMute, exec, crock mic-toggle"
     ", XF86MonBrightnessUp, exec, crock brightness set 5%+"
