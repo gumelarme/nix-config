@@ -146,12 +146,11 @@
 
   home.packages = with pkgs;
     [
-      pulseaudio
+      chromium
       nb
       # pomodoro
       tomato-c
 
-      unityhub
       caffeine-ng
 
       # =Dev

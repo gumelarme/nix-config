@@ -17,8 +17,8 @@
           {
             "debug:disable_logs" = false;
             monitor = [
-              "DP-1, 1920x1080, 0x0, 1"
-              "eDP-1, 1920x1080, 1920x0, 1"
+              ", highres, 0x0, 1"
+              "eDP-1, 1920x1080, auto-right, 1"
             ];
 
             master = {

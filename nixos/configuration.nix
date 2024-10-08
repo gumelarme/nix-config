@@ -300,8 +300,8 @@
 
     (catppuccin-sddm.override {
       flavor = "mocha";
-      background = config.environment.etc.wallpaper.source;
-      loginBackground = true;
+      # background = config.environment.etc.wallpaper.source;
+      # loginBackground = true;
     })
 
     # qtile
