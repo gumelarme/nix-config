@@ -8,6 +8,7 @@
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Nix User Repository
     nur.url = "github:nix-community/NUR";
@@ -31,6 +32,7 @@
     nixpkgs,
     nixpkgs-unstable,
     nixpkgs-darwin,
+    nixos-hardware,
     home-manager,
     kmonad,
     nixvim,
@@ -76,6 +78,7 @@
           # > Our main nixos configuration file <
           kmonad.nixosModules.default
           ./nixos/configuration.nix
+          nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
         ];
       };
     };
