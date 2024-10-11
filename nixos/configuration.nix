@@ -38,6 +38,7 @@
     theme = "catppuccin-mocha";
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = ["ntfs"];
   boot.loader = {
