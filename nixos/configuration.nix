@@ -14,7 +14,10 @@
   ];
 
   # steam, fix glxChooseVisual failed
-  hardware.graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [
