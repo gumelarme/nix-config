@@ -48,6 +48,6 @@
 
   windowrulev2 = [
     "suppressevent maximize, class:.*"
-    "suppressevent fullscreen, class:.*"
+    # "suppressevent fullscreen, class:.*"
   ];
 }
