@@ -196,7 +196,7 @@
       # Documents
       pandoc
       zotero
-      calibre
+      stable.calibre
       zathura
       sioyek # pdf reader, research focused
       xournalpp
@@ -226,7 +226,7 @@
 
       # Communication
       qq
-      discord
+      stable.discord
       tdesktop
 
       # Peripheral
