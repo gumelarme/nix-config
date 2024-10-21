@@ -74,11 +74,11 @@ in {
           path = ''zk list --interactive --quiet --format "{{abs-path}}"'';
           # TODO push, pull, rebase
           status = ''
-            FILENAMES=$(git diff HEAD --name-only | paste -s -d '|' -) && \
+            FILENAMES=$(git status -s | awk '{print $2}' | paste -s -d '|' -) && \
             [ -z "$FILENAMES" ] && echo "Clean!\nNo notes changed" \
             || zk list --quiet --format "{{path}} {{title}}" \
-            | grep "$FILENAMES" \
-            | sed "1s/^/Notes changed: \n/"\
+            | grep -E "$FILENAMES" \
+            | sed '1s/^/Notes changed: \n/'
           '';
           save = ''
             git add . && \
