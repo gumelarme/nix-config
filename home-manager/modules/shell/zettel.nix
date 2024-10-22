@@ -80,13 +80,15 @@ in {
             | grep -E "$FILENAMES" \
             | sed '1s/^/Notes changed: \n/'
           '';
-          save = ''
+          save = ''git add . && git commit'';
+          autosave = ''
             git add . && \
             zk list --quiet --format "{{path}} {{title}}" \
             | egrep "$(git diff --staged --name-only | paste -s -d '|' -)" \
-            | sed '1s/^/Update notes\n\nAffected files: \n/' \
+            | sed '1s/^/[zk] Autosave notes\n\nAffected files: \n/' \
             | git commit -e -F -
           '';
+          sync = ''git fetch --all && git rebase origin/main && git push origin main'';
         };
       };
     };
