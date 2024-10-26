@@ -5,8 +5,9 @@
   ...
 }: {
   config = let
-  
-    configLocation = "${config.xdg.configHome}/todo-txt/todo.cfg";
+    configDir = "${config.xdg.configHome}/todo-txt";
+    configActionDir = "${configDir}/actions";
+    configLocation = "${configDir}/todo.cfg";
   in {
     home.file."${configLocation}".text =
       ''
@@ -22,7 +23,7 @@
         export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
         # You can customize your actions directory location
-        # export TODO_ACTIONS_DIR="$HOME/.todo.actions.d"
+        export TODO_ACTIONS_DIR="${configActionDir}"
       ''
       + "\n"
       + (builtins.readFile ./color.cfg);
@@ -33,6 +34,11 @@
 
     programs.zsh.shellAliases = lib.mkIf config.modules.shell.enable {
       t = "todo.sh -d ${configLocation}";
+    };
+
+    home.file."${configActionDir}/commit" = {
+      executable = true;
+      source = ./commit;
     };
   };
 }

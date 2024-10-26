@@ -41,7 +41,14 @@
     theme = "catppuccin-mocha";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Might be useful: https://askubuntu.com/questions/916465/ubuntu-17-04-keyboard-not-responding-after-suspend
+  # https://unix.stackexchange.com/questions/28736/what-does-the-i8042-nomux-1-kernel-option-do-during-booting-of-ubuntu
+  # https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
+  boot.kernelParams = ["quiet" "splash" "usbcore.autosuspend=-1"];
+
+  # Use latest kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = ["ntfs"];
   boot.loader = {
