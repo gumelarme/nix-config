@@ -133,6 +133,16 @@
       USB_AUTOSUSPEND = 0;
     };
 
+    # Works, but cannot reduce the timeout or bypass to password directly
+    # https://github.com/NixOS/nixpkgs/issues/171136
+    # https://www.reddit.com/r/Fedora/comments/kx52nz/disable_fingerprint_reader_when_using_sudo/
+
+    fprintd = {
+      enable = true;
+      tod.enable = true;
+      tod.driver = pkgs.libfprint-2-tod1-vfs0090;
+    };
+
     kmonad = {
       enable = true;
       keyboards.common-tkl = {
