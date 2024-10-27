@@ -1,0 +1,15 @@
+action=$1
+
+function usage {
+	echo "  $(basename $0)"
+	echo "    Pull changes into git repository located at $TODO_DIR."
+	echo "    Always pulls from origin/main into local main branch."
+	echo ""
+	exit
+}
+
+[ "$action" = "usage" ] && usage
+
+cd "$TODO_DIR"
+git fetch origin
+git merge origin/main
