@@ -78,6 +78,7 @@ in {
 
           markdown
           markdown_inline
+          todotxt
 
           gitcommit
           gitignore
