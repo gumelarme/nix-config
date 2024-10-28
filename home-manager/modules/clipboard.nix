@@ -11,11 +11,13 @@ in {
     enable = mkEnableOption "Enable xclip with pbcopy/pbpaste utilities";
   };
   config = mkIf cfg.enable {
-    home.packages = [pkgs.xclip];
+    home.packages = [pkgs.wl-clipboard];
     programs.zsh = {
       shellAliases = {
-        pbcopy = "xclip -selection clipboard";
-        pbpaste = "xclip -selection clipboard -o";
+        # pbcopy = "xclip -selection clipboard";
+        # pbpaste = "xclip -selection clipboard -o";
+        pbcopy = "wl-copy";
+        pbpaste = "wl-paste";
       };
     };
   };
