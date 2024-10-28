@@ -13,8 +13,13 @@ with lib; let
 in {
   options.modules.firefox.enable = mkEnableOption "Enable firefox configuration";
   config = mkIf cfg.enable {
+    home.file."${config.xdg.configHome}/tridactyl/tridactylrc".source = ./tridactylrc;
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox.override {
+        cfg = {enableTridactylNative = true; };
+      };
+
       profiles.crockpot-browser = {
         isDefault = true;
         settings = {
