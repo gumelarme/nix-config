@@ -16,10 +16,7 @@ in {
     home.file."${config.xdg.configHome}/tridactyl/tridactylrc".source = ./tridactylrc;
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox.override {
-        cfg = {enableTridactylNative = true; };
-      };
-
+      nativeMessagingHosts = [pkgs.tridactyl-native];
       profiles.crockpot-browser = {
         isDefault = true;
         settings = {
