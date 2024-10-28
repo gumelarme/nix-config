@@ -8,6 +8,7 @@
     ./lowbatt-notification.nix
     ./mopidy.nix
     ./greenclip.nix
+    ./ding_dong.nix
     # Prevent
   ];
 
