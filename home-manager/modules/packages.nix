@@ -1,9 +1,14 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
+{pkgs, ...}: 
+let 
+  # use pkgs.osx on darwin, this also utilize the cache
+  # so less package building is required
+  packages = if pkgs.stdenv.isDarwin then pkgs.darwin-pkgs else pkgs;
+in
+{
+  home.packages = with packages; [
     ttdl
 
     # System Utils
-    git
     fd
     tree
     less

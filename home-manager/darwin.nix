@@ -12,6 +12,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+      outputs.overlays.darwin-packages
       outputs.overlays.nixos-2311-packages
     ];
 

@@ -34,4 +34,11 @@
       pkgs = prev;
     };
   };
+
+  darwin-packages = final: _prev: {
+    darwin-pkgs = import inputs.nixpkgs-darwin {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
 }

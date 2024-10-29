@@ -88,7 +88,7 @@
     homeConfigurations = {
       "kasuari@crockpot" = home-manager.lib.homeManagerConfiguration {
         pkgs =
-          nixpkgs-unstable.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          nixpkgs-unstable.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
@@ -99,7 +99,7 @@
 
       "gu@osx" = home-manager.lib.homeManagerConfiguration {
         pkgs =
-          nixpkgs-darwin.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
+          nixpkgs-unstable.legacyPackages.x86_64-darwin;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
