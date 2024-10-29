@@ -43,11 +43,32 @@ in {
       plugins.which-key = {
         enable = true;
         settings.spec = [
-          { __unkeyed = "<leader>p"; desc = "Project"; }
-          { __unkeyed = "<leader>b"; desc = "Buffers"; }
-          { __unkeyed = "<leader>s"; desc = "Search";}
-          { __unkeyed = "<leader>z"; desc = "Zettel";}
+          {
+            __unkeyed = "<leader>p";
+            desc = "Project";
+          }
+          {
+            __unkeyed = "<leader>b";
+            desc = "Buffers";
+          }
+          {
+            __unkeyed = "<leader>s";
+            desc = "Search";
+          }
+          {
+            __unkeyed = "<leader>z";
+            desc = "Zettel";
+          }
         ];
+      };
+
+      plugins.neo-tree = {
+        enable = true;
+        enableDiagnostics = true;
+        enableGitStatus = true;
+        enableModifiedMarkers = true;
+        enableRefreshOnWrite = true;
+        closeIfLastWindow = true;
       };
 
       opts = let

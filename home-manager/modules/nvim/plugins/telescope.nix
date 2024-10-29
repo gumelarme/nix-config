@@ -15,7 +15,6 @@ in {
         modules.icons = {};
       };
 
-
       # TODO: Telescope find and insert filepath
       plugins.telescope = {
         enable = true;
