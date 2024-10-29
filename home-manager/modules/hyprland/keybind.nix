@@ -31,7 +31,7 @@ in {
       (bp "Z" browser)
       (bp "R" menu)
       (bp "T" fileManager)
-      (bp "SHIFT+R" browser-private)
+      (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
       (bp "Backspace" "ags -t bar")
 
