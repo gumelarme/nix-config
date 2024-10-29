@@ -31,7 +31,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.nixvim.plugins.zk = {
       enable = cfg.nvimPluginEnable;
-      picker = "fzf";
+      settings.picker = "fzf";
     };
 
     programs.zk = let

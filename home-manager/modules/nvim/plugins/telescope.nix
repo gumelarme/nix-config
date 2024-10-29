@@ -8,6 +8,14 @@ in {
   config = lib.mkIf cfg.enable {
     programs.nixvim = {
       globals.mapleader = " ";
+
+      plugins.mini = {
+        enable = true;
+        mockDevIcons = true;
+        modules.icons = {};
+      };
+
+
       # TODO: Telescope find and insert filepath
       plugins.telescope = {
         enable = true;

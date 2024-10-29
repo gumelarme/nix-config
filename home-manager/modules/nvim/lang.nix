@@ -26,8 +26,8 @@ in {
         enable = true;
         servers = {
           marksman.enable = true;
-          nil-ls.enable = true;
-          lua-ls.enable = true;
+          nil_ls.enable = true;
+          lua_ls.enable = true;
           html.enable = true;
           tailwindcss.enable = true;
           gleam.enable = true;
@@ -36,7 +36,7 @@ in {
           # pyright.enable = true;
           # pylyzer.enable = true;
 
-          typst-lsp = {
+          typst_lsp = {
             enable = true;
             rootDir = ''
               function (fname)
@@ -59,7 +59,7 @@ in {
       plugins.ts-context-commentstring.enable = true;
       plugins.treesitter = {
         enable = true;
-        indent = true;
+        settings.indent.enable = true;
         grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
           c
           go

@@ -20,8 +20,8 @@
 
     kmonad.url = "github:kmonad/kmonad?ref=0.4.2&dir=nix";
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim/main";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

@@ -42,11 +42,12 @@ in {
 
       plugins.which-key = {
         enable = true;
-        registrations = {
-          "<leader>p" = "Project";
-          "<leader>b" = "Buffers";
-          "<leader>s" = "Search";
-        };
+        settings.spec = [
+          { __unkeyed = "<leader>p"; desc = "Project"; }
+          { __unkeyed = "<leader>b"; desc = "Buffers"; }
+          { __unkeyed = "<leader>s"; desc = "Search";}
+          { __unkeyed = "<leader>z"; desc = "Zettel";}
+        ];
       };
 
       opts = let
