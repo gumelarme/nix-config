@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./modules 
+    ./modules
 
     ./modules/nvim
     ./modules/tmux

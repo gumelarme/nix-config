@@ -1,5 +1,4 @@
-{pkgs, ... }: {
-
+{pkgs, ...}: {
   systemd.user.timers.dingdong = {
     Unit.Description = "Hourly alarm notifications";
     Timer = {
@@ -18,7 +17,7 @@
     Unit.Description = "Dingdong notification";
     Service = {
       PassEnvironment = "DISPLAY";
-      ExecStart = let 
+      ExecStart = let
         notifier = "${pkgs.dunst}/bin/dunstify";
         date = "${pkgs.coreutils}/bin/date";
         timeout = toString 10000;

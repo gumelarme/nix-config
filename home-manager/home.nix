@@ -5,11 +5,11 @@
   ...
 }: {
   imports = [
-    ./wayland.nix 
+    ./wayland.nix
 
-    ./modules 
-    ./modules/xdg 
-    ./modules/services 
+    ./modules
+    ./modules/xdg
+    ./modules/services
 
     ./modules/todo
     ./modules/nvim
@@ -18,12 +18,11 @@
     ./modules/shell
     ./modules/firefox
     ./modules/wezterm
-    ./modules/hyprland 
+    ./modules/hyprland
     ./modules/dev-tools
     ./modules/fonts.nix
     ./modules/typeset.nix
     ./modules/clipboard.nix
-
   ];
 
   nixpkgs = {

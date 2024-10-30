@@ -6,7 +6,10 @@
 }:
 with lib; let
   cfg = config.modules.hostname;
-  packages = if pkgs.stdenv.isDarwin then pkgs.darwin-pkgs else pkgs;
+  packages =
+    if pkgs.stdenv.isDarwin
+    then pkgs.darwin-pkgs
+    else pkgs;
 in {
   options.modules.hostname = mkOption {
     type = types.str;
