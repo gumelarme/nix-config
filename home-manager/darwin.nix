@@ -4,7 +4,18 @@
   pkgs,
   ...
 }: {
-  imports = [./modules];
+  imports = [
+    ./modules 
+
+    ./modules/nvim
+    ./modules/tmux
+    ./modules/rofi
+    ./modules/shell
+    ./modules/wezterm
+    ./modules/dev-tools
+    ./modules/fonts.nix
+    ./modules/typeset.nix
+  ];
 
   nixpkgs = {
     overlays = [

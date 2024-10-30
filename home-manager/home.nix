@@ -4,7 +4,27 @@
   pkgs,
   ...
 }: {
-  imports = [./modules ./modules/xdg ./modules/services ./wayland.nix ./modules/hyprland ./modules/todo];
+  imports = [
+    ./wayland.nix 
+
+    ./modules 
+    ./modules/xdg 
+    ./modules/services 
+
+    ./modules/todo
+    ./modules/nvim
+    ./modules/tmux
+    ./modules/rofi
+    ./modules/shell
+    ./modules/firefox
+    ./modules/wezterm
+    ./modules/hyprland 
+    ./modules/dev-tools
+    ./modules/fonts.nix
+    ./modules/typeset.nix
+    ./modules/clipboard.nix
+
+  ];
 
   nixpkgs = {
     overlays = [
