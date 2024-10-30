@@ -152,6 +152,12 @@
       defaultDir = "${config.xdg.userDirs.extraConfig.XDG_SYNC_DIR}/zk/inbox";
     };
 
+    todo = {
+      enable = true;
+      directory = "${config.xdg.userDirs.extraConfig.XDG_SYNC_DIR}/todo";
+      configDir = "${config.xdg.configHome}/todo-txt";
+    };
+
     dev-tools = {
       emacs.enable = true;
       python.enable = true;

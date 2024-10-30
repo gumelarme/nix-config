@@ -3,19 +3,32 @@
   pkgs,
   config,
   ...
-}: {
-  config = let
-    configDir = "${config.xdg.configHome}/todo-txt";
-    configActionDir = "${configDir}/actions";
-    configFile = "${configDir}/todo.cfg";
-  in {
-    home.packages = with pkgs; [
-      todo-txt-cli
-    ];
+}:
+let
+  cfg = config.modules.todo;
+  configFile = "${cfg.configDir}/todo.cfg"; 
+  configActionDir = "${cfg.configDir}/actions";
+in {
+  options.modules.todo = {
+    enable = lib.mkEnableOption "Enable todo-txt";
+    directory = lib.mkOption {
+      type = lib.types.path;
+      description = "todo-txt workspace";
+    };
+    configDir = lib.mkOption {
+      type = lib.types.path;
+      description = "todo-txt config directory";
+    };
+  };
 
+  config = lib.mkIf cfg.enable {
     programs.zsh.shellAliases = lib.mkIf config.modules.shell.enable {
       t = "todo.sh -d ${configFile}";
     };
+
+    home.packages = with pkgs; [
+      todo-txt-cli
+    ];
 
     home.file = let
       pluginsPath = map (path: ./actions + path) [
@@ -61,4 +74,10 @@
         }
       ];
   };
+
+  # _config = let
+  #   configDir = "${config.xdg.configHome}/todo-txt";
+  #   configActionDir = "${configDir}/actions";
+  #   configFile = "${configDir}/todo.cfg";
+  # in { };
 }
