@@ -178,6 +178,10 @@
 
       caffeine-ng
 
+      # VM
+      qemu
+      quickemu
+
       # =Dev
       distrobox
       xorg.xhost # allow distrobox to run gui program
