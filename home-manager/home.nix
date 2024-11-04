@@ -244,7 +244,7 @@
       yesplaymusic
       # mediainfo
       # gimp  # annoyingly replaces xdg-mime for image/*
-      # blender
+      blender
       # godot
       # inkscape
       # glaxnimate

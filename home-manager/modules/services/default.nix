@@ -54,4 +54,16 @@
       };
     };
   };
+
+  services.hyprpaper = let
+    treeHouse = "${config.xdg.userDirs.pictures}/wallpapers/adventure-time-tree-house.png";
+  in {
+    enable = true;
+    settings = {
+      preload = [treeHouse];
+      wallpaper = [
+        ",${treeHouse}"
+      ];
+    };
+  };
 }

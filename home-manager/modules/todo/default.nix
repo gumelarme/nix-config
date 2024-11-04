@@ -3,10 +3,9 @@
   pkgs,
   config,
   ...
-}:
-let
+}: let
   cfg = config.modules.todo;
-  configFile = "${cfg.configDir}/todo.cfg"; 
+  configFile = "${cfg.configDir}/todo.cfg";
   configActionDir = "${cfg.configDir}/actions";
 in {
   options.modules.todo = {
