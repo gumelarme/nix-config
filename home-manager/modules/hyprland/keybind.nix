@@ -31,6 +31,7 @@ in {
       (bp "Z" browser)
       (bp "R" menu)
       (bp "T" fileManager)
+      (bp "S" "crock-snap")
       (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
       (bp "Backspace" "ags -t bar")
@@ -60,8 +61,7 @@ in {
     ]
     ++ (map ws workspaces)
     ++ (map move workspaces)
-    ++ specialWorkspace "backslash" "scratch"
-    ++ specialWorkspace "S" "magic";
+    ++ specialWorkspace "backslash" "scratch";
 
   bindel = let
     resize = key: delta: makeBinding "SHIFT+${key}" "resizeactive, ${delta}";
@@ -70,12 +70,12 @@ in {
     (resize "L" "10 0")
     (resize "J" "0 10")
     (resize "K" "0 -10")
-    ", XF86AudioRaiseVolume, exec, crock volume 5%+"
-    ", XF86AudioLowerVolume, exec, crock volume 5%-"
-    ", XF86AudioMute, exec, crock volume toggle"
-    ", XF86AudioMicMute, exec, crock mic-toggle"
-    ", XF86MonBrightnessUp, exec, crock brightness set 5%+"
-    ", XF86MonBrightnessDown, exec, crock brightness set 5%-"
+    ", XF86AudioRaiseVolume, exec, crock-volume 5%+"
+    ", XF86AudioLowerVolume, exec, crock-volume 5%-"
+    ", XF86AudioMute, exec, crock-volume toggle"
+    ", XF86AudioMicMute, exec, crock-mic-toggle"
+    ", XF86MonBrightnessUp, exec, crock-brightness 5%+"
+    ", XF86MonBrightnessDown, exec, crock-brightness 5%-"
   ];
 
   bindm = [

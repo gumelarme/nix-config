@@ -8,6 +8,7 @@
     ./wayland.nix
 
     ./modules
+    ./scripts
     ./common.nix
     ./modules/xdg
     ./modules/services
@@ -287,21 +288,5 @@
       usbutils
 
       nur.repos.linyinfeng.wemeet
-    ]
-    ++ (
-      let
-        # Add scripts to bin from file
-        fileToScripts = file:
-          pkgs.writeShellScriptBin (builtins.baseNameOf file)
-          (builtins.readFile file);
-        getFilesFromDir = dir: files: map (f: dir + "/${f}") files;
-      in
-        map
-        fileToScripts
-        (getFilesFromDir ./scripts ["summon" "crock" "crock-change-volume" "crock-change-brightness" "crock-gen-qrcode" "crock-mic-toggle" "crock-rofi-power-menu"])
-    );
-
-  # home.sessionVariables = {
-  #   LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ stdenv.cc.cc zlib ];
-  # };
+    ];
 }

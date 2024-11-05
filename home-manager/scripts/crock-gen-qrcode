@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-qrencode -l H -d 75 -s 10 -o - "$(wl-paste)" | feh --scale-down -
