@@ -29,6 +29,7 @@
 
             exec-once = [
               "ags"
+              "${pkgs.wpaperd}/bin/wpaperd -d "
             ];
           }
         ]);

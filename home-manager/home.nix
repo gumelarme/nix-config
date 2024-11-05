@@ -169,6 +169,17 @@
     };
   };
 
+  programs.wpaperd = {
+    enable = true;
+    settings = {
+      default = {
+        duration = "3h";
+        mode = "center";
+        path = "${config.xdg.userDirs.pictures}/wallpapers";
+      };
+    };
+  };
+
   home.packages = with pkgs;
     [
       chromium
