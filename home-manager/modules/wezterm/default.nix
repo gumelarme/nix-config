@@ -23,7 +23,7 @@ in {
   # TODO: Improve readability
   config = mkMerge [
     (mkIf (cfg.enable && cfg.configOnly) {
-      home.file."${config.home.homeDirectory}/.config/wezterm/wezterm.lua".source =
+      home.file."${config.common.configHome}/wezterm/wezterm.lua".source =
         ./wezterm.lua;
     })
 

@@ -10,7 +10,7 @@ in {
     nvimPluginEnable = lib.mkEnableOption "Enable nvim plugins";
     defaultDir = lib.mkOption {
       type = lib.types.str;
-      default = "${config.home.homeDirectory}/sync/zk";
+      default = "${config.common.sync}/zk/inbox";
       description = "Default directory location of the zk notes";
     };
 
@@ -18,7 +18,7 @@ in {
       type = lib.types.attrsOf lib.types.str;
       default = {};
       example = {
-        zkw = "${config.home.homeDirectory}/sync/zk/work";
+        zkw = "${config.common.sync}/zk/work";
       };
 
       description = ''

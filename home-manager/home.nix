@@ -8,6 +8,7 @@
     ./wayland.nix
 
     ./modules
+    ./common.nix
     ./modules/xdg
     ./modules/services
 
@@ -99,6 +100,11 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
 
+  common = {
+    sync = config.xdg.userDirs.extraConfig.XDG_SYNC_DIR;
+    configHome = config.xdg.configHome;
+  };
+
   modules = {
     hostname = "crockpot";
     rofi.enable = true;
@@ -146,16 +152,10 @@
       typst.enable = true;
     };
 
+    todo.enable = true;
     zettel = {
       enable = true;
       nvimPluginEnable = true;
-      defaultDir = "${config.xdg.userDirs.extraConfig.XDG_SYNC_DIR}/zk/inbox";
-    };
-
-    todo = {
-      enable = true;
-      directory = "${config.xdg.userDirs.extraConfig.XDG_SYNC_DIR}/todo";
-      configDir = "${config.xdg.configHome}/todo-txt";
     };
 
     dev-tools = {
