@@ -24,6 +24,7 @@
     ./modules/fonts.nix
     ./modules/typeset.nix
     ./modules/clipboard.nix
+    ./modules/screenshot.nix
   ];
 
   nixpkgs = {
@@ -100,8 +101,11 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
 
-  common = {
-    sync = config.xdg.userDirs.extraConfig.XDG_SYNC_DIR;
+  common = let
+    my = config.xdg.userDirs.extraConfig;
+  in {
+    sync = my.XDG_SYNC_DIR;
+    screenshot = my.XDG_SCREENSHOT_DIR;
     configHome = config.xdg.configHome;
   };
 
@@ -109,6 +113,7 @@
     hostname = "crockpot";
     rofi.enable = true;
     tmux.enable = true;
+    screenshot.displayMode = "wayland";
     neovim = {
       enable = true;
       lsp = true;

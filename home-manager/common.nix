@@ -8,6 +8,7 @@ with lib; let
 in {
   options.common = {
     sync = mkPathOption "Sync folder";
+    screenshot = mkPathOption "Screenshot folder";
     configHome = mkPathOption "Config home folder";
   };
 }
