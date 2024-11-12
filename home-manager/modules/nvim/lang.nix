@@ -36,15 +36,32 @@ in {
           # pyright.enable = true;
           # pylyzer.enable = true;
 
-          typst_lsp = {
+          # typst_lsp = {
+          #   enable = true;
+          #   rootDir = ''
+          #     function (fname)
+          #       return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
+          #     end
+          #   '';
+          # };
+          tinymist = {
             enable = true;
-            rootDir = ''
-              function (fname)
-                return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
-              end
-            '';
+            package = pkgs.stable.tinymist;
+            settings = {
+              exportPdf = "onDocumentHasTitle";
+              fontPaths = [
+                # FIXME: better directory pinning
+                "${config.home.homeDirectory}/.nix-profile/share/fonts"
+              ];
+
+              rootPath = ''
+                function (fname)
+                  return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
+                end
+              '';
+
+            };
           };
-          # tinymist.enable = true;
         };
 
         keymaps.lspBuf = {

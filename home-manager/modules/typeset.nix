@@ -34,14 +34,14 @@ in {
       ])
 
       (mkIf cfg.latex.enable [
-        texlive.combined.scheme-full
+        stable.texlive.combined.scheme-full
         (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
       ])
 
       (mkIf cfg.typst.enable [
-        typst
-        typstfmt
-        typst-lsp
+        stable.typst
+        stable.typstfmt
+        stable.typst-lsp
       ])
     ]);
   };

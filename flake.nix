@@ -76,7 +76,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          kmonad.nixosModules.default
+          # kmonad.nixosModules.default
           ./nixos/configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
         ];

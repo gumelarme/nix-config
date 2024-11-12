@@ -186,107 +186,115 @@
     };
   };
 
-  home.packages = with pkgs;
-    [
-      chromium
-      nb
-      # pomodoro
-      tomato-c
-
-      caffeine-ng
-
-      # VM
-      qemu
-      quickemu
-
-      # =Dev
-      distrobox
-      xorg.xhost # allow distrobox to run gui program
-
-      exercism
-      jetbrains.pycharm-professional
-      jetbrains.datagrip
-      jetbrains.webstorm
-      jetbrains.goland
-      jetbrains.rider
-      docker
-      # needed for building driver and access to postgres clis and lib
-      postgresql_12_jit
-
-      # System utils
-      trayer
-      dmenu
-      arandr
-      autorandr
-      qrencode
-      easyeffects # pipewire gui
-      # clang
-      gcc-unwrapped
-      zlib
-      libsForQt5.ark # gui archive
-      rofi-power-menu
-
-      # Browser
-      brave
-      qutebrowser
-
-      # Etc
-      v2ray
-      qv2ray
-      bitwarden
-      qbittorrent
-      pick-colour-picker
-      nicotine-plus
-      # fontforge;
-
-      # Documents
-      pandoc
-      zotero
-      stable.calibre
-      zathura
-      sioyek # pdf reader, research focused
-      xournalpp
-      lorien
-      libreoffice-qt
-      pdftk
-      pdfchain
-
-      # Media
-      feh
-      imagemagick
-      vlc
-      tauon
-      spotify
-      nomacs
-      yesplaymusic
-      # mediainfo
-      # gimp  # annoyingly replaces xdg-mime for image/*
-      blender
-      # godot
-      # inkscape
-      # glaxnimate
-
-      # Games
-      steam
-      steam-run
-
-      # Communication
-      qq
-      stable.discord
-      tdesktop
-
-      # Peripheral
-      xsane
-      sane-frontends
-      simple-scan
-      libsForQt5.skanlite
-      xboxdrv
-      # libwacom
-      # wacomtablet # KDE Config Module
-      xorg.xf86videoamdgpu
-      xorg.xf86videointel
-      usbutils
-
-      nur.repos.linyinfeng.wemeet
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+      ms-python.python
+      enkia.tokyo-night
     ];
+  };
+
+  home.packages = with pkgs; [
+    captive-browser
+    chromium
+    # pomodoro
+    tomato-c
+
+    caffeine-ng
+
+    # VM
+    qemu
+    quickemu
+
+    # =Dev
+    distrobox
+    xorg.xhost # allow distrobox to run gui program
+
+    exercism
+    stable.jetbrains.pycharm-professional
+    stable.jetbrains.datagrip
+    stable.jetbrains.webstorm
+    stable.jetbrains.goland
+    stable.jetbrains.rider
+    docker
+    # needed for building driver and access to postgres clis and lib
+    postgresql_12_jit
+
+    # System utils
+    trayer
+    dmenu
+    arandr
+    autorandr
+    qrencode
+    easyeffects # pipewire gui
+    # clang
+    gcc-unwrapped
+    zlib
+    libsForQt5.ark # gui archive
+    rofi-power-menu
+
+    # Browser
+    brave
+    qutebrowser
+
+    # Etc
+    v2ray
+    qv2ray
+    bitwarden
+    qbittorrent
+    pick-colour-picker
+    nicotine-plus
+    # fontforge;
+
+    # Documents
+    pandoc
+    zotero
+    stable.calibre
+    zathura
+    sioyek # pdf reader, research focused
+    xournalpp
+    lorien
+    libreoffice-qt
+    pdftk
+    pdfchain
+
+    # Media
+    feh
+    imagemagick
+    vlc
+    tauon
+    spotify
+    nomacs
+    yesplaymusic
+    # mediainfo
+    # gimp  # annoyingly replaces xdg-mime for image/*
+    stable.blender
+    # godot
+    # inkscape
+    # glaxnimate
+
+    # Games
+    steam
+    steam-run
+
+    # Communication
+    qq
+    stable.discord
+    tdesktop
+
+    # Peripheral
+    xsane
+    sane-frontends
+    simple-scan
+    libsForQt5.skanlite
+    xboxdrv
+    # libwacom
+    # wacomtablet # KDE Config Module
+    xorg.xf86videoamdgpu
+    xorg.xf86videointel
+    usbutils
+
+    nur.repos.linyinfeng.wemeet
+  ];
 }

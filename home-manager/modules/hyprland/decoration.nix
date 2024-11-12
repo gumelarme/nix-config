@@ -27,10 +27,12 @@
     rounding = 5;
     active_opacity = 1.0;
     inactive_opacity = 1.0;
-    drop_shadow = true;
-    shadow_range = 4;
-    shadow_render_power = 3;
-    "col.shadow" = "rgba(1a1a1aee)";
+    shadow = {
+      enabled = true;
+      range = 4;
+      render_power = 3;
+      color = "rgba(1a1a1aee)";
+    };
   };
 
   animations = {
@@ -45,9 +47,23 @@
       "workspaces, 1, 6, default"
     ];
   };
+  workspace = [
+    # Replicate smart gaps
+    "w[t1], gapsout:0, gapsin:0"
+    "w[tg1], gapsout:0, gapsin:0"
+    "f[1], gapsout:0, gapsin:0"
+  ];
 
   windowrulev2 = [
     "suppressevent maximize, class:.*"
     # "suppressevent fullscreen, class:.*"
+
+    # Replicate smart gaps
+    "bordersize 0, floating:0, onworkspace:w[t1]"
+    "rounding 0, floating:0, onworkspace:w[t1]"
+    "bordersize 0, floating:0, onworkspace:w[tg1]"
+    "rounding 0, floating:0, onworkspace:w[tg1]"
+    "bordersize 0, floating:0, onworkspace:f[1]"
+    "rounding 0, floating:0, onworkspace:f[1]"
   ];
 }
