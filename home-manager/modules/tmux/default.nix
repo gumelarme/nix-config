@@ -34,14 +34,18 @@ in {
           extrakto
 
           {
-            plugin = myplugins.fzf-session-switch;
-            extraConfig = "set -g @fzf-goto-session 'S'";
-          }
-          {
-            plugin = myplugins.capture-last-output;
+            plugin = resurrect;
             extraConfig = ''
-              set -g @command-capture-key o
-              set -g @command-capture-prompt-pattern '${config.home.username} at'
+              set -g @resurrect-dir '${config.common.configHome}/tmux/resurrect'
+            '';
+          }
+
+          {
+            plugin = myplugins.fzf-session-switch;
+            extraConfig = ''
+              set -g @fzf-goto-session 'S'
+              set -g @fzf-goto-win-width 50
+              set -g @fzf-goto-win-height 20
             '';
           }
         ];

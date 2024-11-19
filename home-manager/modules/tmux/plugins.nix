@@ -1,16 +1,4 @@
 {pkgs, ...}: {
-  capture-last-output = pkgs.tmuxPlugins.mkTmuxPlugin rec {
-    pname = "tmux-capture-last-command-output";
-    version = "bd2cca21bc32c2d6652d7b6fdc36cd61409ddd73";
-    pluginName = pname;
-    src = pkgs.fetchFromGitHub {
-      owner = "artemave";
-      repo = "tmux_capture_last_command_output";
-      rev = version;
-      hash = "sha256-mjk+K6uI5sw3a41NaZLuxXhnYgilZ4VpoaPLp8fgEGk=";
-    };
-  };
-
   fzf-session-switch = pkgs.tmuxPlugins.mkTmuxPlugin rec {
     pname = "fzf-session-switch";
     version = "v2.1";
