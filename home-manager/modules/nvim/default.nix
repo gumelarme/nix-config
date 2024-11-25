@@ -35,9 +35,9 @@ in {
         lualine.enable = true;
         commentary.enable = true;
         todo-comments.enable = true;
-        # which-key.enable = true;
         gitsigns.enable = true;
         nvim-ufo.enable = true; # folding
+        trouble.enable = true;
       };
 
       plugins.which-key = {
