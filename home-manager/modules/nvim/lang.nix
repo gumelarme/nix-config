@@ -20,6 +20,13 @@ in {
         cmp-nvim-lsp.enable = cfg.completion;
         cmp-buffer.enable = cfg.completion;
         cmp-path.enable = cfg.completion;
+        emmet = {
+          enable = true;
+          settings = {
+            leader_key = "<c-y>";
+            mode = "a";
+          };
+        };
       };
 
       plugins.lsp = lib.mkIf cfg.lsp {
@@ -31,19 +38,8 @@ in {
           html.enable = true;
           tailwindcss.enable = true;
           gleam.enable = true;
+          ts_ls.enable = true;
 
-          # pylsp.enable = true;
-          # pyright.enable = true;
-          # pylyzer.enable = true;
-
-          # typst_lsp = {
-          #   enable = true;
-          #   rootDir = ''
-          #     function (fname)
-          #       return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
-          #     end
-          #   '';
-          # };
           tinymist = {
             enable = true;
             package = pkgs.stable.tinymist;
@@ -104,9 +100,11 @@ in {
         ];
       };
 
+      plugins.luasnip.enable = true;
       plugins.cmp = lib.mkIf cfg.completion {
         enable = true;
         settings = {
+          snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
           autoEnableSources = true;
           performance = {
             debounce = 60;
@@ -134,9 +132,9 @@ in {
             "<C-e>" = "cmp.mapping.abort()";
             "<C-b>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<C-CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+            "<C-BS>" = "cmp.mapping.complete()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            # "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
           };
         };
       };
