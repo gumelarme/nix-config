@@ -59,13 +59,13 @@
   home = {
     username = "kasuari";
     homeDirectory = "/home/kasuari";
-    # pointerCursor = {
-    #   package = pkgs.catppuccin-cursors.lattePeach;
-    #   name = "Catppuccin-Latte-Peach-Cursors";
-    #   size = 32;
-    #   x11.enable = true;
-    #   gtk.enable = true;
-    # };
+    pointerCursor = {
+      package = pkgs.catppuccin-cursors.lattePeach;
+      name = "catppuccin-latte-peach-cursors";
+      size = 48;
+      x11.enable = true;
+      gtk.enable = true;
+    };
   };
 
   gtk = {
