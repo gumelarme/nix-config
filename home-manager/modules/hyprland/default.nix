@@ -16,8 +16,8 @@
       (lib.map (file: import file {inherit lib pkgs;}) [./keybind.nix ./decoration.nix]
         ++ [
           {
-            env = let 
-              cursor = config.home.pointerCursor; 
+            env = let
+              cursor = config.home.pointerCursor;
               # remove suffix cursor from the name
               splitted = lib.splitString "-" cursor.name;
               hyprcursor_name = builtins.concatStringsSep "-" (lib.lists.take ((builtins.length splitted) - 1) splitted);

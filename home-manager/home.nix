@@ -105,9 +105,9 @@
   common = let
     my = config.xdg.userDirs.extraConfig;
   in {
+    inherit (config.xdg) configHome;
     sync = my.XDG_SYNC_DIR;
     screenshot = my.XDG_SCREENSHOT_DIR;
-    configHome = config.xdg.configHome;
   };
 
   modules = {
@@ -196,6 +196,7 @@
   };
 
   home.packages = with pkgs; [
+    foot
     captive-browser
     chromium
     # pomodoro
@@ -218,8 +219,6 @@
     stable.jetbrains.goland
     stable.jetbrains.rider
     docker
-    # needed for building driver and access to postgres clis and lib
-    postgresql_12_jit
 
     # System utils
     trayer

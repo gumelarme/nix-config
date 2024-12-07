@@ -19,7 +19,10 @@ in {
           ibm-plex
           dejavu_fonts
           source-code-pro
-          (nerdfonts.override {fonts = ["IBMPlexMono" "DejaVuSansMono" "Monaspace"];})
+          # (nerdfonts.override {fonts = ["IBMPlexMono" "DejaVuSansMono" "Monaspace"];})
+          nerd-fonts.blex-mono
+          nerd-fonts.dejavu-sans-mono
+          nerd-fonts.monaspace
         ])
 
         (mkIf cfg.extra [

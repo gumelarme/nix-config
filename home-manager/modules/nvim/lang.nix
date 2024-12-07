@@ -55,7 +55,6 @@ in {
                   return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
                 end
               '';
-
             };
           };
         };
