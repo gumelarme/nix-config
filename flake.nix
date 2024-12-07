@@ -17,7 +17,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    kmonad.url = "github:kmonad/kmonad?ref=0.4.2&dir=nix";
     nixvim = {
       url = "github:nix-community/nixvim/main";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -31,10 +30,8 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    nixpkgs-darwin,
     nixos-hardware,
     home-manager,
-    kmonad,
     nixvim,
     ...
   } @ inputs: let
@@ -77,7 +74,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          # kmonad.nixosModules.default
           ./nixos/configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
         ];
@@ -116,6 +112,7 @@
         hooks = {
           alejandra.enable = true;
           statix.enable = true;
+          deadnix.enable = true;
         };
       };
     });

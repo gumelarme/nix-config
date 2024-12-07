@@ -1,12 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.modules.dev-tools;
-in {
+{pkgs, ...}: {
   imports = [
     ./elm.nix
     ./emacs.nix

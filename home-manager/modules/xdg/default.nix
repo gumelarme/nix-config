@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: {
+{config, ...}: {
   imports = [./mime.nix];
 
   xdg.userDirs = let
