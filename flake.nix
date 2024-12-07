@@ -14,7 +14,6 @@
     nur.url = "github:nix-community/NUR";
 
     # Home manager
-    # home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
@@ -25,6 +24,7 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs = {
@@ -57,8 +57,9 @@
     # Acessible through 'nix develop' or 'nix-shell' (legacy)
     devShells = forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+      checks = self.checks.${system}.pre-commit-check;
     in
-      import ./shell.nix {inherit pkgs;});
+      import ./shell.nix {inherit checks pkgs;});
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
@@ -108,5 +109,15 @@
         ];
       };
     };
+
+    checks = forAllSystems (system: {
+      pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          statix.enable = true;
+        };
+      };
+    });
   };
 }

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   general = {
     gaps_in = 3;
     gaps_out = 10;
