@@ -36,7 +36,6 @@
       outputs.overlays.stable-packages
       outputs.overlays.nur-packages
       (_self: _super: {fcitx-engines = pkgs.fcitx5;})
-
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
