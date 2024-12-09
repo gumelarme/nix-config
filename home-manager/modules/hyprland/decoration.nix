@@ -45,6 +45,7 @@ _: {
       "borderangle, 1, 8, default"
       "fade, 1, 7, default"
       "workspaces, 1, 6, default"
+      "specialWorkspace, 1, 4, default, slidefadevert -80%"
     ];
   };
   workspace = [
@@ -52,6 +53,9 @@ _: {
     "w[t1], gapsout:0, gapsin:0"
     "w[tg1], gapsout:0, gapsin:0"
     "f[1], gapsout:0, gapsin:0"
+
+    # Make special workspace noticable
+    "special:scratch, rounding:true, border:true, bordersize:2, gapsout:80, on-created-empty:foot -e tmux new -As scratch"
   ];
 
   windowrulev2 = [
@@ -65,5 +69,9 @@ _: {
     "rounding 0, floating:0, onworkspace:w[tg1]"
     "bordersize 0, floating:0, onworkspace:f[1]"
     "rounding 0, floating:0, onworkspace:f[1]"
+
+    # Make special workspace noticable
+    "rounding 10, onworkspace:s[1]"
+    "bordersize 2, onworkspace:s[1]"
   ];
 }
