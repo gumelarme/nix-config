@@ -17,6 +17,15 @@ in {
     programs.firefox = {
       enable = true;
       nativeMessagingHosts = [pkgs.tridactyl-native];
+
+      profiles.guest = {
+        id = 9;
+        isDefault = false;
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          foxyproxy-standard
+        ];
+      };
+
       profiles.crockpot-browser = {
         isDefault = true;
         settings = {
@@ -38,6 +47,8 @@ in {
           default = "Google";
           engines = {
             "Nix Packages" = {
+              definedAliases = ["@np"];
+              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               urls = [
                 {
                   template = "https://search.nixos.org/packages";
@@ -47,20 +58,28 @@ in {
                       value = "packages";
                     }
                     {
+                      name = "channel";
+                      value = "unstable";
+                    }
+                    {
                       name = "query";
                       value = "{searchTerms}";
                     }
                   ];
                 }
               ];
-              definedAliases = ["@np"];
-              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
             "Nix Options" = {
+              definedAliases = ["@no"];
+              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               urls = [
                 {
                   template = "https://search.nixos.org/options";
                   params = [
+                    {
+                      name = "channel";
+                      value = "unstable";
+                    }
                     {
                       name = "type";
                       value = "packages";
@@ -72,10 +91,10 @@ in {
                   ];
                 }
               ];
-              definedAliases = ["@no"];
-              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
             "YouTube" = {
+              definedAliases = ["@yt"];
+              icon = youtube-icon;
               urls = [
                 {
                   template = "https://www.youtube.com/results";
@@ -87,15 +106,18 @@ in {
                   ];
                 }
               ];
-              definedAliases = ["@yt"];
-              icon = youtube-icon;
             };
-
             "Home Manager" = {
+              definedAliases = ["@hm"];
+              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               urls = [
                 {
                   template = "https://home-manager-options.extranix.com";
                   params = [
+                    {
+                      name = "release";
+                      value = "master";
+                    }
                     {
                       name = "query";
                       value = "{searchTerms}";
@@ -103,8 +125,6 @@ in {
                   ];
                 }
               ];
-              definedAliases = ["@hm"];
-              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
           };
         };

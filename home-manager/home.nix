@@ -195,8 +195,8 @@
   };
 
   home.packages = with pkgs; [
+    ollama
     foot
-    captive-browser
     chromium
     # pomodoro
     tomato-c
