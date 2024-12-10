@@ -98,6 +98,11 @@ in {
         splitright = true;
         wrap = false;
       };
+
+      # TODO: Convert to lua options
+      extraConfigVim = ''
+        hi Visual guibg=#555555
+      '';
     };
   };
 }
