@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./modules
+    ./common.nix
 
     ./modules/nvim
     ./modules/tmux
@@ -40,10 +41,17 @@
     homeDirectory = "/Users/gu";
   };
 
-  home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
+  home.sessionPath = ["${config.common.configHome}/emacs/bin"];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
+
+  common = let
+    home = config.home.homeDirectory;
+  in {
+    sync = "${home}/sync";
+    configHome = "${home}/.config";
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
@@ -67,6 +75,7 @@
       userName = "gumendol";
       userEmail = "gumelar@gpted.com";
       global-gitignore = [
+        ".direnv"
         "_sandbox"
         ".secrets"
         ".vcr_library"
@@ -83,7 +92,7 @@
     };
 
     zettel = let
-      zkDir = "${config.home.homeDirectory}/sync/zk";
+      zkDir = "${config.common.sync}/zk";
     in {
       enable = true;
       nvimPluginEnable = true;
@@ -112,7 +121,6 @@
   };
 
   home.packages = with pkgs; [
-    taskwarrior
     exercism
     nb
     pipx

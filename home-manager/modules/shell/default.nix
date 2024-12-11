@@ -7,6 +7,7 @@
   # C-r but better
   programs.atuin = {
     enable = true;
+    package = pkgs.stable.atuin;
     enableZshIntegration = true;
     flags = ["--disable-up-arrow"];
     settings = {
