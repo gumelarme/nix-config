@@ -34,7 +34,6 @@ in {
       plugins = {
         lualine.enable = true;
         commentary.enable = true;
-        todo-comments.enable = true;
         gitsigns.enable = true;
         nvim-ufo.enable = true; # folding
         trouble.enable = true;
