@@ -43,6 +43,13 @@ in {
           tinymist = {
             enable = true;
             package = pkgs.stable.tinymist;
+            extraOptions = {
+              # this resolve the CJK content issue on LSP,
+              # but need to be passed on every single servers
+              # Should be fixed by neovim by v0.10.3
+              offset_encoding = "utf-8";
+            };
+
             settings = {
               exportPdf = "onDocumentHasTitle";
               fontPaths = [
@@ -50,10 +57,8 @@ in {
                 "${config.home.homeDirectory}/.nix-profile/share/fonts"
               ];
 
-              rootPath.__raw = ''
-                function (fname)
-                  return require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
-                end
+              rootPath._-raw = ''
+                require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
               '';
             };
           };
