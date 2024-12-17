@@ -57,6 +57,7 @@ _: {
 
     # Make special workspace noticable
     "special:scratch, rounding:true, border:true, bordersize:2, gapsout:80, on-created-empty:foot -e tmux new -As scratch"
+    "special:hidden, rounding:true, border:true, bordersize:2, gapsout:20"
   ];
 
   windowrulev2 = [
