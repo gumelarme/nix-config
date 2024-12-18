@@ -78,7 +78,6 @@ in {
         clipboard = "unnamedplus";
         tabstop = tab_size;
         softtabstop = tab_size;
-        showtabline = 0;
         expandtab = true;
         smartindent = true;
         shiftwidth = tab_size;
@@ -96,6 +95,11 @@ in {
         splitkeep = "screen";
         splitright = true;
         wrap = false;
+
+        # Always show tablline
+        # Showing modified flag, column number, filepath
+        showtabline = 2;
+        tabline = "%(%M:%c\ %f%)";
       };
 
       # TODO: Convert to lua options
