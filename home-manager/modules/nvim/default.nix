@@ -28,7 +28,7 @@ in {
 
       colorschemes.dracula = {
         enable = true;
-        colorterm = false;
+        settings.colorterm = false;
       };
 
       plugins = {

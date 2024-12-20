@@ -57,7 +57,7 @@ in {
                 "${config.home.homeDirectory}/.nix-profile/share/fonts"
               ];
 
-              rootPath._-raw = ''
+              rootPath.__raw = ''
                 require('lspconfig').util.root_pattern('Makefile', '.git')(fname) or vim.fn.getcwd()
               '';
             };

@@ -264,7 +264,6 @@
     tauon
     spotify
     nomacs
-    yesplaymusic
     # mediainfo
     # gimp  # annoyingly replaces xdg-mime for image/*
     stable.blender
