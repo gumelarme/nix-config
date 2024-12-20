@@ -15,10 +15,10 @@
       global = {
         monitor = 0;
         follow = "mouse";
-        width = 300;
-        height = 300;
+        width = "(300, 500)";
+        height = "(0, 300)";
         origin = "top-right";
-        offset = "5x30";
+        offset = "(5, 30)";
         scale = 0;
         notification_limit = 0; # 0 means no limit
         progress_bar = true;
@@ -34,10 +34,11 @@
         transparency = 10;
         separator_height = 1;
         padding = 8;
-        horizontal_padding = 10;
+        horizontal_padding = 15;
         text_icon_padding = 0;
         frame_width = 0;
         frame_color = "#282a36";
+        gap_size = 2;
 
         # Define a color for the separator.
         # possible values are:
@@ -96,10 +97,7 @@
         #   %n  progress value if set without any extra characters
         #   %%  Literal %
         # Markup is allowed
-        format = ''
-          %s %p
-          %b'';
-
+        format = ''<b>%s</b>\n%b'';
         # Alignment of message text.
         # Possible values are "left", "center" and "right".
         alignment = "left";
@@ -120,8 +118,8 @@
         history_length = 20;
         ### Misc/Advanced ###
 
-        dmenu = "/usr/bin/dmenu -p dunst";
-        # browser = "/usr/bin/firefox -new-tab";
+        dmenu = "${pkgs.dmenu}/bin/dmenu -p dunst";
+        browser = "${pkgs.firefox}/bin/firefox -new-tab";
         # Always run rule-defined scripts, even if the notification is suppressed
         always_run_script = true;
 
@@ -144,7 +142,7 @@
         # These values can be strung together for each mouse event, and
         # will be executed in sequence.
         mouse_left_click = "close_current";
-        mouse_middle_click = ["do_action close_current"];
+        mouse_middle_click = "do_action, close_current";
         mouse_right_click = "close_all";
       };
 
