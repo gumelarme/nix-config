@@ -13,7 +13,7 @@
     # package = pkgs.unstable.hyprland;
     settings =
       lib.mkMerge
-      (lib.map (file: import file {inherit lib pkgs;}) [./keybind.nix ./decoration.nix]
+      (lib.map (file: import file {inherit lib pkgs config;}) [./keybind.nix ./decoration.nix]
         ++ [
           {
             env = let

@@ -1,8 +1,6 @@
 # === Wayland and hyprland related pacakges
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    wofi
-
     ags
     eww
 

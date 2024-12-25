@@ -1,4 +1,9 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   super = "SUPER";
   makeBinding = shortcut: action: let
     keys = lib.strings.splitString "+" shortcut;
@@ -20,21 +25,24 @@
   ];
 
   # Programs
-  terminal = "foot -e tmux new -As default";
-  fileManager = "thunar";
-  menu = "wofi --show drun";
-  browser = "firefox";
-  browser-private = "firefox --private-window";
+  terminal = "${pkgs.foot}/bin/foot -e tmux new -As default";
+  fileManager = "${pkgs.xfce.thunar}/bin/thunar";
+  rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
+  menu = "${rofi} -show drun";
+  power-menu = "${rofi} -show power-menu -modi power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
+  browser = "${pkgs.firefox}/bin/firefox";
+  browser-private = "${browser} --private-window";
 in {
   bind =
     [
       (bp "Z" browser)
       (bp "R" menu)
+      (bp "SHIFT+X" power-menu)
       (bp "T" fileManager)
       (bp "S" "crock-snap")
       (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
-      (bp "Backspace" "ags -t bar")
+      (bp "Backspace" "${pkgs.ags}/bin/ags -t bar")
 
       (b "SHIFT+C" "killactive")
       (b "H" "movefocus, l")

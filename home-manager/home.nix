@@ -230,7 +230,7 @@
     gcc-unwrapped
     zlib
     libsForQt5.ark # gui archive
-    rofi-power-menu
+    # rofi-power-menu
 
     # Browser
     brave
@@ -289,9 +289,10 @@
     # libwacom
     # wacomtablet # KDE Config Module
     xorg.xf86videoamdgpu
-    xorg.xf86videointel
+    # xorg.xf86videointel
     usbutils
 
-    nur.repos.linyinfeng.wemeet
+    # nur.repos.linyinfeng.wemeet
+    nur.repos.novel2430.wemeet-bin-bwrap
   ];
 }
