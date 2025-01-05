@@ -22,4 +22,10 @@
     action = "<cmd>Trouble diagnostics toggle filter.buf=0<CR>";
     options.desc = "Diagnostic (current buffer)";
   }
+
+  {
+    key = "gl";
+    action = "<cmd>lua vim.diagnostic.open_float()<CR>";
+    options.desc = "Show error at cursor";
+  }
 ]

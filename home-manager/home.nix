@@ -285,7 +285,6 @@
     sane-frontends
     simple-scan
     libsForQt5.skanlite
-    xboxdrv
     # libwacom
     # wacomtablet # KDE Config Module
     xorg.xf86videoamdgpu

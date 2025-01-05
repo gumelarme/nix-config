@@ -43,6 +43,7 @@ in {
         prox-set = "export http_proxy=$PROXYADDR && export https_proxy=$PROXYADDR && prox-show";
         prox-rm = "unset http_proxy && unset https_proxy && prox-show";
         open = "xdg-open";
+        task = ''rg "(TODO|NOTE|FIX|FIXME|XXX):"'';
       };
 
       plugins = [
