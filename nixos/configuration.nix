@@ -312,7 +312,6 @@
     wget
     which
     zsh
-    pmount
     killall
 
     # archive helper
@@ -386,21 +385,9 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
-
-  security.wrappers = {
-    pmount = {
-      setuid = true;
-      owner = "root";
-      group = "root";
-      source = "${pkgs.pmount}/bin/pmount";
-    };
-    pumount = {
-      setuid = true;
-      owner = "root";
-      group = "root";
-      source = "${pkgs.pmount}/bin/pumount";
-    };
-  };
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
 
   # set default editor to neovim
   environment.variables.EDITOR = "nvim";
