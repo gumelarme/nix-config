@@ -287,7 +287,7 @@
       "input"
       "uinput"
     ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [firefox xorg.xf86videoamdgpu xorg.xf86videointel];
+    packages = with pkgs; [firefox xorg.xf86videoamdgpu];
 
     shell = pkgs.zsh;
   };

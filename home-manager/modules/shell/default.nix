@@ -27,7 +27,7 @@
   # fuzzy file finder
   programs.fzf = {
     enable = true;
-    enableZshIntegration = false; # use atuin instead
+    enableZshIntegration = true;
   };
 
   # cat but better
