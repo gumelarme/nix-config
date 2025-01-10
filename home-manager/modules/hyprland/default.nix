@@ -31,6 +31,7 @@
             "debug:disable_logs" = false;
             monitor = [
               ", highres, 0x0, 1"
+              "desc:ViewSonic Corporation VX2478-2 UYL211520009, 2560x1440, 0x0, 1"
               "eDP-1, 1920x1080, auto-right, 1"
             ];
 

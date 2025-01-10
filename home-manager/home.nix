@@ -195,6 +195,7 @@
   };
 
   home.packages = with pkgs; [
+    ghostty
     ollama
     foot
     chromium
@@ -204,8 +205,8 @@
     caffeine-ng
 
     # VM
-    qemu
-    quickemu
+    stable.qemu
+    stable.quickemu
 
     # =Dev
     distrobox
@@ -281,7 +282,7 @@
     tdesktop
 
     # Peripheral
-    xsane
+    # xsane
     sane-frontends
     simple-scan
     libsForQt5.skanlite
