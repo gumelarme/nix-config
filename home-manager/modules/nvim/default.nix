@@ -102,6 +102,10 @@ in {
         tabline = "%(%M:%c\ %f%)";
       };
 
+      extraConfigLuaPre = ''
+        vim.g["conjure#mapping#doc_word"] = "gk"
+      '';
+
       # TODO: Convert to lua options
       extraConfigVim = ''
         hi Visual guibg=#555555

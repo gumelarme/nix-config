@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   imports = [
+    ./clojure
     ./elm.nix
     ./emacs.nix
     ./nix.nix
     ./python.nix
     ./web.nix
     ./go.nix
-    ./clojure.nix
     ./intellimacs.nix
   ];
 

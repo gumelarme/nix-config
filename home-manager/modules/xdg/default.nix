@@ -1,6 +1,6 @@
 {config, ...}: {
   imports = [./mime.nix];
-
+  xdg.enable = true;
   xdg.userDirs = let
     home = config.home.homeDirectory;
   in {
@@ -15,6 +15,7 @@
     templates = "${home}/templates";
     videos = "${home}/videos";
     extraConfig = {
+      XDG_CONFIG_HOME = config.xdg.configHome;
       XDG_SYNC_DIR = "${home}/sync";
       XDG_SYNC_DEFAULT_DIR = "${home}/sync/${config.home.username}";
       XDG_ORGNOTES_DIR = "${home}/sync/org";

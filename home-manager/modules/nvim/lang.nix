@@ -27,6 +27,8 @@ in {
             mode = "a";
           };
         };
+
+        conjure.enable = true;
       };
 
       plugins.lsp = lib.mkIf cfg.lsp {
@@ -39,6 +41,7 @@ in {
           tailwindcss.enable = true;
           gleam.enable = true;
           ts_ls.enable = true;
+          clojure_lsp.enable = true;
 
           tinymist = {
             enable = true;

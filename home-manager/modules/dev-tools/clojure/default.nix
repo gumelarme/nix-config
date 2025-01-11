@@ -13,10 +13,9 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      jdk17_headless
-      clojure-lsp
       cljfmt
-      semgrep
     ];
+
+    home.file."${config.common.configHome}/clojure/deps.edn".source = ./deps.edn;
   };
 }
