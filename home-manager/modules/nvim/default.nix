@@ -24,6 +24,7 @@ in {
       enable = true;
       vimAlias = true;
       viAlias = true;
+      globals.mapleader = " ";
       keymaps = import ./keymaps.nix;
 
       colorschemes.dracula = {
@@ -37,6 +38,12 @@ in {
         gitsigns.enable = true;
         nvim-ufo.enable = true; # folding
         trouble.enable = true;
+        snacks = {
+          settings = {
+            bigfile.enable = true;
+            quickfile.enable = true;
+          };
+        };
       };
 
       plugins.which-key = {
