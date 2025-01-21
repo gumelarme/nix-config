@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./fzf-lua.nix
+    ./grapple.nix
     ./quick-scope.nix
     ./smear.nix
     ./mini_indentscope.nix

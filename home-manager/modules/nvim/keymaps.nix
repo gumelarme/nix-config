@@ -28,4 +28,24 @@
     action = "<cmd>lua vim.diagnostic.open_float()<CR>";
     options.desc = "Show error at cursor";
   }
+
+  {
+    key = "yc";
+    action = "yygccp";
+    options = {
+      desc = "Duplicate & comment";
+      remap = true;
+    };
+  }
+  {
+    key = "<A-j>";
+    action = "<cmd>m '>+1<CR>gv=gv";
+    options.desc = "Move line down";
+  }
+
+  {
+    key = "<A-k>";
+    action = "<cmd>m '>-2<CR>gv=gv";
+    options.desc = "Move line up";
+  }
 ]

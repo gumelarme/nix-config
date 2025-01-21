@@ -38,6 +38,7 @@ in {
         gitsigns.enable = true;
         nvim-ufo.enable = true; # folding
         trouble.enable = true;
+        diffview.enable = true;
         snacks = {
           settings = {
             bigfile.enable = true;
@@ -64,6 +65,10 @@ in {
           {
             __unkeyed = "<leader>z";
             desc = "Zettel";
+          }
+          {
+            __unkeyed = "<leader>q";
+            desc = "Grapple";
           }
         ];
       };
