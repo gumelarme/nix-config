@@ -42,6 +42,7 @@ in {
           gleam.enable = true;
           ts_ls.enable = true;
           clojure_lsp.enable = true;
+          pyright.enable = true;
 
           tinymist = {
             enable = true;

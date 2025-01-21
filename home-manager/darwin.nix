@@ -11,6 +11,7 @@
     ./modules/nvim
     ./modules/tmux
     ./modules/rofi
+    ./modules/todo
     ./modules/shell
     ./modules/wezterm
     ./modules/dev-tools
@@ -91,6 +92,7 @@
       enable = true;
     };
 
+    todo.enable = true;
     zettel = let
       zkDir = "${config.common.sync}/zk";
     in {
