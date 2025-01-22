@@ -4,8 +4,9 @@
     ./grapple.nix
     ./quick-scope.nix
     ./smear.nix
-    ./mini_indentscope.nix
+    ./mini_files.nix
     ./mini_hipatterns.nix
+    ./mini_indentscope.nix
   ];
 
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
