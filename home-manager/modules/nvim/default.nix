@@ -32,56 +32,6 @@ in {
         settings.colorterm = false;
       };
 
-      plugins = {
-        lualine.enable = true;
-        commentary.enable = true;
-        gitsigns.enable = true;
-        nvim-ufo.enable = true; # folding
-        trouble.enable = true;
-        diffview.enable = true;
-        snacks = {
-          settings = {
-            bigfile.enable = true;
-            quickfile.enable = true;
-          };
-        };
-      };
-
-      plugins.which-key = {
-        enable = true;
-        settings.spec = [
-          {
-            __unkeyed = "<leader>p";
-            desc = "Project";
-          }
-          {
-            __unkeyed = "<leader>b";
-            desc = "Buffers";
-          }
-          {
-            __unkeyed = "<leader>s";
-            desc = "Search";
-          }
-          {
-            __unkeyed = "<leader>z";
-            desc = "Zettel";
-          }
-          {
-            __unkeyed = "<leader>q";
-            desc = "Grapple";
-          }
-        ];
-      };
-
-      plugins.neo-tree = {
-        enable = true;
-        enableDiagnostics = true;
-        enableGitStatus = true;
-        enableModifiedMarkers = true;
-        enableRefreshOnWrite = true;
-        closeIfLastWindow = true;
-      };
-
       opts = let
         tab_size = 2;
       in {

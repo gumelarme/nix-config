@@ -14,9 +14,12 @@ _: {
           options.desc = desc;
         };
       in {
+        "<leader><Space>" = command "builtin" "Omnibar";
         "<leader>pf" = command "files" "Find project files";
         "<leader>sp" = command "live_grep" "Search Project";
         "<leader>bb" = command "buffers" "Find Buffers";
+        "<leader>hh" = command "helptags" "Help";
+        "<leader>xc" = command "command_history" "Command History";
       };
     };
   };

@@ -14,12 +14,14 @@ in {
     programs.nixvim = {
       plugins = {
         nix.enable = true;
+        trouble.enable = cfg.lsp;
         typst-vim.enable = true;
         lsp-format.enable = cfg.lsp;
 
-        cmp-nvim-lsp.enable = cfg.completion;
-        cmp-buffer.enable = cfg.completion;
         cmp-path.enable = cfg.completion;
+        cmp-buffer.enable = cfg.completion;
+        cmp-nvim-lsp.enable = cfg.completion;
+
         emmet = {
           enable = true;
           settings = {
