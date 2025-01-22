@@ -15,10 +15,11 @@
   ];
 
   programs.nixvim.plugins = {
-    lualine.enable = true;
     gitsigns.enable = true;
     nvim-ufo.enable = true; # folding
     diffview.enable = true;
+    hardtime.enable = true;
+    lualine.enable = true;
     commentary.enable = true;
 
     snacks = {
@@ -33,6 +34,7 @@
       enable = true;
       mockDevIcons = true;
       modules.icons = {};
+      modules.move = {};
     };
 
     which-key = {

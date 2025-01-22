@@ -37,15 +37,18 @@
       remap = true;
     };
   }
-  {
-    key = "<A-j>";
-    action = "<cmd>m '>+1<CR>gv=gv";
-    options.desc = "Move line down";
-  }
 
-  {
-    key = "<A-k>";
-    action = "<cmd>m '>-2<CR>gv=gv";
-    options.desc = "Move line up";
-  }
+  # {
+  #   key = "<A-j>";
+  #   action = "<cmd>m '>+1<CR>gv=gv";
+  #   options.desc = "Move line down";
+  #   mode = ["v"];
+  # }
+
+  # {
+  #   key = "<A-k>";
+  #   action = "<cmd>m '<-2<CR>gv=gv";
+  #   options.desc = "Move line up";
+  #   mode = ["v"];
+  # }
 ]
