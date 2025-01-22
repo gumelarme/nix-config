@@ -195,6 +195,7 @@
   };
 
   home.packages = with pkgs; [
+    wechat-uos
     ghostty
     ollama
     foot

@@ -4,8 +4,8 @@
     ./wilder.nix
     ./fzf-lua.nix
     ./grapple.nix
+    ./eyeliner.nix
     ./mini_files.nix
-    ./quick-scope.nix
     ./mini_hipatterns.nix
     ./mini_indentscope.nix
   ];
@@ -14,7 +14,6 @@
     todo-txt-vim
   ];
 
-  # NOTE: used by fzf-lua, trouble, neotree
   programs.nixvim.plugins = {
     lualine.enable = true;
     gitsigns.enable = true;
@@ -29,6 +28,7 @@
       };
     };
 
+    # NOTE: used by fzf-lua, trouble, neotree
     mini = {
       enable = true;
       mockDevIcons = true;
