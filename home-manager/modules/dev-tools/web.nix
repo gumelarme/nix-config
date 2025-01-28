@@ -17,6 +17,7 @@ in {
       text = ''
         registry = https://registry.npmjs.org
         registry = http://registry.npmmirror.com
+        registry = http://mirrors.cloud.tencent.com/npm/
       '';
     };
 
