@@ -36,7 +36,7 @@ in {
         tab_size = 2;
       in {
         number = true;
-        relativenumber = false;
+        relativenumber = true;
         clipboard = "unnamedplus";
         tabstop = tab_size;
         softtabstop = tab_size;
