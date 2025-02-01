@@ -61,6 +61,15 @@ in {
       (b "semicolon" "cyclenext, next") # include both floating and tiled
       (b "comma" "layoutmsg, orientationnext") # master
 
+      # Resize, move to bottom-left, and pin
+      (b "SHIFT+P" "setfloating, 1")
+      (b "SHIFT+P" "resizeactive, exact 10% 10%")
+      (b "SHIFT+P" "movewindow, r")
+      (b "SHIFT+P" "movewindow, b")
+      (b "SHIFT+P" "movewindowpixel, -20 -20, activewindow")
+      (b "SHIFT+P" "pin")
+      (b "SHIFT+P" "focuscurrentorlast")
+
       # Group
       (b "G" "togglegroup")
       (b "SHIFT+CONTROL+G" "lockactivegroup, toggle")
