@@ -5,6 +5,7 @@
     ./fzf-lua.nix
     ./grapple.nix
     ./eyeliner.nix
+    ./neo-tree.nix
     ./mini_files.nix
     ./mini_hipatterns.nix
     ./mini_indentscope.nix
@@ -49,6 +50,14 @@
           desc = "Buffers";
         }
         {
+          __unkeyed = "<leader>o";
+          desc = "Open tools";
+        }
+        {
+          __unkeyed = "<leader>h";
+          desc = "Help";
+        }
+        {
           __unkeyed = "<leader>s";
           desc = "Search";
         }
@@ -61,15 +70,6 @@
           desc = "Grapple";
         }
       ];
-    };
-
-    neo-tree = {
-      enable = true;
-      enableDiagnostics = true;
-      enableGitStatus = true;
-      enableModifiedMarkers = true;
-      enableRefreshOnWrite = true;
-      closeIfLastWindow = true;
     };
   };
 }

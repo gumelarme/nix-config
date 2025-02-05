@@ -3,6 +3,15 @@ _: {
     fzf-lua = {
       enable = true;
       settings = {
+        winopts = {
+          # 30new, create a 30 row high split
+          # split = "belowright new";
+          height = 0.3;
+          width = 1.0;
+          row = 1;
+          col = 0;
+        };
+        border = "single";
         grep = {
           rg_opts = ''--column --line-number --no-heading --color=always --max-columns=4096 -e'';
         };
