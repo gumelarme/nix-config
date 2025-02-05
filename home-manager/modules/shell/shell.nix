@@ -39,9 +39,32 @@ in {
         ns = "nix-shell --command zsh -p";
         va = "source ./venv/bin/activate";
         vd = "deactivate";
-        prox-show = "echo http  = $http_proxy \\\\nhttps = $https_proxy";
-        prox-set = "export http_proxy=$PROXYADDR && export https_proxy=$PROXYADDR && prox-show";
-        prox-rm = "unset http_proxy && unset https_proxy && prox-show";
+        # prox-show = "echo -e http \\\\t= $http_proxy \\\\nhttps \t= $https_proxy \\\\nHTTP \t= $HTTP_PROXY \\\\nHTTPS \t= $HTTPS_PROXY";
+
+        prox-show = ''          (
+                    echo -ne "http  = $http_proxy\n"
+                    echo -ne "https = $https_proxy\n"
+                    echo -ne "HTTP  = $HTTP_PROXY\n"
+                    echo -ne "HTTPS = $HTTPS_PROXY\n"
+                  )'';
+
+        # prox-set = "export http_proxy=$PROXYADDR && export https_proxy=$PROXYADDR && prox-show";
+        prox-set = ''          (
+                     export http_proxy=$PROXYADDR 
+                     export https_proxy=$PROXYADDR  
+                     export HTTP_PROXY=$PROXYADDR 
+                     export HTTPS_PROXY=$PROXYADDR  
+                     prox-show 
+                  )'';
+        # prox-rm = "unset http_proxy && unset https_proxy && prox-show";
+        prox-rm = ''          (
+                    unset http_proxy 
+                    unset https_proxy 
+                    unset HTTP_PROXY 
+                    unset HTTPS_PROXY 
+                    prox-show  
+                  )'';
+
         open = "xdg-open";
         task = ''rg "(TODO|NOTE|FIX|FIXME|XXX):"'';
       };
