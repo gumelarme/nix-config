@@ -35,7 +35,6 @@
       enable = true;
       mockDevIcons = true;
       modules.icons = {};
-      modules.move = {};
     };
 
     which-key = {

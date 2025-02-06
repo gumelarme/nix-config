@@ -27,10 +27,12 @@ in {
       initExtraFirst = mkIf cfg.debug "zmodload zsh/zprof";
       defaultKeymap = "viins";
       enableCompletion = true;
-      shellAliases = {
+      shellAliases = let
+        inline = commands: concatStringsSep " && " commands;
+      in {
         # TODO: Separate it into related modules instead of putting everything here
-        vim = "nvim";
         g = "git";
+        vim = "nvim";
         s = "git status";
         ds = "git diff --staged";
         mucik = "ncmpcpp";
@@ -39,31 +41,36 @@ in {
         ns = "nix-shell --command zsh -p";
         va = "source ./venv/bin/activate";
         vd = "deactivate";
-        # prox-show = "echo -e http \\\\t= $http_proxy \\\\nhttps \t= $https_proxy \\\\nHTTP \t= $HTTP_PROXY \\\\nHTTPS \t= $HTTPS_PROXY";
 
-        prox-show = ''          (
-                    echo -ne "http  = $http_proxy\n"
-                    echo -ne "https = $https_proxy\n"
-                    echo -ne "HTTP  = $HTTP_PROXY\n"
-                    echo -ne "HTTPS = $HTTPS_PROXY\n"
-                  )'';
+        prox-show = ''
+          (
+              echo -ne "http  = $http_proxy\n"
+              echo -ne "https = $https_proxy\n"
+              echo -ne "HTTP  = $HTTP_PROXY\n"
+              echo -ne "HTTPS = $HTTPS_PROXY\n"
+          )'';
 
-        # prox-set = "export http_proxy=$PROXYADDR && export https_proxy=$PROXYADDR && prox-show";
-        prox-set = ''          (
-                     export http_proxy=$PROXYADDR 
-                     export https_proxy=$PROXYADDR  
-                     export HTTP_PROXY=$PROXYADDR 
-                     export HTTPS_PROXY=$PROXYADDR  
-                     prox-show 
-                  )'';
-        # prox-rm = "unset http_proxy && unset https_proxy && prox-show";
-        prox-rm = ''          (
-                    unset http_proxy 
-                    unset https_proxy 
-                    unset HTTP_PROXY 
-                    unset HTTPS_PROXY 
-                    prox-show  
-                  )'';
+        prox-set = let
+          setProx = var: "export ${var}=$PROXYADDR";
+        in
+          inline [
+            (setProx "http_proxy")
+            (setProx "https_proxy")
+            (setProx "HTTP_PROXY")
+            (setProx "HTTPS_PROXY")
+            "prox-show"
+          ];
+
+        prox-rm = let
+          unset = vars: map (v: "unset ${v}") vars;
+        in
+          inline ((unset [
+              "http_proxy"
+              "https_proxy"
+              "HTTP_PROXY"
+              "HTTPS_PROXY"
+            ])
+            ++ ["prox-show"]);
 
         open = "xdg-open";
         task = ''rg "(TODO|NOTE|FIX|FIXME|XXX):"'';
