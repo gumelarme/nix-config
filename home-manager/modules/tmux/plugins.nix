@@ -5,10 +5,10 @@
     pluginName = pname;
     rtpFilePath = "main.tmux";
     src = pkgs.fetchFromGitHub {
-      owner = "thuanOwa";
+      owner = "cutbypham";
       repo = "tmux-fzf-session-switch";
-      rev = "ae8d4f79ef5dda88bb5c5c6687b14a0a6fe0ba09";
-      hash = "sha256-Hn4huMRe2RrBkwh7XsQCKotABkp89OtHgrCCOXnbOAs=";
+      rev = "d53547e0efd70230d6e7b59e992727fb80f72d83";
+      hash = "sha256-LwLheBgHTmDZs61D5IV0p+JMrYWVC+axkyYvqU6e9OY=";
     };
   };
 }
