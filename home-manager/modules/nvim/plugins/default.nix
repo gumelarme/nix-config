@@ -30,11 +30,25 @@
       };
     };
 
-    # NOTE: used by fzf-lua, trouble, neotree
+    # NOTE: used by fzf-lua; trouble, neotree
     mini = {
       enable = true;
       mockDevIcons = true;
       modules.icons = {};
+      modules.move = {
+        mappings = {
+          left = "<M-h>";
+          right = "<M-l>";
+          down = "<M-j>";
+          up = "<M-k>";
+
+          # Doesn't work, somehow triggered when Escape + [hjkl] is pressed at the same time
+          line_left = "";
+          line_right = "";
+          line_down = "";
+          line_up = "";
+        };
+      };
     };
 
     which-key = {
