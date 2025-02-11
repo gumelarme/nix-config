@@ -29,23 +29,41 @@ in {
         myplugins = (import ./plugins.nix) {inherit pkgs;};
       in
         with pkgs.tmuxPlugins; [
-          catppuccin
+          tmux-nova
           fuzzback
           extrakto
+          {
+            plugin = tmux-nova;
+            extraConfig = ''
+              set -g @nova-nerdfonts true
+              set -g @nova-nerdfonts-left 
+              set -g @nova-nerdfonts-right 
+
+              set -g @nova-segment-mode "#{?client_prefix,X,O}"
+              set -g @nova-segment-mode-colors "#50fa7b #282a36"
+
+              set -g @nova-segment-session "#{session_name}"
+              set -g @nova-segment-session-colors "#50fa7b #282a36"
+
+              set -g @nova-pane "#I#{?pane_in_mode,: #{pane_mode},}: #W"
+
+              set -g @nova-rows 0
+              set -g @nova-segments-0-left "mode"
+              set -g @nova-segments-0-right "session"
+            '';
+          }
+
+          {
+            plugin = session-wizard;
+            extraConfig = ''
+              set -g @session-wizard 'S'
+            '';
+          }
 
           {
             plugin = resurrect;
             extraConfig = ''
               set -g @resurrect-dir '${config.common.configHome}/tmux/resurrect'
-            '';
-          }
-
-          {
-            plugin = myplugins.fzf-session-switch;
-            extraConfig = ''
-              set -g @fzf-goto-session 'S'
-              set -g @fzf-goto-win-width 50
-              set -g @fzf-goto-win-height 20
             '';
           }
 
