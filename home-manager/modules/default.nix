@@ -19,6 +19,7 @@ in {
   config = {
     home.sessionVariables.HOSTNAME = cfg;
     home.packages = with packages; [
+      git-open
       gh
       ttdl
 

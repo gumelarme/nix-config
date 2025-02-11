@@ -48,6 +48,23 @@ in {
               set -g @fzf-goto-win-height 20
             '';
           }
+
+          {
+            plugin = myplugins.tmux-buoyshell;
+            extraConfig = ''
+              # — Top Center
+              set-option -g @buoyshell-title '[[ buoy ]]'
+              set-option -g @buoyshell-x 'C'
+              set-option -g @buoyshell-y 'P'
+              set-option -g @buoyshell-height '50%'
+              set-option -g @buoyshell-width '100%'
+
+              # Change the toggle keybinding (default: f)
+              set -g @buoyshell-key "C-b"
+              # Change the ephemeral buoyshell keybinding (default: F)
+              set -g @ephemeral-buoyshell-key "B"
+            '';
+          }
         ];
     };
   };
