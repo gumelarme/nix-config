@@ -408,7 +408,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  networking.nameservers = ["1.1.1.1" "9.9.9.9"];
+  # networking.nameservers = ["1.1.1.1" "9.9.9.9"];
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [3000 8000 8080 12345];
