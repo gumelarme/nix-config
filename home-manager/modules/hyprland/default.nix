@@ -41,7 +41,7 @@
             };
 
             exec-once = [
-              "ags"
+              "${pkgs.stable.ags}/bin/ags"
               "${pkgs.wpaperd}/bin/wpaperd -d "
             ];
           }
