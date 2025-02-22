@@ -28,6 +28,12 @@ in {
   };
 
   config = {
+    programs.gh = {
+      enable = true;
+      extensions = with pkgs; [
+        gh-markdown-preview
+      ];
+    };
     programs.git = {
       inherit (cfg) userName userEmail;
       enable = true;
