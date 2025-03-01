@@ -37,6 +37,7 @@ in {
     programs.git = {
       inherit (cfg) userName userEmail;
       enable = true;
+      lfs.enable = true;
       extraConfig = {
         core = {
           excludesFile = let
