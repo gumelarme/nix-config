@@ -21,7 +21,7 @@ in {
       profiles.guest = {
         id = 9;
         isDefault = false;
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           foxyproxy-standard
         ];
       };

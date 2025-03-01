@@ -174,20 +174,9 @@
     };
   };
 
-  programs.wpaperd = {
-    enable = true;
-    settings = {
-      default = {
-        duration = "3h";
-        mode = "center";
-        path = "${config.xdg.userDirs.pictures}/wallpapers";
-      };
-    };
-  };
-
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
       ms-python.python
       enkia.tokyo-night
