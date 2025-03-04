@@ -42,7 +42,8 @@ in {
           html.enable = true;
           tailwindcss.enable = true;
           gleam.enable = true;
-          ts_ls.enable = true;
+          # ts_ls.enable = true;
+          vtsls.enable = true;
           clojure_lsp.enable = true;
           pyright.enable = true;
 
