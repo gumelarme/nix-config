@@ -28,7 +28,7 @@ in {
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs29.override {
+      package = pkgs.emacs30.override {
         withTreeSitter = true;
         withSQLite3 = true;
         withXinput2 = true;

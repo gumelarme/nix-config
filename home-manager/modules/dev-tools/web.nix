@@ -16,9 +16,9 @@ in {
     home.file."${config.home.homeDirectory}/.npmrc" = {
       text = ''
         registry = https://registry.npmjs.org
-        registry = http://registry.npmmirror.com
-        registry = http://mirrors.cloud.tencent.com/npm/
       '';
+      # registry = http://registry.npmmirror.com
+      # registry = http://mirrors.cloud.tencent.com/npm/
     };
 
     home.packages = mkIf (!cfg.configOnly) (with pkgs; [

@@ -89,7 +89,7 @@ in {
           go
           nix
           lua
-          org
+          # org
           css
           tsx
           html
