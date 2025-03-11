@@ -21,8 +21,11 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
+    "https://mirrors.cernet.edu.cn/nix-channels/store" # nju
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    "https://cache.nixos.org/"
     "https://hyprland.cachix.org"
+    # "https://mirror.sjtu.edu.cn/nix-channels/store" # slow
   ];
 
   nix.settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -127,7 +130,6 @@
   services = {
     openssh.enable = true;
     v2raya.enable = true;
-
     tlp.enable = true;
     tlp.settings = {
       USB_AUTOSUSPEND = 0;
