@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.modules.zettel;
@@ -36,8 +37,46 @@ in {
 
     programs.zk = let
       not-archived = "--tag 'NOT archived'";
+      # this includes bug fix on CTRL+E not creating new notes because of breaking fzf changes
+      # TODO: remove after 0.14.3 got released
+      zk-latest = pkgs.buildGoModule rec {
+        pname = "zk";
+        version = "09d06215fa60a4972f3c742b3152fe4454b0b8a8";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "zk-org";
+          repo = "zk";
+          rev = version;
+          sha256 = "sha256-xoxFzFsz574ye7NC2xUabk/t//4zLVKpZOOjMAxCXUQ=";
+        };
+
+        vendorHash = "sha256-2PlaIw7NaW4pAVIituSVWhssSBKjowLOLuBV/wz829I=";
+        doCheck = false;
+        env.CGO_ENABLED = 1;
+
+        ldflags = [
+          "-s"
+          "-w"
+          "-X=main.Build=${version}"
+          # "-X=main.Version=${version}"
+          "-X=main.Commit=${version}"
+        ];
+
+        passthru.updateScript = pkgs.nix-update-script {};
+
+        tags = ["fts5"];
+
+        meta = with lib; {
+          maintainers = with maintainers; [pinpox];
+          license = licenses.gpl3;
+          description = "Zettelkasten plain text note-taking assistant";
+          homepage = "https://github.com/mickael-menu/zk";
+          mainProgram = "zk";
+        };
+      };
     in {
       enable = true;
+      package = zk-latest;
       settings = {
         notebook.dir = cfg.defaultDir;
         note = {
