@@ -140,7 +140,7 @@
     # https://www.reddit.com/r/Fedora/comments/kx52nz/disable_fingerprint_reader_when_using_sudo/
 
     fprintd = {
-      enable = true;
+      enable = false;
       tod.enable = true;
       tod.driver = pkgs.libfprint-2-tod1-vfs0090;
     };
