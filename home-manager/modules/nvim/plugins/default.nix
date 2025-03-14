@@ -82,6 +82,52 @@
           __unkeyed = "<leader>q";
           desc = "Grapple";
         }
+
+        # === Conjure
+        {
+          __unkeyed = "<localleader>e";
+          desc = "Evaluate";
+        }
+
+        {
+          __unkeyed = "<localleader>l";
+          desc = "Log";
+        }
+
+        {
+          __unkeyed = "<localleader>c";
+          desc = "Connection";
+        }
+
+        {
+          __unkeyed = "<localleader>g";
+          desc = "Go to";
+        }
+
+        {
+          __unkeyed = "<localleader>r";
+          desc = "Refresh";
+        }
+
+        {
+          __unkeyed = "<localleader>s";
+          desc = "Session";
+        }
+
+        {
+          __unkeyed = "<localleader>t";
+          desc = "Test";
+        }
+
+        {
+          __unkeyed = "<localleader>v";
+          desc = "View";
+        }
+
+        {
+          __unkeyed = "<localleader>x";
+          desc = "Run";
+        }
       ];
     };
   };
