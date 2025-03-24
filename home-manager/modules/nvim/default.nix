@@ -27,9 +27,10 @@ in {
       globals.mapleader = " ";
       keymaps = import ./keymaps.nix;
 
-      colorschemes.dracula = {
+      colorschemes.kanagawa = {
         enable = true;
-        settings.colorterm = false;
+        settings.theme = "dragon";
+        # settings.colorterm = false;
       };
 
       opts = let

@@ -36,7 +36,7 @@ in {
       plugins.lsp = lib.mkIf cfg.lsp {
         enable = true;
         servers = {
-          marksman.enable = true;
+          # marksman.enable = true;
           nil_ls.enable = true;
           lua_ls.enable = true;
           html.enable = true;
@@ -46,6 +46,7 @@ in {
           vtsls.enable = true;
           clojure_lsp.enable = true;
           pyright.enable = true;
+          gopls.enable = true;
 
           tinymist = {
             enable = true;
@@ -84,7 +85,7 @@ in {
       plugins.treesitter = {
         enable = true;
         settings.indent.enable = true;
-        grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           c
           go
           nix
