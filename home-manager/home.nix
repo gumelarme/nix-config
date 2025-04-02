@@ -184,6 +184,7 @@
   };
 
   home.packages = with pkgs; [
+    jan
     wechat-uos
     ghostty
     ollama
