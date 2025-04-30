@@ -22,9 +22,9 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [
     "https://mirrors.cernet.edu.cn/nix-channels/store" # nju
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://cache.nixos.org/"
     "https://hyprland.cachix.org"
+    # "https://mirrors.ustc.edu.cn/nix-channels/store"
     # "https://mirror.sjtu.edu.cn/nix-channels/store" # slow
   ];
 

@@ -76,7 +76,7 @@ in {
       (b "Tab" "changegroupactive, f")
       (b "SHIFT+Tab" "changegroupactive, b")
 
-      (b "SHIFT+grave" "hyprexpo:expo, toggle")
+      # (b "SHIFT+grave" "hyprexpo:expo, toggle")
     ]
     ++ (map ws workspaces)
     ++ (map move workspaces)

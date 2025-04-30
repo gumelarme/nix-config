@@ -44,7 +44,7 @@ in {
           ];
         search = {
           force = true;
-          default = "Google";
+          default = "google";
           engines = {
             "Nix Packages" = {
               definedAliases = ["@np"];
@@ -92,7 +92,7 @@ in {
                 }
               ];
             };
-            "YouTube" = {
+            "youtube" = {
               definedAliases = ["@yt"];
               icon = youtube-icon;
               urls = [
