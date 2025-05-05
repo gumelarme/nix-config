@@ -47,6 +47,7 @@ in {
           clojure_lsp.enable = true;
           pyright.enable = true;
           gopls.enable = true;
+          templ.enable = true;
 
           tinymist = {
             enable = true;
@@ -84,6 +85,7 @@ in {
       plugins.ts-context-commentstring.enable = true;
       plugins.treesitter = {
         enable = true;
+        settings.highlight.enable = true;
         settings.indent.enable = true;
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           c
@@ -95,6 +97,7 @@ in {
           tsx
           html
           gleam
+          templ
           python
           vimdoc
           clojure
