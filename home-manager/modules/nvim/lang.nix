@@ -51,7 +51,7 @@ in {
 
           tinymist = {
             enable = true;
-            package = pkgs.stable.tinymist;
+            package = pkgs.tinymist;
             extraOptions = {
               # this resolve the CJK content issue on LSP,
               # but need to be passed on every single servers
@@ -60,7 +60,7 @@ in {
             };
 
             settings = {
-              exportPdf = "onDocumentHasTitle";
+              exportPdf = "never";
               fontPaths = [
                 # FIXME: better directory pinning
                 "${config.home.homeDirectory}/.nix-profile/share/fonts"
