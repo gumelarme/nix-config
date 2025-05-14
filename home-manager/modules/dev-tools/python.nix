@@ -55,7 +55,7 @@ in {
     # pyenv init script load every time new shell is created, it make shell load very slow
     # here its just as an alias, use it whenever it needed
     # TODO: pyenv prompt will be disabled by default in future, remove that line when that happen
-    programs.zsh.initExtra = mkIf cfg.pyenv.enable ''
+    programs.zsh.initContent = mkIf cfg.pyenv.enable ''
       export PYENV_VIRTUALENV_DISABLE_PROMPT=1
       export PYENV_ROOT="${cfg.pyenv.rootDirectory}"
       alias pyenv-init='eval "$(${getExe pkgs.pyenv} init - zsh)"'

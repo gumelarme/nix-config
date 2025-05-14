@@ -91,7 +91,7 @@ in {
         }
       ];
 
-      initExtra = let
+      initContent = let
         read = builtins.readFile;
       in
         builtins.concatStringsSep "\n" [

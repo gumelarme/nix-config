@@ -88,7 +88,8 @@
   home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [fcitx5-rime fcitx5-material-color];
   };
 
@@ -184,6 +185,11 @@
   };
 
   home.packages = with pkgs; [
+    # Music
+    netease-cloud-music-gtk
+    osdlyrics
+    waylyrics
+
     jan
     wechat-uos
     ghostty
@@ -285,5 +291,6 @@
 
     # nur.repos.linyinfeng.wemeet
     nur.repos.novel2430.wemeet-bin-bwrap
+    # wemeet  # official but still very unstable
   ];
 }
