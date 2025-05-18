@@ -31,7 +31,8 @@
 
             "debug:disable_logs" = false;
             monitor = [
-              ", highres, 0x0, 1"
+              ", highres, 0x0, 1" # uncomment this for extend
+              # ", preffered, auto, 1, mirror, eDP-1" # enable this for mirror
               "desc:ViewSonic Corporation VX2478-2 UYL211520009, 2560x1440, 0x0, 1"
               "eDP-1, 1920x1080, auto-right, 1"
             ];
