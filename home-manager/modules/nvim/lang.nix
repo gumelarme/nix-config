@@ -48,7 +48,6 @@ in {
           pyright.enable = true;
           gopls.enable = true;
           templ.enable = true;
-
           tinymist = {
             enable = true;
             package = pkgs.tinymist;
@@ -83,6 +82,9 @@ in {
       };
 
       plugins.ts-context-commentstring.enable = true;
+      plugins.treesitter-context.enable = true;
+      plugins.treesitter-refactor.enable = true;
+      plugins.treesitter-textobjects.enable = true;
       plugins.treesitter = {
         enable = true;
         settings.highlight.enable = true;
