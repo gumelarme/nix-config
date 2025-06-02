@@ -40,8 +40,8 @@ in {
 
       (mkIf cfg.typst.enable [
         stable.typst
-        stable.typstfmt
-        stable.typst-lsp
+        stable.typstyle
+        stable.tinymist
       ])
     ]);
   };

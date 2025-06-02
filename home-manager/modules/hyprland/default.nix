@@ -43,7 +43,7 @@
             };
 
             exec-once = [
-              "${pkgs.stable.ags}/bin/ags"
+              "${pkgs.nixos-2311.ags}/bin/ags"
               "${pkgs.wpaperd}/bin/wpaperd -d "
             ];
 
