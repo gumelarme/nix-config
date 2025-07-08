@@ -91,7 +91,10 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = with pkgs; [fcitx5-rime fcitx5-material-color];
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-material-color
+    ];
   };
 
   # Enable home-manager and git
@@ -182,6 +185,14 @@
       vscodevim.vim
       ms-python.python
       enkia.tokyo-night
+    ];
+  };
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-vaapi
+      obs-pipewire-audio-capture
     ];
   };
 
