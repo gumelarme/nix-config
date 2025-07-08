@@ -237,7 +237,6 @@
 
     # Etc
     v2ray
-    qv2ray
     bitwarden
     qbittorrent
     pick-colour-picker

@@ -256,7 +256,7 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-  # security.polkit.enable = true;
+  security.polkit.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
