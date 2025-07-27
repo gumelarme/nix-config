@@ -179,6 +179,10 @@
     };
   };
 
+  programs.kitty = {
+    enable = true;
+  };
+
   programs.vscode = {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
@@ -270,7 +274,7 @@
     feh
     imagemagick
     vlc
-    tauon
+    stable.tauon
     spotify
     nomacs
     # mediainfo
