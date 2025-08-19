@@ -18,7 +18,9 @@ in {
   };
 
   config = {
-    home.sessionVariables = {PROXYADDR = cfg.proxyAddress;};
+    home.sessionVariables = {
+      PROXYADDR = cfg.proxyAddress;
+    };
     programs.zsh = {
       inherit (cfg) enable;
       # Use to profile zsh load time
@@ -39,7 +41,7 @@ in {
         gitroot = "cd $(git rev-parse --show-toplevel)";
         pp = "pet exec --color --command";
         ns = "nix-shell --command zsh -p";
-        va = "source ./venv/bin/activate";
+        va = "source ./venv/bin/activate || source ./.venv/bin/activate";
         vd = "deactivate";
 
         prox-show = ''
@@ -64,13 +66,15 @@ in {
         prox-rm = let
           unset = vars: map (v: "unset ${v}") vars;
         in
-          inline ((unset [
+          inline (
+            (unset [
               "http_proxy"
               "https_proxy"
               "HTTP_PROXY"
               "HTTPS_PROXY"
             ])
-            ++ ["prox-show"]);
+            ++ ["prox-show"]
+          );
 
         open = "xdg-open";
         task = ''rg "(TODO|NOTE|FIX|FIXME|XXX):"'';

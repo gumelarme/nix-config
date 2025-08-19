@@ -290,7 +290,6 @@
 
     # Communication
     qq
-    stable.discord
     tdesktop
 
     # Peripheral
