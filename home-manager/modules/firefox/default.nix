@@ -31,6 +31,28 @@ in {
         settings = {
           # allow user chrome
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+          # Prevent swipe to go navigate back and forward in history
+          "browser.gesture.swipe.left" = "cmd_scrollLeft";
+          "browser.gesture.swipe.right" = "cmd_scrollRight";
+
+          # Stop creating ~/Downloads!
+          "browser.download.dir" = config.xdg.userDirs.download;
+
+          # Show whole URL in address bar, prevent Disableit from trimming the protocol
+          "browser.urlbar.trimURLs" = false;
+
+          "browser.translations.automaticallyPopup" = false;
+          "browser.shell.checkDefaultBrowser" = false;
+          "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
+
+          # Reduce search bar noises
+          "browser.urlbar.suggest.searches" = false;
+          "browser.urlbar.shortcuts.bookmarks" = false;
+          "browser.urlbar.shortcuts.history" = false;
+          "browser.urlbar.shortcuts.tabs" = false;
+          "browser.urlbar.showSearchSuggestionsFirst" = false;
+          "browser.urlbar.speculativeConnect.enabled" = false;
         };
         userChrome = let
           firefox-hack = import ./css-hack.nix {inherit pkgs;};
