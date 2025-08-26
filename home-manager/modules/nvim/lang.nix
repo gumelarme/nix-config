@@ -82,7 +82,14 @@ in {
       };
 
       plugins.ts-context-commentstring.enable = true;
-      plugins.treesitter-context.enable = true;
+      plugins.treesitter-context = {
+        enable = true;
+        settings = {
+          mode = "topline";
+          max_lines = 5;
+          line_numbers = false;
+        };
+      };
       plugins.treesitter-refactor.enable = true;
       plugins.treesitter-textobjects.enable = true;
       plugins.treesitter = {
