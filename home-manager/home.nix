@@ -274,8 +274,7 @@
     feh
     imagemagick
     vlc
-    stable.tauon
-    spotify
+    tauon
     nomacs
     # mediainfo
     # gimp  # annoyingly replaces xdg-mime for image/*
