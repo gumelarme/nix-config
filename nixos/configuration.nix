@@ -19,23 +19,36 @@
     enable32Bit = true;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.substituters = [
+    "https://hyprland.cachix.org"
+    "https://nix-community.cachix.org"
+
+    # mainland chinese, mostly stable version
     "https://mirror.nju.edu.cn/nix-channels/store"
     "https://mirrors.cernet.edu.cn/nix-channels/store"
-    "https://hyprland.cachix.org"
     "https://mirrors.ustc.edu.cn/nix-channels/store"
     # "https://mirror.sjtu.edu.cn/nix-channels/store" # slow
+
+    # original
+    "https://cache.nixos.org/"
   ];
 
-  nix.settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  nix.settings.trusted-public-keys = [
+    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  ];
 
   programs.sway.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   services.displayManager.sddm = {
@@ -47,7 +60,11 @@
   # Might be useful: https://askubuntu.com/questions/916465/ubuntu-17-04-keyboard-not-responding-after-suspend
   # https://unix.stackexchange.com/questions/28736/what-does-the-i8042-nomux-1-kernel-option-do-during-booting-of-ubuntu
   # https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
-  boot.kernelParams = ["quiet" "splash" "usbcore.autosuspend=-1"];
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "usbcore.autosuspend=-1"
+  ];
 
   # Use latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -204,15 +221,19 @@
       # };
     };
 
-    logind = {
-      lidSwitch = "suspend-then-hibernate";
-      lidSwitchDocked = "suspend-then-hibernate"; # lid closed but another screen is connected
-      lidSwitchExternalPower = "lock";
+    logind.settings.Login = {
+      # See options at: man logind.conf
+      HandlePowerKey = "hybrid-sleep";
+      HandlePowerKeyLongPress = "poweroff";
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchDocked = "suspend-then-hibernate"; # lid closed but another screen is connected
+      HandleLidSwitchExternalPower = "lock";
 
       # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
       # combined with services.screen-locker in home-manager,
       # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
-      extraConfig = "\n      IdleAction=suspend-then-hibernate\n      IdleActionSec=20min\n    ";
+      IdleAction = "suspend-then-hibernate";
+      IdleActionSec = "1200";
     };
   };
 
@@ -235,7 +256,9 @@
         Experimental = "true";
       };
 
-      Policy = {AutoEnable = "true";};
+      Policy = {
+        AutoEnable = "true";
+      };
     };
   };
 
@@ -289,7 +312,10 @@
       "input"
       "uinput"
     ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [firefox xorg.xf86videoamdgpu];
+    packages = with pkgs; [
+      firefox
+      xorg.xf86videoamdgpu
+    ];
 
     shell = pkgs.zsh;
   };
@@ -340,7 +366,10 @@
     bluetuith
   ];
 
-  fonts.packages = with pkgs; [wqy_zenhei wqy_microhei];
+  fonts.packages = with pkgs; [
+    wqy_zenhei
+    wqy_microhei
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -353,23 +382,32 @@
   programs.git.enable = true;
   programs.bandwhich.enable = true;
   programs.git.config = {
-    init = {defaultBranch = "main";};
+    init = {
+      defaultBranch = "main";
+    };
 
-    core = {editor = "nvim";};
+    core = {
+      editor = "nvim";
+    };
   };
 
   programs.neovim = {
     enable = true;
     configure = {
       packages.myVimPackage = with pkgs.vimPlugins; {
-        start = [sensible vim-nix];
+        start = [
+          sensible
+          vim-nix
+        ];
       };
     };
   };
 
   programs.zsh = {
     enable = true;
-    shellAliases = {la = "ls -la";};
+    shellAliases = {
+      la = "ls -la";
+    };
 
     setOptions = [
       "HIST_IGNORE_DUPS"
@@ -383,7 +421,10 @@
   # ------- Thunar related
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
   };
 
   services.gnome.gnome-keyring.enable = true;
@@ -413,7 +454,12 @@
   # networking.nameservers = ["1.1.1.1" "9.9.9.9"];
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [3000 8000 8080 12345];
+    allowedTCPPorts = [
+      3000
+      8000
+      8080
+      12345
+    ];
   };
 
   # Copy the NixOS configuration file and link it from the resulting system

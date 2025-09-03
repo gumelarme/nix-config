@@ -243,7 +243,7 @@
     # clang
     gcc-unwrapped
     zlib
-    libsForQt5.ark # gui archive
+    kdePackages.ark # gui archive
     # rofi-power-menu
 
     # Browser
@@ -295,7 +295,7 @@
     # xsane
     sane-frontends
     simple-scan
-    libsForQt5.skanlite
+    kdePackages.skanlite
     # libwacom
     # wacomtablet # KDE Config Module
     xorg.xf86videoamdgpu
@@ -303,7 +303,7 @@
     usbutils
 
     # nur.repos.linyinfeng.wemeet
-    nur.repos.novel2430.wemeet-bin-bwrap
-    # wemeet  # official but still very unstable
+    # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version
+    wemeet # official but still very unstable
   ];
 }

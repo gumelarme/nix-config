@@ -31,6 +31,12 @@ in {
       enableCompletion = true;
       shellAliases = let
         inline = commands: concatStringsSep " && " commands;
+        proxyVars = [
+          "http_proxy"
+          "https_proxy"
+          "HTTP_PROXY"
+          "HTTPS_PROXY"
+        ];
       in {
         # TODO: Separate it into related modules instead of putting everything here
         g = "git";
@@ -43,7 +49,9 @@ in {
         ns = "nix-shell --command zsh -p";
         va = "source ./venv/bin/activate || source ./.venv/bin/activate";
         vd = "deactivate";
-
+        duh = "du -d 1 -h | sort -h";
+        open = "xdg-open";
+        task = ''rg "(TODO|NOTE|FIX|FIXME|XXX):"'';
         prox-show = ''
           (
               echo -ne "http  = $http_proxy\n"
@@ -52,32 +60,8 @@ in {
               echo -ne "HTTPS = $HTTPS_PROXY\n"
           )'';
 
-        prox-set = let
-          setProx = var: "export ${var}=$PROXYADDR";
-        in
-          inline [
-            (setProx "http_proxy")
-            (setProx "https_proxy")
-            (setProx "HTTP_PROXY")
-            (setProx "HTTPS_PROXY")
-            "prox-show"
-          ];
-
-        prox-rm = let
-          unset = vars: map (v: "unset ${v}") vars;
-        in
-          inline (
-            (unset [
-              "http_proxy"
-              "https_proxy"
-              "HTTP_PROXY"
-              "HTTPS_PROXY"
-            ])
-            ++ ["prox-show"]
-          );
-
-        open = "xdg-open";
-        task = ''rg "(TODO|NOTE|FIX|FIXME|XXX):"'';
+        prox-set = inline ((map (var: "export ${var}=$PROXYADDR") proxyVars) ++ ["prox-show"]);
+        prox-rm = inline ((map (v: "unset ${v}") proxyVars) ++ ["prox-show"]);
       };
 
       plugins = [
