@@ -12,13 +12,13 @@
 
       listener = [
         {
-          timeout = 10; # 3 minutes
+          timeout = 180; # 3 minutes
           on-timeout = "${brightnessctl} -s set 10";
           on-resume = "${brightnessctl} -r";
         }
 
         {
-          timeout = 15; # 5 minutes
+          timeout = 300; # 5 minutes
           on-timeout = "loginctl lock-session";
         }
 

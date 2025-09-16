@@ -75,5 +75,8 @@ _: {
     # Make special workspace noticable
     "rounding 10, onworkspace:s[1]"
     "bordersize 2, onworkspace:s[1]"
+
+    # Prevent idle on fullscreen
+    "idleinhibit fullscreen, class:.*"
   ];
 }
