@@ -18,7 +18,18 @@
     else num;
   ws = num: makeBinding num "focusworkspaceoncurrentmonitor, ${zeroTen num}";
   move = num: makeBinding "SHIFT+${num}" "movetoworkspacesilent, ${zeroTen num}";
-  workspaces = map toString [1 2 3 4 5 6 7 8 9 0];
+  workspaces = map toString [
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+  ];
   specialWorkspace = key: name: [
     (b key "togglespecialworkspace, ${name}")
     (b "SHIFT+${key}" "movetoworkspace, special:${name}")
