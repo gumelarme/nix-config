@@ -11,8 +11,8 @@ in {
     enable = mkEnableOption "Enable python development tools";
     package = mkOption {
       type = types.package;
-      default = pkgs.python3Full;
-      description = "Python package to install, default will follow nix stable version";
+      default = pkgs.python3Minimal;
+      description = "Python package to install, default will follow nix unstable version";
     };
 
     extra-indexes = mkOption {
@@ -40,17 +40,19 @@ in {
       extra-index-url = ${concatStringsSep " " cfg.extra-indexes}
     '';
 
-    home.packages = mkMerge (with pkgs; [
-      (mkIf cfg.pyenv.enable [pyenv])
-      [
-        cfg.package
-        poetry
-        black
-        isort
-        pipenv
-        # nodePackages.pyright
+    home.packages = mkMerge (
+      with pkgs; [
+        (mkIf cfg.pyenv.enable [pyenv])
+        [
+          cfg.package
+          poetry
+          black
+          isort
+          pipenv
+          # nodePackages.pyright
+        ]
       ]
-    ]);
+    );
 
     # pyenv init script load every time new shell is created, it make shell load very slow
     # here its just as an alias, use it whenever it needed
