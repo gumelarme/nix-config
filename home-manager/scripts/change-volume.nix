@@ -8,7 +8,6 @@
   play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
   dunstify = "${pkgs.dunst}/bin/dunstify";
   awk = "${pkgs.gawk}/bin/awk";
-  cut = "${pkgs.coreutils}/bin/cut";
   timeout = 1000;
 in
   pkgs.writeShellScriptBin "${prefix}-volume" ''
@@ -18,13 +17,14 @@ in
       ${ctl} set-mute @DEFAULT_AUDIO_SINK@ toggle > /dev/null;
     else
       ${ctl} set-mute @DEFAULT_AUDIO_SINK@ 0 > /dev/null;
-      ${ctl} set-volume @DEFAULT_AUDIO_SINK@ "$@" > /dev/null;
+      ${ctl} set-volume @DEFAULT_AUDIO_SINK@ "$@" -l 1 > /dev/null;
     fi
 
-    volume="$(${ctl} get-volume @DEFAULT_AUDIO_SINK@ | ${awk} '{print $2}' | ${cut} -d '.' -f 2)"
+    raw_volume="$(${ctl} get-volume @DEFAULT_AUDIO_SINK@ | ${awk} '{print $2}')"
+    volume=$(${awk} "BEGIN {print $raw_volume * 100}")
     mute="$(${ctl} get-volume @DEFAULT_AUDIO_SINK@ | ${awk} '{print $3}')"
 
-    if [[ $volume == 0 || "$mute" == "[MUTED]" ]]; then
+    if [[ $volume -eq 0 || "$mute" == "[MUTED]" ]]; then
         ${dunstify} -a "changeVolume" -t ${toString timeout} -u low -i audio-volume-muted -h string:x-dunst-stack-tag:${tag} "Volume muted"
     else
         ${dunstify} -a "changeVolume" -t ${toString timeout} -u low -i audio-volume-high -h string:x-dunst-stack-tag:${tag} -h int:value:"$volume" "Volume: ''${volume}/100%"

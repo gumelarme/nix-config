@@ -11,7 +11,7 @@ in {
     enable = mkEnableOption "Enable python development tools";
     package = mkOption {
       type = types.package;
-      default = pkgs.python3Minimal;
+      default = pkgs.python314;
       description = "Python package to install, default will follow nix unstable version";
     };
 
