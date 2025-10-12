@@ -28,9 +28,9 @@
     "https://nix-community.cachix.org"
 
     # mainland chinese, mostly stable version
-    "https://mirror.nju.edu.cn/nix-channels/store"
-    "https://mirrors.cernet.edu.cn/nix-channels/store"
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    # "https://mirror.nju.edu.cn/nix-channels/store"
+    # "https://mirrors.cernet.edu.cn/nix-channels/store"
+    # "https://mirrors.ustc.edu.cn/nix-channels/store"
     # "https://mirror.sjtu.edu.cn/nix-channels/store" # slow
 
     # original
