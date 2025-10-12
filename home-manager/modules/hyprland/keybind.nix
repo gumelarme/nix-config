@@ -53,7 +53,7 @@ in {
       (bp "S" "crock-snap")
       (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
-      (bp "Backspace" "${pkgs.nixos-2411.ags}/bin/ags -t bar")
+      (bp "Backspace" "${pkgs.ags}/bin/ags toggle bar")
 
       (b "SHIFT+C" "killactive")
       (b "H" "movefocus, l")

@@ -4,7 +4,9 @@
   lib,
   config,
   ...
-}: {
+}: let
+  tiny-bar = inputs.my-tiny-bar.packages.${pkgs.stdenv.hostPlatform.system}.default;
+in {
   imports = [
     ./hyprlock.nix
   ];
@@ -14,11 +16,15 @@
     enable = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # plugins = [
-    #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-    # ];
     settings = lib.mkMerge (
-      lib.map (file: import file {inherit lib pkgs config;}) [
+      lib.map
+      (
+        file:
+          import file {
+            inherit lib pkgs config;
+          }
+      )
+      [
         ./keybind.nix
         ./decoration.nix
       ]
@@ -52,7 +58,7 @@
           };
 
           exec-once = [
-            "${pkgs.nixos-2411.ags}/bin/ags"
+            "${tiny-bar}/bin/tiny-bar"
             "${pkgs.wpaperd}/bin/wpaperd -d "
           ];
 

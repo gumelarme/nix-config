@@ -271,6 +271,7 @@
     pdfchain
 
     # Media
+    davinci-resolve
     feh
     imagemagick
     vlc

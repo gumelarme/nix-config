@@ -29,6 +29,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    my-tiny-bar.url = "github:gumelarme/tiny-bar";
+    my-tiny-bar.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
@@ -52,17 +55,21 @@
   in {
     # Your custom packages
     # Acessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-      import ./pkgs {inherit pkgs;});
+    packages = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./pkgs {inherit pkgs;}
+    );
     # Devshell for bootstrapping
     # Acessible through 'nix develop' or 'nix-shell' (legacy)
-    devShells = forAllSystems (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-      checks = self.checks.${system}.pre-commit-check;
-    in
-      import ./shell.nix {inherit checks pkgs;});
+    devShells = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+        checks = self.checks.${system}.pre-commit-check;
+      in
+        import ./shell.nix {inherit checks pkgs;}
+    );
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
@@ -71,7 +78,7 @@
     nixosModules = import ./modules/nixos;
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+    homeModules = import ./modules/home-manager;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -90,23 +97,21 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "kasuari@crockpot" = home-manager.lib.homeManagerConfiguration {
-        pkgs =
-          nixpkgs-unstable.legacyPackages.x86_64-linux;
+        pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          nixvim.homeManagerModules.nixvim
+          nixvim.homeModules.nixvim
           ./home-manager/home.nix
         ];
       };
 
       "gu@osx" = home-manager.lib.homeManagerConfiguration {
-        pkgs =
-          nixpkgs-unstable.legacyPackages.x86_64-darwin;
+        pkgs = nixpkgs-unstable.legacyPackages.x86_64-darwin;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          nixvim.homeManagerModules.nixvim
+          nixvim.homeModules.nixvim
           ./home-manager/darwin.nix
         ];
       };

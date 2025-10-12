@@ -42,6 +42,10 @@
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
 
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlp3s0";
+  };
   programs.sway.enable = true;
   programs.hyprland = {
     enable = true;
