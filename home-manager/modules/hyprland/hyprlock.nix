@@ -118,7 +118,7 @@
       {
         monitor = "";
         text = ''
-          cmd[update:60000] suffix=$(echo "日一二三四五六" | awk -v dow=$(date +"%w") '{print substr($0,dow,1)}'); echo -n "<span allow_breaks='true'>周''${suffix}</span>"
+          cmd[update:60000] suffix=$(echo "日一二三四五六" | awk -v dow=$(date +"%w") '{print substr($0, dow+1, 1)}'); echo -n "<span allow_breaks='true'>周''${suffix}</span>"
         '';
         font_size = 100;
         font_family = cjk_font;
