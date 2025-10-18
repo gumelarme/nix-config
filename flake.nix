@@ -33,6 +33,8 @@
     my-tiny-bar.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
+    matcha-idle-inhibitor.url = "git+https://codeberg.org/QuincePie/matcha?ref=main";
   };
 
   outputs = {

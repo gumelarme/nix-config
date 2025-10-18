@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   config,
   pkgs,
@@ -200,7 +201,16 @@
     ];
   };
 
+  programs.anki = {
+    enable = true;
+    addons = [
+      pkgs.ankiAddons.anki-connect
+    ];
+  };
+
   home.packages = with pkgs; [
+    inputs.matcha-idle-inhibitor.packages.x86_64-linux.default
+
     # Music
     netease-cloud-music-gtk
     osdlyrics

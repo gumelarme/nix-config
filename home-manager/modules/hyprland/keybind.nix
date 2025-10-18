@@ -39,11 +39,13 @@
   terminal = "${pkgs.foot}/bin/foot -e tmux new -As default";
   fileManager = "${pkgs.xfce.thunar}/bin/thunar";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
+  clipman = "${rofi} -modi clipboard:${pkgs.cliphist}/bin/cliphist-rofi -show clipboard";
   menu = "${rofi} -show drun";
   power-menu = "${rofi} -show power-menu -modi power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
   browser = "${pkgs.firefox}/bin/firefox";
   browser-private = "${browser} --private-window";
 in {
+  # Symbols list https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h
   bind =
     [
       (bp "Z" browser)
@@ -54,6 +56,7 @@ in {
       (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
       (bp "Backspace" "${pkgs.ags}/bin/ags toggle bar")
+      (bp "V" clipman)
 
       (b "SHIFT+C" "killactive")
       (b "H" "movefocus, l")
@@ -67,8 +70,8 @@ in {
       # Layout
       (b "Return" "layoutmsg, swapwithmaster")
       (b "P" "pin")
-      (b "V" "togglefloating")
       (b "F" "fullscreen, 1")
+      (b "SHIFT+F" "togglefloating")
       (b "semicolon" "cyclenext, next") # include both floating and tiled
       (b "comma" "layoutmsg, orientationnext") # master
 

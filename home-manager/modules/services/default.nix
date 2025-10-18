@@ -7,26 +7,29 @@
     ./dunst.nix
     ./lowbatt-notification.nix
     ./mopidy.nix
-    ./greenclip.nix
     ./ding_dong.nix
-    # Prevent
   ];
 
   services.network-manager-applet.enable = true;
-
-  services.picom = {enable = true;};
   services.blueman-applet.enable = true;
 
   services.syncthing = {
     enable = true;
-    extraOptions = ["--gui-address=:12300" "--no-default-folder"];
-    # tray.enable = true;
+    tray.enable = true;
+    extraOptions = [
+      "--gui-address=:12300"
+      "--no-default-folder"
+    ];
+  };
+
+  # === X11 Specifics configs
+  services.picom = {
+    enable = false;
   };
 
   home.packages = [pkgs.betterlockscreen];
-
   services.xidlehook = {
-    enable = true;
+    enable = false;
     detect-sleep = true; # reset timer after sleep
     not-when-fullscreen = true;
     timers = [
@@ -45,23 +48,12 @@
   };
 
   services.flameshot = {
-    enable = true;
+    enable = false;
     settings = {
       General = {
         savePath = "${config.xdg.userDirs.extraConfig.XDG_SCREENSHOT_DIR}";
         saveAsFileExtension = "png";
         copyPathAfterSave = true;
-      };
-    };
-  };
-
-  services.wpaperd = {
-    enable = true;
-    settings = {
-      default = {
-        duration = "3h";
-        mode = "center";
-        path = "${config.xdg.userDirs.pictures}/wallpapers";
       };
     };
   };
