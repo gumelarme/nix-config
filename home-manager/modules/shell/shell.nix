@@ -25,9 +25,6 @@ in {
       inherit (cfg) enable;
       # Use to profile zsh load time
       # use command `zprof` to see the results
-      # initExtraFirst = if cfg.debug then "zmodload zsh/zprof" else "";
-      initExtraFirst = mkIf cfg.debug "zmodload zsh/zprof";
-      defaultKeymap = "viins";
       enableCompletion = true;
       shellAliases = let
         inline = commands: concatStringsSep " && " commands;
@@ -81,26 +78,33 @@ in {
 
       initContent = let
         read = builtins.readFile;
+        content = lib.mkOrder 1000 (
+          builtins.concatStringsSep "\n" [
+            # Fix viins mode cannot delete using backspace
+            "bindkey '^?' backward-delete-char"
+
+            # Bind Shift-Tab to go to prev completion item
+            # what? https://unix.stackexchange.com/questions/84867/zsh-completion-enabling-shift-tab
+            "bindkey '^[[Z' reverse-menu-complete"
+
+            # enable line editor with Ctrl-v
+            "autoload -z edit-command-line"
+            "zle -N edit-command-line"
+            "bindkey -M vicmd '^v' edit-command-line"
+
+            # nnn configs
+            (read ./scripts/nnn-config)
+            (read ./scripts/nnn-quitcd)
+
+            # `pet search` and put it on the line
+            (read ./scripts/pet-select)
+          ]
+        );
       in
-        builtins.concatStringsSep "\n" [
-          # Fix viins mode cannot delete using backspace
-          "bindkey '^?' backward-delete-char"
-
-          # Bind Shift-Tab to go to prev completion item
-          # what? https://unix.stackexchange.com/questions/84867/zsh-completion-enabling-shift-tab
-          "bindkey '^[[Z' reverse-menu-complete"
-
-          # enable line editor with Ctrl-v
-          "autoload -z edit-command-line"
-          "zle -N edit-command-line"
-          "bindkey -M vicmd '^v' edit-command-line"
-
-          # nnn configs
-          (read ./scripts/nnn-config)
-          (read ./scripts/nnn-quitcd)
-
-          # `pet search` and put it on the line
-          (read ./scripts/pet-select)
+        lib.mkMerge [
+          (lib.mkOrder 500 "zmodload zsh/zprof")
+          (lib.mkOrder 1500 "source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh")
+          content
         ];
     };
 
