@@ -1,14 +1,14 @@
 {pkgs, ...}: {
-  tmux-buoyshell = pkgs.tmuxPlugins.mkTmuxPlugin rec {
-    pname = "tmux-buoyshell";
+  tmux-grimoire = pkgs.tmuxPlugins.mkTmuxPlugin rec {
+    pname = "grimoire";
     version = "v0";
     pluginName = pname;
-    rtpFilePath = "buoyshell.tmux";
+    rtpFilePath = "grimoire.tmux";
     src = pkgs.fetchFromGitHub {
       owner = "navahas";
-      repo = "tmux-buoyshell";
-      rev = "1a482a820c86a3d0cb5a543e5527f2f5a9fec2b9";
-      hash = "sha256-xSXsbDPHa1OVwpWUTShesgtzRe+940n/fiMPRMYwIwc=";
+      repo = "tmux-grimoire";
+      rev = "94b3f0087289ec5cbeb9cc225ab665661d55123c";
+      hash = "sha256-oLtOO0vclwwVLYnWCY0nG+QGAdYik6L04eR606IHnW0";
     };
   };
 }
