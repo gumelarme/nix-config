@@ -2,11 +2,13 @@ _: {
   programs.nixvim = {
     plugins.neo-tree = {
       enable = true;
-      enableDiagnostics = true;
-      enableGitStatus = true;
-      enableModifiedMarkers = true;
-      closeIfLastWindow = true;
-      enableRefreshOnWrite = true;
+      settings = {
+        enable_diagnostics = true;
+        enable_git_status = true;
+        enable_modified_markers = true;
+        close_if_last_window = true;
+        enable_refresh_on_write = true;
+      };
     };
 
     keymaps = [

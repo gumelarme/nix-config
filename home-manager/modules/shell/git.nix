@@ -35,10 +35,28 @@ in {
       ];
     };
     programs.git = {
-      inherit (cfg) userName userEmail;
       enable = true;
       lfs.enable = true;
-      extraConfig = {
+
+      settings = {
+        user = {
+          email = cfg.userEmail;
+          name = cfg.userName;
+        };
+
+        alias = {
+          d = "diff";
+          ds = "diff --staged";
+          l = "log";
+          ls = "log --graph --name-status";
+          dog = "log --decorate --oneline --graph";
+          dogs = "log --decorate --oneline --graph --stat";
+          stashes = "stash list";
+          branches = "branch -a";
+          remotes = "remote -v";
+          uncommit = "reset --soft HEAD^";
+        };
+
         core = {
           excludesFile = let
             ignored-str = concatStringsSep "\n" cfg.global-gitignore;
@@ -46,24 +64,13 @@ in {
           in "${gitignore}";
         };
       };
+    };
 
-      difftastic = {
-        enable = true;
+    programs.difftastic = {
+      enable = true;
+      options = {
         background = "dark";
         display = "side-by-side";
-      };
-
-      aliases = {
-        d = "diff";
-        ds = "diff --staged";
-        l = "log";
-        ls = "log --graph --name-status";
-        dog = "log --decorate --oneline --graph";
-        dogs = "log --decorate --oneline --graph --stat";
-        stashes = "stash list";
-        branches = "branch -a";
-        remotes = "remote -v";
-        uncommit = "reset --soft HEAD^";
       };
     };
 

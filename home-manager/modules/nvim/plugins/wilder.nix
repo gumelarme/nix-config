@@ -8,8 +8,12 @@ in {
   config = lib.mkIf cfg.enable {
     programs.nixvim.plugins.wilder = {
       enable = true;
-      modes = [":" "/" "?"];
-      renderer = ''
+      settings.modes = [
+        ":"
+        "/"
+        "?"
+      ];
+      options.renderer = config.lib.nixvim.mkRaw ''
         wilder.popupmenu_renderer({
           highlighter = wilder.basic_highlighter(),
           left = {' ', wilder.popupmenu_devicons()},
