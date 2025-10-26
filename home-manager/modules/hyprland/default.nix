@@ -60,6 +60,7 @@ in {
           exec-once = [
             "${tiny-bar}/bin/tiny-bar"
             "${pkgs.wpaperd}/bin/wpaperd -d "
+            "${pkgs.custom.matcha}/bin/matcha --daemon --off"
           ];
 
           # plugins.hyprexpo = {

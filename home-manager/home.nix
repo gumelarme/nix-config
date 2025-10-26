@@ -1,5 +1,4 @@
 {
-  inputs,
   outputs,
   config,
   pkgs,
@@ -36,6 +35,7 @@
       outputs.overlays.modifications
       outputs.overlays.stable-packages
       outputs.overlays.nur-packages
+      outputs.overlays.custom-packages
       outputs.overlays.nixos-2411-packages
       (_self: _super: {fcitx-engines = pkgs.fcitx5;})
       # You can also add overlays exported from other flakes:
@@ -209,7 +209,7 @@
   };
 
   home.packages = with pkgs; [
-    inputs.matcha-idle-inhibitor.packages.x86_64-linux.default
+    custom.matcha
 
     # Music
     netease-cloud-music-gtk

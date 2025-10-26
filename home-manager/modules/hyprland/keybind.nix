@@ -55,7 +55,7 @@ in {
       (bp "S" "crock-snap")
       (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
-      (bp "Backspace" "${pkgs.ags}/bin/ags toggle bar")
+      (bp "Backspace" "${pkgs.ags}/bin/ags toggle tiny-bar")
       (bp "V" clipman)
 
       (b "SHIFT+C" "killactive")

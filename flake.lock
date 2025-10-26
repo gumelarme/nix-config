@@ -578,11 +578,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760249708,
-        "narHash": "sha256-l7WmTuZC+NtnZF2GOTrtFIHJ6N8+yuR5JNRPjwT7hhQ=",
+        "lastModified": 1761361075,
+        "narHash": "sha256-Cb9DN4BJA28oXs8G04NgRWH9msVUnVYnUeuHiDeKmdA=",
         "owner": "gumelarme",
         "repo": "tiny-bar",
-        "rev": "55eb18960f74f4e3510f68a31cbe096b0690ba29",
+        "rev": "f36f02fe5d3e45a9410e8d361751d0512fc742ed",
         "type": "github"
       },
       "original": {

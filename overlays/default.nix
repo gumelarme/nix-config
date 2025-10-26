@@ -49,4 +49,11 @@
       config.allowUnfree = true;
     };
   };
+
+  custom-packages = _final: _prev: {
+    # TODO: fix import
+    custom = {
+      matcha = inputs.matcha-idle-inhibitor.packages.x86_64-linux.default;
+    };
+  };
 }
