@@ -18,7 +18,6 @@
     tray.enable = true;
     extraOptions = [
       "--gui-address=:12300"
-      "--no-default-folder"
     ];
   };
 

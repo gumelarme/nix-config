@@ -117,6 +117,9 @@ in {
           markdown_inline
           todotxt
 
+          yaml
+          dockerfile
+
           gitcommit
           gitignore
           git_rebase

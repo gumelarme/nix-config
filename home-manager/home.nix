@@ -209,6 +209,7 @@
   };
 
   home.packages = with pkgs; [
+    custom.tiny-bar
     custom.matcha
 
     # Music

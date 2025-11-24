@@ -4,9 +4,7 @@
   lib,
   config,
   ...
-}: let
-  tiny-bar = inputs.my-tiny-bar.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in {
+}: {
   imports = [
     ./hyprlock.nix
   ];
@@ -58,7 +56,7 @@ in {
           };
 
           exec-once = [
-            "${tiny-bar}/bin/tiny-bar"
+            "${pkgs.custom.tiny-bar}/bin/tiny-bar"
             "${pkgs.wpaperd}/bin/wpaperd -d "
             "${pkgs.custom.matcha}/bin/matcha --daemon --off"
           ];

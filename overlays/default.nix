@@ -54,6 +54,7 @@
     # TODO: fix import
     custom = {
       matcha = inputs.matcha-idle-inhibitor.packages.x86_64-linux.default;
+      tiny-bar = inputs.my-tiny-bar.packages.x86_64-linux.default;
     };
   };
 }
