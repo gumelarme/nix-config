@@ -30,7 +30,7 @@
     };
 
     my-tiny-bar.url = "github:gumelarme/tiny-bar";
-    my-tiny-bar.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # my-tiny-bar.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 

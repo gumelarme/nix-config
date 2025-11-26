@@ -263,7 +263,7 @@
 
     # Etc
     v2ray
-    bitwarden
+    bitwarden-desktop
     qbittorrent
     pick-colour-picker
     nicotine-plus
@@ -301,7 +301,6 @@
 
     # Communication
     qq
-    tdesktop
 
     # Peripheral
     # xsane

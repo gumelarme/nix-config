@@ -56,7 +56,7 @@ in {
       (
         if pkgs.stdenv.isDarwin
         then pinentry_mac
-        else pinentry
+        else pinentry-curses
       )
 
       # Misc

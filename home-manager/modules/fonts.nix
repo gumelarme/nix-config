@@ -27,7 +27,6 @@ in {
 
         (mkIf cfg.extra [
           noto-fonts
-          noto-fonts-extra
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
           atkinson-hyperlegible
