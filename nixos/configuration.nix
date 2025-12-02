@@ -151,6 +151,7 @@
   services = {
     openssh.enable = true;
     v2raya.enable = true;
+    dae.enable = true;
     tlp.enable = true;
     tlp.settings = {
       USB_AUTOSUSPEND = 0;

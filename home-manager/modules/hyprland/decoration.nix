@@ -60,23 +60,27 @@ _: {
     "special:hidden, rounding:true, border:true, bordersize:2, gapsout:20"
   ];
 
-  windowrulev2 = [
-    "suppressevent maximize, class:.*"
+  windowrule = [
+    "match:class .*, suppress_event maximize"
     # "suppressevent fullscreen, class:.*"
 
     # Replicate smart gaps
-    "bordersize 0, floating:0, onworkspace:w[t1]"
-    "rounding 0, floating:0, onworkspace:w[t1]"
+    "match:float false, match:workspace w[t1],  border_size 0, rounding 0"
+    # "rounding 0, floating:0, onworkspace:w[t1]"
     # "bordersize 0, floating:0, onworkspace:w[tg1]"
     # "rounding 0, floating:0, onworkspace:w[tg1]"
-    "bordersize 0, floating:0, onworkspace:f[1]"
-    "rounding 0, floating:0, onworkspace:f[1]"
+
+    ## "bordersize 0, floating:0, onworkspace:f[1]"
+    ## "rounding 0, floating:0, onworkspace:f[1]"
+    "match:float false, match:workspace f[1], border_size 0, rounding 0"
 
     # Make special workspace noticable
-    "rounding 10, onworkspace:s[1]"
-    "bordersize 2, onworkspace:s[1]"
+    "match:workspace s[1], rounding 10, border_size 2"
+    # "rounding 10, onworkspace:s[1]"
+    # "bordersize 2, onworkspace:s[1]"
 
     # Prevent idle on fullscreen
-    "idleinhibit fullscreen, class:.*"
+    # "idleinhibit fullscreen, class:.*"
+    "match:class .*, idle_inhibit fullscreen"
   ];
 }
