@@ -154,6 +154,7 @@
     tlp.enable = true;
     tlp.settings = {
       USB_AUTOSUSPEND = 0;
+      DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
     };
 
     # Works, but cannot reduce the timeout or bypass to password directly
