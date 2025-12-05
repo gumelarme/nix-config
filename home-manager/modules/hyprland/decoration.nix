@@ -13,8 +13,9 @@ _: {
 
   group = {
     groupbar = {
+      gradients = true;
       height = 16;
-      font_size = 9;
+      font_size = 12;
       text_color = "0xff1a1a1a";
       "col.active" = "0xffff79c6";
       "col.inactive" = "0xff853e67";
@@ -56,7 +57,7 @@ _: {
     "f[1], gapsout:0, gapsin:0"
 
     # Make special workspace noticable
-    "special:scratch, rounding:true, border:true, bordersize:2, gapsout:80, on-created-empty:foot -e tmux new -As scratch"
+    "special:scratch, rounding:true, border:true, bordersize:2, gapsout:60, on-created-empty:foot -e tmux new -As scratch"
     "special:hidden, rounding:true, border:true, bordersize:2, gapsout:20"
   ];
 
@@ -82,5 +83,8 @@ _: {
     # Prevent idle on fullscreen
     # "idleinhibit fullscreen, class:.*"
     "match:class .*, idle_inhibit fullscreen"
+
+    # Auto move theese application to special workspace
+    "match:class wechat|tauonmb|org.nicotine_plus.Nicotine|Bitwarden, workspace special:hidden, group set always"
   ];
 }

@@ -208,6 +208,8 @@
   };
 
   home.packages = with pkgs; [
+    krusader
+
     custom.tiny-bar
     custom.matcha
 
