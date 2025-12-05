@@ -29,13 +29,6 @@
     };
   };
 
-  nixos-2411-packages = final: _prev: {
-    nixos-2411 = import inputs.nixpkgs-2411 {
-      inherit (final) system;
-      config.allowUnfree = true;
-    };
-  };
-
   nur-packages = _final: prev: {
     nur = import inputs.nur {
       nurpkgs = prev;
