@@ -10,6 +10,7 @@
   ];
 
   services.hyprpolkitagent.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -75,5 +76,27 @@
         }
       ]
     );
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+
+    config.common = {
+      default = ["gtk"];
+    };
+
+    config.hyprland = {
+      default = [
+        "hyprland"
+        "gtk"
+      ];
+
+      "org.freedesktop.impl.portal.FileChooser" = [
+        "gtk"
+      ];
+    };
   };
 }

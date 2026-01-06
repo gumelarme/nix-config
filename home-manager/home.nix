@@ -179,10 +179,6 @@
     };
   };
 
-  programs.kitty = {
-    enable = true;
-  };
-
   programs.vscode = {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
@@ -208,6 +204,7 @@
   };
 
   home.packages = with pkgs; [
+    imhex
     krusader
 
     custom.tiny-bar
