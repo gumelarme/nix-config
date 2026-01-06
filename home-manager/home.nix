@@ -204,6 +204,7 @@
   };
 
   home.packages = with pkgs; [
+    netflix
     imhex
     krusader
 
