@@ -90,7 +90,7 @@ in {
           line_numbers = false;
         };
       };
-      plugins.treesitter-refactor.enable = true;
+      # plugins.treesitter-refactor.enable = true; # disabled in 2026-01-07
       plugins.treesitter-textobjects.enable = true;
       plugins.treesitter = {
         enable = true;

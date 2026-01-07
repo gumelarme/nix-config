@@ -37,7 +37,7 @@
 
   # Programs
   terminal = "${pkgs.foot}/bin/foot -e tmux new -As default";
-  fileManager = "${pkgs.xfce.thunar}/bin/thunar";
+  fileManager = "${pkgs.thunar}/bin/thunar";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
   clipman = "${rofi} -modi clipboard:${pkgs.cliphist}/bin/cliphist-rofi -show clipboard";
   menu = "${rofi} -show drun";

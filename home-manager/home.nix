@@ -213,7 +213,7 @@
 
     # Music
     netease-cloud-music-gtk
-    osdlyrics
+    # osdlyrics
     waylyrics
 
     jan
@@ -236,11 +236,11 @@
     xorg.xhost # allow distrobox to run gui program
 
     exercism
-    stable.jetbrains.pycharm-professional
-    stable.jetbrains.datagrip
-    stable.jetbrains.webstorm
-    stable.jetbrains.goland
-    stable.jetbrains.rider
+    # stable.jetbrains.pycharm-professional
+    # stable.jetbrains.datagrip
+    # stable.jetbrains.webstorm
+    # stable.jetbrains.goland
+    # stable.jetbrains.rider
     docker
 
     # System utils
@@ -281,7 +281,7 @@
     pdfchain
 
     # Media
-    davinci-resolve
+    # davinci-resolve
     feh
     imagemagick
     vlc

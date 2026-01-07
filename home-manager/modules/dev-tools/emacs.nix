@@ -13,7 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      lv
+      # lv - failed at 2026-01-07
       sqlite # Org roam
       findutils # find, grep, etc
     ];
