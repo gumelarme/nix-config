@@ -169,7 +169,7 @@
     };
 
     dev-tools = {
-      emacs.enable = true;
+      emacs.enable = false;
       python.enable = true;
       nix.enable = true;
       elm.enable = true;
@@ -281,7 +281,6 @@
     pdfchain
 
     # Media
-    # davinci-resolve
     feh
     imagemagick
     vlc

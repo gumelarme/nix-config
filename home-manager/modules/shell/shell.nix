@@ -23,6 +23,7 @@ in {
     };
     programs.zsh = {
       inherit (cfg) enable;
+      dotDir = "${config.xdg.configHome}/zsh";
       # Use to profile zsh load time
       # use command `zprof` to see the results
       enableCompletion = true;
