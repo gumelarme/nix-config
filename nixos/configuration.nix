@@ -1,3 +1,4 @@
+# TODO: remove X11 configs
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -55,10 +56,76 @@
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-  services.displayManager.sddm = {
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  #   theme = "catppuccin-mocha";
+  # };
+
+  environment.etc = {
+    "greetd/hyprland.conf".text = ''
+      exec-once = ${pkgs.regreet}/bin/regreet; hyprctl dispatch exit
+      misc {
+          disable_hyprland_logo = true
+          disable_splash_rendering = true
+          disable_hyprland_guiutils_check = true
+      }
+    '';
+
+    "greetd/regreet.toml".source = (pkgs.formats.toml {}).generate "regreet" {
+      background = {
+        path = "/etc/wallpapers/kumamon.png";
+        fit = "Cover";
+      };
+
+      GTK = {
+        application_prefer_dark_theme = true;
+        cursor_theme_name = "Adwaita";
+        cursor_blink = true;
+        font_name = "Cantarell 12";
+        icon_theme_name = "Adwaita";
+        theme_name = "Adwaita";
+      };
+
+      appearance = {
+        greeting_msg = "Welcome back!";
+      };
+
+      "widget.clock" = {
+        # See https://docs.rs/jiff/0.1.14/jiff/fmt/strtime/index.html#conversion-specifications
+        format = "%a %H:%M";
+        resolution = "500ms"; # How often to update the text
+        timezone = "Asia/Shanghai";
+        label_width = 150;
+      };
+
+      commands = {
+        reboot = [
+          "systemctl"
+          "reboot"
+        ];
+
+        poweroff = [
+          "systemctl"
+          "poweroff"
+        ];
+
+        x11_prefix = [
+          "startx"
+          "/usr/bin/env"
+        ];
+      };
+    };
+  };
+
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
-    theme = "catppuccin-mocha";
+    settings = {
+      default_session = {
+        command = "start-hyprland -- -c /etc/greetd/hyprland.conf";
+        user = "greeter";
+      };
+    };
   };
 
   # Might be useful: https://askubuntu.com/questions/916465/ubuntu-17-04-keyboard-not-responding-after-suspend
@@ -94,7 +161,7 @@
       # cosmetics
       fontSize = 36;
       backgroundColor = "#141414";
-      splashImage = config.environment.etc.wallpaper.source;
+      splashImage = config.environment.etc."wallpapers/kumamon.png".source;
       splashMode = "normal";
     };
   };
@@ -141,7 +208,7 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  environment.etc.wallpaper = {
+  environment.etc."wallpapers/kumamon.png" = {
     source = pkgs.fetchurl {
       url = "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
       hash = "sha256-A0x4VbfRuPY6b6d/L/N9k9xIsoIjEeFgzyFkfvcYanc";
@@ -374,6 +441,8 @@
   fonts.packages = with pkgs; [
     wqy_zenhei
     wqy_microhei
+
+    cantarell-fonts # Used by regreet
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
