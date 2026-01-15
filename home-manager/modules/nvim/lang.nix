@@ -48,6 +48,7 @@ in {
           pyright.enable = true;
           gopls.enable = true;
           templ.enable = true;
+          ols.enable = true; # odin
           tinymist = {
             enable = true;
             package = pkgs.tinymist;
@@ -105,6 +106,7 @@ in {
           # org
           css
           tsx
+          odin
           html
           gleam
           templ
