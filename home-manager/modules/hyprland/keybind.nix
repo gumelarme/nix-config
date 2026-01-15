@@ -55,7 +55,7 @@ in {
       (bp "S" "crock-snap")
       (bp "SHIFT+Z" browser-private)
       (bp "SHIFT+Return" terminal)
-      (bp "Backspace" "${pkgs.ags}/bin/ags toggle tiny-bar")
+
       (bp "V" clipman)
 
       (b "SHIFT+C" "killactive")
@@ -92,6 +92,18 @@ in {
 
       # (b "SHIFT+grave" "hyprexpo:expo, toggle")
     ]
+    ++ (
+      # this toggle all the available tiny-bar at once
+      # TODO: toggle depending on mouse position
+      let
+        ags = "${pkgs.ags}/bin/ags";
+        jq = "${pkgs.jq}/bin/jq";
+        jq_command = "${jq} '\"${ags} toggle tiny-bar-\\(.[].id)\"'";
+      in [
+        (bp "Backspace" "hyprctl monitors -j | ${jq_command} | xargs -I{} bash -c {}")
+        (bp "SHIFT+Backspace" "${pkgs.custom.tiny-bar}/bin/tiny-bar")
+      ]
+    )
     ++ (map ws workspaces)
     ++ (map move workspaces)
     ++ specialWorkspace "backslash" "scratch"

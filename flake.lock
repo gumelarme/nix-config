@@ -590,11 +590,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1761361075,
-        "narHash": "sha256-Cb9DN4BJA28oXs8G04NgRWH9msVUnVYnUeuHiDeKmdA=",
+        "lastModified": 1768461857,
+        "narHash": "sha256-LBf+dc8PLWGHeSIsS8KRNXdx1eISbdQr5sXxym0mpgE=",
         "owner": "gumelarme",
         "repo": "tiny-bar",
-        "rev": "f36f02fe5d3e45a9410e8d361751d0512fc742ed",
+        "rev": "73e0acaa7ac02d645f3e594541461098e1306142",
         "type": "github"
       },
       "original": {
