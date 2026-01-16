@@ -1,5 +1,11 @@
 {pkgs, ...}: {
-  imports = [./git.nix ./nnn.nix ./shell.nix ./pet.nix ./zettel.nix];
+  imports = [
+    ./git.nix
+    ./nnn.nix
+    ./shell.nix
+    ./pet.nix
+    ./zettel.nix
+  ];
 
   # z autojump
   programs.zoxide.enable = true;
@@ -33,7 +39,12 @@
   # cat but better
   programs.bat = {
     enable = true;
-    extraPackages = with pkgs.bat-extras; [batman prettybat];
-    config = {theme = "Dracula";};
+    extraPackages = with pkgs.bat-extras; [
+      batman
+      prettybat
+    ];
+    config = {
+      theme = "Dracula";
+    };
   };
 }

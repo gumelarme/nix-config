@@ -93,6 +93,13 @@ in {
             "zle -N edit-command-line"
             "bindkey -M vicmd '^v' edit-command-line"
 
+            # Workaround to make vi-mode work with atuin
+            ''
+              function zvm_after_init() {
+                zvm_bindkey viins '^R' atuin-search
+              }
+            ''
+
             # nnn configs
             (read ./scripts/nnn-config)
             (read ./scripts/nnn-quitcd)
