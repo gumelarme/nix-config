@@ -86,5 +86,8 @@ _: {
 
     # Auto move theese application to special workspace
     "match:class wechat|tauonmb|org.nicotine_plus.Nicotine|Bitwarden, workspace special:hidden, group set always"
+
+    # dev application as float
+    "match:initial_title dev\-.*, float on"
   ];
 }
