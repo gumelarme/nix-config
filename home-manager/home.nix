@@ -314,5 +314,14 @@
     # nur.repos.linyinfeng.wemeet
     # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version
     wemeet # official but still very unstable
+
+    (retroarch.withCores (
+      cores:
+        with cores; [
+          beetle-gba
+          beetle-psx-hw
+          pcsx2
+        ]
+    ))
   ];
 }
