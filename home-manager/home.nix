@@ -204,6 +204,7 @@
   };
 
   home.packages = with pkgs; [
+    ticktick
     netflix
     imhex
     krusader
