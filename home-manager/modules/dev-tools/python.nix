@@ -45,11 +45,9 @@ in {
         (mkIf cfg.pyenv.enable [pyenv])
         [
           cfg.package
-          poetry
           black
           isort
           pipenv
-          # nodePackages.pyright
         ]
       ]
     );

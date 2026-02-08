@@ -1,2 +1,4 @@
 **/.DS_STORE
 .pre-commit-config.yaml
+.direnv/
+.envrc

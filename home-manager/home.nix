@@ -203,126 +203,122 @@
     ];
   };
 
-  home.packages = with pkgs; [
-    ticktick
-    netflix
-    imhex
-    krusader
+  home.packages = with pkgs; let
+    entertainment = [
+      vlc
+      tauon
+      nomacs
+      netflix
+      stable.blender
+      mindustry-wayland
+      netease-cloud-music-gtk
+      waylyrics
+      steam
+      steam-run
+      nicotine-plus
+      (retroarch.withCores (
+        cores:
+          with cores; [
+            beetle-gba
+            beetle-psx-hw
+          ]
+      ))
+    ];
 
-    custom.tiny-bar
-    custom.matcha
+    productivity = [
+      ticktick
+      tomato-c
+      caffeine-ng
+    ];
 
-    # Music
-    netease-cloud-music-gtk
-    # osdlyrics
-    waylyrics
+    gui-tools = [
+      chromium
+      krusader # dual pane file manager
+      qutebrowser
 
-    jan
-    wechat-uos
-    ghostty
-    ollama
-    foot
-    chromium
-    # pomodoro
-    tomato-c
+      # AI
+      jan
+      ollama
+      bitwarden-desktop
+      qbittorrent
+      pick-colour-picker
+    ];
 
-    caffeine-ng
+    virtualization = [
+      docker
+      distrobox
+      xorg.xhost # allow distrobox to run gui program
+      # stable.qemu
+      # stable.quickemu
+    ];
 
-    # VM
-    stable.qemu
-    stable.quickemu
+    system-tools = [
+      foot
+      trayer
+      qrencode
+      easyeffects # pipewire gui
+      custom.tiny-bar
+      custom.matcha
+      kdePackages.ark # gui archive
+    ];
 
-    # =Dev
-    distrobox
-    xorg.xhost # allow distrobox to run gui program
+    cli-tools = [
+      jq
+      dust # faster and prettier du
+      mprocs # run multiple running programs
+      imhex
+      imagemagick
+      ntfsprogs-plus # fix ntfs
+    ];
 
-    exercism
-    # stable.jetbrains.pycharm-professional
-    # stable.jetbrains.datagrip
-    # stable.jetbrains.webstorm
-    # stable.jetbrains.goland
-    # stable.jetbrains.rider
-    docker
+    doc-utils = [
+      pandoc
+      zotero
+      lorien
+      stable.calibre
+      libreoffice-qt
 
-    # System utils
-    trayer
-    dmenu
-    arandr
-    autorandr
-    qrencode
-    easyeffects # pipewire gui
-    # clang
-    gcc-unwrapped
-    zlib
-    kdePackages.ark # gui archive
-    # rofi-power-menu
+      # == pdf
+      pdftk
+      sioyek # pdf reader, research focused
+      zathura
+      pdfchain
+    ];
 
-    # Browser
-    brave
-    qutebrowser
+    communication = [
+      qq
+      wechat-uos
+      wemeet # official but still very unstable
+      # nur.repos.linyinfeng.wemeet
+      # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version
+    ];
 
-    # Etc
-    v2ray
-    bitwarden-desktop
-    qbittorrent
-    pick-colour-picker
-    nicotine-plus
-    # fontforge;
+    peripheral = [
+      usbutils
+      # xsane
+      sane-frontends
+      simple-scan
+      kdePackages.skanlite
+      xorg.xf86videoamdgpu
+      # libwacom
+      # wacomtablet # KDE Config Module
+    ];
+  in
+    builtins.concatLists [
+      system-tools
+      gui-tools
+      cli-tools
+      doc-utils
+      communication
+      productivity
+      entertainment
+      virtualization
+      peripheral
 
-    # Documents
-    pandoc
-    zotero
-    stable.calibre
-    zathura
-    sioyek # pdf reader, research focused
-    xournalpp
-    lorien
-    libreoffice-qt
-    pdftk
-    pdfchain
-
-    # Media
-    feh
-    imagemagick
-    vlc
-    tauon
-    nomacs
-    # mediainfo
-    # gimp  # annoyingly replaces xdg-mime for image/*
-    stable.blender
-    # godot
-    # inkscape
-    # glaxnimate
-
-    # Games
-    steam
-    steam-run
-
-    # Communication
-    qq
-
-    # Peripheral
-    # xsane
-    sane-frontends
-    simple-scan
-    kdePackages.skanlite
-    # libwacom
-    # wacomtablet # KDE Config Module
-    xorg.xf86videoamdgpu
-    # xorg.xf86videointel
-    usbutils
-
-    # nur.repos.linyinfeng.wemeet
-    # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version
-    wemeet # official but still very unstable
-
-    (retroarch.withCores (
-      cores:
-        with cores; [
-          beetle-gba
-          beetle-psx-hw
-          pcsx2
-        ]
-    ))
-  ];
+      [
+        exercism
+        zlib
+        gcc-unwrapped
+      ]
+    ];
 }
