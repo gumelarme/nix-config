@@ -59,6 +59,7 @@ _: {
     # Make special workspace noticable
     "special:scratch, rounding:true, border:true, bordersize:2, gapsout:60, on-created-empty:foot -e tmux new -As scratch"
     "special:hidden, rounding:true, border:true, bordersize:2, gapsout:20"
+    "special:tools, rounding:true, border:true, bordersize:2, gapsout:20"
   ];
 
   windowrule = [
@@ -85,7 +86,8 @@ _: {
     "match:class .*, idle_inhibit fullscreen"
 
     # Auto move theese application to special workspace
-    "match:class wechat|tauonmb|org.nicotine_plus.Nicotine|Bitwarden, workspace special:hidden, group set always"
+    "match:class wechat|tauonmb|ticktick|Bitwarden, workspace special:tools, group set always"
+    "match:class anki|org.nicotine_plus.Nicotine|org.qbittorrent.qBittorrent, workspace special:hidden, group set always"
 
     # dev application as float
     "match:initial_title dev\-.*, float on"

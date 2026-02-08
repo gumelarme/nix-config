@@ -107,7 +107,8 @@ in {
     ++ (map ws workspaces)
     ++ (map move workspaces)
     ++ specialWorkspace "backslash" "scratch"
-    ++ specialWorkspace "period" "hidden";
+    ++ specialWorkspace "period" "hidden"
+    ++ specialWorkspace "minus" "tools";
 
   bindel = let
     resize = key: delta: makeBinding "SHIFT+${key}" "resizeactive, ${delta}";
