@@ -15,6 +15,8 @@
     todo-txt-vim
   ];
 
+  # Documentation: https://nix-community.github.io/nixvim/
+
   programs.nixvim.plugins = {
     gitsigns.enable = true;
     nvim-ufo.enable = true; # folding

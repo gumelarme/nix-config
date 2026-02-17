@@ -30,6 +30,12 @@
   }
 
   {
+    key = "gm";
+    action = "<cmd>FzfLua lsp_code_actions<CR>";
+    options.desc = "Lsp code action";
+  }
+
+  {
     key = "yc";
     action = "yygccp";
     options = {

@@ -13,7 +13,7 @@ _: {
         };
         border = "single";
         grep = {
-          rg_opts = ''--column --line-number --no-heading --color=always --max-columns=4096 -e'';
+          rg_opts = "--column --line-number --no-heading --color=always --max-columns=4096 -e";
         };
       };
 
@@ -25,7 +25,14 @@ _: {
       in {
         "<leader><Space>" = command "builtin" "Omnibar";
         "<leader>pf" = command "files" "Find project files";
+
+        # Search
         "<leader>sp" = command "live_grep" "Search Project";
+        "<leader>ss" = command "lgrep_curbuf" "Search in buffer";
+        "<leader>sl" = command "lsp_document_symbols" "Search symbol in buffer";
+        "grr" = command "lsp_references" "Search symbol in buffer";
+
+        "<leader>jj" = command "jumps" "Jump list";
         "<leader>bb" = command "buffers" "Find Buffers";
         "<leader>hh" = command "helptags" "Help";
         "<leader>xc" = command "command_history" "Command History";
