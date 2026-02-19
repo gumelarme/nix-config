@@ -15,13 +15,13 @@
     templates = "${home}/templates";
     videos = "${home}/videos";
     extraConfig = {
-      XDG_CONFIG_HOME = config.xdg.configHome;
-      XDG_SYNC_DIR = "${home}/sync";
-      XDG_SYNC_DEFAULT_DIR = "${home}/sync/${config.home.username}";
-      XDG_ORGNOTES_DIR = "${home}/sync/org";
-      XDG_DEV_DIR = "${home}/dev";
-      XDG_DEVTOOLS_DIR = "${home}/dev/tools";
-      XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/screenshot";
+      CONFIG_HOME = config.xdg.configHome;
+      SYNC = "${home}/sync";
+      SYNC_DEFAULT = "${home}/sync/${config.home.username}";
+      ORGNOTES = "${home}/sync/org";
+      DEV = "${home}/dev";
+      DEVTOOLS = "${home}/dev/tools";
+      SCREENSHOT = "${config.xdg.userDirs.pictures}/screenshot";
     };
   };
 

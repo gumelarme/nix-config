@@ -50,7 +50,7 @@
     enable = false;
     settings = {
       General = {
-        savePath = "${config.xdg.userDirs.extraConfig.XDG_SCREENSHOT_DIR}";
+        savePath = "${config.xdg.userDirs.extraConfig.SCREENSHOT}";
         saveAsFileExtension = "png";
         copyPathAfterSave = true;
       };

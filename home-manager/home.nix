@@ -110,8 +110,8 @@
     my = config.xdg.userDirs.extraConfig;
   in {
     inherit (config.xdg) configHome;
-    sync = my.XDG_SYNC_DIR;
-    screenshot = my.XDG_SCREENSHOT_DIR;
+    sync = my.SYNC;
+    screenshot = my.SCREENSHOT;
   };
 
   modules = {
@@ -146,9 +146,9 @@
         extra = dirs.extraConfig;
       in {
         d = "${dirs.download}";
-        v = "${extra.XDG_DEV_DIR}";
-        r = "${extra.XDG_DEV_DIR}/repo";
-        s = "${extra.XDG_SCREENSHOT_DIR}";
+        v = "${extra.DEV}";
+        r = "${extra.DEV}/repo";
+        s = "${extra.SCREENSHOT}";
       };
     };
 
