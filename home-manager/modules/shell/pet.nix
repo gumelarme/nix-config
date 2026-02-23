@@ -5,17 +5,34 @@
     enable = true;
     settings = {
       General = {
+        color = true;
         editor = "vim";
         selectcmd = "fzf --ansi";
+        format = "$command // $description $tags";
       };
     };
-    snippets = [
+    snippets = let
+      uname = config.home.username;
+      host = config.home.sessionVariables.HOSTNAME;
+    in [
       {
-        command = let
-          uname = config.home.username;
-          host = config.home.sessionVariables.HOSTNAME;
-        in "home-manager switch -b backup --flake .#${uname}@${host}";
+        command = "home-manager switch -b backup --flake .\\#${uname}@${host}";
         description = "Rebuild home-manager configuration";
+        tag = [
+          "nix"
+          "home-manager"
+        ];
+      }
+
+      {
+        command = "sudo nixos-rebuild switch --flake .\\#${host}";
+        description = "Rebuild nixos";
+        tag = ["nix"];
+      }
+
+      {
+        command = "nix-rebuild list-generations";
+        description = "List nix generations";
         tag = ["nix"];
       }
 
@@ -33,8 +50,18 @@
 
       {
         command = "nix-hash --flat --type sha256 --sri";
-        description = "Purge unused packaged older than a week";
+        description = "Get nix checksum from link";
         tag = ["nix"];
+      }
+
+      # Dev tools
+      {
+        command = "echo \"use flake\" >> .envrc && direnv allow .";
+        description = "Activate nix env";
+        tag = [
+          "nix"
+          "direnv"
+        ];
       }
     ];
   };

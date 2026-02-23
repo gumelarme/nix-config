@@ -43,7 +43,7 @@ in {
         ds = "git diff --staged";
         mucik = "ncmpcpp";
         gitroot = "cd $(git rev-parse --show-toplevel)";
-        pp = "pet exec --color --command";
+        pp = "pet exec --color";
         ns = "nix-shell --command zsh -p";
         va = "source ./venv/bin/activate || source ./.venv/bin/activate";
         vd = "deactivate";
@@ -93,19 +93,22 @@ in {
             "zle -N edit-command-line"
             "bindkey -M vicmd '^v' edit-command-line"
 
+            # `pet search` and put it on the line
+            (read ./scripts/pet-select)
+
             # Workaround to make vi-mode work with atuin
             ''
               function zvm_after_init() {
                 zvm_bindkey viins '^R' atuin-search
+
+                //stty -ixon
+                zvm_bindkey viins '^S' pet-select
               }
             ''
 
             # nnn configs
             (read ./scripts/nnn-config)
             (read ./scripts/nnn-quitcd)
-
-            # `pet search` and put it on the line
-            (read ./scripts/pet-select)
           ]
         );
       in

@@ -21,7 +21,7 @@
     gitsigns.enable = true;
     nvim-ufo.enable = true; # folding
     diffview.enable = true;
-    hardtime.enable = true;
+    # hardtime.enable = true;
     lualine.enable = true;
     commentary.enable = true;
 
