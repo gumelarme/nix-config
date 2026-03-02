@@ -27,12 +27,6 @@ in {
       globals.mapleader = " ";
       keymaps = import ./keymaps.nix;
 
-      colorschemes.kanagawa = {
-        enable = true;
-        settings.theme = "dragon";
-        # settings.colorterm = false;
-      };
-
       opts = let
         tab_size = 2;
       in {
@@ -72,6 +66,7 @@ in {
       # TODO: Convert to lua options
       extraConfigVim = ''
         hi Visual guibg=#555555
+        colorscheme alabaster
       '';
     };
   };

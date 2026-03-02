@@ -13,6 +13,22 @@
 
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     todo-txt-vim
+
+    (pkgs.vimUtils.buildVimPlugin {
+      pname = "alabaster.nvim";
+      version = "gumelarme-add-gleam-support";
+      src = pkgs.fetchFromGitHub {
+        owner = "gumelarme";
+        repo = "alabaster.nvim";
+        rev = "7e82728d1879d0396dea47dfa1b957e97b16793b";
+        hash = "sha256-ZPZi5DMqAy3ANdP/o/oQkmylrzVpv+XMx/j55tz0VsY=";
+      };
+      meta.homepage = "https://github.com/p00f/alabaster.nvim/";
+      meta.hydraPlatforms = [];
+    })
+
+    # oxocarbon-nvim
+    # lackluster-nvim
   ];
 
   # Documentation: https://nix-community.github.io/nixvim/
@@ -24,6 +40,7 @@
     # hardtime.enable = true;
     lualine.enable = true;
     commentary.enable = true;
+    highlight-colors.enable = true;
 
     snacks = {
       settings = {
