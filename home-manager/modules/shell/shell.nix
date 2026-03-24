@@ -101,7 +101,7 @@ in {
               function zvm_after_init() {
                 zvm_bindkey viins '^R' atuin-search
 
-                //stty -ixon
+                # stty -ixon
                 zvm_bindkey viins '^S' pet-select
               }
             ''
