@@ -49,6 +49,7 @@ in {
           gopls.enable = true;
           templ.enable = true;
           ols.enable = true; # odin
+          clangd.enable = true; # odin
           tinymist = {
             enable = true;
             package = pkgs.tinymist;

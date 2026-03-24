@@ -20,15 +20,16 @@
       src = pkgs.fetchFromGitHub {
         owner = "gumelarme";
         repo = "alabaster.nvim";
-        rev = "7e82728d1879d0396dea47dfa1b957e97b16793b";
-        hash = "sha256-ZPZi5DMqAy3ANdP/o/oQkmylrzVpv+XMx/j55tz0VsY=";
+        rev = "c36587841ecbede9ba17ceb95c8a34aae6229530";
+        hash = "sha256-HShzZxLvhWUCd8QmNXIRwHA5RzKeE0S7ZNEfwO/KWog=";
+        # hash = lib.fakeHash;
       };
       meta.homepage = "https://github.com/p00f/alabaster.nvim/";
       meta.hydraPlatforms = [];
     })
 
     # oxocarbon-nvim
-    # lackluster-nvim
+    lackluster-nvim
   ];
 
   # Documentation: https://nix-community.github.io/nixvim/

@@ -25,6 +25,7 @@ _: {
       in {
         "<leader><Space>" = command "builtin" "Omnibar";
         "<leader>pf" = command "files" "Find project files";
+        "<leader>pl" = command "lsp_workspace_symbols" "Search symbol in this project";
 
         # Search
         "<leader>sp" = command "live_grep" "Search Project";
