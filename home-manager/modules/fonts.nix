@@ -26,6 +26,11 @@ in {
         ])
 
         (mkIf cfg.extra [
+          # Latex math fonts to be used in libreoffice
+          lmmath
+          newcomputermodern
+
+          # cjk
           noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif

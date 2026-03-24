@@ -56,73 +56,11 @@
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-  # services.displayManager.sddm = {
-  #   enable = true;
-  #   wayland.enable = true;
-  #   theme = "catppuccin-mocha";
-  # };
-
-  environment.etc = {
-    "greetd/hyprland.conf".text = ''
-      exec-once = ${pkgs.regreet}/bin/regreet; hyprctl dispatch exit
-      misc {
-          disable_hyprland_logo = true
-          disable_splash_rendering = true
-          disable_hyprland_guiutils_check = true
-      }
-    '';
-
-    "greetd/regreet.toml".source = (pkgs.formats.toml {}).generate "regreet" {
-      background = {
-        path = "/etc/wallpapers/kumamon.png";
-        fit = "Cover";
-      };
-
-      GTK = {
-        application_prefer_dark_theme = true;
-        cursor_theme_name = "Adwaita";
-        cursor_blink = true;
-        font_name = "Cantarell 12";
-        icon_theme_name = "Adwaita";
-        theme_name = "Adwaita";
-      };
-
-      appearance = {
-        greeting_msg = "Welcome back!";
-      };
-
-      "widget.clock" = {
-        # See https://docs.rs/jiff/0.1.14/jiff/fmt/strtime/index.html#conversion-specifications
-        format = "%a %H:%M";
-        resolution = "500ms"; # How often to update the text
-        timezone = "Asia/Shanghai";
-        label_width = 150;
-      };
-
-      commands = {
-        reboot = [
-          "systemctl"
-          "reboot"
-        ];
-
-        poweroff = [
-          "systemctl"
-          "poweroff"
-        ];
-
-        x11_prefix = [
-          "startx"
-          "/usr/bin/env"
-        ];
-      };
-    };
-  };
-
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "start-hyprland -- -c /etc/greetd/hyprland.conf";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -g Ahoy! --remember --remember-session --cmd start-hyprland";
         user = "greeter";
       };
     };
@@ -439,6 +377,8 @@
   ];
 
   fonts.packages = with pkgs; [
+    newcomputermodern
+    lmmath
     wqy_zenhei
     wqy_microhei
 
