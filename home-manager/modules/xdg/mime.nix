@@ -5,6 +5,53 @@
     # - Add document types
     directory = ["inode/directory"];
     pdf = ["application/pdf"];
+
+    # https://gist.github.com/professorjamesmoriarty/6087174
+    draw = [
+      "application/vnd.oasis.opendocument.graphics"
+      "application/vnd.oasis.opendocument.graphics-flat-xml"
+      "application/vnd.oasis.opendocument.graphics-template"
+    ];
+
+    spreadsheet = [
+      "application/vnd.ms-excel"
+      "application/vnd.ms-excel.sheet.binary.macroenabled.12"
+      "application/vnd.ms-excel.sheet.macroenabled.12"
+      "application/vnd.ms-excel.template.macroenabled.12"
+      "application/vnd.oasis.opendocument.spreadsheet"
+      "application/vnd.oasis.opendocument.spreadsheet-flat-xml"
+      "application/vnd.oasis.opendocument.spreadsheet-template"
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.template"
+    ];
+    ppt = [
+      "application/vnd.ms-powerpoint"
+      "application/vnd.ms-powerpoint.presentation.macroenabled.12"
+      "application/vnd.ms-powerpoint.template.macroenabled.12"
+      "application/vnd.oasis.opendocument.presentation"
+      "application/vnd.oasis.opendocument.presentation-flat-xml"
+      "application/vnd.oasis.opendocument.presentation-template"
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      "application/vnd.openxmlformats-officedocument.presentationml.slide"
+      "application/vnd.openxmlformats-officedocument.presentationml.slideshow"
+      "application/vnd.openxmlformats-officedocument.presentationml.template"
+    ];
+
+    word = [
+      "application/rtf"
+      "application/vnd.ms-word"
+      "application/vnd.ms-word.document.macroenabled.12"
+      "application/vnd.ms-word.template.macroenabled.12"
+      "application/vnd.oasis.opendocument.formula"
+      "application/vnd.oasis.opendocument.text"
+      "application/vnd.oasis.opendocument.text-flat-xml"
+      "application/vnd.oasis.opendocument.text-master"
+      "application/vnd.oasis.opendocument.text-template"
+      "application/vnd.oasis.opendocument.text-web"
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.template"
+    ];
+
     image = [
       # Source:
       # - https://github.com/nomacs/nomacs/blob/941f0d/ImageLounge/xgd-data/org.nomacs.ImageLounge.desktop
@@ -208,10 +255,21 @@
     defaultApplications =
       (setDefault audio ["vlc.desktop"])
       // (setDefault video ["vlc.desktop"])
-      // (setDefault image ["org.nomacs.ImageLounge.desktop" "feh.desktop"])
-      // (setDefault pdf ["org.pwmt.zathura.desktop" "sioyek.desktop"])
+      // (setDefault image [
+        "org.nomacs.ImageLounge.desktop"
+        "feh.desktop"
+      ])
+      // (setDefault pdf [
+        "org.pwmt.zathura.desktop"
+        "sioyek.desktop"
+      ])
       // (setDefault code ["nvim.desktop"])
       // (setDefault web ["firefox.desktop"])
-      // (setDefault directory ["thunar.desktop"]);
+      // (setDefault directory ["thunar.desktop"])
+      # Libre offices
+      // (setDefault word ["writer.desktop"])
+      // (setDefault ppt ["impress.desktop"])
+      // (setDefault spreadsheet ["calc.desktop"])
+      // (setDefault draw ["draw.desktop"]);
   };
 }
