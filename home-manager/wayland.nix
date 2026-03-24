@@ -19,6 +19,8 @@
         duration = "3h";
         mode = "center";
         path = "${config.xdg.userDirs.pictures}/wallpapers";
+
+        transition.glitch-memories = {};
       };
     };
   };

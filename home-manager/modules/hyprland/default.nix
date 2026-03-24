@@ -60,7 +60,8 @@
             "${pkgs.custom.tiny-bar}/bin/tiny-bar"
             "${pkgs.wpaperd}/bin/wpaperd -d "
             "${pkgs.custom.matcha}/bin/matcha --daemon --off"
-            "${pkgs.anki}/bin/anki"
+            "${pkgs.qbittorrent}/bin/qbittorrent"
+            "anki"
           ];
         }
       ]

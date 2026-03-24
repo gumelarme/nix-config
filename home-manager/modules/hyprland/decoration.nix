@@ -91,5 +91,8 @@ _: {
 
     # dev application as float
     "match:initial_title dev\-.*, float on"
+
+    # screenshot editor float
+    "match:class com.gabm.satty, float on"
   ];
 }
