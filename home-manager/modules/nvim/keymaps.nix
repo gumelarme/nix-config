@@ -36,6 +36,12 @@
   }
 
   {
+    key = "<leader>st";
+    action = "<cmd>FzfLua grep regex='(NOTE|TODO|FIXME|XXX):'<CR>";
+    options.desc = "Search todos";
+  }
+
+  {
     key = "yc";
     action = "yygccp";
     options = {

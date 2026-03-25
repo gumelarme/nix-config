@@ -31,6 +31,7 @@ _: {
         "<leader>sp" = command "live_grep" "Search Project";
         "<leader>ss" = command "lgrep_curbuf" "Search in buffer";
         "<leader>sl" = command "lsp_document_symbols" "Search symbol in buffer";
+        "<leader>sr" = command "resume" "Resume last search";
         "grr" = command "lsp_references" "Search symbol in buffer";
 
         "<leader>jj" = command "jumps" "Jump list";
