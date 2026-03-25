@@ -181,10 +181,12 @@
 
   programs.vscode = {
     enable = true;
+    package = pkgs.vscode-fhs;
     profiles.default.extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
-      ms-python.python
       enkia.tokyo-night
+      vadimcn.vscode-lldb
+      # llvm-vs-code-extensions.lldb-dap
     ];
   };
   programs.obs-studio = {
