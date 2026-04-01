@@ -457,7 +457,9 @@
   '';
 
   # wait time to hibernate for 'suspend-then-hibernate' config
-  systemd.sleep.extraConfig = "HibernateDelaySec=30min";
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "30min";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
