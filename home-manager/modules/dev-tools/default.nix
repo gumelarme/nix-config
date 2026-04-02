@@ -23,4 +23,25 @@
     shellcheck
     shfmt
   ];
+
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        term = "xterm-256color";
+        font = "Maple Mono NF CN Medium:size=8";
+        dpi-aware = "yes";
+        pad = "5x2"; # padding
+      };
+
+      colors-dark = {
+        alpha = 0.92;
+        background = "282a36";
+      };
+
+      mouse = {
+        hide-when-typing = "yes";
+      };
+    };
+  };
 }

@@ -255,7 +255,6 @@
     ];
 
     system-tools = [
-      foot
       trayer
       qrencode
       easyeffects # pipewire gui

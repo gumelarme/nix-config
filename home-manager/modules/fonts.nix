@@ -15,14 +15,8 @@ in {
     home.packages = with pkgs;
       mkMerge [
         (mkIf cfg.dev [
-          monaspace
-          ibm-plex
-          dejavu_fonts
-          source-code-pro
-          # (nerdfonts.override {fonts = ["IBMPlexMono" "DejaVuSansMono" "Monaspace"];})
-          nerd-fonts.blex-mono
-          nerd-fonts.dejavu-sans-mono
-          nerd-fonts.monaspace
+          dejavu_fonts # required hyprland -> pango
+          maple-mono.NF-CN
         ])
 
         (mkIf cfg.extra [
