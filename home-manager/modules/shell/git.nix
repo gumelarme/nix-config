@@ -37,6 +37,7 @@ in {
     programs.git = {
       enable = true;
       lfs.enable = true;
+      signing.format = "openpgp";
 
       settings = {
         user = {

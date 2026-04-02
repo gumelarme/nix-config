@@ -70,7 +70,7 @@
 
   gtk = {
     enable = true;
-    theme = {
+    gtk4.theme = {
       name = "Dracula";
       package = pkgs.dracula-theme;
     };
@@ -249,7 +249,7 @@
     virtualization = [
       docker
       distrobox
-      xorg.xhost # allow distrobox to run gui program
+      xhost # allow distrobox to run gui program
       # stable.qemu
       # stable.quickemu
     ];
@@ -300,7 +300,7 @@
       sane-frontends
       simple-scan
       kdePackages.skanlite
-      xorg.xf86videoamdgpu
+      xf86videoamdgpu
       # libwacom
       # wacomtablet # KDE Config Module
     ];

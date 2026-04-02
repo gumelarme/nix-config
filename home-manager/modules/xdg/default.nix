@@ -6,6 +6,7 @@
   in {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
     desktop = "${home}/desktop";
     documents = "${home}/docs";
     download = "${home}/downloads";
