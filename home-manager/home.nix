@@ -68,8 +68,12 @@
     };
   };
 
-  gtk = {
+  gtk = rec {
     enable = true;
+    colorScheme = "dark";
+
+    gtk2 = {inherit (config.gtk.gtk4) theme;};
+    gtk3 = {inherit (config.gtk.gtk4) theme;};
     gtk4.theme = {
       name = "Dracula";
       package = pkgs.dracula-theme;
