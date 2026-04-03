@@ -12,10 +12,13 @@ _: {
   };
 
   group = {
+    group_on_movetoworkspace = true;
     groupbar = {
+      enabled = true;
       gradients = true;
-      height = 16;
+      height = 18;
       font_size = 12;
+      font_family = "DejaVu Sans Mono";
       text_color = "0xff1a1a1a";
       "col.active" = "0xffff79c6";
       "col.inactive" = "0xff853e67";
