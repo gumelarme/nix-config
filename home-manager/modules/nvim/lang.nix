@@ -36,20 +36,24 @@ in {
       plugins.lsp = lib.mkIf cfg.lsp {
         enable = true;
         servers = {
-          # marksman.enable = true;
-          nil_ls.enable = true;
+          nil_ls.enable = true; # nix
           lua_ls.enable = true;
-          html.enable = true;
-          tailwindcss.enable = true;
           gleam.enable = true;
-          # ts_ls.enable = true;
-          vtsls.enable = true;
-          clojure_lsp.enable = true;
           pyright.enable = true;
+          clojure_lsp.enable = true;
+          ols.enable = true; # odin
+          clangd.enable = true;
+          ocamllsp.enable = true;
+
           gopls.enable = true;
           templ.enable = true;
-          ols.enable = true; # odin
-          clangd.enable = true; # odin
+
+          html.enable = true;
+          tailwindcss.enable = true;
+          # ts_ls.enable = true;
+          vtsls.enable = true;
+
+          # marksman.enable = true;
           tinymist = {
             enable = true;
             package = pkgs.tinymist;
@@ -110,6 +114,7 @@ in {
           odin
           html
           gleam
+          ocaml
           templ
           python
           vimdoc
