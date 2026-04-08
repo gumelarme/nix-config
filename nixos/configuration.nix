@@ -66,6 +66,23 @@
     };
   };
 
+  services.caddy = {
+    enable = true;
+    globalConfig = ''
+      debug
+    '';
+
+    logFormat = ''
+      level DEBUG
+    '';
+
+    virtualHosts."dash.localhost".extraConfig = ''
+      tls internal
+      root /srv/dash
+      file_server
+    '';
+  };
+
   # Might be useful: https://askubuntu.com/questions/916465/ubuntu-17-04-keyboard-not-responding-after-suspend
   # https://unix.stackexchange.com/questions/28736/what-does-the-i8042-nomux-1-kernel-option-do-during-booting-of-ubuntu
   # https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
@@ -360,6 +377,8 @@
     p7zip
 
     nixos-option
+
+    nssTools # required by caddy
 
     (catppuccin-sddm.override {
       flavor = "mocha";
