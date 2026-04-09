@@ -63,6 +63,15 @@
           "direnv"
         ];
       }
+
+      {
+        command = "ssh -T git@github.com -vvv";
+        description = "Git test remote connection";
+        tag = [
+          "ssh"
+          "git"
+        ];
+      }
     ];
   };
 }
