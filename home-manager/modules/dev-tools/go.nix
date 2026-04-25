@@ -16,7 +16,6 @@ in {
       gcc
       go
       godef
-      gopls
       gomodifytags
       gotests
       gotools

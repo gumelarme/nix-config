@@ -25,11 +25,11 @@ in {
       html-tidy
       typescript
       nodejs_20
-      nodePackages.pnpm
-      nodePackages.js-beautify
-      nodePackages.stylelint
-      nodePackages.typescript-language-server
-      nodePackages."@astrojs/language-server"
+      pnpm
+      js-beautify
+      stylelint
+      typescript-language-server
+      # nodePackages."@astrojs/language-server"
       # nodePackages.volar
     ]);
   };
