@@ -170,6 +170,19 @@
     };
   };
 
+  # services.mihomo = {
+  #   enable = true;
+  #   tunMode = true;
+  #   webui = pkgs.metacubexd;
+  # };
+
+  programs.clash-verge = {
+    enable = true;
+    autoStart = true;
+    serviceMode = true;
+    tunMode = true;
+  };
+
   services = {
     openssh.enable = true;
     v2raya.enable = true;
