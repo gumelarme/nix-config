@@ -15,9 +15,6 @@ in {
       plugins = {
         nix.enable = true;
         trouble.enable = cfg.lsp;
-        typst-vim.enable = true;
-        lsp-format.enable = cfg.lsp;
-
         cmp-path.enable = cfg.completion;
         cmp-buffer.enable = cfg.completion;
         cmp-nvim-lsp.enable = cfg.completion;
@@ -44,6 +41,11 @@ in {
           ols.enable = true; # odin
           clangd.enable = true;
           ocamllsp.enable = true;
+          rust_analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
 
           gopls.enable = true;
           templ.enable = true;
@@ -87,6 +89,59 @@ in {
         };
       };
 
+      # formatter
+      plugins.conform-nvim = {
+        enable = cfg.lsp;
+        autoInstall.enable = true;
+        settings = {
+          default_format_opts = {
+            lsp_format = "fallback";
+          };
+
+          format_on_save = {
+            lsp_format = "fallback";
+            timeout_ms = 500;
+          };
+
+          formatters = {
+            custom_python_formatter = {
+              command.__raw = ''
+                function(bufnr)
+                   if require("conform").get_formatter_info("ruff_format", bufnr).available then
+                     return { "ruff_format" }
+                   else
+                     return { "isort", "black" }
+                   end
+                 end
+              '';
+            };
+          };
+
+          formatters_by_ft = {
+            # Use the "*" filetype to run formatters on all filetypes.
+            # Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
+
+            "*" = ["typos"];
+            "_" = ["trim_whitespace"];
+            bash = ["shellcheck" "shellharden" "shfmt"];
+            cpp = ["clang_format"];
+            lua = ["stylua"];
+            nix = ["alejandra"];
+            odin = ["odinfmt"];
+            gleam = ["gleam"];
+            ocaml = ["ocamlformat"];
+            clojure = ["cljfmt"];
+            markdown = ["rumdl"];
+            yaml = ["yamlfmt"];
+            dockerfile = ["dockerfmt"];
+            typst = ["typstyle"];
+            go = ["goimports" "gofmt"];
+            rust = ["rustfmt"];
+            python = ["custom_python_formatter"];
+          };
+        };
+      };
+
       plugins.ts-context-commentstring.enable = true;
       plugins.treesitter-context = {
         enable = true;
@@ -113,6 +168,7 @@ in {
           tsx
           odin
           html
+          rust
           gleam
           ocaml
           templ

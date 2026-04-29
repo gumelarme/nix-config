@@ -238,7 +238,8 @@
     ];
 
     gui-tools = [
-      chromium
+      brave
+      # chromium
       krusader # dual pane file manager
       qutebrowser
 

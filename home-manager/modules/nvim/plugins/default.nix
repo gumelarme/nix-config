@@ -42,6 +42,7 @@
     lualine.enable = true;
     commentary.enable = true;
     highlight-colors.enable = true;
+    illuminate.enable = true;
 
     snacks = {
       settings = {
@@ -55,6 +56,16 @@
       enable = true;
       mockDevIcons = true;
       modules.icons = {};
+      modules.cmdline = {
+        autocomplete = {
+          enable = true;
+          delay = 200;
+        };
+        autopeek = {
+          enable = true;
+          n_context = 5;
+        };
+      };
       modules.move = {
         mappings = {
           left = "<M-h>";

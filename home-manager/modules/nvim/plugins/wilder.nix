@@ -7,7 +7,7 @@
 in {
   config = lib.mkIf cfg.enable {
     programs.nixvim.plugins.wilder = {
-      enable = true;
+      enable = false;
       settings.modes = [
         ":"
         "/"
