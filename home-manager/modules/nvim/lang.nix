@@ -42,12 +42,6 @@ in {
           ols.enable = true; # odin
           clangd.enable = true;
           ocamllsp.enable = true;
-          rust_analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
-          };
-
           gopls.enable = true;
           templ.enable = true;
 
@@ -55,6 +49,18 @@ in {
           tailwindcss.enable = true;
           # ts_ls.enable = true;
           vtsls.enable = true;
+
+          rust_analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
+
+          hls = {
+            # haskell
+            enable = true;
+            installGhc = false;
+          };
 
           # marksman.enable = true;
           tinymist = {
@@ -139,6 +145,7 @@ in {
             go = ["goimports" "gofmt"];
             rust = ["rustfmt"];
             python = ["custom_python_formatter"];
+            haskell = ["ormolu"];
           };
         };
       };
@@ -172,6 +179,7 @@ in {
           rust
           gleam
           ocaml
+          haskell
           templ
           python
           vimdoc
