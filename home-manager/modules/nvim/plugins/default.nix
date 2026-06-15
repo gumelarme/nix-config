@@ -41,7 +41,6 @@
     # hardtime.enable = true;
     lualine.enable = true;
     commentary.enable = true;
-    highlight-colors.enable = true;
     illuminate.enable = true;
 
     snacks = {

@@ -60,7 +60,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -g Ahoy! --remember --remember-session --cmd start-hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time -g Ahoy! --remember --remember-session --cmd start-hyprland";
         user = "greeter";
       };
     };
@@ -354,7 +354,7 @@
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
-      xorg.xf86videoamdgpu
+      xf86-video-amdgpu
     ];
 
     shell = pkgs.zsh;
@@ -442,7 +442,7 @@
     configure = {
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
-          sensible
+          vim-sensible
           vim-nix
         ];
       };

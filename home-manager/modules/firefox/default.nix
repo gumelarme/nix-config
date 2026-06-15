@@ -16,6 +16,7 @@ in {
     home.file."${config.xdg.configHome}/tridactyl/tridactylrc".source = ./tridactylrc;
     programs.firefox = {
       enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       nativeMessagingHosts = [pkgs.tridactyl-native];
 
       profiles.guest = {
