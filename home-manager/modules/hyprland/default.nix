@@ -15,57 +15,50 @@
     enable = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    settings = lib.mkMerge (
-      lib.map
-      (
-        file:
-          import file {
-            inherit lib pkgs config;
-          }
-      )
-      [
-        ./keybind.nix
-        ./decoration.nix
-      ]
-      ++ [
-        {
-          env = let
-            cursor = config.home.pointerCursor;
-            # remove suffix cursor from the name
-            splitted = lib.splitString "-" cursor.name;
-            hyprcursor_name = builtins.concatStringsSep "-" (
-              lib.lists.take ((builtins.length splitted) - 1) splitted
-            );
-          in [
-            "XCURSOR_THEME,${cursor.name}"
-            "XCURSOR_SIZE,${toString cursor.size}"
-            "HYPRCURSOR_THEME,${hyprcursor_name}"
-            "HYPRCURSOR_SIZE,${toString cursor.size}"
-          ];
+    configType = "lua";
+    settings = lib.mkMerge [
+      (import ./config.nix {})
+      (import ./monitor.nix {})
+      (import ./rules.nix {})
+      (import ./animation.nix {})
+      (import ./smart-gaps.nix {})
+      (import ./keybind.nix {inherit lib pkgs config;})
+      {
+        env = let
+          env = key: val: {_args = [key val];};
+          cursor = config.home.pointerCursor;
+          split = lib.splitString "-" cursor.name;
+          hyprcursor_name = builtins.concatStringsSep "-" (
+            lib.lists.take ((builtins.length split) - 1) split
+          );
+        in [
+          (env "XCURSOR_THEME" cursor.name)
+          (env "XCURSOR_SIZE" (toString cursor.size))
+          (env "HYPRCURSOR_THEME" hyprcursor_name)
+          (env "HYPRCURSOR_SIZE" (toString cursor.size))
+        ];
 
-          "debug:disable_logs" = false;
-          monitor = [
-            ", highres, 0x0, 1" # uncomment this for extend
-            # ", preffered, auto, 1, mirror, eDP-1" # enable this for mirror
-            "desc:ViewSonic Corporation VX2478-2 UYL211520009, 2560x1440, 0x0, 1"
-            "eDP-1, 1920x1080, auto-right, 1"
-          ];
-
-          master = {
-            new_status = "master";
-            new_on_top = true;
+        on = let
+          lua = lib.generators.mkLuaInline;
+          e = bin: "\t hl.exec_cmd(\"${bin}\")";
+          on_ = event: programs: {
+            _args = [
+              event
+              (lua (
+                lib.strings.concatStringsSep "\n" (["function()"] ++ programs ++ ["end"])
+              ))
+            ];
           };
-
-          exec-once = [
-            "${pkgs.custom.tiny-bar}/bin/tiny-bar"
-            "${pkgs.wpaperd}/bin/wpaperd -d "
-            "${pkgs.custom.matcha}/bin/matcha --daemon --off"
-            "${pkgs.qbittorrent}/bin/qbittorrent"
-            "anki"
+        in
+          on_ "hyprland.start" [
+            (e "anki")
+            (e "${pkgs.custom.tiny-bar}/bin/tiny-bar")
+            (e "${pkgs.wpaperd}/bin/wpaperd -d")
+            (e "${pkgs.custom.matcha}/bin/matcha --daemon --off")
+            (e "${pkgs.qbittorrent}/bin/qbittorrent")
           ];
-        }
-      ]
-    );
+      }
+    ];
   };
 
   xdg.portal = {
