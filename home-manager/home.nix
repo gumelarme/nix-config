@@ -245,9 +245,12 @@
       qutebrowser
 
       # AI
-      jan
-      ollama
-      bitwarden-desktop
+      # jan
+      # ollama
+
+      # electron problems
+      # bitwarden-desktop.override
+
       qbittorrent
       pick-colour-picker
     ];
@@ -294,8 +297,8 @@
 
     communication = [
       qq
-      wechat-uos
-      wemeet # official but still very unstable
+      # wechat-uos
+      # wemeet # official but still very unstable
       # nur.repos.linyinfeng.wemeet
       # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version
     ];

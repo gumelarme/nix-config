@@ -160,7 +160,7 @@ in {
         };
       };
 
-      plugins.treesitter-locals.enable = true;
+      # plugins.treesitter-locals.enable = true;
       plugins.treesitter-textobjects.enable = true;
       plugins.treesitter = {
         enable = true;

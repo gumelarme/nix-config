@@ -24,7 +24,7 @@ in {
     home.packages = mkIf (!cfg.configOnly) (with pkgs; [
       html-tidy
       typescript
-      nodejs_20
+      nodejs_24
       pnpm
       js-beautify
       stylelint
