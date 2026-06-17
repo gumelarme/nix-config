@@ -247,18 +247,6 @@
         enable = true;
         enableScreensaver = false;
       };
-
-      # windowManager.qtile = {
-      #   enable = true;
-      #   backend = "x11";
-      #   # extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
-      # };
-
-      # windowManager.xmonad = {
-      #   enable = false;
-      #   enableContribAndExtras = true;
-      #   extraPackages = hPkgs: [hPkgs.xmobar];
-      # };
     };
 
     logind.settings.Login = {
@@ -399,8 +387,6 @@
       # loginBackground = true;
     })
 
-    # qtile
-    xmobar
     # pipewire tui
     qpwgraph
 
