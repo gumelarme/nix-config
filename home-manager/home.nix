@@ -297,7 +297,7 @@
 
     communication = [
       qq
-      # wechat-uos
+      wechat-uos
       # wemeet # official but still very unstable
       # nur.repos.linyinfeng.wemeet
       # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version

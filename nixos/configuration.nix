@@ -392,7 +392,14 @@
 
     # bluetooth tui
     bluetuith
+
+    niri
+    swaylock
+    fuzzel
+    xwayland-satellite
   ];
+
+  programs.niri.enable = true;
 
   fonts.packages = with pkgs; [
     newcomputermodern
