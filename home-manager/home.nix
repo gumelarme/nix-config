@@ -36,7 +36,7 @@
       outputs.overlays.stable-packages
       outputs.overlays.nur-packages
       outputs.overlays.custom-packages
-      (_self: _super: {fcitx-engines = pkgs.fcitx5;})
+      (_self: _super: {fcitx-engines = pkgs.fcitx5.fcitx5-with-addons;})
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -54,6 +54,10 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
+  };
+
+  programs.waybar = {
+    enable = true;
   };
 
   home = {
@@ -95,10 +99,18 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      fcitx5-material-color
-    ];
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-rime
+        fcitx5-material-color
+
+        fcitx5-pinyin-zhwiki
+        fcitx5-pinyin-moegirl
+        rime-zhwiki
+        rime-moegirl
+      ];
+    };
   };
 
   # Enable home-manager and git

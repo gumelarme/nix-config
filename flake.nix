@@ -56,7 +56,7 @@
     ];
   in {
     # Your custom packages
-    # Acessible through 'nix build', 'nix shell', etc
+    # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -65,7 +65,7 @@
     );
 
     # Devshell for bootstrapping
-    # Acessible through 'nix develop' or 'nix-shell' (legacy)
+    # Accessible through 'nix develop' or 'nix-shell' (legacy)
     devShells = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};

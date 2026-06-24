@@ -271,6 +271,10 @@
     powertop.enable = true;
   };
 
+  services.thinkfan = {
+    enable = true;
+  };
+
   # Bluetooth
   services.blueman.enable = true;
   hardware.bluetooth = {
@@ -354,6 +358,7 @@
     gparted
     exfatprogs
 
+    lm_sensors
     acpilight
     coreutils
     btop
