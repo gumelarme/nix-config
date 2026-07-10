@@ -265,6 +265,7 @@
 
       qbittorrent
       pick-colour-picker
+      wooz # wayland zoomer
     ];
 
     virtualization = [
