@@ -6,7 +6,7 @@
   imports = [
     ./dunst.nix
     ./lowbatt-notification.nix
-    ./mopidy.nix
+    # ./mopidy.nix
     ./ding_dong.nix
   ];
 

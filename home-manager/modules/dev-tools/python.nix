@@ -47,7 +47,7 @@ in {
           cfg.package
           black
           isort
-          pipenv
+          # pipenv # test case failed on build
         ]
       ]
     );

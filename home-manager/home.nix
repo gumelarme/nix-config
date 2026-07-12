@@ -64,6 +64,7 @@
     username = "kasuari";
     homeDirectory = "/home/kasuari";
     pointerCursor = {
+      enable = true;
       package = pkgs.catppuccin-cursors.lattePeach;
       name = "catppuccin-latte-peach-cursors";
       size = 48;
@@ -310,7 +311,7 @@
 
     communication = [
       qq
-      wechat-uos
+      # wechat-uos
       # wemeet # official but still very unstable
       # nur.repos.linyinfeng.wemeet
       # nur.repos.novel2430.wemeet-bin-bwrap # CVE from a certain qtwebengine, chromium version

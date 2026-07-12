@@ -20,7 +20,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim/main";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
