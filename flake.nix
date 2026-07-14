@@ -20,18 +20,8 @@
 
     nixvim.url = "github:nix-community/nixvim/main";
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     my-tiny-bar.url = "github:gumelarme/tiny-bar";
-    # my-tiny-bar.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
-
-    matcha-idle-inhibitor.url = "git+https://codeberg.org/QuincePie/matcha?ref=main";
   };
 
   outputs = {

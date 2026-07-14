@@ -3,7 +3,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  inputs,
   config,
   pkgs,
   ...
@@ -25,7 +24,6 @@
     "flakes"
   ];
   nix.settings.substituters = [
-    "https://hyprland.cachix.org"
     "https://nix-community.cachix.org"
 
     # mainland chinese, mostly stable version
@@ -39,7 +37,6 @@
   ];
 
   nix.settings.trusted-public-keys = [
-    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
 
@@ -48,19 +45,12 @@
     interface = "wlp3s0";
   };
   programs.sway.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
 
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time -g Ahoy! --remember --remember-session --cmd start-hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time -g Ahoy! --remember --remember-session";
         user = "greeter";
       };
     };
@@ -344,6 +334,7 @@
       "input"
       "uinput"
     ]; # Enable ‘sudo’ for the user.
+
     packages = with pkgs; [
       firefox
       xf86-video-amdgpu
@@ -351,6 +342,15 @@
 
     shell = pkgs.zsh;
   };
+
+  users.users.shoebill = {
+    createHome = true;
+    home = "/home/shoebill";
+    uid = 1001;
+    isNormalUser = true;
+    shell = pkgs.zsh;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 

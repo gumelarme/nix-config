@@ -20,7 +20,7 @@
     ./modules/shell
     ./modules/firefox
     ./modules/wezterm
-    ./modules/hyprland
+    ./modules/hyprland/hyprlock.nix
     ./modules/dev-tools
     ./modules/fonts.nix
     ./modules/typeset.nix
@@ -35,7 +35,6 @@
       outputs.overlays.modifications
       outputs.overlays.stable-packages
       outputs.overlays.nur-packages
-      outputs.overlays.custom-packages
       (_self: _super: {fcitx-engines = pkgs.fcitx5.fcitx5-with-addons;})
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -73,7 +72,7 @@
     };
   };
 
-  gtk = rec {
+  gtk = {
     enable = true;
     colorScheme = "dark";
 
@@ -225,6 +224,7 @@
 
   home.packages = with pkgs; let
     entertainment = [
+      brave
       vlc
       tauon
       nomacs
@@ -252,7 +252,6 @@
     ];
 
     gui-tools = [
-      brave
       # chromium
       krusader # dual pane file manager
       qutebrowser
@@ -281,8 +280,6 @@
       trayer
       qrencode
       easyeffects # pipewire gui
-      custom.tiny-bar
-      custom.matcha
       kdePackages.ark # gui archive
     ];
 
