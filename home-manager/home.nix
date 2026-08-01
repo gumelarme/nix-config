@@ -252,6 +252,7 @@
     ];
 
     gui-tools = [
+      stable.handbrake
       # chromium
       krusader # dual pane file manager
       qutebrowser
