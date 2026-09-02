@@ -169,7 +169,7 @@ in {
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           c
           go
-          nix
+          # nix
           lua
           # org
           css

@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
 
@@ -20,7 +20,7 @@
 
     nixvim.url = "github:nix-community/nixvim/main";
 
-    my-tiny-bar.url = "github:gumelarme/tiny-bar";
+    # my-tiny-bar.url = "github:gumelarme/tiny-bar";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 

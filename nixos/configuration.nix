@@ -261,9 +261,9 @@
     powertop.enable = true;
   };
 
-  services.thinkfan = {
-    enable = true;
-  };
+  # services.thinkfan = {
+  #   enable = true;
+  # };
 
   # Bluetooth
   services.blueman.enable = true;

@@ -79,8 +79,8 @@
     gtk2 = {inherit (config.gtk.gtk4) theme;};
     gtk3 = {inherit (config.gtk.gtk4) theme;};
     gtk4.theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
+      name = "palenight";
+      package = pkgs.palenight-theme;
     };
 
     iconTheme = {
@@ -226,12 +226,17 @@
     entertainment = [
       brave
       vlc
+
       tauon
+      # backup audio players
+      fooyin
+      kew # cli
+
       nomacs
       netflix
       stable.blender
-      mindustry-wayland
-      netease-cloud-music-gtk
+      # mindustry-wayland
+      # netease-cloud-music-gtk
       waylyrics
       steam
       steam-run
