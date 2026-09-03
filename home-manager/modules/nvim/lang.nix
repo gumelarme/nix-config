@@ -45,6 +45,11 @@ in {
           gopls.enable = true;
           templ.enable = true;
 
+          harper_ls = {
+            enable = true;
+            filetypes = ["asciidoc" "gitcommit" "markdown" "tex" "text" "typst"];
+          };
+
           html.enable = true;
           tailwindcss.enable = true;
           # ts_ls.enable = true;
