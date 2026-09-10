@@ -171,10 +171,10 @@ in {
         enable = true;
         settings.highlight.enable = true;
         settings.indent.enable = true;
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
           c
           go
-          # nix
+          nix
           lua
           # org
           css
@@ -192,6 +192,7 @@ in {
           javascript
           typescript
 
+          typst
           markdown
           markdown_inline
           todotxt
