@@ -45,6 +45,7 @@ in {
       unzip
       p7zip
       libarchive
+      unrar
 
       # File Management
       rsync
