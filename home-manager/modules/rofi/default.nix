@@ -13,7 +13,7 @@ in {
       enable = true;
       plugins = with pkgs; [rofi-calc rofi-emoji rofi-power-menu rofi-rbw-wayland];
       theme = ./theme/dracula-2.rasi; # path
-      extraConfig = {
+      settings = {
         modes = "drun,calc,emoji,run";
         display-calc = "=";
       };
