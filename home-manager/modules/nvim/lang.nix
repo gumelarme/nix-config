@@ -190,6 +190,7 @@ in {
           vimdoc
           clojure
           javascript
+          svelte
           typescript
 
           typst
