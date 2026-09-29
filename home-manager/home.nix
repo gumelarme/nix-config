@@ -226,12 +226,14 @@
     entertainment = [
       brave
       vlc
+      losslesscut-bin
 
       tauon
       # backup audio players
       fooyin
       kew # cli
 
+      localsend
       nomacs
       netflix
       stable.blender
