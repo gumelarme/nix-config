@@ -54,6 +54,7 @@ in {
           tailwindcss.enable = true;
           # ts_ls.enable = true;
           vtsls.enable = true;
+          svelte.enable = true;
 
           rust_analyzer = {
             enable = true;
@@ -149,7 +150,8 @@ in {
             typst = ["typstyle"];
             go = ["goimports" "gofmt"];
             rust = ["rustfmt"];
-            python = ["custom_python_formatter"];
+            # python = ["custom_python_formatter"];
+            python = ["ruff_organize_imports" "ruff_format"];
             haskell = ["ormolu"];
           };
         };
