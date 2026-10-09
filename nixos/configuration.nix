@@ -80,6 +80,10 @@
     "quiet"
     "splash"
     "usbcore.autosuspend=-1"
+
+    # limit the processor to shallow sleep state to avoid random freeze
+    # https://en.wikipedia.org/wiki/ACPI#CPU_states
+    "processor.max_cstate=1"
   ];
 
   # Use latest kernel

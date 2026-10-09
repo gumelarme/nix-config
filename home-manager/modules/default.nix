@@ -63,6 +63,7 @@ in {
       # Misc
       glow
       btop
+      jolt-tui
       termdown
       tealdeer
     ];
