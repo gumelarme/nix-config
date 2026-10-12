@@ -396,7 +396,7 @@
       # loginBackground = true;
     })
 
-    # pipewire tui
+    # pipewire gui
     qpwgraph
 
     # bluetooth tui

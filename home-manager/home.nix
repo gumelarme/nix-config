@@ -211,7 +211,7 @@
       wlrobs
       obs-vaapi
       obs-pipewire-audio-capture
-      obs-advanced-masks
+      # obs-advanced-masks
     ];
   };
 
@@ -302,7 +302,7 @@
 
     doc-utils = [
       pandoc
-      zotero
+      stable.zotero
       lorien
       stable.calibre
       libreoffice-qt
