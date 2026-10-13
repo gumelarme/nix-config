@@ -359,6 +359,7 @@
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
+    ncdu
     gparted
     exfatprogs
 
@@ -448,6 +449,14 @@
           vim-nix
         ];
       };
+    };
+  };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep 10 --keep-since 7d";
     };
   };
 
