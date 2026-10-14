@@ -20,7 +20,7 @@
     ./modules/shell
     ./modules/firefox
     ./modules/wezterm
-    ./modules/hyprland/hyprlock.nix
+    # ./modules/hyprland/hyprlock.nix
     ./modules/dev-tools
     ./modules/fonts.nix
     ./modules/typeset.nix
@@ -52,6 +52,9 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+        "electron-39.8.10"
+      ];
     };
   };
 
@@ -233,6 +236,7 @@
       fooyin
       kew # cli
 
+      logseq
       localsend
       nomacs
       netflix

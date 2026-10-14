@@ -26,6 +26,8 @@ in {
 
           # cjk
           noto-fonts
+          noto-fonts-color-emoji
+          noto-fonts-monochrome-emoji
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
           atkinson-hyperlegible

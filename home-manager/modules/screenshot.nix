@@ -23,6 +23,8 @@ in {
           grim # screenshot
           slurp # select region on the screen
           satty # edit image after screenhost
+
+          noto-fonts-cjk-sans
         ])
 
         (mkIf (!isWayland) [
@@ -63,7 +65,11 @@ in {
 
       [font]
       family = "monospace"
-      style = "Bold"
+      style = "Regular"
+
+      fallback = [
+        "Noto Sans CJK SC",
+      ]
     '';
   };
 }
