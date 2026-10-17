@@ -77,6 +77,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       crockpot = nixpkgs-unstable.lib.nixosSystem {
+        # pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <

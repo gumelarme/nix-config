@@ -3,8 +3,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -110,7 +110,7 @@
       # cosmetics
       fontSize = 36;
       backgroundColor = "#141414";
-      splashImage = config.environment.etc."wallpapers/kumamon.png".source;
+      splashImage = config.environment.etc."/wallpapers/kumamon.png".source;
       splashMode = "normal";
     };
   };
@@ -157,18 +157,18 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  # services.mihomo = {
+  #   enable = true;
+  #   tunMode = true;
+  #   webui = pkgs.metacubexd;
+  # };
+
   environment.etc."wallpapers/kumamon.png" = {
     source = pkgs.fetchurl {
       url = "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
       hash = "sha256-A0x4VbfRuPY6b6d/L/N9k9xIsoIjEeFgzyFkfvcYanc";
     };
   };
-
-  # services.mihomo = {
-  #   enable = true;
-  #   tunMode = true;
-  #   webui = pkgs.metacubexd;
-  # };
 
   programs.clash-verge = {
     enable = true;
@@ -347,13 +347,13 @@
     shell = pkgs.zsh;
   };
 
-  users.users.shoebill = {
-    createHome = true;
-    home = "/home/shoebill";
-    uid = 1001;
-    isNormalUser = true;
-    shell = pkgs.zsh;
-  };
+  # users.users.shoebill = {
+  #   createHome = true;
+  #   home = "/home/shoebill";
+  #   uid = 1001;
+  #   isNormalUser = true;
+  #   shell = pkgs.zsh;
+  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -410,6 +410,7 @@
   ];
 
   programs.niri.enable = true;
+  security.pam.services.swaylock.enable = true;
 
   fonts.packages = with pkgs; [
     newcomputermodern
