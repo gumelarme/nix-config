@@ -110,7 +110,7 @@
       # cosmetics
       fontSize = 36;
       backgroundColor = "#141414";
-      splashImage = config.environment.etc."/wallpapers/kumamon.png".source;
+      splashImage = config.environment.etc."wallpapers/kumamon.png".source;
       splashMode = "normal";
     };
   };
@@ -519,6 +519,8 @@
       8000
       8080
       12345
+      # Localsend
+      53317
     ];
   };
 
