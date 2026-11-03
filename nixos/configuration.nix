@@ -10,22 +10,16 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # ./cachix.nix
+    ./manual-hardware.nix
+    ./desktop.nix
   ];
-
-  # steam, fix glxChooseVisual failed
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-  nix.settings.substituters = [
-    "https://nix-community.cachix.org"
 
+  nix.settings.substituters = [
     # mainland chinese, mostly stable version
     # "https://mirror.nju.edu.cn/nix-channels/store"
     # "https://mirrors.cernet.edu.cn/nix-channels/store"
@@ -36,291 +30,14 @@
     "https://cache.nixos.org/"
   ];
 
-  nix.settings.trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  ];
-
-  programs.captive-browser = {
-    enable = true;
-    interface = "wlp3s0";
-  };
-  programs.sway.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time -g Ahoy! --remember --remember-session";
-        user = "greeter";
-      };
-    };
-  };
-
-  services.caddy = {
-    enable = true;
-    globalConfig = ''
-      debug
-    '';
-
-    logFormat = ''
-      level DEBUG
-    '';
-
-    virtualHosts."dash.localhost".extraConfig = ''
-      tls internal
-      root /srv/dash
-      file_server
-    '';
-  };
-
-  # Might be useful: https://askubuntu.com/questions/916465/ubuntu-17-04-keyboard-not-responding-after-suspend
-  # https://unix.stackexchange.com/questions/28736/what-does-the-i8042-nomux-1-kernel-option-do-during-booting-of-ubuntu
-  # https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
-  boot.kernelParams = [
-    "quiet"
-    "splash"
-    "usbcore.autosuspend=-1"
-
-    # limit the processor to shallow sleep state to avoid random freeze
-    # https://en.wikipedia.org/wiki/ACPI#CPU_states
-    "processor.max_cstate=1"
-  ];
-
-  # Use latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.supportedFilesystems = ["ntfs"];
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      device = "nodev";
-      useOSProber = true;
-      efiSupport = true;
-      extraEntries = ''
-        menuentry "Reboot" {
-          reboot
-        }
-        menuentry "Poweroff" {
-          halt
-        }
-      '';
-
-      # cosmetics
-      fontSize = 36;
-      backgroundColor = "#141414";
-      splashImage = config.environment.etc."wallpapers/kumamon.png".source;
-      splashMode = "normal";
-    };
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    daemon.settings = {
-      registry-mirrors = [
-        "https://docker.mirrors.sjtug.sjtu.edu.cn"
-        "https://docker.mirrors.ustc.edu.cn"
-        "https://registry.docker-cn.com"
-      ];
-    };
-  };
-
-  # Pick only one of the below networking options.
-  # Easiest to use and most distros use this by default.
-  networking.networkmanager.enable = true;
-  networking.hostName = "crockpot";
-
-  # Set your time zone.
-  time.timeZone = "Asia/Shanghai";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-
-    #     supportedLocales = [
-    #       "en_US.UTF-8/UTF-8"
-    #       "zh_CN.UTF-8/UTF-8"
-    #     ];
-
-    # extraLocaleSettings = {
-    #   LC_CTYPE = "zh_CN.UTF-8";
-    # };
-  };
+  # set default editor to neovim
+  environment.variables.EDITOR = "nvim";
+  environment.variables.VISUAL = "nvim";
 
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkbOptions in tty.
   };
-
-  # services.mihomo = {
-  #   enable = true;
-  #   tunMode = true;
-  #   webui = pkgs.metacubexd;
-  # };
-
-  environment.etc."wallpapers/kumamon.png" = {
-    source = pkgs.fetchurl {
-      url = "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
-      hash = "sha256-A0x4VbfRuPY6b6d/L/N9k9xIsoIjEeFgzyFkfvcYanc";
-    };
-  };
-
-  programs.clash-verge = {
-    enable = true;
-    autoStart = true;
-    serviceMode = true;
-    tunMode = true;
-  };
-
-  services = {
-    openssh.enable = true;
-    v2raya.enable = true;
-    tlp.enable = true;
-    tlp.settings = {
-      USB_AUTOSUSPEND = 0;
-      DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
-    };
-
-    # Works, but cannot reduce the timeout or bypass to password directly
-    # https://github.com/NixOS/nixpkgs/issues/171136
-    # https://www.reddit.com/r/Fedora/comments/kx52nz/disable_fingerprint_reader_when_using_sudo/
-
-    fprintd = {
-      enable = false;
-      tod.enable = true;
-      tod.driver = pkgs.libfprint-2-tod1-vfs0090;
-    };
-
-    kmonad = {
-      enable = true;
-      keyboards.common-tkl = {
-        device = "/dev/input/by-id/usb-026d_0002-event-kbd";
-        config = builtins.readFile ./common-tkl.kbd;
-        defcfg = {
-          enable = true;
-          fallthrough = true;
-          allowCommands = false;
-          compose = {
-            key = "ralt";
-            delay = 5;
-          };
-        };
-      };
-      keyboards.thinkpad = {
-        device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-        config = builtins.readFile ./thinkpad-t14g2.kbd;
-        defcfg = {
-          enable = true;
-          fallthrough = true;
-          allowCommands = false;
-          compose = {
-            key = "ralt";
-            delay = 5;
-          };
-        };
-      };
-    };
-
-    libinput.enable = true;
-    libinput.mouse.accelSpeed = "1.0";
-    libinput.touchpad.accelSpeed = "1.0";
-
-    xserver = {
-      enable = true;
-      # Configure keymap in X11
-      xkb.layout = "us";
-      # run XDGAutostart even if there is no DE
-      desktopManager.runXdgAutostartIfNone = true;
-
-      desktopManager.xfce = {
-        enable = true;
-        enableScreensaver = false;
-      };
-    };
-
-    logind.settings.Login = {
-      # See options at: man logind.conf
-      HandlePowerKey = "hybrid-sleep";
-      HandlePowerKeyLongPress = "poweroff";
-      HandleLidSwitch = "suspend-then-hibernate";
-      HandleLidSwitchDocked = "suspend-then-hibernate"; # lid closed but another screen is connected
-      HandleLidSwitchExternalPower = "lock";
-
-      # After screen is locked, it waits until 20min of idle to 'suspend-then-hibernate'
-      # combined with services.screen-locker in home-manager,
-      # this will result in:  10m -> lock -> 10m -> suspend -> 30m -> hibernate
-      IdleAction = "suspend-then-hibernate";
-      IdleActionSec = "1200";
-    };
-  };
-
-  # Power Management
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
-
-  services.thinkfan = {
-    enable = true;
-  };
-
-  # Bluetooth
-  services.blueman.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket"; # Enable A2DP
-        Name = "kasuari-default";
-        ControllerMode = "dual";
-        FastConnectable = "true";
-        Experimental = "true";
-      };
-
-      Policy = {
-        AutoEnable = "true";
-      };
-    };
-  };
-
-  # Flatpak
-  services.flatpak.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-    ];
-  };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-  security.polkit.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    # alsa.enable = false;
-    # alsa.support32Bit = false;
-    pulse.enable = true;
-  };
-
-  # Scanner
-  hardware.sane.enable = true;
-  # services.ipp-usb.enable=true;
-
-  # wacom
-  services.xserver.wacom.enable = true;
-  # hardware.opentabletdriver.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kasuari = {
@@ -347,38 +64,24 @@
     shell = pkgs.zsh;
   };
 
-  # users.users.shoebill = {
-  #   createHome = true;
-  #   home = "/home/shoebill";
-  #   uid = 1001;
-  #   isNormalUser = true;
-  #   shell = pkgs.zsh;
-  # };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-
   environment.systemPackages = with pkgs; [
-    ncdu
-    gparted
-    exfatprogs
-
-    lm_sensors
-    acpilight
+    # basics
     coreutils
-    btop
-    pkgs.libinput-gestures
-    git
-    networkmanagerapplet
-    neovim
-    nix
-    nix-prefetch-scripts
-    home-manager
     tmux
     wget
     which
-    zsh
     killall
+    gparted
+
+    # nice to have
+    ncdu
+    btop
+
+    # nix tools
+    nix
+    nix-prefetch-scripts
+    home-manager
+    nixos-option
 
     # archive helper
     atool # easy zip unzip
@@ -387,30 +90,10 @@
     libarchive
     p7zip
 
-    nixos-option
-
     nssTools # required by caddy
-
-    (catppuccin-sddm.override {
-      flavor = "mocha";
-      # background = config.environment.etc.wallpaper.source;
-      # loginBackground = true;
-    })
-
-    # pipewire gui
-    qpwgraph
-
-    # bluetooth tui
-    bluetuith
-
-    niri
-    swaylock
-    fuzzel
-    xwayland-satellite
+    qpwgraph # pipewire gui
+    exfatprogs #TODO review
   ];
-
-  programs.niri.enable = true;
-  security.pam.services.swaylock.enable = true;
 
   fonts.packages = with pkgs; [
     newcomputermodern
@@ -421,23 +104,29 @@
     cantarell-fonts # Used by regreet
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlp3s0";
+  };
 
-  programs.git.enable = true;
+  programs.clash-verge = {
+    enable = true;
+    autoStart = true;
+    serviceMode = true;
+    tunMode = true;
+  };
+
   programs.bandwhich.enable = true;
-  programs.git.config = {
-    init = {
-      defaultBranch = "main";
-    };
+  programs.git = {
+    enable = true;
+    config = {
+      init = {
+        defaultBranch = "main";
+      };
 
-    core = {
-      editor = "nvim";
+      core = {
+        editor = "nvim";
+      };
     };
   };
 
@@ -453,6 +142,7 @@
     };
   };
 
+  # Nix helper
   programs.nh = {
     enable = true;
     clean = {
@@ -485,14 +175,119 @@
     ];
   };
 
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+
+  services.caddy = {
+    enable = true;
+    globalConfig = ''
+      debug
+    '';
+
+    logFormat = ''
+      level DEBUG
+    '';
+
+    virtualHosts."dash.localhost".extraConfig = ''
+      tls internal
+      root /srv/dash
+      file_server
+    '';
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      registry-mirrors = [
+        "https://docker.mirrors.sjtug.sjtu.edu.cn"
+        "https://docker.mirrors.ustc.edu.cn"
+        "https://registry.docker-cn.com"
+      ];
+    };
+  };
+
+  # ==================== WARNING
+  # ==================== LOW LEVEL STUFF
+
+  # Power Management
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      USB_AUTOSUSPEND = 0;
+      DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
+    };
+  };
+
+  # Set your time zone.
+  time.timeZone = "Asia/Shanghai";
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+  };
+
+  # TODO: package this
+  environment.etc."wallpapers/kumamon.png" = {
+    source = pkgs.fetchurl {
+      url = "https://f003.backblazeb2.com/file/squirrel-stash/wallpapers/kumamon.png";
+      hash = "sha256-A0x4VbfRuPY6b6d/L/N9k9xIsoIjEeFgzyFkfvcYanc";
+    };
+  };
+
+  # Might be useful: https://askubuntu.com/questions/916465/ubuntu-17-04-keyboard-not-responding-after-suspend
+  # https://unix.stackexchange.com/questions/28736/what-does-the-i8042-nomux-1-kernel-option-do-during-booting-of-ubuntu
+  # https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "usbcore.autosuspend=-1"
+
+    # limit the processor to shallow sleep state to avoid random freeze
+    # https://en.wikipedia.org/wiki/ACPI#CPU_states
+    "processor.max_cstate=1"
+  ];
+
+  # Use the systemd-boot EFI boot loader.
+  boot.supportedFilesystems = ["ntfs"];
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      device = "nodev";
+      useOSProber = true;
+      efiSupport = true;
+      extraEntries = ''
+        menuentry "Reboot" {
+          reboot
+        }
+        menuentry "Poweroff" {
+          halt
+        }
+      '';
+
+      # cosmetics
+      fontSize = 36;
+      backgroundColor = "#141414";
+      splashImage = config.environment.etc."wallpapers/kumamon.png".source;
+      splashMode = "normal";
+    };
+  };
+
+  security.polkit.enable = true;
+  security.rtkit.enable = true;
+
+  services.openssh.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.devmon.enable = true;
-
-  # set default editor to neovim
-  environment.variables.EDITOR = "nvim";
-  environment.variables.VISUAL = "nvim";
 
   # Allow user in `video` group to change brightness without sudo
   services.udev.extraRules = ''
@@ -500,10 +295,10 @@
     ACTION=="add", SUBSYSTEM=="backlight" KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
   '';
 
-  # wait time to hibernate for 'suspend-then-hibernate' config
-  systemd.sleep.settings.Sleep = {
-    HibernateDelaySec = "30min";
-  };
+  # Pick only one of the below networking options.
+  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
+  networking.hostName = "crockpot";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
