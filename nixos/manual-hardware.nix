@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    qmk
+    via
     libinput-gestures
     lm_sensors
     acpilight
@@ -46,6 +48,13 @@
   };
 
   # Input
+  hardware.keyboard.qmk = {
+    enable = true;
+    keychronSupport = true;
+  };
+
+  services.udev.packages = [pkgs.via];
+
   services.fprintd = {
     # Works, but cannot reduce the timeout or bypass to password directly
     # https://github.com/NixOS/nixpkgs/issues/171136

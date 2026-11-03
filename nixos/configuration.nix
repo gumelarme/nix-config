@@ -3,6 +3,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  lib,
   pkgs,
   config,
   ...
@@ -14,6 +15,7 @@
     ./desktop.nix
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["via"];
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
