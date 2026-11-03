@@ -55,6 +55,15 @@
       }
 
       # Dev tools
+
+      {
+        command = "nix flake init --template templates\\#utils-generic";
+        description = "Generate generic flake template";
+        tag = [
+          "nix"
+        ];
+      }
+
       {
         command = "echo \"use flake\" >> .envrc && direnv allow .";
         description = "Activate nix env";
