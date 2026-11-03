@@ -1,0 +1,22 @@
+(defsrc
+  spc q e r w a s d h j k l)
+
+(defalias
+  spc (tap-hold 200 200
+                spc (layer-toggle movement)))
+
+(deflayer base
+  @spc q e r w a s d h j k l)
+
+;; (movemouse-accel-<variant> interval accel-timeout dist-min dist-max)
+(deflayer movement
+  _
+  mltp
+  mrtp
+  mmtp
+  (movemouse-accel-up 4 500 1 5)
+  (movemouse-accel-left 4 500 1 5)
+  (movemouse-accel-down 4 500 1 5)
+  (movemouse-accel-right 4 500 1 5)
+  left down up right)
+

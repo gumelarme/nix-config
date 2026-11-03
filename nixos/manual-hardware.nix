@@ -4,6 +4,7 @@
     lm_sensors
     acpilight
   ];
+
   # steam, fix glxChooseVisual failed
   hardware.graphics = {
     enable = true;
@@ -58,5 +59,13 @@
     enable = true;
     mouse.accelSpeed = "1.0";
     touchpad.accelSpeed = "1.0";
+  };
+
+  services.kanata = {
+    enable = true;
+    keyboards.default = {
+      extraDefCfg = "process-unmapped-keys yes";
+      config = builtins.readFile ./kanata/config.kbd;
+    };
   };
 }
