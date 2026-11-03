@@ -1,15 +1,25 @@
 (defsrc
-  spc q e r w a s d h j k l)
+  esc caps lctl
+  spc
+  q e r w a s d
+  h j k l)
 
 (defalias
+  caps (tap-hold-press 200 200
+                      esc lctl)
+  lctl (tap-dance 200 (_ caps))
   spc (tap-hold 200 200
                 spc (layer-toggle movement)))
 
 (deflayer base
-  @spc q e r w a s d h j k l)
+  grv @caps @lctl
+  @spc
+  q e r w a s d
+  h j k l)
 
 ;; (movemouse-accel-<variant> interval accel-timeout dist-min dist-max)
 (deflayer movement
+  _ _ _
   _
   mltp
   mrtp
